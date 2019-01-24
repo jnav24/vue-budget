@@ -17,7 +17,7 @@ class Login extends Vue {
     };
     public loginValid: boolean = false;
     public form: FormInterface = {
-        email: {
+        username: {
             value: '',
             rules: [
                 (v: any) => !!v || 'Email is required',
