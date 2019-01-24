@@ -86,7 +86,10 @@ const User: Module<UserInterface | {}, any> = {
                 const response: AxiosResponse = await httpService.post(data);
 
                 if (responseService.isSuccessResponse(response.status)) {
-                    return await dispatch('logUserIn', { username: registerData.username, password: registerData.password });
+                    return await dispatch('logUserIn', {
+                        username: registerData.username,
+                        password: registerData.password,
+                    });
                 }
 
                 return responseService.getFailedResponse();
