@@ -38,20 +38,10 @@
 							</v-layout>
 
 							<v-layout>
-								<v-flex xs12 sm5 md5 lg5>
+								<v-flex>
 									<v-text-field
-										v-model="phoneNumberFormat"
-										:rules="form.phone_number.rules"
-										label="Phone Number (Numbers only)"
-										required></v-text-field>
-								</v-flex>
-
-								<v-spacer></v-spacer>
-
-								<v-flex xs12 sm6 md6 lg6>
-									<v-text-field
-										v-model="form.email.value"
-										:rules="form.email.rules"
+										v-model="form.username.value"
+										:rules="form.username.rules"
 										label="Email"
 										required></v-text-field>
 								</v-flex>
@@ -75,62 +65,6 @@
 										:rules="form.confirm_password.rules"
 										label="Confirm Password"
 										type="password"
-										required></v-text-field>
-								</v-flex>
-							</v-layout>
-
-							<v-divider></v-divider>
-
-							<v-text-field
-								v-model="form.company_name.value"
-								:rules="form.company_name.rules"
-								label="Company"
-								required></v-text-field>
-
-							<v-layout>
-								<v-flex xs12 sm9 md9 lg9>
-									<v-text-field
-										v-model="form.address_1.value"
-										:rules="form.address_1.rules"
-										label="Address"
-										required></v-text-field>
-								</v-flex>
-
-								<v-spacer></v-spacer>
-
-								<v-flex xs12 sm2 md2 lg2>
-									<v-text-field
-										label="Suite/Apt #"></v-text-field>
-								</v-flex>
-							</v-layout>
-
-							<v-layout>
-								<v-flex xs12 sm5 md5 lg4>
-									<v-text-field
-										v-model="form.city.value"
-										:rules="form.city.rules"
-										label="City"
-										required></v-text-field>
-								</v-flex>
-
-								<v-spacer></v-spacer>
-
-								<v-flex xs12 sm3 md3 lg3>
-									<v-select
-										v-model="form.state.value"
-										:rules="form.state.rules"
-										:items="states"
-										label="State"
-										required></v-select>
-								</v-flex>
-
-								<v-spacer></v-spacer>
-
-								<v-flex xs12 sm3 md3 lg2>
-									<v-text-field
-										v-model="form.postal_code.value"
-										:rules="form.postal_code.rules"
-										label="Postal Code"
 										required></v-text-field>
 								</v-flex>
 							</v-layout>

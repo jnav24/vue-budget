@@ -36,7 +36,7 @@ class Register extends Vue {
                 (v: any) => this.validatePhoneNumber() || 'Phone number should be in proper format',
             ],
         },
-        email: {
+        username: {
             value: '',
             rules: [
                 (v: any) => !!v || 'Email is required',
@@ -60,40 +60,6 @@ class Register extends Vue {
                 (v: any) => !!v || 'Confirm password is required',
                 (v: any) => this.checkPassword() || 'Passwords has to match',
                 (v: any) => validateService.isValidLength(v) || '',
-            ],
-        },
-        company_name: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Company name is required',
-            ],
-        },
-        address_1: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Address is required',
-            ],
-        },
-        address_2: {
-            value: '',
-            rules: [],
-        },
-        city: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'City is required',
-            ],
-        },
-        state: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'State is required',
-            ],
-        },
-        postal_code: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Postal code is required',
             ],
         },
     };
