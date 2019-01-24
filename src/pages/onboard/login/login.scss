@@ -1,0 +1,30 @@
+@include dashboardPage;
+
+.login {
+
+	.header {
+		font-size: 28px;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.login-details {
+		@include onboardDetails();
+
+		@include breakpoint(xs) {
+			flex-direction: column;
+
+			p {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.v-text-field .v-label {
+		font-size: 99px;
+
+		@include breakpoint(xl) {
+			font-size: 9px !important;
+		}
+	}
+}
