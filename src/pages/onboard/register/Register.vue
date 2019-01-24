@@ -5,7 +5,7 @@
 	<div :class="[$style.page, $style.register]">
 		<v-layout justify-center>
 			<v-flex xs12 sm10 md6 lg4 xl3>
-				<v-form v-model="registerValid">
+				<v-form ref="registerForm" v-model="registerValid">
 					<v-card :class="[$style['onboard--flex']]">
 						<v-card-title :class="[$style.header]">Register</v-card-title>
 
@@ -50,6 +50,7 @@
 							<v-layout>
 								<v-flex xs12 sm5 md5 lg5>
 									<v-text-field
+										@input="validateAll()"
 										v-model="form.password.value"
 										:rules="form.password.rules"
 										label="Password"
@@ -61,6 +62,7 @@
 
 								<v-flex xs12 sm6 md6 lg6>
 									<v-text-field
+										@input="validateAll()"
 										v-model="form.confirm_password.value"
 										:rules="form.confirm_password.rules"
 										label="Confirm Password"

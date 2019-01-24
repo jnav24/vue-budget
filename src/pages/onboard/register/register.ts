@@ -74,6 +74,11 @@ class Register extends Vue {
         this.form.phone_number.value = phone;
     }
 
+    public validateAll() {
+        const refs: any = this.$refs.registerForm;
+        refs.validate();
+    }
+
     public submit() {
         this.registerUser(this.form)
             .then((res: ResponseInterface) => {
