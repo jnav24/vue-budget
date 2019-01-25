@@ -22,6 +22,10 @@ class ValidateService {
     public isPostalCode(value: string): boolean {
         return /^\d{5}$/.test(value);
     }
+
+    public hasSpecialCharacters(value: string, characters: string = '(?=.*[!$#%]).*'): boolean {
+        return value.match(new RegExp(characters, 'g')) !== null;
+    }
 }
 
 export default ValidateService;

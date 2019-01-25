@@ -98,13 +98,14 @@ const User: Module<UserInterface | {}, any> = {
 
                 if (typeof err !== 'undefined' && responseService.isFailedResponse(err.status)) {
                     let message: string = '';
+                    const errorMessages = Object.keys(err.data.data);
 
-                    if (typeof err.data.data.email !== 'undefined') {
-                        message = 'That email is already taken.';
-                    } else if (typeof err.data.data.name !== 'undefined') {
-                        message = 'That company account already exists.';
-                    } else if (typeof err.data.message !== 'undefined') {
-                        message = err.data.message;
+                    for (const msg of errorMessages) {
+                        if (msg === 'password') {
+                            message = 'Password is not valid.';
+                        } else {
+                            message = err.data.data[msg].shift();
+                        }
                     }
 
                     return responseService.getFailedResponse(message);

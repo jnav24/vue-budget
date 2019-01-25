@@ -51,6 +51,8 @@ class Register extends Vue {
                 (v: any) => validateService.isUppercasePresent(v) || 'Password must contain uppercase letters',
                 (v: any) => validateService.isLowercasePresent(v) || 'Password must contain lowercase letters',
                 (v: any) => validateService.isNumberPresent(v) || 'Password must contain numbers',
+                (v: any) => validateService.hasSpecialCharacters(v) ||
+                    'Password must contain at least one of the following special character (!$#%)',
                 (v: any) => this.checkPassword() || 'Passwords has to match',
             ],
         },
@@ -63,7 +65,6 @@ class Register extends Vue {
             ],
         },
     };
-    public states = globalService.getStatesArray();
 
     public get phoneNumberFormat(): string {
         return this.form.phone_number.value.toString()
