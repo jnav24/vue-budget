@@ -2,11 +2,11 @@ import {ActionContext, Module} from 'vuex';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {responseService} from '@/module';
 
-const budget: any[] = [];
+const budgetList: any[] = [];
 
 const Budget: Module<any, any> = {
     state: {
-        budget,
+        budgetList,
     },
     getters: {},
     actions: {
@@ -28,7 +28,7 @@ const Budget: Module<any, any> = {
     },
     mutations: {
         addBudget(state: any, payload: any) {
-            state.budget = payload;
+            state.budgetList = payload;
         },
     },
 };

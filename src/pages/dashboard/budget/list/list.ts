@@ -20,7 +20,7 @@ class List extends Vue {
     };
 
     public get tableItems() {
-        return this.budget.budget;
+        return this.budget.budgetList;
     }
 
     public goToBudgetTemplate() {
