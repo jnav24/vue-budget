@@ -2,16 +2,23 @@
 <style src="./onboard.scss" lang="scss" scoped></style>
 
 <template>
-	<div class="onboard bg-color">
-		<img src="@/assets/logo.png" alt="Logo" class="logo">
+	<div class="onboard">
+		<div class="bg-color"></div>
+		<div class="bg-image"></div>
 
-		<transition name="onboard-transition"
-					enter-active-class="animated fadeInUp"
-					leave-active-class="animated fadeOutLeft">
-			<router-view></router-view>
-		</transition>
+		<div class="onboard--content">
+			<router-link :to="{ name: 'login' }">
+				<img src="@/assets/images/logo.png" alt="LiveDialer" class="logo">
+			</router-link>
 
-		<v-footer absolute class="bg-color onboard--footer">
+			<transition name="onboard-transition"
+						enter-active-class="animated fadeInUp"
+						leave-active-class="animated fadeOutLeft">
+				<router-view></router-view>
+			</transition>
+		</div>
+
+		<v-footer absolute class="onboard--footer">
 			<v-layout justify-center>
 				&copy; {{ currentYear }} All Rights Reserved
 			</v-layout>

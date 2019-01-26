@@ -2,7 +2,7 @@
 <style src="./login.scss" lang="scss" module></style>
 
 <template>
-	<div :class="[$style.page, $style.login]">
+	<div :class="[$style['page-sub'], $style.login]">
 		<v-layout justify-center>
 			<v-flex xs12 sm10 md6 lg4 xl3>
 				<v-form v-model="loginValid">
@@ -34,7 +34,7 @@
 
 						<v-card-actions>
 							<v-btn
-								color="primary"
+								color="button"
 								@click="submit"
 								:disabled="!loginValid"
 								block>

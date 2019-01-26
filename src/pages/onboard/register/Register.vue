@@ -2,7 +2,7 @@
 <style src="./register.scss" lang="scss" module></style>
 
 <template>
-	<div :class="[$style.page, $style.register]">
+	<div :class="[$style['page-sub'], $style.register]">
 		<v-layout justify-center>
 			<v-flex xs12 sm10 md6 lg4 xl3>
 				<v-form ref="registerForm" v-model="registerValid">
@@ -74,7 +74,7 @@
 
 						<v-card-actions>
 							<v-btn
-								color="primary"
+								color="button"
 								@click="submit"
 								:disabled="!registerValid"
 								block>

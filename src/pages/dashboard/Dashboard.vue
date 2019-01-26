@@ -15,8 +15,7 @@
 
 			<v-toolbar-title>
 				<v-layout align-center>
-					<img src="@/assets/logo.png" alt="Logo" style="width: 1.5em">
-					<h2 class="logo--text">Logo</h2>
+					<img src="@/assets/images/logo.png" alt="Logo" style="width: 6em">
 				</v-layout>
 			</v-toolbar-title>
 

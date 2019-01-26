@@ -4,10 +4,11 @@ import 'vuetify/dist/vuetify.min.css'
 import colors from 'vuetify/es5/util/colors'
 
 Vue.use(Vuetify, {
-  theme: {
-    primary: colors.blueGrey.darken4,
-    secondary: colors.green.accent4,
-    accent: colors.indigo.base,
-    danger: colors.red.darken3,
-  }
+    theme: {
+        primary: '#45ADA8',
+        secondary: '#EFC958',
+        accent: '#BDBDBD',
+        danger: '#C62828',
+        button: '#EFC958'
+    }
 });

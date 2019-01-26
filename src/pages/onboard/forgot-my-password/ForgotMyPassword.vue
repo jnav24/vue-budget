@@ -2,7 +2,7 @@
 <style src="./forgot-my-password.scss" lang="scss" scoped></style>
 
 <template>
-	<div class="page forgot-password">
+	<div class="page-sub forgot-password">
 		<v-layout justify-center>
 			<v-flex xs12 sm10 md6 lg4 xl3>
 				<v-form v-if="!successSubmission" v-model="formValid">
