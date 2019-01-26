@@ -43,12 +43,14 @@
 								<td class="text-xs-center">{{ props.item.name }}</td>
 								<td class="text-xs-center">Jan. 2019</td>
 								<td class="text-xs-center">
-									<v-btn
-										fab
-										small
-										class="btn--details__icon">
+									<router-link
+										slot="activator"
+										tag="v-btn"
+										class="btn--details__icon v-btn v-btn--floating v-btn--small"
+										:to="{ name: 'budget-edit', params: { id: 1 } }"
+										exact>
 										<v-icon>edit</v-icon>
-									</v-btn>
+									</router-link>
 
 									<v-btn
 										fab
