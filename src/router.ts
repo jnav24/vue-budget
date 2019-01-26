@@ -110,12 +110,12 @@ const router = new Router({
                     },
                 },
                 {
-                    path: 'profile',
-                    name: 'profile',
+                    path: 'budget',
+                    name: 'budget-list',
                     meta: {
                         middleware: [auth],
                     },
-                    component: () => import('@/pages/dashboard/profile/Profile.vue'),
+                    component: () => import('@/pages/dashboard/budget/list/List.vue'),
                 },
             ],
         },
