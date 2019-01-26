@@ -1,0 +1,73 @@
+.btn {
+	&--submit {
+		background-color: map-get($colors, button) !important;
+		color: #fff !important;
+	}
+
+	&--details {
+		background: map-get($colors, mid_grey) !important;
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+		color: #fff;
+		font-size: 11px;
+		height: 30px;
+		width: 30px;
+
+		i {
+			font-size: 9px;
+			margin-left: 5px;
+			margin-top: -1px;
+		}
+
+		&:hover {
+			background: map-get($colors, button) !important;
+			box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12) !important;
+		}
+
+		&__icon {
+			background: none !important;
+			box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+			color: lighten(map-get($colors, primary), 15%) !important;
+			display: inline-block;
+			height: 40px;
+			margin: 0;
+			padding: 0;
+			width: 40px;
+
+			&.btn-danger {
+				color: map-get($colors, danger) !important;
+			}
+
+			&:hover	{
+				//color: map_get($colors, success) !important;
+			}
+		}
+	}
+
+	&--add {
+		background: #fff;
+		border: 1px solid map-get($colors, primary);
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+		color: map-get($colors, primary);
+
+		&:hover {
+			background: map-get($colors, primary) !important;
+			box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12) !important;
+			color: #fff;
+		}
+	}
+
+	&--danger {
+		&-stroke {
+			background: #fff;
+			border: 1px solid map-get($colors, danger);
+			box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+			color: map-get($colors, danger) !important;
+
+			&:hover {
+				background: map-get($colors, danger) !important;
+				box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12) !important;
+				color: #fff !important;
+			}
+		}
+	}
+}

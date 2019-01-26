@@ -1,3 +1,14 @@
-.budget.page {
-	@include dashboardHeader;
+.budget {
+	&.page {
+		@include dashboardHeader;
+	}
+
+	.header__h1 {
+		margin-bottom: 0;
+	}
+
+	.v-icon.prepend-icon {
+		margin-right: 5px;
+		text-align: center;
+	}
 }

@@ -27,6 +27,8 @@ function initStore() {
     if (!Object.keys(store.state.User.user).length) {
         store.dispatch('isLoggedIn');
     }
+
+    store.dispatch('getAllBudgets');
 }
 
 const router = new Router({

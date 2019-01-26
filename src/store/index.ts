@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Budget from './modules/budget.store';
 import User from './modules/user.store';
 import { cookiesService } from '@/module';
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
         },
     },
     modules: {
+        Budget,
         User,
     },
 });
