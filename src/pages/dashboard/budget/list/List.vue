@@ -26,11 +26,12 @@
 				</v-layout>
 
 				<EmptyState
+					v-if="!tableItems.length"
 					text="You have no monthly budgets. Click on the button below to add one."
 					button-text="Template"
 					@buttonClicked="goToBudgetTemplate()"></EmptyState>
 
-				<v-card>
+				<v-card v-if="tableItems.length">
 					<v-card-text>
 						<v-data-table
 							:pagination.sync="tableInfo"
