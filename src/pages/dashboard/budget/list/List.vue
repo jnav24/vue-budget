@@ -25,6 +25,11 @@
 					</v-flex>
 				</v-layout>
 
+				<EmptyState
+					text="You have no monthly budgets. Click on the button below to add one."
+					button-text="Template"
+					@buttonClicked="goToBudgetTemplate()"></EmptyState>
+
 				<v-card>
 					<v-card-text>
 						<v-data-table

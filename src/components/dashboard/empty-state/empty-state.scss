@@ -1,0 +1,17 @@
+.empty-state {
+	background: map-get($colors, lite_grey);
+	border: 1px solid map-get($colors, mid_grey);
+	margin-bottom: 30px;
+	padding: 20px;
+	text-align: center;
+
+	.empty-icon {
+		font-size: 64px;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-size: 16px;
+		//margin: 0;
+	}
+}

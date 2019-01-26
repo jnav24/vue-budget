@@ -1,8 +1,13 @@
 import { Vue, Component } from 'vue-property-decorator';
-import {DataTableInterface} from '@/interfaces/data-table.interface';
 import {State} from 'vuex-class';
+import {DataTableInterface} from '@/interfaces/data-table.interface';
+import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 
-@Component
+@Component({
+    components: {
+        EmptyState,
+    },
+})
 class List extends Vue {
     @State((state: any) => state.Budget) public budget: any;
     public tableHeaders: any = [
@@ -16,6 +21,10 @@ class List extends Vue {
 
     public get tableItems() {
         return this.budget.budget;
+    }
+
+    public goToBudgetTemplate() {
+        console.log('clicked');
     }
 }
 
