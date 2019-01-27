@@ -1,8 +1,9 @@
 import { Vue, Component } from 'vue-property-decorator';
-import {State} from 'vuex-class';
+import {Action, State} from 'vuex-class';
 import {DataTableInterface} from '@/interfaces/data-table.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
+import {ResponseInterface} from '@/interfaces/response.interface';
 
 @Component({
     components: {
@@ -11,6 +12,7 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
     },
 })
 class List extends Vue {
+    @Action public deleteSingleBudget: (num: number) => Promise<ResponseInterface>;
     @State((state: any) => state.Budget) public budget: any;
     public confirmData: any = {
         text: 'Are you sure you want to delete this budget?',
@@ -24,6 +26,7 @@ class List extends Vue {
     public tableInfo: DataTableInterface = {
         rowsPerPageItems: [24, 48, 60],
     };
+    private delete: number = 0;
 
     public get tableItems() {
         return this.budget.budgetList;
@@ -33,16 +36,34 @@ class List extends Vue {
         console.log('clicked');
     }
 
-    public deleteBudget() {
+    public deleteBudget(id: number) {
         this.confirmDialog = true;
+        this.delete = id;
     }
 
     public emitConfimDialog(dialog: boolean) {
         this.confirmDialog = dialog;
+
+        if (!dialog) {
+            this.delete = 0;
+        }
     }
 
     public emitConfirmData(num: number) {
-        console.log(!!num);
+        if (!!num) {
+            this.removeBudget();
+        }
+    }
+
+    private removeBudget() {
+        if (this.delete) {
+            this.deleteSingleBudget(this.delete)
+                .then((res: ResponseInterface) => {
+                    if (res.success) {
+                        console.log(this.budget.budgetList);
+                    }
+                });
+        }
     }
 }
 

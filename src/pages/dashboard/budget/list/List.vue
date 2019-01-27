@@ -15,7 +15,6 @@
 					<v-flex>
 						<h1 class="header__h1">Budget</h1>
 						add:
-						delete functionality with confirm dialog
 						filter for list
 						page to edit/add budget template
 						add budget functionality (params, id, prolly not need for this page)
@@ -66,7 +65,7 @@
 									<v-btn
 										fab
 										small
-										@click="deleteBudget()"
+										@click="deleteBudget(props.item.id)"
 										class="btn--details__icon">
 										<v-icon>cancel</v-icon>
 									</v-btn>

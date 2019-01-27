@@ -1,4 +1,5 @@
 import {ResponseInterface} from '@/interfaces/response.interface';
+import {ResponseDataInterface} from '@/interfaces/response-data.interface';
 
 class ResponseService {
     private msg: string = 'Something unexpected happened. Please try again later.';
@@ -17,6 +18,11 @@ class ResponseService {
 
     public isFailedResponse(code: number): boolean {
         return code >= 400 && code <= 499;
+    }
+
+    public getDataFromResponse(response: ResponseDataInterface) {
+        const data = response.data.data;
+        return data[Object.keys(data)[0]];
     }
 }
 
