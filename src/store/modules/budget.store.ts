@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {ActionContext, ActionTree, GetterTree, Module, MutationTree} from 'vuex';
+import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
