@@ -1,0 +1,21 @@
+.confirm-dialog {
+
+}
+
+.dialogs {
+
+}
+
+.confirm-card {
+	padding: 20px;
+}
+
+.warning-icon {
+	color: map-get($colors, danger) !important;
+	display: block;
+	font-size: 8em;
+}
+
+.confirm-text {
+	font-size: 20px;
+}
