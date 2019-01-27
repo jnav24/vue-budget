@@ -1,124 +1,138 @@
 import Vue from 'vue';
-import {ActionContext, Module} from 'vuex';
+import {ActionContext, ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
+import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
+import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 
-const budgetList: any[] = [];
+const budgetList: BudgetListInterface[] = [];
+const budgetTemplate: BudgetTemplateInterface = {} as BudgetTemplateInterface;
 
-const Budget: Module<any, any> = {
-    state: {
-        budgetList,
-    },
-    getters: {},
-    actions: {
-        async addSingleBudget({ commit }: ActionContext<any, any>, payload: string): Promise<ResponseInterface> {
-            try {
-                const data: UrlInterface = {
-                    url: '',
-                    params: {
-                        name: payload,
-                    },
-                };
+const currentState: BudgetStateInterface = {
+    budgetList,
+    budgetTemplate,
+};
 
-                // @TODO: this will also return budget template with a budget_id...
-                // @TODO: ...equal to the id below.
-                const response: any = await new Promise((resolve) => {
-                    resolve({
-                        status: 200,
+const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {};
+
+const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
+    async addSingleBudget({ commit }, payload: string): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: '',
+                params: {
+                    name: payload,
+                },
+            };
+
+            // @TODO: this will also return budget template with a budget_id...
+            // @TODO: ...equal to the id below.
+            const response: any = await new Promise((resolve) => {
+                resolve({
+                    status: 200,
+                    data: {
                         data: {
-                            data: {
-                                budget: {
-                                    id: 4,
-                                    user_id: 1,
-                                    name: payload,
-                                    created_at: '2019-04-01 00:00:00',
-                                },
+                            budget: {
+                                id: 4,
+                                user_id: 1,
+                                name: payload,
+                                created_at: '2019-04-01 00:00:00',
                             },
                         },
-                    });
-                });
-
-                if (responseService.isSuccessResponse(response.status)) {
-                    const resData = responseService.getDataFromResponse(response);
-                    commit('addSingleBudget', resData);
-                    return responseService.getSuccessResponse('', { id: resData.id });
-                }
-
-                return responseService.getFailedResponse();
-            } catch (error) {
-                return responseService.getFailedResponse();
-            }
-        },
-        async getAllBudgets({ commit }: ActionContext<any, any>): Promise<ResponseInterface> {
-            try {
-                const data: UrlInterface = {
-                    url: '',
-                };
-
-                const response: any = await new Promise((resolve) => {
-                    resolve({
-                        status: 200,
-                        data: {
-                            data: {
-                                budgets: [
-                                    { id: 3, user_id: 1, name: 'March Budget', created_at: '2019-03-01 00:00:00' },
-                                    { id: 2, user_id: 1, name: 'February Budget', created_at: '2019-02-01 00:00:00' },
-                                    { id: 1, user_id: 1, name: 'January Budget', created_at: '2019-01-01 00:00:00' },
-                                ],
-                            },
-                        },
-                    });
-                });
-
-                if (responseService.isSuccessResponse(response.status)) {
-                    commit('addBudget', responseService.getDataFromResponse(response));
-                    return responseService.getSuccessResponse();
-                }
-
-                return responseService.getFailedResponse();
-            } catch (error) {
-                return responseService.getFailedResponse();
-            }
-        },
-        async deleteSingleBudget({ commit }: ActionContext<any, any>, payload: number): Promise<ResponseInterface> {
-            try {
-                const data: UrlInterface = {
-                    url: '',
-                    params: {
-                        id: payload,
                     },
-                };
-
-                const response: any = await new Promise((resolve) => {
-                    resolve({
-                        status: 200,
-                    });
                 });
+            });
 
-                if (responseService.isSuccessResponse(response.status)) {
-                    commit('removeSingleBudget', payload);
-                    return responseService.getSuccessResponse();
-                }
-
-                return responseService.getFailedResponse();
-            } catch (error) {
-                return responseService.getFailedResponse();
+            if (responseService.isSuccessResponse(response.status)) {
+                const resData = responseService.getDataFromResponse(response);
+                commit('addSingleBudget', resData);
+                return responseService.getSuccessResponse('', { id: resData.id });
             }
-        },
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
     },
-    mutations: {
-        addBudget(state: any, payload: any) {
-            state.budgetList = payload;
-        },
-        addSingleBudget(state: any, payload: any) {
-            state.budgetList = [payload, ...state.budgetList];
-        },
-        removeSingleBudget(state: any, payload: any) {
-            const index = state.budgetList.findIndex((num: any) => num.id === payload);
-            Vue.delete(state.budgetList, index);
-        },
+    async getAllBudgets({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: '',
+            };
+
+            const response: any = await new Promise((resolve) => {
+                resolve({
+                    status: 200,
+                    data: {
+                        data: {
+                            budgets: [
+                                { id: 3, user_id: 1, name: 'March Budget', created_at: '2019-03-01 00:00:00' },
+                                { id: 2, user_id: 1, name: 'February Budget', created_at: '2019-02-01 00:00:00' },
+                                { id: 1, user_id: 1, name: 'January Budget', created_at: '2019-01-01 00:00:00' },
+                            ],
+                        },
+                    },
+                });
+            });
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addBudget', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
     },
+    async deleteSingleBudget({ commit }, payload: number): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: '',
+                params: {
+                    id: payload,
+                },
+            };
+
+            const response: any = await new Promise((resolve) => {
+                resolve({
+                    status: 200,
+                });
+            });
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('removeSingleBudget', payload);
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+};
+
+const mutations: MutationTree<BudgetStateInterface> = {
+    addBudget(state, payload: any) {
+        state.budgetList = payload;
+    },
+    addSingleBudget(state, payload: any) {
+        state.budgetList = [payload, ...state.budgetList];
+    },
+    removeSingleBudget(state, payload: any) {
+        const index = state.budgetList.findIndex((num: any) => num.id === payload);
+        Vue.delete(state.budgetList, index);
+    },
+};
+
+const Budget: Module<BudgetStateInterface, RootStateInterface> = {
+    state: currentState,
+    getters,
+    actions,
+    mutations,
 };
 
 export default Budget;

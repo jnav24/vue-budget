@@ -7,6 +7,7 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 
 @Component({
     components: {
@@ -17,7 +18,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 })
 class List extends Vue {
     @Action public deleteSingleBudget: (num: number) => Promise<ResponseInterface>;
-    @State((state: RootStateInterface) => state.Budget) public budget: any;
+    @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     public addBudgetDialog: boolean = false;
     public confirmData: any = {
         text: 'Are you sure you want to delete this budget?',
