@@ -24,9 +24,9 @@ class List extends Vue {
     public confirmDialog: boolean = false;
     public search: string = '';
     public tableHeaders: any = [
-        { text: 'Name', value: 'name', class: ['text-xs-center'] },
-        { text: 'Date', value: 'created_at', class: ['text-xs-center'] },
-        { text: 'Actions', value: '', class: ['text-xs-center'] },
+        { text: 'Name', value: 'name', sortable: false, class: ['text-xs-center'] },
+        { text: 'Date', value: 'created_at', sortable: false, class: ['text-xs-center'] },
+        { text: 'Actions', value: '', sortable: false, class: ['text-xs-center'] },
     ];
     public tableInfo: DataTableInterface = {
         rowsPerPageItems: [24, 48, 60],
