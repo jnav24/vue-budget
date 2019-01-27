@@ -3,11 +3,21 @@
 
 <template>
 	<div class="page budget">
+		<ConfirmDialog
+			:data="confirmData"
+			:dialog="confirmDialog"
+			@updateDialog="emitConfimDialog($event)"></ConfirmDialog>
+
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<v-layout align-center style="margin-bottom: 25px;">
 					<v-flex>
 						<h1 class="header__h1">Budget</h1>
+						add:
+						delete functionality with confirm dialog
+						filter for list
+						page to edit/add budget template
+						add budget functionality (params, id, prolly not need for this page)
 					</v-flex>
 
 					<v-flex>
@@ -55,6 +65,7 @@
 									<v-btn
 										fab
 										small
+										@click="deleteBudget()"
 										class="btn--details__icon">
 										<v-icon>cancel</v-icon>
 									</v-btn>
