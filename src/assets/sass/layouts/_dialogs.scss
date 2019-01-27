@@ -1,0 +1,12 @@
+.dialog {
+	&--title {
+		background: map-get($colors, primary) !important;
+		color: #fff;
+		font-size: 22px;
+
+		.v-icon {
+			color: #fff;
+			margin-right: 10px;
+		}
+	}
+}
