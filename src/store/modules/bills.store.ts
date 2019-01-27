@@ -42,12 +42,12 @@ const Bills: Module<any, any> = {
             } catch (error) {
                 return responseService.getFailedResponse();
             }
-        }
+        },
     },
     mutations: {
         addAllBillTypes(state: any, payload: BillTypesInterface[]) {
             state.types = payload;
-        }
+        },
     },
 };
 
