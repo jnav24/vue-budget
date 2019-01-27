@@ -22,12 +22,12 @@ const actions: ActionTree<BillsStateInterface, RootStateInterface> = {
                 url: '',
             };
 
-            const response: any = new Promise((resolve) => {
+            const response: any = await new Promise((resolve) => {
                 resolve({
                     status: 200,
                     data: {
                         data: {
-                            bill_types: [
+                            types: [
                                 { id: 1, name: 'Credit Card', slug: 'credit_card'},
                             ],
                         },
