@@ -5,6 +5,7 @@ import AddBudgetDialog from '@/components/dashboard/dialogs/add-budget-dialog/Ad
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {ResponseInterface} from '@/interfaces/response.interface';
+import {timestampService} from '@/module';
 
 @Component({
     components: {
@@ -60,6 +61,10 @@ class List extends Vue {
         if (!!num) {
             this.removeBudget();
         }
+    }
+
+    public formatBudget(date: string): string {
+        return timestampService.format(date, 'MMM YYYY');
     }
 
     private removeBudget() {
