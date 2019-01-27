@@ -1,3 +1,7 @@
 .budget-template.page {
 	@include dashboardHeader;
+
+	.header__h1 {
+		margin: 0;
+	}
 }
