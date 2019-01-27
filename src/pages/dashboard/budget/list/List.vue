@@ -18,8 +18,7 @@
 				<v-layout align-center style="margin-bottom: 25px;">
 					<v-flex>
 						<h1 class="header__h1">Budget</h1>
-						add:
-						page to edit/add budget template
+						<p>List of monthly budget. Add, update, or remove budgets and you can go to the budget template on this page.</p>
 					</v-flex>
 
 					<v-flex>
@@ -31,10 +30,14 @@
 								<span>Budget</span>
 							</v-btn>
 
-							<v-btn color="secondary">
+							<router-link
+								tag="v-btn"
+								class="v-btn secondary"
+								:to="{ name: 'budget-template'}"
+								exact>
 								<v-icon class="prepend-icon">edit</v-icon>
 								<span>Template</span>
-							</v-btn>
+							</router-link>
 						</v-layout>
 					</v-flex>
 				</v-layout>
