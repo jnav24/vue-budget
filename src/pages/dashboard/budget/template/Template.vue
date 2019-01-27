@@ -13,9 +13,77 @@
 					</v-flex>
 				</v-layout>
 
+				<pre>{{ budget.budgetTemplate }}</pre>
+
+				<EmptyState
+					v-if="!hasBudgetTemplate"
+					text="You haven't set up your template set. Click the add button below to get started."
+					button-text="Template"
+					@buttonClicked=""></EmptyState>
+
 				<v-card>
 					<v-card-title>
-						Profile page... works!
+						<div>
+							<h3>Bank</h3>
+							<ul>
+								<li>id</li>
+								<li>user_id</li>
+								<li>name</li>
+								<li>amount</li>
+								<li>type; checking, savings</li>
+							</ul>
+
+							<h3>Credit Cards</h3>
+							<ul>
+								<li>id</li>
+								<li>user_id</li>
+								<li>name</li>
+								<li>limit</li>
+								<li>apr</li>
+								<li>last 4</li>
+								<li>exp month</li>
+								<li>exp year</li>
+								<li>due date</li>
+								<li>type; master, visa, etc</li>
+							</ul>
+
+							<h3>Investments</h3>
+							<ul>
+								<li>id</li>
+								<li>user_id</li>
+								<li>name</li>
+								<li>amount</li>
+								<li>type; stocks, crypto, 401k, ira</li>
+							</ul>
+
+							<h3>Medical</h3>
+							<ul>
+								<li>id</li>
+								<li>user_id</li>
+								<li>name</li>
+								<li>amount</li>
+								<li>due date</li>
+							</ul>
+
+							<h3>Miscellaneous</h3>
+							<ul>
+								<li>id</li>
+								<li>user_id</li>
+								<li>name</li>
+								<li>amount</li>
+								<li>due date</li>
+							</ul>
+
+							<h3>Utility</h3>
+							<ul>
+								<li>id</li>
+								<li>user_id</li>
+								<li>name</li>
+								<li>amount</li>
+								<li>type; electric, gas, etc</li>
+								<li>due date</li>
+							</ul>
+						</div>
 					</v-card-title>
 				</v-card>
 			</v-flex>

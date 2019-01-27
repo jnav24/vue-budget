@@ -1,6 +1,18 @@
 import { Vue, Component} from 'vue-property-decorator';
+import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {Getter, State} from 'vuex-class';
+import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 
-@Component
-class Template extends Vue {}
+@Component({
+    components: {
+        EmptyState,
+    },
+})
+class Template extends Vue {
+    @Getter public hasBudgetTemplate: number;
+    @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
+
+}
 
 export default Template;
