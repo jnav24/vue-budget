@@ -6,7 +6,8 @@
 		<ConfirmDialog
 			:data="confirmData"
 			:dialog="confirmDialog"
-			@updateDialog="emitConfimDialog($event)"></ConfirmDialog>
+			@updateDialog="emitConfimDialog($event)"
+			@updateData="emitConfirmData($event)"></ConfirmDialog>
 
 		<v-layout justify-center>
 			<v-flex lg8 xl8>

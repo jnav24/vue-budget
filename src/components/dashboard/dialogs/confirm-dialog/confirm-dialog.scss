@@ -10,8 +10,31 @@
 	padding: 20px;
 }
 
-.warning-icon {
+.danger {
 	color: map-get($colors, danger) !important;
+}
+
+.success {
+	color: map-get($colors, success) !important;
+}
+
+.warn {
+	color: map-get($colors, warn) !important;
+}
+
+.btn-danger {
+	background: map-get($colors, danger) !important;
+}
+
+.btn-success {
+	background: map-get($colors, success) !important;
+}
+
+.btn-warn {
+	background: map-get($colors, warn) !important;
+}
+
+.confirm-icon {
 	display: block;
 	font-size: 8em;
 }

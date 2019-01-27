@@ -12,7 +12,9 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 })
 class List extends Vue {
     @State((state: any) => state.Budget) public budget: any;
-    public confirmData: any = {};
+    public confirmData: any = {
+        text: 'Are you sure you want to delete this budget?',
+    };
     public confirmDialog: boolean = false;
     public tableHeaders: any = [
         { text: 'Name', value: 'name', class: ['text-xs-center'] },
@@ -37,6 +39,10 @@ class List extends Vue {
 
     public emitConfimDialog(dialog: boolean) {
         this.confirmDialog = dialog;
+    }
+
+    public emitConfirmData(num: number) {
+        console.log(!!num);
     }
 }
 
