@@ -27,6 +27,7 @@ class AddBudgetDialog extends Dialogs {
                         this.closeDialog();
                         const ref: any = this.$refs.addBudgetForm;
                         ref.reset();
+                        this.$router.push({ name: 'budget-edit', params: { id: res.data.id } });
                     }
                 });
         }

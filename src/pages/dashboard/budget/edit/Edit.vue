@@ -10,6 +10,7 @@
 				<v-card>
 					<v-card-title>
 						Profile page... works!
+						<pre>{{ $route.params.id }}</pre>
 					</v-card-title>
 				</v-card>
 			</v-flex>

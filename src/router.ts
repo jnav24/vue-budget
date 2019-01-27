@@ -120,7 +120,7 @@ const router = new Router({
                     component: () => import('@/pages/dashboard/budget/list/List.vue'),
                 },
                 {
-                    path: 'budget/edit',
+                    path: 'budget/edit/:id',
                     name: 'budget-edit',
                     meta: {
                         middleware: [auth],

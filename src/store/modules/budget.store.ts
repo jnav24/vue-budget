@@ -21,6 +21,8 @@ const Budget: Module<any, any> = {
                     },
                 };
 
+                // @TODO: this will also return budget template with a budget_id...
+                // @TODO: ...equal to the id below.
                 const response: any = await new Promise((resolve) => {
                     resolve({
                         status: 200,
@@ -38,8 +40,9 @@ const Budget: Module<any, any> = {
                 });
 
                 if (responseService.isSuccessResponse(response.status)) {
-                    commit('addSingleBudget', responseService.getDataFromResponse(response));
-                    return responseService.getSuccessResponse();
+                    const resData = responseService.getDataFromResponse(response);
+                    commit('addSingleBudget', resData);
+                    return responseService.getSuccessResponse('', { id: resData.id });
                 }
 
                 return responseService.getFailedResponse();

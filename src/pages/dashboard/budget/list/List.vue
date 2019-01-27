@@ -19,9 +19,7 @@
 					<v-flex>
 						<h1 class="header__h1">Budget</h1>
 						add:
-						filter for list
 						page to edit/add budget template
-						add budget functionality (params, id, prolly not need for this page)
 					</v-flex>
 
 					<v-flex>
