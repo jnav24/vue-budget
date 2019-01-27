@@ -45,8 +45,8 @@
 				<EmptyState
 					v-if="!tableItems.length"
 					text="You have no monthly budgets. Click on the button below to add one."
-					button-text="Template"
-					@buttonClicked="goToBudgetTemplate()"></EmptyState>
+					button-text="Budget"
+					@buttonClicked="addBudgetDialog = true"></EmptyState>
 
 				<v-card v-if="tableItems.length">
 					<v-card-title>

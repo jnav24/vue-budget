@@ -37,10 +37,6 @@ class List extends Vue {
         return this.budget.budgetList;
     }
 
-    public goToBudgetTemplate() {
-        console.log('clicked');
-    }
-
     public deleteBudget(id: number) {
         this.confirmDialog = true;
         this.delete = id;
