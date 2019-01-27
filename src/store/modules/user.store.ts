@@ -6,17 +6,21 @@ import { AxiosResponse } from 'axios';
 import {ActionContext, Module} from 'vuex';
 import { cookiesService, responseService, httpService, userService } from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {UserStateInterface} from '@/interfaces/user-state.interface';
 
 const user: UserInterface = {} as UserInterface;
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
-const User: Module<UserInterface | {}, any> = {
+const User: Module<UserStateInterface, RootStateInterface> = {
     state: {
         user,
     },
     getters: {},
     actions: {
-        async isLoggedIn({ commit }: ActionContext<UserInterface | {}, any>): Promise<ResponseInterface> {
+        async isLoggedIn(
+            { commit }: ActionContext<UserStateInterface, RootStateInterface>,
+        ): Promise<ResponseInterface> {
             try {
                 const cookie = cookiesService.getCookie(userCookieName);
 
@@ -36,7 +40,10 @@ const User: Module<UserInterface | {}, any> = {
                 return responseService.getFailedResponse();
             }
         },
-        async logUserIn({ commit }: ActionContext<UserInterface | {}, any>, userData: {}): Promise<ResponseInterface> {
+        async logUserIn(
+            { commit }: ActionContext<UserStateInterface, RootStateInterface>,
+            userData: {},
+        ): Promise<ResponseInterface> {
             try {
                 const loginData: UserLoginInterface = userService.setUserDataFromForm(userData);
                 const data: UrlInterface = {
@@ -74,7 +81,7 @@ const User: Module<UserInterface | {}, any> = {
             }
         },
         async registerUser(
-            { commit, dispatch }: ActionContext<UserInterface | {}, any>,
+            { commit, dispatch }: ActionContext<UserStateInterface, RootStateInterface>,
             userData: {},
         ): Promise<ResponseInterface> {
             try {
@@ -116,7 +123,7 @@ const User: Module<UserInterface | {}, any> = {
         },
     },
     mutations: {
-        addUser(state: any, usr: UserInterface) {
+        addUser(state: UserStateInterface, usr: UserInterface) {
             state.user = usr;
         },
     },
