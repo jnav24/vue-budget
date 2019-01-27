@@ -68,7 +68,7 @@
 										slot="activator"
 										tag="v-btn"
 										class="btn--details__icon v-btn v-btn--floating v-btn--small"
-										:to="{ name: 'budget-edit' }"
+										:to="{ name: 'budget-edit', params: { id: props.item.id } }"
 										exact>
 										<v-icon>edit</v-icon>
 									</router-link>
