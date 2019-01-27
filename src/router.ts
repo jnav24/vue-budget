@@ -29,6 +29,7 @@ function initStore() {
     }
 
     store.dispatch('getAllBudgets');
+    store.dispatch('getAllBillTypes');
 }
 
 const router = new Router({
