@@ -4,11 +4,15 @@ import {ResponseDataInterface} from '@/interfaces/response-data.interface';
 class ResponseService {
     private msg: string = 'Something unexpected happened. Please try again later.';
 
-    public getSuccessResponse(msg: string = ''): ResponseInterface {
-        return { success: true, msg};
+    public getSuccessResponse(msg: string = '', data: any[] | {} = {}): ResponseInterface {
+        return { success: true, msg, data};
     }
 
     public getFailedResponse(msg: string = this.msg): ResponseInterface {
+        if (msg.trim() === '') {
+            msg = this.msg;
+        }
+
         return { success: false, msg };
     }
 
