@@ -3,6 +3,10 @@
 
 <template>
 	<div class="page budget-template">
+		<AddBudgetExpense
+			:dialog="expenseDialog"
+			@updateDialog="expenseDialog = $event"></AddBudgetExpense>
+
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<v-layout align-center style="margin-bottom: 25px;">
@@ -19,7 +23,7 @@
 					v-if="!hasBudgetTemplate"
 					text="You haven't set up your template set. Click the add button below to get started."
 					button-text="Template"
-					@buttonClicked=""></EmptyState>
+					@buttonClicked="expenseDialog = true"></EmptyState>
 
 				<v-card>
 					<v-card-title>
