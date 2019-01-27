@@ -127,6 +127,14 @@ const router = new Router({
                     },
                     component: () => import('@/pages/dashboard/budget/edit/Edit.vue'),
                 },
+                {
+                    path: 'budget/template',
+                    name: 'budget-template',
+                    meta: {
+                        middleware: [auth],
+                    },
+                    component: () => import('@/pages/dashboard/budget/template/Template.vue'),
+                },
             ],
         },
     ],
