@@ -1,3 +1,7 @@
+html, body {
+	background: #fafafa;
+}
+
 .header {
 	&__h1 {
 		color: map-get($colors, secondary);

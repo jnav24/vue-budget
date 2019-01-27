@@ -1,9 +1,13 @@
+$pb: 50px;
+
 .dashboard {
 	.page {
+		padding-bottom: $pb;
 		position: absolute;
 		width: inherit;
 
 		&-sub {
+			padding-bottom: $pb;
 			position: absolute;
 			width: 100%;
 		}
