@@ -13,29 +13,39 @@
 				<v-icon>menu</v-icon>
 			</v-btn>
 
-			<v-toolbar-title>
-				<v-layout align-center>
-					<img src="@/assets/images/logo.png" alt="Logo" style="width: 6em">
-				</v-layout>
-			</v-toolbar-title>
+			<v-layout align-center>
+				<v-flex lg2 xl2>
+					<v-layout justify-start>
+						<v-toolbar-title>
+							<v-layout align-center>
+								<img src="@/assets/images/logo.png" alt="Logo" style="width: 6em">
+							</v-layout>
+						</v-toolbar-title>
+					</v-layout>
+				</v-flex>
 
-			<v-spacer></v-spacer>
+				<v-flex lg8 xl8>
+					<v-layout justify-center>
+						<MainNavDesktop :menu="menu"></MainNavDesktop>
+					</v-layout>
+				</v-flex>
 
-			<MainNavDesktop :menu="menu"></MainNavDesktop>
+				<v-flex lg2 xl2>
+					<v-layout justify-end>
+						<v-menu bottom left offset-y>
+							<v-btn slot="activator" dark icon>
+								<v-icon>account_circle</v-icon>
+							</v-btn>
 
-			<v-spacer></v-spacer>
-
-			<v-menu bottom left offset-y>
-				<v-btn slot="activator" dark icon>
-					<v-icon>account_circle</v-icon>
-				</v-btn>
-
-				<v-list>
-					<v-list-tile @click="logout()">
-						<v-list-tile-title>Logout</v-list-tile-title>
-					</v-list-tile>
-				</v-list>
-			</v-menu>
+							<v-list>
+								<v-list-tile @click="logout()">
+									<v-list-tile-title>Logout</v-list-tile-title>
+								</v-list-tile>
+							</v-list>
+						</v-menu>
+					</v-layout>
+				</v-flex>
+			</v-layout>
 		</v-toolbar>
 
 		<transition name="dashboard-transition"
