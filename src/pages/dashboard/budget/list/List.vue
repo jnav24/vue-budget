@@ -48,10 +48,17 @@
 					@buttonClicked="goToBudgetTemplate()"></EmptyState>
 
 				<v-card v-if="tableItems.length">
+					<v-card-title>
+						<v-text-field
+							label="Search"
+							prepend-icon="search"
+							v-model="search"
+							single-line></v-text-field>
+					</v-card-title>
+
 					<v-card-text>
 						<v-data-table
-							:pagination.sync="tableInfo"
-							:total-items="tableInfo.totalItems"
+							:search="search"
 							:rows-per-page-items="tableInfo.rowsPerPageItems"
 							:items="tableItems"
 							:headers="tableHeaders">
