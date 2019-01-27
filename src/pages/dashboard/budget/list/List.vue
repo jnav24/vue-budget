@@ -9,6 +9,10 @@
 			@updateDialog="emitConfimDialog($event)"
 			@updateData="emitConfirmData($event)"></ConfirmDialog>
 
+		<AddBudgetDialog
+			:dialog="addBudgetDialog"
+			@updateDialog="emitAddBudgetDialog($event)"></AddBudgetDialog>
+
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<v-layout align-center style="margin-bottom: 25px;">
@@ -22,7 +26,9 @@
 
 					<v-flex>
 						<v-layout justify-end>
-							<v-btn color="success">
+							<v-btn
+								@click="addBudgetDialog = true"
+								color="success">
 								<v-icon class="prepend-icon">add</v-icon>
 								<span>Budget</span>
 							</v-btn>
