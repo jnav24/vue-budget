@@ -5,7 +5,7 @@
 	<div class="credit-card budget-template">
 		<v-form ref="templateForm" v-model="templateValid">
 			<v-layout>
-				<v-flex>
+				<v-flex lg5 xl5>
 					<v-text-field
 						v-model="form.name.value"
 						:rules="form.name.rules"
@@ -14,7 +14,7 @@
 
 				<v-spacer></v-spacer>
 
-				<v-flex>
+				<v-flex lg6 xl6>
 					<v-select
 						v-model="form.type.value"
 						:rules="form.type.rules"
@@ -26,7 +26,7 @@
 			</v-layout>
 
 			<v-layout>
-				<v-flex>
+				<v-flex lg5 xl5>
 					<v-text-field
 						v-model="form.limit.value"
 						:rules="form.limit.rules"
@@ -35,7 +35,7 @@
 
 				<v-spacer></v-spacer>
 
-				<v-flex>
+				<v-flex lg6 xl6>
 					<v-select
 						v-model="form.due.value"
 						:rules="form.due.rules"
@@ -44,10 +44,10 @@
 				</v-flex>
 			</v-layout>
 
-			<h3>Optional</h3>
+			<h3 style="margin: 30px 0;text-align: left;">Optional</h3>
 
 			<v-layout>
-				<v-flex>
+				<v-flex lg5 xl5>
 					<v-text-field
 						v-model="form.apr.value"
 						:rules="form.apr.rules"
@@ -56,7 +56,7 @@
 
 				<v-spacer></v-spacer>
 
-				<v-flex>
+				<v-flex lg6 xl6>
 					<v-text-field
 						v-model="form.last4.value"
 						:rules="form.last4.rules"

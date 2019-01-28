@@ -7,7 +7,7 @@ class CreditCard extends Vue {
     public creditCardTypes = [
         {id: 1, name: 'Visa'},
     ];
-    public dates = [1, 2, 3];
+    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public form: FormInterface = {
         name: {
             value: '',
