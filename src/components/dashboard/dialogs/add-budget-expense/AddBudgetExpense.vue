@@ -19,21 +19,10 @@
 						item-text="name"
 						label="Select Expense Type"></v-select>
 
-					<CreditCard></CreditCard>
+					<CreditCard
+						@submitForm="closeDialog()"></CreditCard>
 				</v-form>
 			</v-card-text>
-
-			<v-card-actions style="padding-bottom: 15px;">
-				<v-layout justify-end>
-					<v-btn
-						@click="closeDialog()">Cancel</v-btn>
-
-					<v-btn
-						color="secondary"
-						:disabled="!expenseValid"
-						@click="submit()">Add Expense</v-btn>
-				</v-layout>
-			</v-card-actions>
 		</v-card>
 	</v-dialog>
 </template>

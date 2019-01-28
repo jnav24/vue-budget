@@ -85,6 +85,16 @@
 						label="Exp. Year"></v-autocomplete>
 				</v-flex>
 			</v-layout>
+
+			<v-layout justify-end>
+				<v-btn
+					@click="submit()">Cancel</v-btn>
+
+				<v-btn
+					color="secondary"
+					:disabled="!expenseValid"
+					@click="submit()">Add Expense</v-btn>
+			</v-layout>
 		</v-form>
 	</div>
 </template>
