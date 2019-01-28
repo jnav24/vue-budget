@@ -2,15 +2,12 @@ import { Vue, Component, Emit } from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {globalService, timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action, State} from 'vuex-class';
+import {Action} from 'vuex-class';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
-import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
 
 @Component
 class CreditCard extends Vue {
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
-    @State((state: RootStateInterface) => state.User) public user: UserStateInterface;
     public creditCardTypes = [
         {id: 1, name: 'Visa'},
     ];
@@ -135,7 +132,6 @@ class CreditCard extends Vue {
         return {
             type: 'credit_card',
             data: {
-                user_id: this.user.user.id,
                 name: this.form.name.value,
                 due_date: this.form.due.value,
                 limit: this.form.limit.value,

@@ -2,14 +2,11 @@ import {Vue, Component, Emit} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action, State} from 'vuex-class';
-import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {Action} from 'vuex-class';
 
 @Component
 class Investment extends Vue {
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
-    @State((state: RootStateInterface) => state.User) public user: UserStateInterface;
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public form: FormInterface = {
         name: {
