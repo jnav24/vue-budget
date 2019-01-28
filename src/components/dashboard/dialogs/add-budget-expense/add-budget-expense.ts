@@ -1,4 +1,4 @@
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
@@ -46,6 +46,19 @@ class AddBudgetExpense extends Dialogs {
     public updateSelectedType() {
         const index = this.billTypes.findIndex((num: BillTypesInterface) => num.id === this.form.type.value);
         this.selectedType = this.billTypes[index].slug;
+    }
+
+    @Watch('dialog')
+    private updateForm() {
+        if (!this.showDialog) {
+            this.resetForm();
+        }
+    }
+
+    private resetForm() {
+        this.selectedType = '';
+        const ref: any = this.$refs.expenseForm;
+        ref.reset();
     }
 }
 
