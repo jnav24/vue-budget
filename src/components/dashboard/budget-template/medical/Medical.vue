@@ -15,6 +15,15 @@
 				<v-spacer></v-spacer>
 
 				<v-flex lg6 xl6>
+					<v-text-field
+						v-model="form.amount.value"
+						:rules="form.amount.rules"
+						label="Amount"></v-text-field>
+				</v-flex>
+			</v-layout>
+
+			<v-layout>
+				<v-flex lg6 xl6>
 					<v-select
 						v-model="form.due.value"
 						:rules="form.due.rules"

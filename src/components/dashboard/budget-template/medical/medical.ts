@@ -3,6 +3,7 @@ import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
+import {validateService} from '@/module';
 
 @Component
 class Medical extends Vue {
@@ -13,12 +14,25 @@ class Medical extends Vue {
             value: '',
             rules: [
                 (v: any) => !!v || 'Name is required',
+                (v: any) => validateService.isValidLength(v, 3) || 'Name is not long enough',
             ],
         },
         due: {
             value: 0,
             rules: [
                 (v: any) => !!v || 'Due date is required',
+            ],
+        },
+        amount: {
+            value: 0,
+            rules: [
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isNumeric(v) || 'Amount has to be numeric';
+                    }
+
+                    return true;
+                },
             ],
         },
     };
@@ -53,7 +67,11 @@ class Medical extends Vue {
     private setData(): BudgetListAddInterface {
         return {
             type: 'medical',
-            data: {},
+            data: {
+                name: this.form.name.value,
+                amount: this.form.amount.value,
+                due_date: this.form.due.value,
+            },
         };
     }
 }
