@@ -17,6 +17,7 @@ class CreditCard extends Vue {
             value: '',
             rules: [
                 (v: any) => !!v || 'Name is required',
+                (v: any) => validateService.isValidLength(v, 3) || 'Name is not long enough',
             ],
         },
         type: {
