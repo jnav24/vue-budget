@@ -2,7 +2,7 @@ import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import {AxiosResponse} from 'axios';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {responseService} from '@/module';
+import {httpService, responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillsStateInterface} from '@/interfaces/bills-state.interface';
@@ -19,21 +19,10 @@ const actions: ActionTree<BillsStateInterface, RootStateInterface> = {
     async getAllBillTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: '',
+                url: 'bill/types',
             };
 
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                    data: {
-                        data: {
-                            types: [
-                                { id: 1, name: 'Credit Card', slug: 'credit_card'},
-                            ],
-                        },
-                    },
-                });
-            });
+            const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 const resData = responseService.getDataFromResponse(response);
