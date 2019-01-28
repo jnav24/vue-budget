@@ -112,16 +112,23 @@ class CreditCard extends Vue {
                 .then((res: ResponseInterface) => {
                     if (res.success) {
                         this.closeForm();
+                        this.resetForm();
                     }
                 });
         } else {
             this.closeForm();
+            this.resetForm();
         }
     }
 
     @Emit('submitForm')
     private closeForm() {
         // ...
+    }
+
+    private resetForm() {
+        const ref: any = this.$refs.templateForm;
+        ref.reset();
     }
 
     private setData(): BudgetListAddInterface {
