@@ -133,7 +133,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
                     status: 200,
                     data: {
                         data: {
-                            test: '',
+                            [payload.type]: payload.data,
                         },
                     },
                 });

@@ -74,7 +74,7 @@ class CreditCard extends Vue {
 
     private setData(): BudgetListAddInterface {
         return {
-            type: 'creditCards',
+            type: 'credit_card',
             data: {
                 user_id: this.user.user.id,
                 name: this.form.name.value,
