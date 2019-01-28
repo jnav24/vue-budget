@@ -18,6 +18,8 @@
 						item-value="id"
 						item-text="name"
 						label="Select Expense Type"></v-select>
+
+					<CreditCard></CreditCard>
 				</v-form>
 			</v-card-text>
 

@@ -1,0 +1,90 @@
+<script src="./credit-card.ts" lang="ts"></script>
+<style src="./credit-card.scss" lang="scss" scoped></style>
+
+<template>
+	<div class="credit-card budget-template">
+		<v-form ref="templateForm" v-model="templateValid">
+			<v-layout>
+				<v-flex>
+					<v-text-field
+						v-model="form.name.value"
+						:rules="form.name.rules"
+						label="Name"></v-text-field>
+				</v-flex>
+
+				<v-spacer></v-spacer>
+
+				<v-flex>
+					<v-select
+						v-model="form.type.value"
+						:rules="form.type.rules"
+						:items="creditCardTypes"
+						item-value="id"
+						item-text="name"
+						label="Card Type"></v-select>
+				</v-flex>
+			</v-layout>
+
+			<v-layout>
+				<v-flex>
+					<v-text-field
+						v-model="form.limit.value"
+						:rules="form.limit.rules"
+						label="Credit Limit"></v-text-field>
+				</v-flex>
+
+				<v-spacer></v-spacer>
+
+				<v-flex>
+					<v-select
+						v-model="form.due.value"
+						:rules="form.due.rules"
+						:items="dates"
+						label="Due Date"></v-select>
+				</v-flex>
+			</v-layout>
+
+			<h3>Optional</h3>
+
+			<v-layout>
+				<v-flex>
+					<v-text-field
+						v-model="form.apr.value"
+						:rules="form.apr.rules"
+						label="APR (percentage)"></v-text-field>
+				</v-flex>
+
+				<v-spacer></v-spacer>
+
+				<v-flex>
+					<v-text-field
+						v-model="form.last4.value"
+						:rules="form.last4.rules"
+						label="Last 4 Digits of Credit Card"></v-text-field>
+				</v-flex>
+			</v-layout>
+
+			<v-layout>
+				<v-flex lg5 xl5>
+					<v-autocomplete
+						v-model="form.expMonth.value"
+						:items="months"
+						item-text="month_int"
+						item-value="value"
+						label="Exp. Month"></v-autocomplete>
+				</v-flex>
+
+				<v-spacer></v-spacer>
+
+				<v-flex lg6 xl6>
+					<v-autocomplete
+						v-model="form.expYear.value"
+						:items="years"
+						item-text="label"
+						item-value="value"
+						label="Exp. Year"></v-autocomplete>
+				</v-flex>
+			</v-layout>
+		</v-form>
+	</div>
+</template>

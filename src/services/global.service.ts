@@ -290,6 +290,24 @@ class GlobalService {
             },
         ];
     }
+
+    public getYears() {
+        const date = new Date();
+        const delim: number = 8;
+        const startYear = date.getFullYear();
+        const endYear = date.getFullYear() + delim;
+        const result = [];
+
+        for (let int = startYear; int < endYear; int++) {
+            result.push({ value: int, label: int });
+        }
+
+        return result;
+    }
+
+    public ucFirst(val: string): string {
+        return val.charAt(0).toUpperCase() + val.slice(1);
+    }
 }
 
 export default GlobalService;
