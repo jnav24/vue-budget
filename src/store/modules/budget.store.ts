@@ -17,7 +17,13 @@ const currentState: BudgetStateInterface = {
 };
 
 const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {
-    hasBudgetTemplate: (state) => Object.keys(state.budgetTemplate).length,
+    hasBudgetTemplate: (state) => {
+        if (typeof state.budgetTemplate !== 'undefined') {
+            return Object.keys(state.budgetTemplate).length;
+        }
+
+        return 0;
+    },
 };
 
 const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
