@@ -17,15 +17,7 @@ const currentState: BudgetStateInterface = {
     budgetTemplate,
 };
 
-const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {
-    hasBudgetTemplate: (state) => {
-        if (typeof state.budgetTemplate !== 'undefined') {
-            return Object.keys(state.budgetTemplate).length;
-        }
-
-        return 0;
-    },
-};
+const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {};
 
 const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
     async addSingleBudget({ commit }, payload: string): Promise<ResponseInterface> {

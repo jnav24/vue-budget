@@ -17,10 +17,8 @@
 					</v-flex>
 				</v-layout>
 
-				<pre>{{ budget.budgetTemplate }}</pre>
-
 				<EmptyState
-					v-if="!hasBudgetTemplate"
+					v-if="!Object.keys(budget.budgetTemplate).length"
 					text="You haven't set up your template set. Click the add button below to get started."
 					button-text="Template"
 					@buttonClicked="expenseDialog = true"></EmptyState>
