@@ -67,6 +67,7 @@
 			<v-layout>
 				<v-flex lg5 xl5>
 					<v-autocomplete
+						@change="setYear()"
 						v-model="form.expMonth.value"
 						:items="months"
 						item-text="month_int"
@@ -78,6 +79,7 @@
 
 				<v-flex lg6 xl6>
 					<v-autocomplete
+						@change="setMonth()"
 						v-model="form.expYear.value"
 						:items="years"
 						item-text="label"
@@ -92,7 +94,7 @@
 
 				<v-btn
 					color="secondary"
-					:disabled="!expenseValid"
+					:disabled="!templateValid"
 					@click="submit()">Add Expense</v-btn>
 			</v-layout>
 		</v-form>

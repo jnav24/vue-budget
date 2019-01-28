@@ -1,6 +1,6 @@
 import { Vue, Component, Emit } from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
-import {globalService} from '@/module';
+import {globalService, timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action, State} from 'vuex-class';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
@@ -18,27 +18,67 @@ class CreditCard extends Vue {
     public form: FormInterface = {
         name: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Name is required',
+            ],
         },
         type: {
             value: 0,
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Credit card type is required',
+            ],
         },
         limit: {
-            value: 0,
-            rules: [],
+            value: '',
+            rules: [
+                (v: any) => !!v || 'Credit limit is required',
+                (v: any) => validateService.isNumeric(v) || 'Credit limit must be numeric',
+                (v: any) => validateService.isValidLength(v, 4) || 'Credit limit not valid',
+            ],
         },
         due: {
             value: 0,
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Due date is required',
+            ],
         },
         apr: {
-            value: 0,
-            rules: [],
+            value: '',
+            rules: [
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isNumeric(v) || 'APR must be numeric';
+                    }
+
+                    return true;
+                },
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isValidLength(v, 2) || 'APR must be at least two characters';
+                    }
+
+                    return true;
+                },
+            ],
         },
         last4: {
-            value: 0,
-            rules: [],
+            value: '',
+            rules: [
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isNumeric(v) || 'Last 4 digits of your credit card must be numeric';
+                    }
+
+                    return true;
+                },
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isValidLength(v, 4) || 'Must be at least 4 characters';
+                    }
+
+                    return true;
+                },
+            ],
         },
         expMonth: {
             value: 0,
@@ -52,6 +92,18 @@ class CreditCard extends Vue {
     public months: any[] = globalService.getMonths();
     public years: any[] = globalService.getYears();
     public templateValid: boolean = false;
+
+    public setMonth() {
+        if (!this.form.expMonth.value) {
+            this.form.expMonth.value = timestampService.getCurrentTimestamp('UTC', 'MM');
+        }
+    }
+
+    public setYear() {
+        if (!this.form.expYear.value) {
+            this.form.expYear.value = timestampService.getCurrentTimestamp('UTC', 'YYYY');
+        }
+    }
 
     public submit() {
         if (this.templateValid) {

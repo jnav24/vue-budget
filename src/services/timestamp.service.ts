@@ -3,6 +3,10 @@ import * as momentTz from 'moment-timezone';
 
 class TimestampService {
     public getCurrentTimestamp(timezone: string = 'UTC', format: string = 'YYYY-MM-DD hh:mm A'): string {
+        if (timezone.trim() === '') {
+            timezone = 'UTC';
+        }
+
         return momentTz.tz(moment(), timezone).format(format);
     }
 

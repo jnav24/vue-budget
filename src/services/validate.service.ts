@@ -23,6 +23,10 @@ class ValidateService {
         return /^\d{5}$/.test(value);
     }
 
+    public isNumeric(value: string): boolean {
+        return /^\d*$/.test(value);
+    }
+
     public isPhoneNumber(phone: string): boolean {
         if (typeof phone !== 'undefined' && phone.trim() !== '') {
             const num = phone.replace('+1', '');
