@@ -7,6 +7,7 @@ import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
+import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 
 const budgetList: BudgetListInterface[] = [];
 const budgetTemplate: BudgetTemplateInterface = {} as BudgetTemplateInterface;
@@ -121,18 +122,49 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async appendBudgetTemplate({ commit }, payload: BudgetListAddInterface): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: '',
+            };
+
+            const response: any = await new Promise((resolve) => {
+                resolve({
+                    status: 200,
+                    data: {
+                        data: {
+                            test: '',
+                        },
+                    },
+                });
+            });
+
+            if (responseService.isSuccessResponse(response.status)) {
+                const resData = responseService.getDataFromResponse(response);
+                commit('addBudgetTemplate', resData);
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
 };
 
 const mutations: MutationTree<BudgetStateInterface> = {
-    addBudget(state, payload: any) {
+    addBudget(state, payload: BudgetListInterface[]) {
         state.budgetList = payload;
     },
-    addSingleBudget(state, payload: any) {
+    addSingleBudget(state, payload: BudgetListInterface) {
         state.budgetList = [payload, ...state.budgetList];
     },
-    removeSingleBudget(state, payload: any) {
+    removeSingleBudget(state, payload: number) {
         const index = state.budgetList.findIndex((num: any) => num.id === payload);
         Vue.delete(state.budgetList, index);
+    },
+    addBudgetTemplate(state, payload: BudgetListAddInterface) {
+        state.budgetTemplate[payload.type] = [payload.data];
     },
 };
 

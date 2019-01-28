@@ -1,12 +1,14 @@
 import { Component } from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
-import {State} from 'vuex-class';
+import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillsStateInterface} from '@/interfaces/bills-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
+import {ResponseInterface} from '@/interfaces/response.interface';
 
 @Component
 class AddBudgetExpense extends Dialogs {
+    @Action public appendBudgetTemplate: () => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
     public expenseValid: boolean = false;
     public form: FormInterface = {
@@ -23,7 +25,14 @@ class AddBudgetExpense extends Dialogs {
     }
 
     public submit() {
-        this.closeDialog();
+        if (this.expenseValid) {
+            this.appendBudgetTemplate()
+                .then((res: ResponseInterface) => {
+                    if (res.success) {
+                        this.closeDialog();
+                    }
+                });
+        }
     }
 }
 
