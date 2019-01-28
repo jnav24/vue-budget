@@ -3,6 +3,6 @@ export interface BudgetTemplateInterface {
     credit_card: any;
     investment: any;
     medical: any;
-    misc: any;
+    miscellaneous: any;
     utility: any;
 }
