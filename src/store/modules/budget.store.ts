@@ -133,14 +133,15 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
                     status: 200,
                     data: {
                         data: {
-                            [payload.type]: payload.data,
+                            type: payload.type,
+                            data: payload.data,
                         },
                     },
                 });
             });
 
             if (responseService.isSuccessResponse(response.status)) {
-                const resData = responseService.getDataFromResponse(response);
+                const resData = response.data.data;
                 commit('addBudgetTemplate', resData);
                 return responseService.getSuccessResponse();
             }
@@ -164,7 +165,11 @@ const mutations: MutationTree<BudgetStateInterface> = {
         Vue.delete(state.budgetList, index);
     },
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
-        state.budgetTemplate[payload.type] = [payload.data];
+        if (typeof state.budgetTemplate[payload.type] !== 'undefined') {
+            state.budgetTemplate[payload.type].push(payload.data);
+        } else {
+            state.budgetTemplate[payload.type] = [payload.data];
+        }
     },
 };
 
