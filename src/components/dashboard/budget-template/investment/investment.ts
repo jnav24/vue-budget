@@ -3,26 +3,45 @@ import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
+import {validateService} from '@/module';
 
 @Component
 class Investment extends Vue {
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
-    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public form: FormInterface = {
         name: {
             value: '',
             rules: [
                 (v: any) => !!v || 'Name is required',
+                (v: any) => validateService.isValidLength(v, 3) || 'Name is not long enough',
             ],
         },
-        due: {
+        type: {
+            value: '',
+            rules: [
+                (v: any) => !!v || 'Name is required',
+            ],
+        },
+        amount: {
             value: 0,
             rules: [
-                (v: any) => !!v || 'Due date is required',
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isNumeric(v) || 'Amount has to be numeric';
+                    }
+
+                    return true;
+                },
             ],
         },
     };
     public templateValid: boolean = false;
+    public types = [
+        { value: 'stocks', label: 'Stocks' },
+        { value: 'crypto', label: 'Crypto' },
+        { value: '401k', label: '401k' },
+        { value: 'irs', label: 'IRA' },
+    ];
 
     public submit() {
         if (this.templateValid) {
@@ -53,7 +72,11 @@ class Investment extends Vue {
     private setData(): BudgetListAddInterface {
         return {
             type: 'investment',
-            data: {},
+            data: {
+                name: this.form.name.value,
+                amount: this.form.amount.value,
+                type: this.form.type.value,
+            },
         };
     }
 }

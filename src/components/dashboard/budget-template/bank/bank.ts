@@ -8,7 +8,6 @@ import {validateService} from '@/module';
 @Component
 class Bank extends Vue {
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
-    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public form: FormInterface = {
         name: {
             value: '',
