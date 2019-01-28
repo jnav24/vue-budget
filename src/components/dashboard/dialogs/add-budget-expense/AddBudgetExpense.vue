@@ -12,6 +12,7 @@
 			<v-card-text>
 				<v-form ref="expenseForm" v-model="expenseValid">
 					<v-select
+						@change="updateSelectedType()"
 						v-model="form.type.value"
 						:rules="form.type.rules"
 						:items="billTypes"
@@ -20,6 +21,7 @@
 						label="Select Expense Type"></v-select>
 
 					<CreditCard
+						v-if="showTypeForm('credit_card')"
 						@submitForm="closeDialog()"></CreditCard>
 				</v-form>
 			</v-card-text>

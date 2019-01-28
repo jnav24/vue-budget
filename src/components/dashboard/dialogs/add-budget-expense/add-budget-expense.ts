@@ -5,6 +5,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillsStateInterface} from '@/interfaces/bills-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import CreditCard from '@/components/dashboard/budget-template/credit-card/CreditCard.vue';
+import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 
 @Component({
     components: {
@@ -16,15 +17,25 @@ class AddBudgetExpense extends Dialogs {
     public expenseValid: boolean = false;
     public form: FormInterface = {
         type: {
-            value: '',
+            value: 0,
             rules: [
                 (v: any) => !!v || 'Please select a type',
             ],
         },
     };
+    public selectedType: string = '';
 
     public get billTypes() {
         return this.bills.types;
+    }
+
+    public showTypeForm(type: string): boolean {
+        return this.selectedType === type;
+    }
+
+    public updateSelectedType() {
+        const index = this.billTypes.findIndex((num: BillTypesInterface) => num.id === this.form.type.value);
+        this.selectedType = this.billTypes[index].slug;
     }
 }
 
