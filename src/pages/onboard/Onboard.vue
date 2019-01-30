@@ -8,7 +8,7 @@
 
 		<div class="onboard--content">
 			<router-link :to="{ name: 'login' }">
-				<img src="@/assets/images/logo.png" alt="LiveDialer" class="logo">
+				<img src="@/assets/images/logo_1.png" alt="Dime Budget" class="logo">
 			</router-link>
 
 			<transition name="onboard-transition"
