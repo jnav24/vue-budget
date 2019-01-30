@@ -34,6 +34,8 @@
 					button-text="Template"
 					@buttonClicked="expenseDialog = true"></EmptyState>
 
+				<BudgetTemplate></BudgetTemplate>
+
 				<v-card>
 					<v-card-title>
 						<div>
