@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, {ActionTree, MutationTree} from 'vuex';
 import Budget from './modules/budget.store';
 import User from './modules/user.store';
 import { cookiesService } from '@/module';
@@ -10,21 +10,24 @@ Vue.use(Vuex);
 
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
-export default new Vuex.Store<RootStateInterface>({
-    actions: {},
-    mutations: {
-        logUserOut(state: any) {
-            const excludeDefault: string[] = ['BusinessTypes'];
-
-            for (const st of Object.keys(state)) {
-                if (excludeDefault.indexOf(st) < 0) {
-                    state[st] = {};
-                }
-            }
-
-            cookiesService.deleteCookie(userCookieName);
-        },
+const actions: ActionTree<any, RootStateInterface> = {
+    logUserOut({ commit }): Promise<{ success: boolean }> {
+        return new Promise((resolve) => {
+            commit('removeSession');
+            resolve({ success: true });
+        });
     },
+};
+
+const mutations: MutationTree<RootStateInterface> = {
+    removeSession(state: any) {
+        cookiesService.deleteCookie(userCookieName);
+    },
+};
+
+export default new Vuex.Store<RootStateInterface>({
+    actions,
+    mutations,
     modules: {
         Bills,
         Budget,
