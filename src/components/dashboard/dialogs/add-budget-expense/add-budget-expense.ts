@@ -44,8 +44,10 @@ class AddBudgetExpense extends Dialogs {
     }
 
     public updateSelectedType() {
-        const index = this.billTypes.findIndex((num: BillTypesInterface) => num.id === this.form.type.value);
-        this.selectedType = this.billTypes[index].slug;
+        if (typeof this.form.type.value !== 'undefined' && this.form.type.value) {
+            const index = this.billTypes.findIndex((num: BillTypesInterface) => num.id === this.form.type.value);
+            this.selectedType = this.billTypes[index].slug;
+        }
     }
 
     @Watch('dialog')
