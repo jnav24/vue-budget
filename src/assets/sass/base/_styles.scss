@@ -9,4 +9,11 @@ html, body {
 		font-size: 42px;
 		margin-bottom: 25px;
 	}
+
+	&__h3 {
+		color: map-get($colors, primary);
+		font-weight: 300;
+		font-size: 30px;
+		margin-bottom: 25px;
+	}
 }

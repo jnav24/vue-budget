@@ -3,7 +3,7 @@
 
 <template>
 	<div class="budget-template">
-		<h3>Example Name</h3>
+		<h3 class="header__h3">Example Name</h3>
 
 		<v-data-table
 			:rows-per-page-items="tableInfo.rowsPerPageItems"

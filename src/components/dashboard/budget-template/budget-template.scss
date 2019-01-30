@@ -1,0 +1,6 @@
+.budget-template {
+	$spacing: 60px;
+	border-bottom: 1px solid lighten(map-get($colors, mid_grey), 10%);
+	margin-bottom: $spacing;
+	padding-bottom: $spacing;
+}
