@@ -163,6 +163,10 @@ const mutations: MutationTree<BudgetStateInterface> = {
             state.budgetTemplate[payload.type] = [payload.data];
         }
     },
+    resetBudgetState(state) {
+        state.budgetList = [];
+        state.budgetTemplate = {} as BudgetTemplateInterface;
+    },
 };
 
 const Budget: Module<BudgetStateInterface, RootStateInterface> = {
