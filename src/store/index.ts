@@ -14,6 +14,7 @@ const actions: ActionTree<any, RootStateInterface> = {
     logUserOut({ commit }): Promise<{ success: boolean }> {
         return new Promise((resolve) => {
             commit('removeSession');
+            commit('resetUserState');
             resolve({ success: true });
         });
     },
