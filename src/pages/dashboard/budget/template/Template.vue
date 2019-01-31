@@ -2,7 +2,7 @@
 <style src="./template.scss" lang="scss" scoped></style>
 
 <template>
-	<div class="page budget-template">
+	<div class="page template">
 		<AddBudgetExpense
 			:dialog="expenseDialog"
 			@updateDialog="expenseDialog = $event"></AddBudgetExpense>
