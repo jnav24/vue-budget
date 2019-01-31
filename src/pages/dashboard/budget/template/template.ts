@@ -23,8 +23,8 @@ class Template extends Vue {
     public headers: any = {
         bank: [
             { text: 'Name', value: 'name' },
-            { text: 'Amount', value: 'name' },
-            { text: 'Bank Type', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Bank Type', value: 'type' },
         ],
         credit_card: [
             { text: 'Name', value: 'name' },
@@ -36,6 +36,27 @@ class Template extends Vue {
             { text: 'Monthly Due Date', value: 'due_date' },
             { text: 'Credit Limit', value: 'limit' },
         ],
+        investments: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Investment Type', value: 'type' },
+        ],
+        medical: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Monthly Due Date', value: 'due_date' },
+        ],
+        miscellaneous: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Monthly Due Date', value: 'due_date' },
+        ],
+        utility: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Utility Type', value: 'type' },
+            { text: 'Monthly Due Date', value: 'due_date' },
+        ],
     };
 
     public getTemplateHeaders(name: string): DataTableHeadersInterface[] {
@@ -43,7 +64,7 @@ class Template extends Vue {
     }
 
     public getTemplateList(name: string) {
-        return (this.budget.budgetTemplate as any)[name] || [];
+        return (this.budget.budgetTemplate as any)[name];
     }
 
     public getTemplateName(name: string): string {
