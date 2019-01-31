@@ -4,6 +4,7 @@ import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interfa
 
 @Component
 class BudgetTemplate extends Vue {
+    @Prop() public name: string;
     @Prop() public data: any;
     @Prop() public headers: DataTableHeadersInterface[];
     public tableInfo: DataTableInterface = {

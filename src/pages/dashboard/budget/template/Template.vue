@@ -34,7 +34,12 @@
 					button-text="Template"
 					@buttonClicked="expenseDialog = true"></EmptyState>
 
-				<BudgetTemplate></BudgetTemplate>
+				<BudgetTemplate
+					v-for="(templateKey, index) in Object.keys(budget.budgetTemplate)"
+					:key="index"
+					:name="getTemplateName(templateKey)"
+					:headers="getTemplateHeaders(templateKey)"
+					:data="getTemplateList(templateKey)"></BudgetTemplate>
 
 				<v-card>
 					<v-card-title>

@@ -5,6 +5,9 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {State} from 'vuex-class';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {BillsStateInterface} from '@/interfaces/bills-state.interface';
+import {BillTypesInterface} from '@/interfaces/bill-types.interface';
+import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
 
 @Component({
     components: {
@@ -14,8 +17,39 @@ import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
     },
 })
 class Template extends Vue {
+    @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     public expenseDialog: boolean = false;
+    public headers: any = {
+        bank: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'name' },
+            { text: 'Bank Type', value: 'name' },
+        ],
+        credit_card: [
+            { text: 'Name', value: 'name' },
+            { text: 'Card Type', value: 'type' },
+            { text: 'Last 4 Digits', value: 'limit' },
+            { text: 'Expiration Month', value: 'exp_month' },
+            { text: 'Expiration Year', value: 'exp_year' },
+            { text: 'APR', value: 'apr' },
+            { text: 'Monthly Due Date', value: 'due_date' },
+            { text: 'Credit Limit', value: 'limit' },
+        ],
+    };
+
+    public getTemplateHeaders(name: string): DataTableHeadersInterface[] {
+        return this.headers[name] || [];
+    }
+
+    public getTemplateList(name: string) {
+        return (this.budget.budgetTemplate as any)[name] || [];
+    }
+
+    public getTemplateName(name: string): string {
+        const index = this.bills.types.findIndex((obj: BillTypesInterface) => obj.slug === name);
+        return this.bills.types[index].name || 'No Name Given';
+    }
 }
 
 export default Template;
