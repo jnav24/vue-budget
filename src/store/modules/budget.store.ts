@@ -158,7 +158,7 @@ const mutations: MutationTree<BudgetStateInterface> = {
     },
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
         if (typeof state.budgetTemplate[payload.type] !== 'undefined') {
-            state.budgetTemplate[payload.type].push(payload.data);
+            state.budgetTemplate[payload.type] = [...state.budgetTemplate[payload.type], payload.data];
         } else {
             state.budgetTemplate[payload.type] = [payload.data];
         }
