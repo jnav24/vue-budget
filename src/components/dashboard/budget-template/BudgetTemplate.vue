@@ -15,6 +15,19 @@
 						<td v-for="(element, int) in Object.keys(tableList[0])" :key="int">
 							{{ props.item[element] }}
 						</td>
+						<td>
+							<v-btn
+								fab
+								class="btn--details__icon">
+								<v-icon>edit</v-icon>
+							</v-btn>
+
+							<v-btn
+								fab
+								class="btn--details__icon">
+								<v-icon>cancel</v-icon>
+							</v-btn>
+						</td>
 					</template>
 				</v-data-table>
 			</v-card-text>

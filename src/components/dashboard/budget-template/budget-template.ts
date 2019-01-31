@@ -12,7 +12,7 @@ class BudgetTemplate extends Vue {
     };
 
     public get tableHeaders() {
-        return this.headers;
+        return [...this.headers, { text: 'Actions', value: '' }];
     }
 
     public get tableList() {
