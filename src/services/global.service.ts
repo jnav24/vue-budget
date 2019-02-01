@@ -305,6 +305,16 @@ class GlobalService {
         return result;
     }
 
+    public sortObject(obj: any) {
+        const result: any = {};
+
+        Object.keys(obj).sort().map((key: any, index: number) => {
+            result[key] = obj[key];
+        });
+
+        return result;
+    }
+
     public ucFirst(val: string): string {
         return val.charAt(0).toUpperCase() + val.slice(1);
     }
