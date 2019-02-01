@@ -35,6 +35,11 @@
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Investment>
+					<Job
+						v-if="showTypeForm('job')"
+						:data="currentData"
+						:dialog="showDialog"
+						@submitForm="closeDialog()"></Job>
 					<Medical
 						v-if="showTypeForm('medical')"
 						:data="currentData"
