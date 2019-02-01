@@ -40,7 +40,8 @@
 					:type="templateKey"
 					:name="getTemplateName(templateKey)"
 					:headers="getTemplateHeaders(templateKey)"
-					:data="getTemplateList(templateKey)"></BudgetTemplate>
+					:data="getTemplateList(templateKey)"
+					@emitEditBudget="openEditBudgetDialog($event)"></BudgetTemplate>
 			</v-flex>
 		</v-layout>
 	</div>

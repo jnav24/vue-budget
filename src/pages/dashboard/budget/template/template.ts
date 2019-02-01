@@ -71,6 +71,10 @@ class Template extends Vue {
         const index = this.bills.types.findIndex((obj: BillTypesInterface) => obj.slug === name);
         return this.bills.types[index].name || 'No Name Given';
     }
+
+    public openEditBudgetDialog(obj: { type: string; data: any }) {
+        console.log(obj);
+    }
 }
 
 export default Template;

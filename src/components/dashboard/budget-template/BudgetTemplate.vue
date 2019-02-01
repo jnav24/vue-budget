@@ -18,6 +18,7 @@
 						<td>
 							<v-btn
 								fab
+								@click="emitEditBudget({ type: type, data: props.item })"
 								class="btn--details__icon">
 								<v-icon>edit</v-icon>
 							</v-btn>

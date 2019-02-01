@@ -1,4 +1,4 @@
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import {Vue, Component, Prop, Emit} from 'vue-property-decorator';
 import {DataTableInterface} from '@/interfaces/data-table.interface';
 import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
@@ -31,6 +31,11 @@ class BudgetTemplate extends Vue {
         } else {
             this.removeTemplateElementAction({ type: this.type, id: item.id });
         }
+    }
+
+    @Emit('emitEditBudget')
+    public emitEditBudget(obj: { type: string; data: any }) {
+        // ...
     }
 }
 
