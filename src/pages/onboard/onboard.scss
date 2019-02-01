@@ -37,7 +37,7 @@
 	&--footer {
 		background: rgba(map-get($colors, primary), 0.5);
 		bottom: 0;
-		color: darken(map-get($colors, mid_grey), 20%);
+		color: darken(map-get($colors, primary), 25%);
 		font-size: 13px;
 		left: 0;
 		position: absolute;

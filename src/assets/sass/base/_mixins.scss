@@ -44,7 +44,7 @@
 }
 
 @mixin onboardDetails() {
-	color: darken(map-get($colors, mid_grey), 20%);
+	color: darken(map-get($colors, primary), 25%);
 	padding: 10px 10px 5px;
 
 	a {
