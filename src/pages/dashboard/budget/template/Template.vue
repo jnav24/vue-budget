@@ -37,6 +37,7 @@
 				<BudgetTemplate
 					v-for="(templateKey, index) in Object.keys(budget.budgetTemplate)"
 					:key="index"
+					:type="templateKey"
 					:name="getTemplateName(templateKey)"
 					:headers="getTemplateHeaders(templateKey)"
 					:data="getTemplateList(templateKey)"></BudgetTemplate>

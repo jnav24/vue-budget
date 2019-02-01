@@ -10,6 +10,7 @@ class BudgetTemplate extends Vue {
     @Prop() public name: string;
     @Prop() public data: any;
     @Prop() public headers: DataTableHeadersInterface[];
+    @Prop() public type: string;
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;
     @Mutation public removeTemplateElement: (obj: BudgetTemplateRemoveInterface) => void;
     public tableInfo: DataTableInterface = {
@@ -25,10 +26,10 @@ class BudgetTemplate extends Vue {
     }
 
     public removeElement(item: any) {
-        if (item.id.indexOf('temp_') > -1) {
-            this.removeTemplateElement({ type: 'bank', id: item.id });
+        if (item.id.indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
+            this.removeTemplateElement({ type: this.type, id: item.id });
         } else {
-            // this.removeTemplateElementAction({ type, id });
+            this.removeTemplateElementAction({ type: this.type, id: item.id });
         }
     }
 }
