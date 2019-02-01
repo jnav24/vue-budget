@@ -12,7 +12,7 @@
 					:headers="tableHeaders"
 					:items="tableList">
 					<template slot="items" slot-scope="props">
-						<td v-for="(element, int) in Object.keys(tableList[0])" :key="int">
+						<td v-for="(element, int) in Object.keys(tableList[0])" :key="int" v-if="element !== 'id'">
 							{{ props.item[element] }}
 						</td>
 						<td>

@@ -3,7 +3,7 @@ import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
-import {validateService} from '@/module';
+import {timestampService, validateService} from '@/module';
 
 @Component
 class Misc extends Vue {
@@ -68,6 +68,7 @@ class Misc extends Vue {
         return {
             type: 'miscellaneous',
             data: {
+                id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,
                 amount: this.form.amount.value,
                 due_date: this.form.due.value,

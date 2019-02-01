@@ -133,6 +133,7 @@ class CreditCard extends Vue {
         return {
             type: 'credit_card',
             data: {
+                id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,
                 due_date: this.form.due.value,
                 limit: this.form.limit.value,

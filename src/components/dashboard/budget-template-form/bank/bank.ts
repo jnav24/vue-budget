@@ -3,7 +3,7 @@ import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
-import {validateService} from '@/module';
+import {timestampService, validateService} from '@/module';
 
 @Component
 class Bank extends Vue {
@@ -71,6 +71,7 @@ class Bank extends Vue {
         return {
             type: 'bank',
             data: {
+                id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,
                 amount: this.form.amount.value,
                 type: this.form.type.value,
