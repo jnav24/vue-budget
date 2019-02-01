@@ -5,7 +5,9 @@
 	<div class="page template">
 		<AddBudgetExpense
 			:dialog="expenseDialog"
-			@updateDialog="expenseDialog = $event"></AddBudgetExpense>
+			:type="expenseType"
+			:data="expenseData"
+			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
 
 		<v-layout justify-center>
 			<v-flex lg8 xl8>

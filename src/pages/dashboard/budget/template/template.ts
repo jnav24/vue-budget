@@ -20,6 +20,8 @@ class Template extends Vue {
     @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     public expenseDialog: boolean = false;
+    public expenseType: number = 0;
+    public expenseData: any = {};
     public headers: any = {
         bank: [
             { text: 'Name', value: 'name' },
@@ -72,8 +74,18 @@ class Template extends Vue {
         return this.bills.types[index].name || 'No Name Given';
     }
 
-    public openEditBudgetDialog(obj: { type: string; data: any }) {
-        console.log(obj);
+    public openEditBudgetDialog(obj: { type: number; data: any }) {
+        this.expenseDialog = true;
+        this.expenseType = obj.type;
+        this.expenseData = obj.data;
+    }
+
+    public closeEditBudgetDialog(bool: boolean) {
+        if (!bool) {
+            this.expenseDialog = bool;
+            this.expenseType = 0;
+            this.expenseData = {};
+        }
     }
 }
 

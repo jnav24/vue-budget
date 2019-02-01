@@ -1,4 +1,4 @@
-import { Component, Watch } from 'vue-property-decorator';
+import {Component, Prop, Watch} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
@@ -23,6 +23,7 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
     },
 })
 class AddBudgetExpense extends Dialogs {
+    @Prop() public type: number;
     @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
     public expenseValid: boolean = false;
     public form: FormInterface = {
@@ -54,6 +55,8 @@ class AddBudgetExpense extends Dialogs {
     private updateForm() {
         if (!this.showDialog) {
             this.resetForm();
+        } else {
+            this.setupForm();
         }
     }
 
@@ -61,6 +64,12 @@ class AddBudgetExpense extends Dialogs {
         this.selectedType = '';
         const ref: any = this.$refs.expenseForm;
         ref.reset();
+    }
+
+    private setupForm() {
+        if (typeof this.type !== 'undefined') {
+            this.form.type.value = this.type;
+        }
     }
 }
 

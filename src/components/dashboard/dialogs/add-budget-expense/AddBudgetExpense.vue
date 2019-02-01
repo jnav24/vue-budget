@@ -22,21 +22,33 @@
 
 					<Bank
 						v-if="showTypeForm('bank')"
+						:data="currentData"
+						:dialog="showDialog"
 						@submitForm="closeDialog()"></Bank>
 					<CreditCard
 						v-if="showTypeForm('credit_card')"
+						:data="data"
+						:dialog="showDialog"
 						@submitForm="closeDialog()"></CreditCard>
 					<Investment
 						v-if="showTypeForm('investment')"
+						:data="data"
+						:dialog="showDialog"
 						@submitForm="closeDialog()"></Investment>
 					<Medical
 						v-if="showTypeForm('medical')"
+						:data="data"
+						:dialog="showDialog"
 						@submitForm="closeDialog()"></Medical>
 					<Misc
 						v-if="showTypeForm('miscellaneous')"
+						:data="data"
+						:dialog="showDialog"
 						@submitForm="closeDialog()"></Misc>
 					<Utility
 						v-if="showTypeForm('utility')"
+						:data="data"
+						:dialog="showDialog"
 						@submitForm="closeDialog()"></Utility>
 				</v-form>
 			</v-card-text>

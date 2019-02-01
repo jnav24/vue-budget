@@ -4,6 +4,10 @@ abstract class Dialogs extends Vue {
     @Prop() public data: any;
     @Prop() private dialog: any;
 
+    public get currentData() {
+        return this.data;
+    }
+
     public get showDialog() {
         return this.dialog;
     }
