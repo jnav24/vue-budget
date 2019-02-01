@@ -27,27 +27,27 @@
 						@submitForm="closeDialog()"></Bank>
 					<CreditCard
 						v-if="showTypeForm('credit_card')"
-						:data="data"
+						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></CreditCard>
 					<Investment
 						v-if="showTypeForm('investment')"
-						:data="data"
+						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Investment>
 					<Medical
 						v-if="showTypeForm('medical')"
-						:data="data"
+						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Medical>
 					<Misc
 						v-if="showTypeForm('miscellaneous')"
-						:data="data"
+						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Misc>
 					<Utility
 						v-if="showTypeForm('utility')"
-						:data="data"
+						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Utility>
 				</v-form>

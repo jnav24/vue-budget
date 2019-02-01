@@ -1,12 +1,18 @@
-import { Vue, Component, Emit } from 'vue-property-decorator';
+import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {globalService, timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 
+Component.registerHooks([
+    'mounted',
+]);
+
 @Component
 class CreditCard extends Vue {
+    @Prop() public data: any;
+    @Prop() public dialog: any;
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
     public creditCardTypes = [
         {id: 1, name: 'Visa'},
@@ -91,6 +97,12 @@ class CreditCard extends Vue {
     public years: any[] = globalService.getYears();
     public templateValid: boolean = false;
 
+    public mounted() {
+        if (this.dialog) {
+            this.setupForm();
+        }
+    }
+
     public setMonth() {
         if (!this.form.expMonth.value) {
             this.form.expMonth.value = timestampService.getCurrentTimestamp('UTC', 'MM');
@@ -122,6 +134,17 @@ class CreditCard extends Vue {
     @Emit('submitForm')
     private closeForm() {
         // ...
+    }
+
+    private setupForm() {
+        this.form.name.value = this.data.name;
+        this.form.due.value = this.data.due_date;
+        this.form.limit.value = this.data.limit;
+        this.form.type.value = this.data.type;
+        this.form.apr.value = this.data.apr;
+        this.form.last4.value = this.data.last_4;
+        this.form.expMonth.value = this.data.exp_month;
+        this.form.expYear.value = this.data.exp_year;
     }
 
     private resetForm() {

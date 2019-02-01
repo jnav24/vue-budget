@@ -1,12 +1,18 @@
-import {Vue, Component, Emit} from 'vue-property-decorator';
+import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
 import {timestampService, validateService} from '@/module';
 
+Component.registerHooks([
+    'mounted',
+]);
+
 @Component
 class Investment extends Vue {
+    @Prop() public data: any;
+    @Prop() public dialog: any;
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
     public form: FormInterface = {
         name: {
@@ -43,6 +49,12 @@ class Investment extends Vue {
         { value: 'irs', label: 'IRA' },
     ];
 
+    public mounted() {
+        if (this.dialog) {
+            this.setupForm();
+        }
+    }
+
     public submit() {
         if (this.templateValid) {
             const data: BudgetListAddInterface = this.setData();
@@ -62,6 +74,12 @@ class Investment extends Vue {
     @Emit('submitForm')
     private closeForm() {
         // ...
+    }
+
+    private setupForm() {
+        this.form.name.value = this.data.name;
+        this.form.amount.value = this.data.amount;
+        this.form.type.value = this.data.type;
     }
 
     private resetForm() {

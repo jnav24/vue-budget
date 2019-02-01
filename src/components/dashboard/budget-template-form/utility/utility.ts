@@ -1,12 +1,18 @@
-import {Vue, Component, Emit} from 'vue-property-decorator';
+import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action} from 'vuex-class';
 import {timestampService, validateService} from '@/module';
 
+Component.registerHooks([
+    'mounted',
+]);
+
 @Component
 class Utility extends Vue {
+    @Prop() public data: any;
+    @Prop() public dialog: any;
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public form: FormInterface = {
@@ -48,6 +54,12 @@ class Utility extends Vue {
         { value: 'gas', label: 'Gas' },
     ];
 
+    public mounted() {
+        if (this.dialog) {
+            this.setupForm();
+        }
+    }
+
     public submit() {
         if (this.templateValid) {
             const data: BudgetListAddInterface = this.setData();
@@ -67,6 +79,13 @@ class Utility extends Vue {
     @Emit('submitForm')
     private closeForm() {
         // ...
+    }
+
+    private setupForm() {
+        this.form.name.value = this.data.name;
+        this.form.amount.value = this.data.amount;
+        this.form.due.value = this.data.due_date;
+        this.form.type.value = this.data.type;
     }
 
     private resetForm() {
