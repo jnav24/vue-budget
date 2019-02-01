@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {responseService} from '@/module';
+import {globalService, responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
+import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove.interface';
 
 const budgetList: BudgetListInterface[] = [];
 const budgetTemplate: BudgetTemplateInterface = {} as BudgetTemplateInterface;
@@ -143,6 +144,32 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async removeTemplateElementAction({ commit }, payload: BudgetTemplateRemoveInterface) {
+        try {
+            const data: UrlInterface = {
+                url: '',
+                params: {},
+            };
+
+            const response: any = await new Promise((resolve) => {
+                resolve({
+                    status: 200,
+                    data: {
+                        data: {},
+                    },
+                });
+            });
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('removeTemplateElement', payload);
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
 };
 
 const mutations: MutationTree<BudgetStateInterface> = {
@@ -157,15 +184,30 @@ const mutations: MutationTree<BudgetStateInterface> = {
         Vue.delete(state.budgetList, index);
     },
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
-        if (typeof state.budgetTemplate[payload.type] !== 'undefined') {
-            state.budgetTemplate[payload.type] = [...state.budgetTemplate[payload.type], payload.data];
+        const tempData = { ...state.budgetTemplate };
+
+        if (typeof tempData[payload.type] !== 'undefined') {
+            tempData[payload.type] = [...tempData[payload.type], payload.data];
         } else {
-            state.budgetTemplate[payload.type] = [payload.data];
+            tempData[payload.type] = [payload.data];
         }
+
+        state.budgetTemplate = { ...globalService.sortObject(tempData) };
     },
     resetBudgetState(state) {
         state.budgetList = [];
         state.budgetTemplate = {} as BudgetTemplateInterface;
+    },
+    removeTemplateElement(state, payload: BudgetTemplateRemoveInterface) {
+        const tempData = [...(state.budgetTemplate as any)[payload.type]];
+        const index = tempData.findIndex((obj: any) => obj.id === payload.id);
+        tempData.splice(index, 1);
+
+        if (tempData.length) {
+            state.budgetTemplate = globalService.sortObject({ ...state.budgetTemplate, [payload.type]: tempData });
+        } else {
+            Vue.delete(state.budgetTemplate, payload.type);
+        }
     },
 };
 
