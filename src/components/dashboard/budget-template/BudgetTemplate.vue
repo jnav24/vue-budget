@@ -24,6 +24,7 @@
 
 							<v-btn
 								fab
+								@click="removeElement(props.item)"
 								class="btn--details__icon">
 								<v-icon>cancel</v-icon>
 							</v-btn>
