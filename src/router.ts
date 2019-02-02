@@ -44,7 +44,11 @@ function initStore() {
 
     store.dispatch('getAllBudgetTemplates');
     store.dispatch('getAllBudgets');
+    store.dispatch('getAllBankTypes');
     store.dispatch('getAllBillTypes');
+    store.dispatch('getAllCreditCardTypes');
+    store.dispatch('getAllInvestmentTypes');
+    store.dispatch('getAllUtilityTypes');
 }
 
 const router = new Router({

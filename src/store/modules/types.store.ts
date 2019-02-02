@@ -28,17 +28,89 @@ const currentState: TypesStateInterface = {
 const getters: GetterTree<TypesStateInterface, RootStateInterface> = {};
 
 const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
+    async getAllBankTypes({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'types/bank',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addBankTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
     async getAllBillTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: 'bill/types',
+                url: 'types/bill',
             };
 
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 const resData = responseService.getDataFromResponse(response);
-                commit('addAllBillTypes', resData);
+                commit('addBillTypes', resData);
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+    async getAllCreditCardTypes({ commit }) {
+        try {
+            const data: UrlInterface = {
+                url: 'types/credit-card',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addCreditCardTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+    async getAllInvestmentTypes({ commit }) {
+        try {
+            const data: UrlInterface = {
+                url: 'types/investment',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addInvestmentTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+    async getAllUtilityTypes({ commit }) {
+        try {
+            const data: UrlInterface = {
+                url: 'types/utility',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addUtilityTypes', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -50,8 +122,20 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 };
 
 const mutations: MutationTree<TypesStateInterface> = {
-    addAllBillTypes(state, payload: BillTypesInterface[]) {
+    addBankTypes(state, payload: BankTypesInterface[]) {
+        state.bank = payload;
+    },
+    addBillTypes(state, payload: BillTypesInterface[]) {
         state.bill = payload;
+    },
+    addCreditCardTypes(state, payload: CreditCardTypesInterface[]) {
+        state.creditCard = payload;
+    },
+    addInvestmentTypes(state, payload: InvestmentTypesInterface[]) {
+        state.investment = payload;
+    },
+    addUtilityTypes(state, payload: UtilityTypesInterface[]) {
+        state.utility = payload;
     },
 };
 
