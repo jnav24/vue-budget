@@ -31,8 +31,8 @@
 						v-model="form.type.value"
 						:rules="form.type.rules"
 						:items="types"
-						item-value="value"
-						item-text="label"
+						item-value="id"
+						item-text="name"
 						label="Account type"></v-select>
 				</v-flex>
 

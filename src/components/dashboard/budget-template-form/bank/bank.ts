@@ -39,10 +39,10 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             ],
         },
     };
-    public types = [
-        { value: 'checking', label: 'Checking' },
-        { value: 'savings', label: 'Savings' },
-    ];
+
+    public get types() {
+        return this.typesState.bank;
+    }
 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {

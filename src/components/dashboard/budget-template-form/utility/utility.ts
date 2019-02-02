@@ -46,10 +46,10 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             ],
         },
     };
-    public types = [
-        { value: 'electric', label: 'Electric' },
-        { value: 'gas', label: 'Gas' },
-    ];
+
+    public get types() {
+        return this.typesState.utility;
+    }
 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {

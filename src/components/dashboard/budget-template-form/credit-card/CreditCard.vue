@@ -21,7 +21,7 @@
 					<v-select
 						v-model="form.type.value"
 						:rules="form.type.rules"
-						:items="creditCardTypes"
+						:items="types"
 						item-value="id"
 						item-text="name"
 						label="Card Type"></v-select>

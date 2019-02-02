@@ -39,12 +39,10 @@ class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             ],
         },
     };
-    public types = [
-        { value: 'stocks', label: 'Stocks' },
-        { value: 'crypto', label: 'Crypto' },
-        { value: '401k', label: '401k' },
-        { value: 'irs', label: 'IRA' },
-    ];
+
+    public get types() {
+        return this.typesState.investment;
+    }
 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {

@@ -12,9 +12,6 @@ import BudgetTemplateComponent from '@/components/dashboard/budget-template-form
     },
 })
 class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public creditCardTypes = [
-        {id: 1, name: 'Visa'},
-    ];
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public form: FormInterface = {
         name: {
@@ -93,6 +90,10 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
     };
     public months: any[] = globalService.getMonths();
     public years: any[] = globalService.getYears();
+
+    public get types() {
+        return this.typesState.creditCard;
+    }
 
     public setMonth() {
         if (!this.form.expMonth.value) {
