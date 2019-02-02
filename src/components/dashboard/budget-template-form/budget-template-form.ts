@@ -12,6 +12,7 @@ class BudgetTemplateForm extends Vue {
     @Prop() public data: any;
     @Prop() public dialog: any;
     @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
+    public editMode: boolean = false;
     protected resetForm: boolean = false;
     protected templateValid: boolean = false;
 
@@ -36,11 +37,13 @@ class BudgetTemplateForm extends Vue {
                 .then((res: ResponseInterface) => {
                     if (res.success) {
                         this.closeForm();
+                        this.editMode = false;
                         this.resetForm = true;
                     }
                 });
         } else {
             this.closeForm();
+            this.editMode = false;
             this.resetForm = true;
         }
     }

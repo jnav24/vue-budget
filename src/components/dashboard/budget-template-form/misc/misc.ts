@@ -42,9 +42,12 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     };
 
     public setupForm() {
-        this.form.name.value = this.data.name;
-        this.form.amount.value = this.data.amount;
-        this.form.due.value = this.data.due_date;
+        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.editMode = true;
+            this.form.name.value = this.data.name;
+            this.form.amount.value = this.data.amount;
+            this.form.due.value = this.data.due_date;
+        }
     }
 
     public setData(): BudgetListAddInterface {

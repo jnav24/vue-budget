@@ -4,6 +4,7 @@
 <template>
 	<div class="credit-card budget-template">
 		<BudgetTemplateComponent
+			:edit-mode="editMode"
 			:reset="resetForm"
 			@buttonClicked="validateForm($event)">
 			<v-layout>

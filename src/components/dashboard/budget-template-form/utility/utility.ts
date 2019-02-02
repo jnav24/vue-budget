@@ -52,10 +52,13 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     ];
 
     public setupForm() {
-        this.form.name.value = this.data.name;
-        this.form.amount.value = this.data.amount;
-        this.form.due.value = this.data.due_date;
-        this.form.type.value = this.data.type;
+        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.editMode = true;
+            this.form.name.value = this.data.name;
+            this.form.amount.value = this.data.amount;
+            this.form.due.value = this.data.due_date;
+            this.form.type.value = this.data.type;
+        }
     }
 
     public setData(): BudgetListAddInterface {

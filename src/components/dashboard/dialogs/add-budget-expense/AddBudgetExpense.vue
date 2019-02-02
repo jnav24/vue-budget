@@ -7,7 +7,10 @@
 		v-model="showDialog"
 		max-width="800px">
 		<v-card>
-			<v-card-title class="dialog--title">Add Expense to Budget</v-card-title>
+			<v-card-title class="dialog--title">
+				<span v-if="!editMode">Add Expense to Budget</span>
+				<span v-if="editMode">Update Expense</span>
+			</v-card-title>
 
 			<v-card-text>
 				<v-form ref="expenseForm" v-model="expenseValid">

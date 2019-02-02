@@ -2,7 +2,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-	props: ['reset'],
+	props: ['reset', 'editMode'],
 	watch: {
 		reset(value: boolean) {
 			if (value) {
@@ -41,8 +41,15 @@ export default Vue.extend({
 
 			<v-btn
 				color="secondary"
+				v-if="!editMode"
 				:disabled="!templateValid"
 				@click="submit()">Add Expense</v-btn>
+
+			<v-btn
+				color="secondary"
+				v-if="editMode"
+				:disabled="!templateValid"
+				@click="submit()">Update Expense</v-btn>
 		</v-layout>
 	</v-form>
 </template>

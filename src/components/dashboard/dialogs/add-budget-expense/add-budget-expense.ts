@@ -27,6 +27,7 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 class AddBudgetExpense extends Dialogs {
     @Prop() public type: number;
     @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
+    public editMode: boolean = false;
     public expenseValid: boolean = false;
     public form: FormInterface = {
         type: {
@@ -64,6 +65,7 @@ class AddBudgetExpense extends Dialogs {
 
     private resetForm() {
         this.selectedType = '';
+        this.editMode = false;
         const ref: any = this.$refs.expenseForm;
         ref.reset();
     }
@@ -71,6 +73,10 @@ class AddBudgetExpense extends Dialogs {
     private setupForm() {
         if (typeof this.type !== 'undefined') {
             this.form.type.value = this.type;
+        }
+
+        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.editMode = true;
         }
     }
 }

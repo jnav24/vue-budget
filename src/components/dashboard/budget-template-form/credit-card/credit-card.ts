@@ -107,14 +107,17 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
     }
 
     public setupForm() {
-        this.form.name.value = this.data.name;
-        this.form.due.value = this.data.due_date;
-        this.form.limit.value = this.data.limit;
-        this.form.type.value = this.data.type;
-        this.form.apr.value = this.data.apr;
-        this.form.last4.value = this.data.last_4;
-        this.form.expMonth.value = this.data.exp_month;
-        this.form.expYear.value = this.data.exp_year;
+        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.editMode = true;
+            this.form.name.value = this.data.name;
+            this.form.due.value = this.data.due_date;
+            this.form.limit.value = this.data.limit;
+            this.form.type.value = this.data.type;
+            this.form.apr.value = this.data.apr;
+            this.form.last4.value = this.data.last_4;
+            this.form.expMonth.value = this.data.exp_month;
+            this.form.expYear.value = this.data.exp_year;
+        }
     }
 
     public setData(): BudgetListAddInterface {

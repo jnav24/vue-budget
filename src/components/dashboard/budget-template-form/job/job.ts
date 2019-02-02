@@ -42,6 +42,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.editMode = true;
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
             this.form.pay_period.value = this.data.pay_period;
