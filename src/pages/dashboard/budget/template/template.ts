@@ -38,7 +38,13 @@ class Template extends Vue {
             { text: 'Monthly Due Date', value: 'due_date' },
             { text: 'Credit Limit', value: 'limit' },
         ],
-        investments: [
+        job: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Pay Frequency', value: 'pay_period' },
+            { text: 'Initial Pay Date', value: 'initial_pay_date' },
+        ],
+        investment: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
             { text: 'Investment Type', value: 'type' },
