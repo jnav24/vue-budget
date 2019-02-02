@@ -16,8 +16,6 @@ class BudgetTemplateForm extends Vue {
     protected templateValid: boolean = false;
 
     public mounted() {
-        console.log('mounted');
-        console.log(this.resetForm);
         if (this.dialog) {
             this.setupForm();
         }
@@ -28,11 +26,6 @@ class BudgetTemplateForm extends Vue {
         // ...
     }
 
-    // protected resetForm() {
-    //     const ref: any = this.$refs.templateForm;
-    //     ref.reset();
-    // }
-
     protected setupForm() {
         // ....
     }
@@ -40,15 +33,13 @@ class BudgetTemplateForm extends Vue {
     protected submit(data: BudgetListAddInterface) {
         console.log(this.templateValid);
         if (this.templateValid) {
-            // this.appendBudgetTemplate(data)
-            //     .then((res: ResponseInterface) => {
-            //         if (res.success) {
-            //             this.closeForm();
-            //             this.resetForm();
-            //         }
-            //     });
-            // this.closeForm();
-            this.resetForm = true;
+            this.appendBudgetTemplate(data)
+                .then((res: ResponseInterface) => {
+                    if (res.success) {
+                        this.closeForm();
+                        this.resetForm = true;
+                    }
+                });
         } else {
             this.closeForm();
             this.resetForm = true;
