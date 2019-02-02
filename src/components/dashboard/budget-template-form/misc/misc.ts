@@ -59,7 +59,7 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
         };
     }
 
-    protected validateForm(obj: { valid: boolean }) {
+    public validateForm(obj: { valid: boolean }) {
         this.templateValid = obj.valid;
         this.submit(this.setData());
     }

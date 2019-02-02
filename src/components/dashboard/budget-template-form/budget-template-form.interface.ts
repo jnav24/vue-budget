@@ -5,4 +5,5 @@ export interface BudgetTemplateFormInterface {
     form: FormInterface;
     setData(): BudgetListAddInterface;
     setupForm(): void;
+    validateForm(obj: { valid: boolean }): void;
 }
