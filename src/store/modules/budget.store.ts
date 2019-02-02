@@ -115,6 +115,50 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async getAllBudgetTemplates({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: '',
+            };
+
+            const response: any = await new Promise((resolve) => {
+                resolve({
+                    status: 200,
+                    data: {
+                        data: {
+                            templates: {
+                                miscellaneous: [
+                                    {
+                                        id: 1,
+                                        name: 'Movies',
+                                        amount: 129,
+                                        due_date: 17,
+                                    },
+                                ],
+                                bank: [
+                                    {
+                                        id: 1,
+                                        name: 'Wells Fargo',
+                                        amount: 42678129,
+                                        type: 'checking',
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                });
+            });
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
     async appendBudgetTemplate({ commit }, payload: BudgetListAddInterface): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -182,6 +226,9 @@ const mutations: MutationTree<BudgetStateInterface> = {
     removeSingleBudget(state, payload: number) {
         const index = state.budgetList.findIndex((num: any) => num.id === payload);
         Vue.delete(state.budgetList, index);
+    },
+    addAllBudgetTemplates(state, payload: BudgetTemplateInterface) {
+        state.budgetTemplate = { ...globalService.sortObject(payload) };
     },
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
         const tempData = { ...state.budgetTemplate };
