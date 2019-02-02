@@ -3,7 +3,6 @@ import Vuex, {ActionTree, MutationTree} from 'vuex';
 import Budget from './modules/budget.store';
 import User from './modules/user.store';
 import { cookiesService } from '@/module';
-import Bills from '@/store/modules/bills.store';
 import Types from '@/store/modules/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 
@@ -32,7 +31,6 @@ export default new Vuex.Store<RootStateInterface>({
     actions,
     mutations,
     modules: {
-        Bills,
         Budget,
         Types,
         User,
