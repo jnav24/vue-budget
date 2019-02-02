@@ -15,7 +15,11 @@ class TimestampService {
         return utcTime.clone().tz(timezone).format(format);
     }
 
-    public format(value: string, format: string = 'YYYY-MM-DD hh:mm A'): string {
+    public format(value: string = '', format: string = 'YYYY-MM-DD hh:mm A'): string {
+        if (value.trim() === '') {
+            return moment().format(format);
+        }
+
         return moment(value).format(format);
     }
 
