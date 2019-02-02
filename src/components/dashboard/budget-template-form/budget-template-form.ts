@@ -31,7 +31,6 @@ class BudgetTemplateForm extends Vue {
     }
 
     protected submit(data: BudgetListAddInterface) {
-        console.log(this.templateValid);
         if (this.templateValid) {
             this.appendBudgetTemplate(data)
                 .then((res: ResponseInterface) => {
