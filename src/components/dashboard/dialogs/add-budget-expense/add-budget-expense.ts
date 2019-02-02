@@ -2,7 +2,6 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {BillsStateInterface} from '@/interfaces/bills-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import Bank from '@/components/dashboard/budget-template-form/bank/Bank.vue';
 import CreditCard from '@/components/dashboard/budget-template-form/credit-card/CreditCard.vue';
@@ -12,6 +11,7 @@ import Medical from '@/components/dashboard/budget-template-form/medical/Medical
 import Misc from '@/components/dashboard/budget-template-form/misc/Misc.vue';
 import Utility from '@/components/dashboard/budget-template-form/utility/Utility.vue';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
+import {TypesStateInterface} from '@/interfaces/types-state.interface';
 
 @Component({
     components: {
@@ -26,7 +26,7 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 })
 class AddBudgetExpense extends Dialogs {
     @Prop() public type: number;
-    @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
+    @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     public editMode: boolean = false;
     public expenseValid: boolean = false;
     public form: FormInterface = {
@@ -40,7 +40,7 @@ class AddBudgetExpense extends Dialogs {
     public selectedType: string = '';
 
     public get billTypes() {
-        return this.bills.types;
+        return this.types.bill;
     }
 
     public showTypeForm(type: string): boolean {

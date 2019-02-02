@@ -1,9 +1,9 @@
 import {UserStateInterface} from '@/interfaces/user-state.interface';
-import {BillsStateInterface} from '@/interfaces/bills-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {TypesStateInterface} from '@/interfaces/types-state.interface';
 
 export interface RootStateInterface {
-    Bills: BillsStateInterface;
     Budget: BudgetStateInterface;
+    Types: TypesStateInterface;
     User: UserStateInterface;
 }

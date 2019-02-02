@@ -5,9 +5,9 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {State} from 'vuex-class';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
-import {BillsStateInterface} from '@/interfaces/bills-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
+import {TypesStateInterface} from '@/interfaces/types-state.interface';
 
 @Component({
     components: {
@@ -17,7 +17,7 @@ import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interfa
     },
 })
 class Template extends Vue {
-    @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
+    @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
@@ -76,8 +76,8 @@ class Template extends Vue {
     }
 
     public getTemplateName(name: string): string {
-        const index = this.bills.types.findIndex((obj: BillTypesInterface) => obj.slug === name);
-        return this.bills.types[index].name || 'No Name Given';
+        const index = this.types.bill.findIndex((obj: BillTypesInterface) => obj.slug === name);
+        return this.types.bill[index].name || 'No Name Given';
     }
 
     public openEditBudgetDialog(obj: { type: number; data: any }) {

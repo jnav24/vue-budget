@@ -4,6 +4,7 @@ import Budget from './modules/budget.store';
 import User from './modules/user.store';
 import { cookiesService } from '@/module';
 import Bills from '@/store/modules/bills.store';
+import Types from '@/store/modules/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 
 Vue.use(Vuex);
@@ -33,6 +34,7 @@ export default new Vuex.Store<RootStateInterface>({
     modules: {
         Bills,
         Budget,
+        Types,
         User,
     },
 });

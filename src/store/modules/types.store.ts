@@ -9,14 +9,14 @@ import {httpService, responseService} from '@/module';
 
 const bank: any = '';
 const bill: BillTypesInterface[] = [];
-const credit_card: any = '';
+const creditCard: any = '';
 const investment: any = '';
 const utility: any = '';
 
 const currentState: TypesStateInterface = {
     bank,
     bill,
-    credit_card,
+    creditCard,
     investment,
     utility,
 };

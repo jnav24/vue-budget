@@ -5,8 +5,8 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action, Mutation, State} from 'vuex-class';
 import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {BillsStateInterface} from '@/interfaces/bills-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
+import {TypesStateInterface} from '@/interfaces/types-state.interface';
 
 @Component
 class BudgetTemplate extends Vue {
@@ -16,7 +16,7 @@ class BudgetTemplate extends Vue {
     @Prop() public type: string;
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;
     @Mutation public removeTemplateElement: (obj: BudgetTemplateRemoveInterface) => void;
-    @State((state: RootStateInterface) => state.Bills) public bills: BillsStateInterface;
+    @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     public tableInfo: DataTableInterface = {
         rowsPerPageItems: [25, 50, 75],
     };
@@ -38,7 +38,7 @@ class BudgetTemplate extends Vue {
     }
 
     public get currentType() {
-        return this.bills.types.filter((type: BillTypesInterface) => type.slug === this.type).shift();
+        return this.types.bill.filter((type: BillTypesInterface) => type.slug === this.type).shift();
     }
 
     @Emit('emitEditBudget')

@@ -3,7 +3,7 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 export interface TypesStateInterface {
     bank: any;
     bill: BillTypesInterface[];
-    credit_card: any;
+    creditCard: any;
     investment: any;
     utility: any;
 }
