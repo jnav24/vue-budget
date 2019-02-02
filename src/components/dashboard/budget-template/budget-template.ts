@@ -30,7 +30,7 @@ class BudgetTemplate extends Vue {
     }
 
     public removeElement(item: any) {
-        if (item.id.indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
+        if (item.id.toString().indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
             this.removeTemplateElement({ type: this.type, id: item.id });
         } else {
             this.removeTemplateElementAction({ type: this.type, id: item.id });
