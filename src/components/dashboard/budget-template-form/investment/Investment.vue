@@ -3,7 +3,9 @@
 
 <template>
 	<div class="budget-template investment">
-		<v-form ref="templateForm" v-model="templateValid">
+		<BudgetTemplateComponent
+			:reset="resetForm"
+			@buttonClicked="validateForm($event)">
 			<v-layout>
 				<v-flex lg5 xl5>
 					<v-text-field
@@ -33,16 +35,6 @@
 						label="Account type"></v-select>
 				</v-flex>
 			</v-layout>
-
-			<v-layout justify-end>
-				<v-btn
-					@click="submit()">Cancel</v-btn>
-
-				<v-btn
-					color="secondary"
-					:disabled="!templateValid"
-					@click="submit()">Add Expense</v-btn>
-			</v-layout>
-		</v-form>
+		</BudgetTemplateComponent>
 	</div>
 </template>

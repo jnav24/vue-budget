@@ -1,19 +1,17 @@
-import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
-import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action} from 'vuex-class';
 import {timestampService, validateService} from '@/module';
+import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
+import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
+import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
 
-Component.registerHooks([
-    'mounted',
-]);
-
-@Component
-class Investment extends Vue {
-    @Prop() public data: any;
-    @Prop() public dialog: any;
-    @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
+@Component({
+    components: {
+        BudgetTemplateComponent,
+    },
+})
+class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     public form: FormInterface = {
         name: {
             value: '',
@@ -41,7 +39,6 @@ class Investment extends Vue {
             ],
         },
     };
-    public templateValid: boolean = false;
     public types = [
         { value: 'stocks', label: 'Stocks' },
         { value: 'crypto', label: 'Crypto' },
@@ -49,45 +46,13 @@ class Investment extends Vue {
         { value: 'irs', label: 'IRA' },
     ];
 
-    public mounted() {
-        if (this.dialog) {
-            this.setupForm();
-        }
-    }
-
-    public submit() {
-        if (this.templateValid) {
-            const data: BudgetListAddInterface = this.setData();
-            this.appendBudgetTemplate(data)
-                .then((res: ResponseInterface) => {
-                    if (res.success) {
-                        this.closeForm();
-                        this.resetForm();
-                    }
-                });
-        } else {
-            this.closeForm();
-            this.resetForm();
-        }
-    }
-
-    @Emit('submitForm')
-    private closeForm() {
-        // ...
-    }
-
-    private setupForm() {
+    public setupForm() {
         this.form.name.value = this.data.name;
         this.form.amount.value = this.data.amount;
         this.form.type.value = this.data.type;
     }
 
-    private resetForm() {
-        const ref: any = this.$refs.templateForm;
-        ref.reset();
-    }
-
-    private setData(): BudgetListAddInterface {
+    public setData(): BudgetListAddInterface {
         return {
             type: 'investment',
             data: {
@@ -97,6 +62,11 @@ class Investment extends Vue {
                 type: this.form.type.value,
             },
         };
+    }
+
+    protected validateForm(obj: { valid: boolean }) {
+        this.templateValid = obj.valid;
+        this.submit(this.setData());
     }
 }
 
