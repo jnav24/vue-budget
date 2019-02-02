@@ -21,6 +21,9 @@ export default Vue.extend({
 			const ref: any = this.$refs.templateForm;
 			ref.reset();
 		},
+		cancel() {
+			this.$emit('buttonClicked', { valid: false });
+		},
 		submit() {
 			this.$emit('buttonClicked', { valid: this.templateValid });
 		},
@@ -34,7 +37,7 @@ export default Vue.extend({
 
 		<v-layout justify-end>
 			<v-btn
-				@click="submit()">Cancel</v-btn>
+				@click="cancel()">Cancel</v-btn>
 
 			<v-btn
 				color="secondary"
