@@ -1,19 +1,17 @@
-import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {globalService, timestampService, validateService} from '@/module';
-import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action} from 'vuex-class';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
+import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
+import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
+import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
 
-Component.registerHooks([
-    'mounted',
-]);
-
-@Component
-class CreditCard extends Vue {
-    @Prop() public data: any;
-    @Prop() public dialog: any;
-    @Action public appendBudgetTemplate: (obj: BudgetListAddInterface) => Promise<ResponseInterface>;
+@Component({
+    components: {
+        BudgetTemplateComponent,
+    },
+})
+class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     public creditCardTypes = [
         {id: 1, name: 'Visa'},
     ];
@@ -95,13 +93,6 @@ class CreditCard extends Vue {
     };
     public months: any[] = globalService.getMonths();
     public years: any[] = globalService.getYears();
-    public templateValid: boolean = false;
-
-    public mounted() {
-        if (this.dialog) {
-            this.setupForm();
-        }
-    }
 
     public setMonth() {
         if (!this.form.expMonth.value) {
@@ -115,28 +106,7 @@ class CreditCard extends Vue {
         }
     }
 
-    public submit() {
-        if (this.templateValid) {
-            const data: BudgetListAddInterface = this.setData();
-            this.appendBudgetTemplate(data)
-                .then((res: ResponseInterface) => {
-                    if (res.success) {
-                        this.closeForm();
-                        this.resetForm();
-                    }
-                });
-        } else {
-            this.closeForm();
-            this.resetForm();
-        }
-    }
-
-    @Emit('submitForm')
-    private closeForm() {
-        // ...
-    }
-
-    private setupForm() {
+    public setupForm() {
         this.form.name.value = this.data.name;
         this.form.due.value = this.data.due_date;
         this.form.limit.value = this.data.limit;
@@ -147,12 +117,7 @@ class CreditCard extends Vue {
         this.form.expYear.value = this.data.exp_year;
     }
 
-    private resetForm() {
-        const ref: any = this.$refs.templateForm;
-        ref.reset();
-    }
-
-    private setData(): BudgetListAddInterface {
+    public setData(): BudgetListAddInterface {
         return {
             type: 'credit_card',
             data: {
@@ -167,6 +132,11 @@ class CreditCard extends Vue {
                 exp_year: this.form.expYear.value,
             },
         };
+    }
+
+    protected validateForm(obj: { valid: boolean }) {
+        this.templateValid = obj.valid;
+        this.submit(this.setData());
     }
 }
 
