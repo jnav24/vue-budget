@@ -68,7 +68,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async getAllCreditCardTypes({ commit }) {
+    async getAllCreditCardTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
                 url: 'types/credit-card',
@@ -86,7 +86,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async getAllInvestmentTypes({ commit }) {
+    async getAllInvestmentTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
                 url: 'types/investment',
@@ -96,6 +96,24 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addInvestmentTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+    async getAllMedicalTypes({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'types/medical',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addMedicalTypes', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -136,6 +154,9 @@ const mutations: MutationTree<TypesStateInterface> = {
     },
     addInvestmentTypes(state, payload: InvestmentTypesInterface[]) {
         state.investment = payload;
+    },
+    addMedicalTypes(state, payload: MedicalTypesInterface[]) {
+        state.medical = payload;
     },
     addUtilityTypes(state, payload: UtilityTypesInterface[]) {
         state.utility = payload;
