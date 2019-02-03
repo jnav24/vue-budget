@@ -18,7 +18,7 @@
 					<v-layout justify-start>
 						<v-toolbar-title>
 							<v-layout align-center>
-								<img src="@/assets/images/logo_1.png" alt="Dime Budget" style="width: 6em">
+								<img src="@/assets/images/logo_1.png" alt="Dime Budget" style="width: 5em">
 							</v-layout>
 						</v-toolbar-title>
 					</v-layout>
