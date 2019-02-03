@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {globalService, responseService} from '@/module';
+import {globalService, httpService, responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
@@ -9,6 +9,7 @@ import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove.interface';
+import {AxiosResponse} from 'axios';
 
 const budgetList: BudgetListInterface[] = [];
 const budgetTemplate: BudgetTemplateInterface = {} as BudgetTemplateInterface;
@@ -118,36 +119,10 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
     async getAllBudgetTemplates({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: '',
+                url: 'budget-templates',
             };
 
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                    data: {
-                        data: {
-                            templates: {
-                                miscellaneous: [
-                                    {
-                                        id: 1,
-                                        name: 'Movies',
-                                        amount: 129,
-                                        due_date: 17,
-                                    },
-                                ],
-                                bank: [
-                                    {
-                                        id: 1,
-                                        name: 'Wells Fargo',
-                                        amount: 42678129,
-                                        type: 'checking',
-                                    },
-                                ],
-                            },
-                        },
-                    },
-                });
-            });
+            const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
