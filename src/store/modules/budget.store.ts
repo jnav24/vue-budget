@@ -189,6 +189,24 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async saveBudgetTemplate({ commit }, payload: BudgetTemplateInterface) {
+        try {
+            const data: UrlInterface = {
+                url: 'budget-templates',
+                params: payload,
+            };
+
+            const response: AxiosResponse = await httpService.authPost(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
 };
 
 const mutations: MutationTree<BudgetStateInterface> = {

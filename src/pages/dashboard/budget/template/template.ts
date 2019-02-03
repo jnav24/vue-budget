@@ -3,11 +3,13 @@ import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/
 import BudgetTemplate from '@/components/dashboard/budget-template/BudgetTemplate.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {State} from 'vuex-class';
+import {Action, State} from 'vuex-class';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {ResponseInterface} from '@/interfaces/response.interface';
+import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 
 @Component({
     components: {
@@ -17,6 +19,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
     },
 })
 class Template extends Vue {
+    @Action public saveBudgetTemplate: (obj: BudgetTemplateInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     public expenseDialog: boolean = false;
@@ -92,6 +95,17 @@ class Template extends Vue {
             this.expenseType = 0;
             this.expenseData = {};
         }
+    }
+
+    public saveTemplate() {
+        this.saveBudgetTemplate(this.budget.budgetTemplate)
+            .then((res: ResponseInterface) => {
+               // display an alert if save was successful or not
+            });
+    }
+
+    public canSaveTemplates(): boolean {
+        return !Object.keys(this.budget.budgetTemplate).length;
     }
 }
 
