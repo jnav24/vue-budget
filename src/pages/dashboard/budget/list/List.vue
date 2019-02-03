@@ -24,6 +24,7 @@
 					<v-flex>
 						<v-layout justify-end>
 							<v-btn
+								:disabled="canAddBudget()"
 								@click="addBudgetDialog = true"
 								color="success">
 								<v-icon class="prepend-icon">add</v-icon>

@@ -66,6 +66,10 @@ class List extends Vue {
         return timestampService.format(date, 'MMM YYYY');
     }
 
+    public canAddBudget(): boolean {
+        return !Object.keys(this.budget.budgetTemplate).length;
+    }
+
     private removeBudget() {
         if (this.delete) {
             this.deleteSingleBudget(this.delete)
