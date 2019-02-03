@@ -3,6 +3,17 @@
 
 <template>
 	<div class="page template">
+		<v-toolbar height="50" style="background: #474747; position: absolute; top: 0px; left: 0;">
+			<v-layout align-center justify-end>
+				<v-btn>Cancel</v-btn>
+				<v-btn color="success" style="color: #fff;">
+					<v-icon>save_alt</v-icon>
+					<span style="display: inline-block; margin-left: 7px;">Save</span>
+				</v-btn>
+			</v-layout>
+		</v-toolbar>
+
+
 		<AddBudgetExpense
 			:dialog="expenseDialog"
 			:type="expenseType"
