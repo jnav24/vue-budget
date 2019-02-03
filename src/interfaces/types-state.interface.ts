@@ -3,11 +3,13 @@ import {BankTypesInterface} from '@/interfaces/bank-types.interface';
 import {CreditCardTypesInterface} from '@/interfaces/credit-card-types.interface';
 import {InvestmentTypesInterface} from '@/interfaces/investment-types.interface';
 import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
+import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
 
 export interface TypesStateInterface {
     bank: BankTypesInterface[];
     bill: BillTypesInterface[];
     creditCard: CreditCardTypesInterface[];
     investment: InvestmentTypesInterface[];
+    medical: MedicalTypesInterface[];
     utility: UtilityTypesInterface[];
 }
