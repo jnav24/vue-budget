@@ -39,7 +39,17 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
                 },
             ],
         },
+        types: {
+            value: 0,
+            rules: [
+                (v: any) => !!v || 'Select medical type',
+            ],
+        },
     };
+
+    public get types() {
+        return this.typesState.medical;
+    }
 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {

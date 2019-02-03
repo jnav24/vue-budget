@@ -26,6 +26,18 @@
 			</v-layout>
 
 			<v-layout>
+				<v-flex lg5 xl5>
+					<v-select
+						v-model="form.types.value"
+						:rules="form.types.rules"
+						:items="types"
+						item-value="id"
+						item-text="name"
+						label="Medical Types"></v-select>
+				</v-flex>
+
+				<v-spacer></v-spacer>
+
 				<v-flex lg6 xl6>
 					<v-select
 						v-model="form.due.value"
