@@ -26,12 +26,12 @@ class Template extends Vue {
     public expenseType: number = 0;
     public expenseData: any = {};
     public headers: any = {
-        bank: [
+        banks: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
             { text: 'Bank Type', value: 'type' },
         ],
-        credit_card: [
+        credit_cards: [
             { text: 'Name', value: 'name' },
             { text: 'Card Type', value: 'type' },
             { text: 'Last 4 Digits', value: 'limit' },
@@ -41,13 +41,13 @@ class Template extends Vue {
             { text: 'Monthly Due Date', value: 'due_date' },
             { text: 'Credit Limit', value: 'limit' },
         ],
-        job: [
+        jobs: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
             { text: 'Pay Frequency', value: 'pay_period' },
             { text: 'Initial Pay Date', value: 'initial_pay_date' },
         ],
-        investment: [
+        investments: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
             { text: 'Investment Type', value: 'type' },
@@ -62,7 +62,7 @@ class Template extends Vue {
             { text: 'Amount', value: 'amount' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
-        utility: [
+        utilities: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
             { text: 'Utility Type', value: 'type' },
@@ -83,7 +83,7 @@ class Template extends Vue {
     }
 
     public getTemplateList(name: string) {
-        return (this.budget.budgetTemplate as any)[name];
+        return (this.expenses as any)[name];
     }
 
     public getTemplateName(name: string): string {

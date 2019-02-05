@@ -24,22 +24,22 @@
 						label="Select Expense Type"></v-select>
 
 					<Bank
-						v-if="showTypeForm('bank')"
+						v-if="showTypeForm('banks')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Bank>
 					<CreditCard
-						v-if="showTypeForm('credit_card')"
+						v-if="showTypeForm('credit_cards')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></CreditCard>
 					<Investment
-						v-if="showTypeForm('investment')"
+						v-if="showTypeForm('investments')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Investment>
 					<Job
-						v-if="showTypeForm('job')"
+						v-if="showTypeForm('jobs')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Job>
@@ -54,7 +54,7 @@
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Misc>
 					<Utility
-						v-if="showTypeForm('utility')"
+						v-if="showTypeForm('utilities')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="closeDialog()"></Utility>
