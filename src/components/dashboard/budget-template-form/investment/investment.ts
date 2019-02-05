@@ -55,7 +55,7 @@ class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterfa
 
     public setData(): BudgetListAddInterface {
         return {
-            type: 'investment',
+            type: 'investments',
             data: {
                 id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,

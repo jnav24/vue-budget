@@ -54,7 +54,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
 
     public setData(): BudgetListAddInterface {
         return {
-            type: 'job',
+            type: 'jobs',
             data: {
                 id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,

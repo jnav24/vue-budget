@@ -123,7 +123,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
 
     public setData(): BudgetListAddInterface {
         return {
-            type: 'credit_card',
+            type: 'credit_cards',
             data: {
                 id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,

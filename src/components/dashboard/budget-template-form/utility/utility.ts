@@ -63,7 +63,7 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
     public setData(): BudgetListAddInterface {
         return {
-            type: 'utility',
+            type: 'utilities',
             data: {
                 id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,

@@ -17,7 +17,6 @@ export default Vue.extend({
 	},
 	methods: {
 		resetForm() {
-			console.log(this.reset);
 			const ref: any = this.$refs.templateForm;
 			ref.reset();
 		},

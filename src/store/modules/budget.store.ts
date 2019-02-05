@@ -226,13 +226,18 @@ const mutations: MutationTree<BudgetStateInterface> = {
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
         const tempData = { ...state.budgetTemplate };
 
-        if (typeof tempData.expenses[payload.type] !== 'undefined') {
-            tempData.expenses[payload.type] = [...tempData.expenses[payload.type], payload.data];
+        if (typeof (tempData.expenses as any)[payload.type] !== 'undefined') {
+            (tempData.expenses as any)[payload.type] = [...(tempData.expenses as any)[payload.type], payload.data];
         } else {
-            tempData.expenses[payload.type] = [payload.data];
+            (tempData.expenses as any)[payload.type] = [payload.data];
         }
 
-        state.budgetTemplate = { ...globalService.sortObject(tempData.expenses) };
+        state.budgetTemplate = {
+            id: state.budgetTemplate.id,
+            expenses: {
+                ...globalService.sortObject(tempData.expenses),
+            },
+        };
     },
     resetBudgetState(state) {
         state.budgetList = [];
