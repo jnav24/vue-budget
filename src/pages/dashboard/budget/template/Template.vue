@@ -11,7 +11,7 @@
 					color="success"
 					:disabled="canSaveTemplates()"
 					style="color: #fff;">
-					<v-icon>save_alt</v-icon>
+					<v-icon>save</v-icon>
 					<span style="display: inline-block; margin-left: 7px;">Save</span>
 				</v-btn>
 			</v-layout>
@@ -46,13 +46,14 @@
 				</v-layout>
 
 				<EmptyState
-					v-if="!Object.keys(budget.budgetTemplate).length"
+					v-if="isTemplateEmpty()"
 					text="You haven't set up your template set. Click the add button below to get started."
 					button-text="Template"
 					@buttonClicked="expenseDialog = true"></EmptyState>
 
 				<BudgetTemplate
-					v-for="(templateKey, index) in Object.keys(budget.budgetTemplate)"
+					v-for="(templateKey, index) in Object.keys(expenses)"
+					v-if="expenses[templateKey].length"
 					:key="index"
 					:type="templateKey"
 					:name="getTemplateName(templateKey)"

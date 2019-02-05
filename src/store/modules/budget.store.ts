@@ -221,18 +221,18 @@ const mutations: MutationTree<BudgetStateInterface> = {
         Vue.delete(state.budgetList, index);
     },
     addAllBudgetTemplates(state, payload: BudgetTemplateInterface) {
-        state.budgetTemplate = { ...globalService.sortObject(payload) };
+        state.budgetTemplate = { id: payload.id, expenses: { ...globalService.sortObject(payload.expenses) } };
     },
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
         const tempData = { ...state.budgetTemplate };
 
-        if (typeof tempData[payload.type] !== 'undefined') {
-            tempData[payload.type] = [...tempData[payload.type], payload.data];
+        if (typeof tempData.expenses[payload.type] !== 'undefined') {
+            tempData.expenses[payload.type] = [...tempData.expenses[payload.type], payload.data];
         } else {
-            tempData[payload.type] = [payload.data];
+            tempData.expenses[payload.type] = [payload.data];
         }
 
-        state.budgetTemplate = { ...globalService.sortObject(tempData) };
+        state.budgetTemplate = { ...globalService.sortObject(tempData.expenses) };
     },
     resetBudgetState(state) {
         state.budgetList = [];
