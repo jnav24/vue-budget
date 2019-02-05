@@ -92,7 +92,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
     public years: any[] = globalService.getYears();
 
     public get types() {
-        return this.typesState.creditCard;
+        return this.typesState.creditCards;
     }
 
     public setMonth() {

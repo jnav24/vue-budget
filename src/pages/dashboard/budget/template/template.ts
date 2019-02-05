@@ -70,6 +70,14 @@ class Template extends Vue {
         ],
     };
 
+    public get expenses() {
+        return this.budget.budgetTemplate.expenses;
+    }
+
+    public get bills() {
+        return this.types.bills;
+    }
+
     public getTemplateHeaders(name: string): DataTableHeadersInterface[] {
         return this.headers[name] || [];
     }
@@ -79,8 +87,13 @@ class Template extends Vue {
     }
 
     public getTemplateName(name: string): string {
-        const index = this.types.bill.findIndex((obj: BillTypesInterface) => obj.slug === name);
-        return this.types.bill[index].name || 'No Name Given';
+        const index = this.bills.findIndex((obj: BillTypesInterface) => obj.slug === name);
+
+        if (index === -1) {
+            return 'No Name Given';
+        }
+
+        return this.bills[index].name;
     }
 
     public openEditBudgetDialog(obj: { type: number; data: any }) {
@@ -106,6 +119,20 @@ class Template extends Vue {
 
     public canSaveTemplates(): boolean {
         return !Object.keys(this.budget.budgetTemplate).length;
+    }
+
+    public isTemplateEmpty(): boolean {
+        let totalEmpty = 0;
+        const expenses: string[] = Object.keys(this.expenses);
+        const totalExpenses = expenses.length;
+
+        for (const template of expenses) {
+            if (!(this.expenses as any)[template].length) {
+                totalEmpty = totalEmpty + 1;
+            }
+        }
+
+        return totalEmpty === totalExpenses;
     }
 }
 

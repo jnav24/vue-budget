@@ -12,20 +12,20 @@ import {InvestmentTypesInterface} from '@/interfaces/investment-types.interface'
 import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
 import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
 
-const bank: BankTypesInterface[] = [];
-const bill: BillTypesInterface[] = [];
-const creditCard: CreditCardTypesInterface[] = [];
-const investment: InvestmentTypesInterface[] = [];
+const banks: BankTypesInterface[] = [];
+const bills: BillTypesInterface[] = [];
+const creditCards: CreditCardTypesInterface[] = [];
+const investments: InvestmentTypesInterface[] = [];
 const medical: MedicalTypesInterface[] = [];
-const utility: UtilityTypesInterface[] = [];
+const utilities: UtilityTypesInterface[] = [];
 
 const currentState: TypesStateInterface = {
-    bank,
-    bill,
-    creditCard,
-    investment,
+    banks,
+    bills,
+    creditCards,
+    investments,
     medical,
-    utility,
+    utilities,
 };
 
 const getters: GetterTree<TypesStateInterface, RootStateInterface> = {};
@@ -144,22 +144,22 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 
 const mutations: MutationTree<TypesStateInterface> = {
     addBankTypes(state, payload: BankTypesInterface[]) {
-        state.bank = payload;
+        state.banks = payload;
     },
     addBillTypes(state, payload: BillTypesInterface[]) {
-        state.bill = payload;
+        state.bills = payload;
     },
     addCreditCardTypes(state, payload: CreditCardTypesInterface[]) {
-        state.creditCard = payload;
+        state.creditCards = payload;
     },
     addInvestmentTypes(state, payload: InvestmentTypesInterface[]) {
-        state.investment = payload;
+        state.investments = payload;
     },
     addMedicalTypes(state, payload: MedicalTypesInterface[]) {
         state.medical = payload;
     },
     addUtilityTypes(state, payload: UtilityTypesInterface[]) {
-        state.utility = payload;
+        state.utilities = payload;
     },
 };
 

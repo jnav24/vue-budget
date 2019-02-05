@@ -6,10 +6,10 @@ import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
 import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
 
 export interface TypesStateInterface {
-    bank: BankTypesInterface[];
-    bill: BillTypesInterface[];
-    creditCard: CreditCardTypesInterface[];
-    investment: InvestmentTypesInterface[];
+    banks: BankTypesInterface[];
+    bills: BillTypesInterface[];
+    creditCards: CreditCardTypesInterface[];
+    investments: InvestmentTypesInterface[];
     medical: MedicalTypesInterface[];
-    utility: UtilityTypesInterface[];
+    utilities: UtilityTypesInterface[];
 }

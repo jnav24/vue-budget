@@ -48,7 +48,7 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     };
 
     public get types() {
-        return this.typesState.utility;
+        return this.typesState.utilities;
     }
 
     public setupForm() {

@@ -41,7 +41,7 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     };
 
     public get types() {
-        return this.typesState.bank;
+        return this.typesState.banks;
     }
 
     public setupForm() {

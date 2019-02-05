@@ -38,7 +38,7 @@ class BudgetTemplate extends Vue {
     }
 
     public get currentType() {
-        return this.types.bill.filter((type: BillTypesInterface) => type.slug === this.type).shift();
+        return this.types.bills.filter((type: BillTypesInterface) => type.slug === this.type).shift();
     }
 
     @Emit('emitEditBudget')

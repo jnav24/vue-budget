@@ -41,7 +41,7 @@ class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterfa
     };
 
     public get types() {
-        return this.typesState.investment;
+        return this.typesState.investments;
     }
 
     public setupForm() {

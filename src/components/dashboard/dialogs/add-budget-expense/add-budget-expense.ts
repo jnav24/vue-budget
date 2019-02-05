@@ -40,7 +40,7 @@ class AddBudgetExpense extends Dialogs {
     public selectedType: string = '';
 
     public get billTypes() {
-        return this.types.bill;
+        return this.types.bills;
     }
 
     public showTypeForm(type: string): boolean {
