@@ -242,17 +242,13 @@ const mutations: MutationTree<BudgetStateInterface> = {
         const index = tempData.findIndex((obj: any) => obj.id === payload.id);
         tempData.splice(index, 1);
 
-        if (tempData.length) {
-            state.budgetTemplate = {
-                id: state.budgetTemplate.id,
-                expenses: globalService.sortObject({
-                    ...state.budgetTemplate.expenses,
-                    [payload.type]: tempData,
-                }),
-            };
-        } else {
-            Vue.delete(state.budgetTemplate.expenses, payload.type);
-        }
+        state.budgetTemplate = {
+            id: state.budgetTemplate.id,
+            expenses: globalService.sortObject({
+                ...state.budgetTemplate.expenses,
+                [payload.type]: tempData,
+            }),
+        };
     },
 };
 
