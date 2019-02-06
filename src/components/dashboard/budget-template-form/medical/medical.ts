@@ -57,6 +57,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
             this.form.due.value = this.data.due_date;
+            this.form.type.value = 0; // @TODO grab from data
         }
     }
 
@@ -68,6 +69,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
                 name: this.form.name.value,
                 amount: this.form.amount.value,
                 due_date: this.form.due.value,
+                medical_type_id: this.form.type.value,
             },
         };
     }

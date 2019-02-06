@@ -45,7 +45,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             this.editMode = true;
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
-            this.form.pay_period.value = this.data.pay_period;
+            this.form.pay_period.value = this.data.job_type_id;
             this.form.initial_pay_date = this.data.initial_pay_date;
         } else {
             this.form.initial_pay_date.value = timestampService.format('', 'YYYY-MM-DD');
@@ -59,7 +59,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
                 id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,
                 amount: this.form.amount.value,
-                pay_period: this.form.pay_period.value,
+                job_type_id: this.form.pay_period.value,
                 initial_pay_date: this.form.initial_pay_date.value,
             },
         };

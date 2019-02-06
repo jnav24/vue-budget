@@ -199,6 +199,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authPost(data);
 
             if (responseService.isSuccessResponse(response.status)) {
+                commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 

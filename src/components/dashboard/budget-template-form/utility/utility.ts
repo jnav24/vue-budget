@@ -57,7 +57,7 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
             this.form.due.value = this.data.due_date;
-            this.form.type.value = this.data.type;
+            this.form.type.value = 0; // @TODO grab from data
         }
     }
 
@@ -68,7 +68,7 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
                 id: 'temp_' + timestampService.generateUnixId(),
                 name: this.form.name.value,
                 amount: this.form.amount.value,
-                type: this.form.type.value,
+                utility_type_id: this.form.type.value,
                 due_date: this.form.due.value,
             },
         };
