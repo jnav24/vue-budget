@@ -3,6 +3,12 @@
 
 <template>
 	<div class="budget-template">
+		<ConfirmDialog
+			:data="confirmData"
+			:dialog="confirmDialog"
+			@updateDialog="emitConfimDialog($event)"
+			@updateData="emitConfirmData($event)"></ConfirmDialog>
+
 		<h3 class="header__h3">{{ name }}</h3>
 
 		<v-card>
@@ -25,7 +31,7 @@
 
 							<v-btn
 								fab
-								@click="removeElement(props.item)"
+								@click="markForDeletion(props.item)"
 								class="btn--details__icon">
 								<v-icon>cancel</v-icon>
 							</v-btn>

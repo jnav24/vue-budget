@@ -7,8 +7,13 @@ import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 
-@Component
+@Component({
+    components: {
+        ConfirmDialog,
+    },
+})
 class BudgetTemplate extends Vue {
     @Prop() public name: string;
     @Prop() public data: any;
@@ -17,6 +22,11 @@ class BudgetTemplate extends Vue {
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;
     @Mutation public removeTemplateElement: (obj: BudgetTemplateRemoveInterface) => void;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
+    public confirmData: any = {
+        text: 'By continuing, this item will be permanently deleted. Are you sure you want to delete this?',
+    };
+    public confirmDialog: boolean = false;
+    public deletedItem: any = {};
     public tableInfo: DataTableInterface = {
         rowsPerPageItems: [25, 50, 75],
     };
@@ -29,16 +39,39 @@ class BudgetTemplate extends Vue {
         return this.data;
     }
 
-    public removeElement(item: any) {
-        if (item.id.toString().indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
-            this.removeTemplateElement({ type: this.type, id: item.id });
+    public removeElement() {
+        if (this.deletedItem.id.toString().indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
+            this.removeTemplateElement({ type: this.type, id: this.deletedItem.id });
         } else {
-            this.removeTemplateElementAction({ type: this.type, id: item.id });
+            this.removeTemplateElementAction({ type: this.type, id: this.deletedItem.id })
+                .then((res: ResponseInterface) => {
+                    // ...
+                });
+        }
+    }
+
+    public emitConfimDialog(dialog: boolean) {
+        this.confirmDialog = dialog;
+
+        if (!dialog) {
+            this.deletedItem = {};
+        }
+    }
+
+    public emitConfirmData(num: number) {
+        if (!!num) {
+            console.log('deleting...');
+            this.removeElement();
         }
     }
 
     public get currentType() {
         return this.types.bills.filter((type: BillTypesInterface) => type.slug === this.type).shift();
+    }
+
+    public markForDeletion(item: any) {
+        this.deletedItem = item;
+        this.confirmDialog = true;
     }
 
     @Emit('emitEditBudget')
