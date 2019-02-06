@@ -10,10 +10,12 @@ import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interfa
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
+import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 
 @Component({
     components: {
         AddBudgetExpense,
+        AlertDialog,
         BudgetTemplate,
         EmptyState,
     },
@@ -22,6 +24,11 @@ class Template extends Vue {
     @Action public saveBudgetTemplate: (obj: BudgetTemplateInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
+    public alertData: any = {
+        text: 'Yo!',
+        type: 'success',
+    };
+    public alertDialog: boolean = false;
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
     public expenseData: any = {};
@@ -94,6 +101,10 @@ class Template extends Vue {
         }
 
         return this.bills[index].name;
+    }
+
+    public emitAlertDialog(dialog: boolean) {
+        this.alertDialog = dialog;
     }
 
     public openEditBudgetDialog(obj: { type: number; data: any }) {

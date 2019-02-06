@@ -17,12 +17,18 @@
 			</v-layout>
 		</v-toolbar>
 
+		<AlertDialog
+			:data="alertData"
+			:dialog="alertDialog"
+			@updateDialog="emitAlertDialog($event)"></AlertDialog>
 
 		<AddBudgetExpense
 			:dialog="expenseDialog"
 			:type="expenseType"
 			:data="expenseData"
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
+
+		<v-btn @click="alertDialog = true">Test alert</v-btn>
 
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
