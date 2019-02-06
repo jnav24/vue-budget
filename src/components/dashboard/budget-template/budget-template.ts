@@ -7,10 +7,12 @@ import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 
 @Component({
     components: {
+        AlertDialog,
         ConfirmDialog,
     },
 })
@@ -22,6 +24,11 @@ class BudgetTemplate extends Vue {
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;
     @Mutation public removeTemplateElement: (obj: BudgetTemplateRemoveInterface) => void;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
+    public alertData: any = {
+        text: '',
+        type: '',
+    };
+    public alertDialog: boolean = false;
     public confirmData: any = {
         text: 'By continuing, this item will be permanently deleted. Are you sure you want to delete this?',
     };
@@ -39,6 +46,10 @@ class BudgetTemplate extends Vue {
         return this.data;
     }
 
+    public emitAlertDialog(dialog: boolean) {
+        this.alertDialog = dialog;
+    }
+
     public removeElement() {
         if (this.deletedItem.id.toString().indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
             this.removeTemplateElement({ type: this.type, id: this.deletedItem.id });
@@ -46,8 +57,14 @@ class BudgetTemplate extends Vue {
             this.removeTemplateElementAction({ type: this.type, id: this.deletedItem.id })
                 .then((res: ResponseInterface) => {
                     if (res.success) {
-                        console.log('deleted');
+                        this.alertData.text = 'Item has been removed successfully!';
+                        this.alertData.type = 'success';
+                    } else {
+                        this.alertData.text = 'Item couldn\'t be removed at this time. Please try again later.';
+                        this.alertData.type = 'danger';
                     }
+
+                    this.alertDialog = true;
                 });
         }
     }
