@@ -57,12 +57,13 @@
 
 				<BudgetTemplate
 					v-for="(templateKey, index) in Object.keys(expenses)"
-					v-if="expenses[templateKey].length"
+					v-show="expenses[templateKey].length"
 					:key="index"
 					:type="templateKey"
 					:name="getTemplateName(templateKey)"
 					:headers="getTemplateHeaders(templateKey)"
 					:data="getTemplateList(templateKey)"
+					@emitRemoveBudget="openAlertDialog($event)"
 					@emitEditBudget="openEditBudgetDialog($event)"></BudgetTemplate>
 			</v-flex>
 		</v-layout>

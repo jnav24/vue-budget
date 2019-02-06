@@ -113,6 +113,11 @@ class Template extends Vue {
         this.expenseData = obj.data;
     }
 
+    public openAlertDialog(obj: any) {
+        this.alertData = obj;
+        this.alertDialog = true;
+    }
+
     public closeEditBudgetDialog(bool: boolean) {
         if (!bool) {
             this.expenseDialog = bool;

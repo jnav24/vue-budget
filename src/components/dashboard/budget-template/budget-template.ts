@@ -7,12 +7,10 @@ import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
-import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 
 @Component({
     components: {
-        AlertDialog,
         ConfirmDialog,
     },
 })
@@ -28,7 +26,6 @@ class BudgetTemplate extends Vue {
         text: '',
         type: '',
     };
-    public alertDialog: boolean = false;
     public confirmData: any = {
         text: 'By continuing, this item will be permanently deleted. Are you sure you want to delete this?',
     };
@@ -46,10 +43,6 @@ class BudgetTemplate extends Vue {
         return this.data;
     }
 
-    public emitAlertDialog(dialog: boolean) {
-        this.alertDialog = dialog;
-    }
-
     public removeElement() {
         if (this.deletedItem.id.toString().indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
             this.removeTemplateElement({ type: this.type, id: this.deletedItem.id });
@@ -64,7 +57,7 @@ class BudgetTemplate extends Vue {
                         this.alertData.type = 'danger';
                     }
 
-                    this.alertDialog = true;
+                    this.emitRemoveBudget(this.alertData);
                 });
         }
     }
@@ -94,6 +87,11 @@ class BudgetTemplate extends Vue {
 
     @Emit('emitEditBudget')
     public emitEditBudget(obj: { type: string; data: any }) {
+        // ...
+    }
+
+    @Emit('emitRemoveBudget')
+    public emitRemoveBudget(obj: any) {
         // ...
     }
 }
