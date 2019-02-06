@@ -28,8 +28,6 @@
 			:data="expenseData"
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
 
-		<v-btn @click="alertDialog = true">Test alert</v-btn>
-
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<v-layout align-center style="margin-bottom: 25px;">

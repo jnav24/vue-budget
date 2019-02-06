@@ -25,8 +25,8 @@ class Template extends Vue {
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     public alertData: any = {
-        text: 'Yo!',
-        type: 'success',
+        text: '',
+        type: '',
     };
     public alertDialog: boolean = false;
     public expenseDialog: boolean = false;
@@ -124,7 +124,15 @@ class Template extends Vue {
     public saveTemplate() {
         this.saveBudgetTemplate(this.budget.budgetTemplate)
             .then((res: ResponseInterface) => {
-               // display an alert if save was successful or not
+                if (res.success) {
+                    this.alertData.text = 'Budget has been saved successfully!';
+                    this.alertData.type = 'success';
+                } else {
+                    this.alertData.text = 'Budget couldn\'t be saved at this time. Please try again later.';
+                    this.alertData.type = 'danger';
+                }
+
+                this.alertDialog = true;
             });
     }
 

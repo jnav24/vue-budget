@@ -21,7 +21,7 @@ abstract class Dialogs extends Vue {
     }
 
     @Emit('updateDialog')
-    private updateDialog(dialog: boolean) {
+    protected updateDialog(dialog: boolean) {
         // ...
     }
 }

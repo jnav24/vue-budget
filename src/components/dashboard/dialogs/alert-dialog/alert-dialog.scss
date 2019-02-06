@@ -2,8 +2,32 @@
 	&.dialogs {
 
 	}
+}
 
-	.confirm-card {
-		padding: 20px;
-	}
+.dialog-pad {
+	padding: 20px;
+}
+
+.danger, .icon-danger {
+	background: map-get($colors, danger) !important;
+	color: #fff !important;
+}
+
+.success, .icon-success {
+	background: map-get($colors, success) !important;
+	color: #fff !important;
+}
+
+.warn, .icon-warn {
+	background: map-get($colors, warn) !important;
+	color: #000 !important;
+}
+
+.icon-size {
+	font-size: 34px;
+	margin-right: 10px;
+}
+
+.text-size {
+	font-size: 20px;
 }
