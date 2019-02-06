@@ -45,7 +45,9 @@ class BudgetTemplate extends Vue {
         } else {
             this.removeTemplateElementAction({ type: this.type, id: this.deletedItem.id })
                 .then((res: ResponseInterface) => {
-                    // ...
+                    if (res.success) {
+                        console.log('deleted');
+                    }
                 });
         }
     }
@@ -60,7 +62,6 @@ class BudgetTemplate extends Vue {
 
     public emitConfirmData(num: number) {
         if (!!num) {
-            console.log('deleting...');
             this.removeElement();
         }
     }

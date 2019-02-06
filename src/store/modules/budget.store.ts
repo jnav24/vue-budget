@@ -166,18 +166,11 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
     async removeTemplateElementAction({ commit }, payload: BudgetTemplateRemoveInterface) {
         try {
             const data: UrlInterface = {
-                url: '',
-                params: {},
+                url: 'budget-templates',
+                params: payload,
             };
 
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                    data: {
-                        data: {},
-                    },
-                });
-            });
+            const response: AxiosResponse = await httpService.authDelete(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('removeTemplateElement', payload);
@@ -245,7 +238,7 @@ const mutations: MutationTree<BudgetStateInterface> = {
         state.budgetTemplate = {} as BudgetTemplateInterface;
     },
     removeTemplateElement(state, payload: BudgetTemplateRemoveInterface) {
-        const tempData = [...(state.budgetTemplate as any)[payload.type]];
+        const tempData = [...(state.budgetTemplate.expenses as any)[payload.type]];
         const index = tempData.findIndex((obj: any) => obj.id === payload.id);
         tempData.splice(index, 1);
 

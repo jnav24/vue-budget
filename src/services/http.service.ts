@@ -41,6 +41,17 @@ class HttpService {
         });
     }
 
+    public async authDelete(data: UrlInterface): Promise<AxiosResponse> {
+        return await axios({
+            method: 'DELETE',
+            url: domain + data.url,
+            data: data.params || {},
+            headers: {
+                Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
+            },
+        });
+    }
+
     public async authGetCallOrGetLocal(
         store: string, state: string, data: UrlInterface,
     ): Promise<AxiosResponse | ResponseDataInterface> {
