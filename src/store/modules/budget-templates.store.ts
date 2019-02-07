@@ -67,6 +67,7 @@ const actions: ActionTree<BudgetTemplateStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
+                commit('updateCanSave', false);
                 return responseService.getSuccessResponse();
             }
 
