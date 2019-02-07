@@ -54,10 +54,18 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     }
 
     public setData(): BudgetListAddInterface {
+        let id: any;
+
+        if (typeof this.data !== 'undefined' && typeof this.data.id !== 'undefined') {
+            id = this.data.id;
+        } else {
+            id = 'temp_' + timestampService.generateUnixId()
+        }
+
         return {
             type: 'banks',
             data: {
-                id: 'temp_' + timestampService.generateUnixId(),
+                id,
                 name: this.form.name.value,
                 amount: this.form.amount.value,
                 bank_type_id: this.form.type.value,
@@ -65,9 +73,13 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
         };
     }
 
-    public validateForm(obj: { valid: boolean }) {
+    public validateForm(obj: { valid: boolean; update: boolean }) {
         this.templateValid = obj.valid;
-        this.submit(this.setData());
+        if (obj.update) {
+            this.updateSubmit(this.setData());
+        } else {
+            this.submit(this.setData());
+        }
     }
 }
 

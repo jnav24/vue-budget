@@ -21,10 +21,13 @@ export default Vue.extend({
 			ref.reset();
 		},
 		cancel() {
-			this.$emit('buttonClicked', { valid: false });
+			this.$emit('buttonClicked', { valid: false, update: false });
 		},
 		submit() {
-			this.$emit('buttonClicked', { valid: this.templateValid });
+			this.$emit('buttonClicked', { valid: this.templateValid, update: false });
+		},
+		update() {
+			this.$emit('buttonClicked', { valid: this.templateValid, update: true });
 		},
 	},
 });
@@ -48,7 +51,7 @@ export default Vue.extend({
 				color="secondary"
 				v-if="editMode"
 				:disabled="!templateValid"
-				@click="submit()">Update Expense</v-btn>
+				@click="update()">Update Expense</v-btn>
 		</v-layout>
 	</v-form>
 </template>

@@ -8,6 +8,7 @@ import {globalService, httpService, responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
 import {ResponseInterface} from '@/interfaces/response.interface';
+import Vue from 'vue';
 
 const templates: BudgetTemplateInterface = {} as BudgetTemplateInterface;
 
@@ -85,11 +86,7 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
         const tempData = { ...state.templates };
 
-        if (typeof (tempData.expenses as any)[payload.type] !== 'undefined') {
-            (tempData.expenses as any)[payload.type] = [...(tempData.expenses as any)[payload.type], payload.data];
-        } else {
-            (tempData.expenses as any)[payload.type] = [payload.data];
-        }
+        (tempData.expenses as any)[payload.type] = [...(tempData.expenses as any)[payload.type], payload.data];
 
         state.templates = {
             id: state.templates.id,
@@ -97,6 +94,16 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
                 ...globalService.sortObject(tempData.expenses),
             },
         };
+    },
+    updateBudgetTemplate(state, payload: BudgetListAddInterface) {
+        const tempData = { ...state.templates };
+        const index = (tempData.expenses as any)[payload.type]
+            .findIndex((obj: any) => {
+                console.log(obj);
+                return obj.id === payload.data.id;
+            });
+
+        Vue.set((tempData.expenses as any)[payload.type], index, payload.data);
     },
     resetBudgetTemplatesState(state) {
         state.canSave = false;

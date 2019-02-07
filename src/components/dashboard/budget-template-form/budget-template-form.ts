@@ -13,6 +13,7 @@ class BudgetTemplateForm extends Vue {
     @Prop() public data: any;
     @Prop() public dialog: any;
     @Mutation public addBudgetTemplate: (obj: BudgetListAddInterface) => void;
+    @Mutation public updateBudgetTemplate: (obj: BudgetListAddInterface) => void;
     @Mutation public updateCanSave: (bool: boolean) => void;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
     public editMode: boolean = false;
@@ -38,7 +39,20 @@ class BudgetTemplateForm extends Vue {
         if (this.templateValid) {
             this.addBudgetTemplate(data);
             this.updateCanSave(true);
-            console.log('skhdgbfkhjsdf');
+            this.closeForm();
+            this.editMode = false;
+            this.resetForm = true;
+        } else {
+            this.closeForm();
+            this.editMode = false;
+            this.resetForm = true;
+        }
+    }
+
+    protected updateSubmit(data: BudgetListAddInterface) {
+        if (this.templateValid) {
+            this.updateBudgetTemplate(data);
+            this.updateCanSave(true);
             this.closeForm();
             this.editMode = false;
             this.resetForm = true;
