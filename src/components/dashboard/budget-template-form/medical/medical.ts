@@ -39,7 +39,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
                 },
             ],
         },
-        types: {
+        type: {
             value: 0,
             rules: [
                 (v: any) => !!v || 'Select medical type',

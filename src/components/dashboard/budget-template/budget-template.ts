@@ -8,6 +8,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
+import {globalService} from '@/module';
 
 @Component({
     components: {
@@ -83,6 +84,21 @@ class BudgetTemplate extends Vue {
     public markForDeletion(item: any) {
         this.deletedItem = item;
         this.confirmDialog = true;
+    }
+
+    public getType(value: any) {
+        let result = value;
+        const typeName: string = globalService.camelCase(this.type);
+
+        if (typeof (this.types as any)[typeName] !== 'undefined') {
+            const index = (this.types as any)[typeName].findIndex((obj: any) => obj.id === value);
+
+            if (index > -1) {
+                result = (this.types as any)[typeName][index].name;
+            }
+        }
+
+        return result;
     }
 
     @Emit('emitEditBudget')
