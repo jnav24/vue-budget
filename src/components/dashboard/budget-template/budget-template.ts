@@ -36,6 +36,10 @@ class BudgetTemplate extends Vue {
         rowsPerPageItems: [25, 50, 75],
     };
 
+    public get headerKeys() {
+        return globalService.arrayColumn('value', this.headers);
+    }
+
     public get tableHeaders() {
         return [...this.headers, { text: 'Actions', value: '' }];
     }

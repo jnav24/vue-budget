@@ -18,7 +18,7 @@
 					:headers="tableHeaders"
 					:items="tableList">
 					<template slot="items" slot-scope="props">
-						<td v-for="(element, int) in Object.keys(tableList[0])" :key="int" v-if="element !== 'id'">
+						<td v-for="(element, int) in headerKeys" :key="int">
 							{{ element.indexOf('type') > -1 ? getType(props.item[element]) : props.item[element] }}
 						</td>
 						<td>

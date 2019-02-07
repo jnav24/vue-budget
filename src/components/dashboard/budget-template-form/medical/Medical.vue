@@ -28,8 +28,8 @@
 			<v-layout>
 				<v-flex lg5 xl5>
 					<v-select
-						v-model="form.types.value"
-						:rules="form.types.rules"
+						v-model="form.type.value"
+						:rules="form.type.rules"
 						:items="types"
 						item-value="id"
 						item-text="name"

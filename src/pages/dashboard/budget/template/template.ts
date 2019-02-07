@@ -38,12 +38,12 @@ class Template extends Vue {
         banks: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Bank Type', value: 'type' },
+            { text: 'Bank Type', value: 'bank_type_id' },
         ],
         credit_cards: [
             { text: 'Name', value: 'name' },
-            { text: 'Card Type', value: 'type' },
-            { text: 'Last 4 Digits', value: 'limit' },
+            { text: 'Card Type', value: 'credit_card_type_id' },
+            { text: 'Last 4 Digits', value: 'last_4' },
             { text: 'Expiration Month', value: 'exp_month' },
             { text: 'Expiration Year', value: 'exp_year' },
             { text: 'APR', value: 'apr' },
@@ -59,11 +59,12 @@ class Template extends Vue {
         investments: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Investment Type', value: 'type' },
+            { text: 'Investment Type', value: 'investment_type_id' },
         ],
         medical: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
+            { text: 'Type', value: 'medical_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         miscellaneous: [
@@ -74,7 +75,7 @@ class Template extends Vue {
         utilities: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Utility Type', value: 'type' },
+            { text: 'Utility Type', value: 'utility_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
     };
