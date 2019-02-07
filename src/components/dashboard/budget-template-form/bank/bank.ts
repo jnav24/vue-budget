@@ -49,7 +49,7 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             this.editMode = true;
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
-            this.form.type.value = 0; // @TODO grab from data
+            this.form.type.value = this.data.bank_type_id;
         }
     }
 

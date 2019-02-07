@@ -113,7 +113,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             this.form.name.value = this.data.name;
             this.form.due.value = this.data.due_date;
             this.form.limit.value = this.data.limit;
-            this.form.type.value = 0; // @TODO grab from data
+            this.form.type.value = this.data.credit_card_type_id;
             this.form.apr.value = this.data.apr;
             this.form.last4.value = this.data.last_4;
             this.form.expMonth.value = this.data.exp_month;
