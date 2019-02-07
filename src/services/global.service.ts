@@ -14,6 +14,27 @@ class GlobalService {
         });
     }
 
+    public camelCase(value: string) {
+        const delim: string = '_';
+        let result = value;
+
+        if (value.indexOf(delim) > -1) {
+            const list: string[] = value.split(delim);
+
+            const camel = list.map((word: string, index: number) => {
+                if (index) {
+                    word = this.ucFirst(word);
+                }
+
+                return word;
+            });
+
+            result = camel.join('');
+        }
+
+        return result;
+    }
+
     public getMonths() {
         return [
             { value: 1, month_int: '01' },
