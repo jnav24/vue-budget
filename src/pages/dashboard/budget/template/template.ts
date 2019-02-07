@@ -12,6 +12,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
+import {budgetService} from '@/module';
 
 @Component({
     components: {
@@ -149,21 +150,7 @@ class Template extends Vue {
     }
 
     public isTemplateEmpty(): boolean {
-        let totalEmpty = 0;
-        if (typeof this.expenses !== 'undefined') {
-            const expenses: string[] = Object.keys(this.expenses);
-            const totalExpenses = expenses.length;
-
-            for (const template of expenses) {
-                if (!(this.expenses as any)[template].length) {
-                    totalEmpty = totalEmpty + 1;
-                }
-            }
-
-            return totalEmpty === totalExpenses;
-        }
-
-        return true;
+        return budgetService.isExpenseListEmpty(this.expenses);
     }
 }
 
