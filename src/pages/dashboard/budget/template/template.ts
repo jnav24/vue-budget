@@ -150,16 +150,20 @@ class Template extends Vue {
 
     public isTemplateEmpty(): boolean {
         let totalEmpty = 0;
-        const expenses: string[] = Object.keys(this.expenses);
-        const totalExpenses = expenses.length;
+        if (typeof this.expenses !== 'undefined') {
+            const expenses: string[] = Object.keys(this.expenses);
+            const totalExpenses = expenses.length;
 
-        for (const template of expenses) {
-            if (!(this.expenses as any)[template].length) {
-                totalEmpty = totalEmpty + 1;
+            for (const template of expenses) {
+                if (!(this.expenses as any)[template].length) {
+                    totalEmpty = totalEmpty + 1;
+                }
             }
+
+            return totalEmpty === totalExpenses;
         }
 
-        return totalEmpty === totalExpenses;
+        return true;
     }
 }
 

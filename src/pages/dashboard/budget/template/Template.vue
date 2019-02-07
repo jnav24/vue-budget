@@ -55,16 +55,18 @@
 					button-text="Template"
 					@buttonClicked="expenseDialog = true"></EmptyState>
 
-				<BudgetTemplate
-					v-for="(templateKey, index) in Object.keys(expenses)"
-					v-show="expenses[templateKey].length"
-					:key="index"
-					:type="templateKey"
-					:name="getTemplateName(templateKey)"
-					:headers="getTemplateHeaders(templateKey)"
-					:data="getTemplateList(templateKey)"
-					@emitRemoveBudget="openAlertDialog($event)"
-					@emitEditBudget="openEditBudgetDialog($event)"></BudgetTemplate>
+				<div v-if="typeof expenses !== 'undefined'">
+					<BudgetTemplate
+						v-for="(templateKey, index) in Object.keys(expenses)"
+						v-show="expenses[templateKey].length"
+						:key="index"
+						:type="templateKey"
+						:name="getTemplateName(templateKey)"
+						:headers="getTemplateHeaders(templateKey)"
+						:data="getTemplateList(templateKey)"
+						@emitRemoveBudget="openAlertDialog($event)"
+						@emitEditBudget="openEditBudgetDialog($event)"></BudgetTemplate>
+				</div>
 			</v-flex>
 		</v-layout>
 	</div>
