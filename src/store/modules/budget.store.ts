@@ -61,23 +61,10 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
     async getAllBudgets({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: '',
+                url: 'budgets',
             };
 
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                    data: {
-                        data: {
-                            budgets: [
-                                { id: 3, user_id: 1, name: 'March Budget', created_at: '2019-03-01 00:00:00' },
-                                { id: 2, user_id: 1, name: 'February Budget', created_at: '2019-02-01 00:00:00' },
-                                { id: 1, user_id: 1, name: 'January Budget', created_at: '2019-01-01 00:00:00' },
-                            ],
-                        },
-                    },
-                });
-            });
+            const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addBudget', responseService.getDataFromResponse(response));
