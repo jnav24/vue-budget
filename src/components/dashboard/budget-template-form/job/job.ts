@@ -62,11 +62,6 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
 
         return this.setDataForSaving(data, 'jobs');
     }
-
-    public validateForm(obj: { valid: boolean }) {
-        this.templateValid = obj.valid;
-        this.submit(this.setData());
-    }
 }
 
 export default Job;

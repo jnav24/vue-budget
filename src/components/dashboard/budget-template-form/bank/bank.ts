@@ -62,15 +62,6 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
 
         return this.setDataForSaving(data, 'banks');
     }
-
-    public validateForm(obj: { valid: boolean; update: boolean }) {
-        this.templateValid = obj.valid;
-        if (obj.update) {
-            this.updateSubmit(this.setData());
-        } else {
-            this.submit(this.setData());
-        }
-    }
 }
 
 export default Bank;

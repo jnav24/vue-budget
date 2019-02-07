@@ -71,11 +71,6 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
         return this.setDataForSaving(data, 'medical');
     }
-
-    public validateForm(obj: { valid: boolean }) {
-        this.templateValid = obj.valid;
-        this.submit(this.setData());
-    }
 }
 
 export default Medical;

@@ -62,15 +62,6 @@ class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterfa
 
         return this.setDataForSaving(data, 'investments');
     }
-
-    public validateForm(obj: { valid: boolean; update: boolean }) {
-        this.templateValid = obj.valid;
-        if (obj.update) {
-            this.updateSubmit(this.setData());
-        } else {
-            this.submit(this.setData());
-        }
-    }
 }
 
 export default Investment;

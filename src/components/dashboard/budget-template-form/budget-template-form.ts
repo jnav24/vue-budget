@@ -27,6 +27,19 @@ class BudgetTemplateForm extends Vue {
         }
     }
 
+    public validateForm(obj: { valid: boolean; update: boolean }) {
+        this.templateValid = obj.valid;
+        const data = this.setData();
+
+        if (data.type !== 'blank') {
+            if (obj.update) {
+                this.updateSubmit(data);
+            } else {
+                this.submit(data);
+            }
+        }
+    }
+
     @Emit('submitForm')
     protected closeForm() {
         // ...
@@ -76,6 +89,13 @@ class BudgetTemplateForm extends Vue {
         return {
             type,
             data: { ...data, id },
+        };
+    }
+
+    protected setData(): BudgetListAddInterface {
+        return {
+            type: 'blank',
+            data: {},
         };
     }
 }

@@ -59,11 +59,6 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
 
         return this.setDataForSaving(data, 'miscellaneous');
     }
-
-    public validateForm(obj: { valid: boolean }) {
-        this.templateValid = obj.valid;
-        this.submit(this.setData());
-    }
 }
 
 export default Misc;

@@ -135,15 +135,6 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
 
         return this.setDataForSaving(data, 'credit_cards');
     }
-
-    public validateForm(obj: { valid: boolean; update: boolean }) {
-        this.templateValid = obj.valid;
-        if (obj.update) {
-            this.updateSubmit(this.setData());
-        } else {
-            this.submit(this.setData());
-        }
-    }
 }
 
 export default CreditCard;
