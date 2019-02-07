@@ -3,7 +3,7 @@ import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budg
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {FormInterface} from '@/interfaces/form.interface';
-import {timestampService} from '@/module';
+import {timestampService, validateService} from '@/module';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
 
 @Component({
@@ -21,7 +21,15 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
         },
         amount: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isDollarAmount(v) || 'Not a valid dollar amount';
+                    }
+
+                    return true;
+                },
+            ],
         },
         pay_period: {
             value: '',

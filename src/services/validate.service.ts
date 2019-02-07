@@ -47,6 +47,10 @@ class ValidateService {
     public hasSpecialCharacters(value: string, characters: string = '(?=.*[!$#%]).*'): boolean {
         return value.match(new RegExp(characters, 'g')) !== null;
     }
+
+    public isDollarAmount(value: string) {
+        return /^[0-9]+(\.[0-9][0-9])?$/.test(value);
+    }
 }
 
 export default ValidateService;

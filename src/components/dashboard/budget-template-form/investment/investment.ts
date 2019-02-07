@@ -31,7 +31,7 @@ class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             rules: [
                 (v: any) => {
                     if (!!v) {
-                        return validateService.isNumeric(v) || 'Amount has to be numeric';
+                        return validateService.isDollarAmount(v) || 'Not a valid dollar amount';
                     }
 
                     return true;

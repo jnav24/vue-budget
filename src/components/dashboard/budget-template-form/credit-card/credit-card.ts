@@ -31,7 +31,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             value: '',
             rules: [
                 (v: any) => !!v || 'Credit limit is required',
-                (v: any) => validateService.isNumeric(v) || 'Credit limit must be numeric',
+                (v: any) => validateService.isDollarAmount(v) || 'Not a valid dollar amount',
                 (v: any) => validateService.isValidLength(v, 4) || 'Credit limit not valid',
             ],
         },
