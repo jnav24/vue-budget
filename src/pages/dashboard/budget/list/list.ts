@@ -76,6 +76,10 @@ class List extends Vue {
         return !Object.keys(this.budgetTemplates.templates).length || budgetService.isExpenseListEmpty(this.expenses);
     }
 
+    public goToBudgetTemplate() {
+        this.$router.push({ name: 'budget-template' });
+    }
+
     private removeBudget() {
         if (this.delete) {
             this.deleteSingleBudget(this.delete)
