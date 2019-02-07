@@ -53,16 +53,14 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     }
 
     public setData(): BudgetListAddInterface {
-        return {
-            type: 'jobs',
-            data: {
-                id: 'temp_' + timestampService.generateUnixId(),
-                name: this.form.name.value,
-                amount: this.form.amount.value,
-                job_type_id: this.form.pay_period.value,
-                initial_pay_date: this.form.initial_pay_date.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            amount: this.form.amount.value,
+            job_type_id: this.form.pay_period.value,
+            initial_pay_date: this.form.initial_pay_date.value,
         };
+
+        return this.setDataForSaving(data, 'jobs');
     }
 
     public validateForm(obj: { valid: boolean }) {

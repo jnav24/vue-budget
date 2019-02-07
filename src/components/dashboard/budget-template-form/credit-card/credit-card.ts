@@ -122,25 +122,27 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
     }
 
     public setData(): BudgetListAddInterface {
-        return {
-            type: 'credit_cards',
-            data: {
-                id: 'temp_' + timestampService.generateUnixId(),
-                name: this.form.name.value,
-                due_date: this.form.due.value,
-                limit: this.form.limit.value,
-                credit_card_type_id: this.form.type.value,
-                apr: this.form.apr.value || 0,
-                last_4: this.form.last4.value,
-                exp_month: this.form.expMonth.value,
-                exp_year: this.form.expYear.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            due_date: this.form.due.value,
+            limit: this.form.limit.value,
+            credit_card_type_id: this.form.type.value,
+            apr: this.form.apr.value || 0,
+            last_4: this.form.last4.value,
+            exp_month: this.form.expMonth.value,
+            exp_year: this.form.expYear.value,
         };
+
+        return this.setDataForSaving(data, 'credit_cards');
     }
 
-    public validateForm(obj: { valid: boolean }) {
+    public validateForm(obj: { valid: boolean; update: boolean }) {
         this.templateValid = obj.valid;
-        this.submit(this.setData());
+        if (obj.update) {
+            this.updateSubmit(this.setData());
+        } else {
+            this.submit(this.setData());
+        }
     }
 }
 

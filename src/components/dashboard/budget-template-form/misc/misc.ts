@@ -51,15 +51,13 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     }
 
     public setData(): BudgetListAddInterface {
-        return {
-            type: 'miscellaneous',
-            data: {
-                id: 'temp_' + timestampService.generateUnixId(),
-                name: this.form.name.value,
-                amount: this.form.amount.value,
-                due_date: this.form.due.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            amount: this.form.amount.value,
+            due_date: this.form.due.value,
         };
+
+        return this.setDataForSaving(data, 'miscellaneous');
     }
 
     public validateForm(obj: { valid: boolean }) {

@@ -3,6 +3,7 @@ import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {Mutation, State} from 'vuex-class';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {timestampService} from '@/module';
 
 Component.registerHooks([
     'mounted',
@@ -61,6 +62,21 @@ class BudgetTemplateForm extends Vue {
             this.editMode = false;
             this.resetForm = true;
         }
+    }
+
+    protected setDataForSaving(data: any, type: any): BudgetListAddInterface {
+        let id: any;
+
+        if (typeof this.data !== 'undefined' && typeof this.data.id !== 'undefined') {
+            id = this.data.id;
+        } else {
+            id = 'temp_' + timestampService.generateUnixId();
+        }
+
+        return {
+            type,
+            data: { ...data, id },
+        };
     }
 }
 

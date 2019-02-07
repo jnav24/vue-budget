@@ -54,20 +54,22 @@ class Investment extends BudgetTemplateForm implements BudgetTemplateFormInterfa
     }
 
     public setData(): BudgetListAddInterface {
-        return {
-            type: 'investments',
-            data: {
-                id: 'temp_' + timestampService.generateUnixId(),
-                name: this.form.name.value,
-                amount: this.form.amount.value,
-                investment_type_id: this.form.type.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            amount: this.form.amount.value,
+            investment_type_id: this.form.type.value,
         };
+
+        return this.setDataForSaving(data, 'investments');
     }
 
-    public validateForm(obj: { valid: boolean }) {
+    public validateForm(obj: { valid: boolean; update: boolean }) {
         this.templateValid = obj.valid;
-        this.submit(this.setData());
+        if (obj.update) {
+            this.updateSubmit(this.setData());
+        } else {
+            this.submit(this.setData());
+        }
     }
 }
 

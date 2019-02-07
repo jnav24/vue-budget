@@ -54,23 +54,13 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     }
 
     public setData(): BudgetListAddInterface {
-        let id: any;
-
-        if (typeof this.data !== 'undefined' && typeof this.data.id !== 'undefined') {
-            id = this.data.id;
-        } else {
-            id = 'temp_' + timestampService.generateUnixId()
-        }
-
-        return {
-            type: 'banks',
-            data: {
-                id,
-                name: this.form.name.value,
-                amount: this.form.amount.value,
-                bank_type_id: this.form.type.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            amount: this.form.amount.value,
+            bank_type_id: this.form.type.value,
         };
+
+        return this.setDataForSaving(data, 'banks');
     }
 
     public validateForm(obj: { valid: boolean; update: boolean }) {

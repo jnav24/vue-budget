@@ -62,16 +62,14 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     }
 
     public setData(): BudgetListAddInterface {
-        return {
-            type: 'medical',
-            data: {
-                id: 'temp_' + timestampService.generateUnixId(),
-                name: this.form.name.value,
-                amount: this.form.amount.value,
-                due_date: this.form.due.value,
-                medical_type_id: this.form.type.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            amount: this.form.amount.value,
+            due_date: this.form.due.value,
+            medical_type_id: this.form.type.value,
         };
+
+        return this.setDataForSaving(data, 'medical');
     }
 
     public validateForm(obj: { valid: boolean }) {

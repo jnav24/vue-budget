@@ -62,16 +62,14 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     }
 
     public setData(): BudgetListAddInterface {
-        return {
-            type: 'utilities',
-            data: {
-                id: 'temp_' + timestampService.generateUnixId(),
-                name: this.form.name.value,
-                amount: this.form.amount.value,
-                utility_type_id: this.form.type.value,
-                due_date: this.form.due.value,
-            },
+        const data = {
+            name: this.form.name.value,
+            amount: this.form.amount.value,
+            utility_type_id: this.form.type.value,
+            due_date: this.form.due.value,
         };
+
+        return this.setDataForSaving(data, 'utilities');
     }
 
     public validateForm(obj: { valid: boolean }) {
