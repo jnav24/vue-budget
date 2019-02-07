@@ -9,6 +9,7 @@
 
 		<v-btn
 			@click="emitButtonClick()"
+			:disabled="isDisabled"
 			class="btn--add">
 			<v-icon>add</v-icon>
 			<span>{{ buttonText }}</span>
