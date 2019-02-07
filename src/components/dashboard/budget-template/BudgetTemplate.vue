@@ -19,7 +19,7 @@
 					:items="tableList">
 					<template slot="items" slot-scope="props">
 						<td v-for="(element, int) in headerKeys" :key="int">
-							{{ element.indexOf('type') > -1 ? getType(props.item[element]) : props.item[element] }}
+							{{ element.indexOf('type_id') > -1 ? getType(props.item[element]) : props.item[element] }}
 						</td>
 						<td>
 							<v-btn

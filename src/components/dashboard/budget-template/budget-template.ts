@@ -95,7 +95,7 @@ class BudgetTemplate extends Vue {
         const typeName: string = globalService.camelCase(this.type);
 
         if (typeof (this.types as any)[typeName] !== 'undefined') {
-            const index = (this.types as any)[typeName].findIndex((obj: any) => obj.id === value);
+            const index = (this.types as any)[typeName].findIndex((obj: any) => obj.id === Number(value));
 
             if (index > -1) {
                 result = (this.types as any)[typeName][index].name;

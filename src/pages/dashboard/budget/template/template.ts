@@ -53,7 +53,7 @@ class Template extends Vue {
         jobs: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Pay Frequency', value: 'pay_period' },
+            { text: 'Pay Frequency', value: 'job_type_id' },
             { text: 'Initial Pay Date', value: 'initial_pay_date' },
         ],
         investments: [
