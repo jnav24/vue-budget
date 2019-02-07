@@ -48,6 +48,7 @@ function initStore() {
     store.dispatch('getAllBillTypes');
     store.dispatch('getAllCreditCardTypes');
     store.dispatch('getAllInvestmentTypes');
+    store.dispatch('getAllJobTypes');
     store.dispatch('getAllMedicalTypes');
     store.dispatch('getAllUtilityTypes');
 }

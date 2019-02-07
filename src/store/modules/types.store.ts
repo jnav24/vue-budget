@@ -11,11 +11,13 @@ import {CreditCardTypesInterface} from '@/interfaces/credit-card-types.interface
 import {InvestmentTypesInterface} from '@/interfaces/investment-types.interface';
 import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
 import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
+import {JobTypesInterface} from '@/interfaces/job-types.interface';
 
 const banks: BankTypesInterface[] = [];
 const bills: BillTypesInterface[] = [];
 const creditCards: CreditCardTypesInterface[] = [];
 const investments: InvestmentTypesInterface[] = [];
+const jobs: JobTypesInterface[] = [];
 const medical: MedicalTypesInterface[] = [];
 const utilities: UtilityTypesInterface[] = [];
 
@@ -24,6 +26,7 @@ const currentState: TypesStateInterface = {
     bills,
     creditCards,
     investments,
+    jobs,
     medical,
     utilities,
 };
@@ -104,6 +107,24 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async getAllJobTypes({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'types/job',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addJobTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
     async getAllMedicalTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -154,6 +175,9 @@ const mutations: MutationTree<TypesStateInterface> = {
     },
     addInvestmentTypes(state, payload: InvestmentTypesInterface[]) {
         state.investments = payload;
+    },
+    addJobTypes(state, payload: JobTypesInterface[]) {
+        state.jobs = payload;
     },
     addMedicalTypes(state, payload: MedicalTypesInterface[]) {
         state.medical = payload;
