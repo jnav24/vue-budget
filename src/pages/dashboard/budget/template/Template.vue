@@ -9,7 +9,7 @@
 				<v-btn
 					@click="saveTemplate()"
 					color="success"
-					:disabled="canSaveTemplates()"
+					:disabled="!canSaveTemplates"
 					style="color: #fff;">
 					<v-icon>save</v-icon>
 					<span style="display: inline-block; margin-left: 7px;">Save</span>

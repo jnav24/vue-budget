@@ -79,6 +79,10 @@ class Template extends Vue {
         ],
     };
 
+    public get canSaveTemplates() {
+        return this.budgetTemplates.canSave;
+    }
+
     public get expenses() {
         return this.budgetTemplates.templates.expenses;
     }
@@ -141,10 +145,6 @@ class Template extends Vue {
 
                 this.alertDialog = true;
             });
-    }
-
-    public canSaveTemplates(): boolean {
-        return !Object.keys(this.budgetTemplates.templates).length;
     }
 
     public isTemplateEmpty(): boolean {

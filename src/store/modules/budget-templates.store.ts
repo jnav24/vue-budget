@@ -12,6 +12,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 const templates: BudgetTemplateInterface = {} as BudgetTemplateInterface;
 
 const currentState: BudgetTemplateStateInterface = {
+    canSave: false,
     templates,
 };
 
@@ -97,6 +98,7 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
         };
     },
     resetBudgetTemplatesState(state) {
+        state.canSave = false;
         state.templates = {} as BudgetTemplateInterface;
     },
     removeTemplateElement(state, payload: BudgetTemplateRemoveInterface) {
@@ -111,6 +113,9 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
                 [payload.type]: tempData,
             }),
         };
+    },
+    updateCanSave(state, payload: boolean) {
+        state.canSave = payload;
     },
 };
 
