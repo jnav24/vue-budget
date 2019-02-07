@@ -5,7 +5,9 @@ import UserService from '@/services/user.service';
 import GlobalService from '@/services/global.service';
 import ValidateService from '@/services/validate.service';
 import TimestampService from '@/services/timestamp.service';
+import BudgetService from '@/services/budget.service';
 
+export const budgetService = new BudgetService();
 export const cookiesService = new CookiesService();
 export const globalService = new GlobalService();
 export const responseService = new ResponseService();
