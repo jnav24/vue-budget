@@ -5,7 +5,7 @@ import AddBudgetDialog from '@/components/dashboard/dialogs/add-budget-dialog/Ad
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {timestampService} from '@/module';
+import {budgetService, timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
@@ -36,6 +36,10 @@ class List extends Vue {
         rowsPerPageItems: [24, 48, 60],
     };
     private delete: number = 0;
+
+    public get expenses() {
+        return this.budgetTemplates.templates.expenses;
+    }
 
     public get tableItems() {
         return this.budget.budgetList;
@@ -69,7 +73,7 @@ class List extends Vue {
     }
 
     public canAddBudget(): boolean {
-        return !Object.keys(this.budgetTemplates.templates).length;
+        return !Object.keys(this.budgetTemplates.templates).length || budgetService.isExpenseListEmpty(this.expenses);
     }
 
     private removeBudget() {
