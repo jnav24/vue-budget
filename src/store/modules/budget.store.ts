@@ -12,11 +12,9 @@ import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove
 import {AxiosResponse} from 'axios';
 
 const budgetList: BudgetListInterface[] = [];
-const budgetTemplate: BudgetTemplateInterface = {} as BudgetTemplateInterface;
 
 const currentState: BudgetStateInterface = {
     budgetList,
-    budgetTemplate,
 };
 
 const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {};
@@ -116,91 +114,6 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async getAllBudgetTemplates({ commit }): Promise<ResponseInterface> {
-        try {
-            const data: UrlInterface = {
-                url: 'budget-templates',
-            };
-
-            const response: AxiosResponse = await httpService.authGet(data);
-
-            if (responseService.isSuccessResponse(response.status)) {
-                commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
-                return responseService.getSuccessResponse();
-            }
-
-            return responseService.getFailedResponse();
-        } catch (error) {
-            return responseService.getFailedResponse();
-        }
-    },
-    async appendBudgetTemplate({ commit }, payload: BudgetListAddInterface): Promise<ResponseInterface> {
-        try {
-            const data: UrlInterface = {
-                url: '',
-            };
-
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                    data: {
-                        data: {
-                            type: payload.type,
-                            data: payload.data,
-                        },
-                    },
-                });
-            });
-
-            if (responseService.isSuccessResponse(response.status)) {
-                const resData = response.data.data;
-                commit('addBudgetTemplate', resData);
-                return responseService.getSuccessResponse();
-            }
-
-            return responseService.getFailedResponse();
-        } catch (error) {
-            return responseService.getFailedResponse();
-        }
-    },
-    async removeTemplateElementAction({ commit }, payload: BudgetTemplateRemoveInterface) {
-        try {
-            const data: UrlInterface = {
-                url: 'budget-templates',
-                params: payload,
-            };
-
-            const response: AxiosResponse = await httpService.authDelete(data);
-
-            if (responseService.isSuccessResponse(response.status)) {
-                commit('removeTemplateElement', payload);
-                return responseService.getSuccessResponse();
-            }
-
-            return responseService.getFailedResponse();
-        } catch (error) {
-            return responseService.getFailedResponse();
-        }
-    },
-    async saveBudgetTemplate({ commit }, payload: BudgetTemplateInterface) {
-        try {
-            const data: UrlInterface = {
-                url: 'budget-templates',
-                params: payload,
-            };
-
-            const response: AxiosResponse = await httpService.authPost(data);
-
-            if (responseService.isSuccessResponse(response.status)) {
-                commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
-                return responseService.getSuccessResponse();
-            }
-
-            return responseService.getFailedResponse();
-        } catch (error) {
-            return responseService.getFailedResponse();
-        }
-    },
 };
 
 const mutations: MutationTree<BudgetStateInterface> = {
@@ -214,41 +127,8 @@ const mutations: MutationTree<BudgetStateInterface> = {
         const index = state.budgetList.findIndex((num: any) => num.id === payload);
         Vue.delete(state.budgetList, index);
     },
-    addAllBudgetTemplates(state, payload: BudgetTemplateInterface) {
-        state.budgetTemplate = { id: payload.id, expenses: { ...globalService.sortObject(payload.expenses) } };
-    },
-    addBudgetTemplate(state, payload: BudgetListAddInterface) {
-        const tempData = { ...state.budgetTemplate };
-
-        if (typeof (tempData.expenses as any)[payload.type] !== 'undefined') {
-            (tempData.expenses as any)[payload.type] = [...(tempData.expenses as any)[payload.type], payload.data];
-        } else {
-            (tempData.expenses as any)[payload.type] = [payload.data];
-        }
-
-        state.budgetTemplate = {
-            id: state.budgetTemplate.id,
-            expenses: {
-                ...globalService.sortObject(tempData.expenses),
-            },
-        };
-    },
     resetBudgetState(state) {
         state.budgetList = [];
-        state.budgetTemplate = {} as BudgetTemplateInterface;
-    },
-    removeTemplateElement(state, payload: BudgetTemplateRemoveInterface) {
-        const tempData = [...(state.budgetTemplate.expenses as any)[payload.type]];
-        const index = tempData.findIndex((obj: any) => obj.id === payload.id);
-        tempData.splice(index, 1);
-
-        state.budgetTemplate = {
-            id: state.budgetTemplate.id,
-            expenses: globalService.sortObject({
-                ...state.budgetTemplate.expenses,
-                [payload.type]: tempData,
-            }),
-        };
     },
 };
 

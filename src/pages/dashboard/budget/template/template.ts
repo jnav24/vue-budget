@@ -11,6 +11,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
+import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 
 @Component({
     components: {
@@ -24,6 +25,7 @@ class Template extends Vue {
     @Action public saveBudgetTemplate: (obj: BudgetTemplateInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
+    @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public alertData: any = {
         text: '',
         type: '',
@@ -78,7 +80,7 @@ class Template extends Vue {
     };
 
     public get expenses() {
-        return this.budget.budgetTemplate.expenses;
+        return this.budgetTemplates.templates.expenses;
     }
 
     public get bills() {
@@ -127,7 +129,7 @@ class Template extends Vue {
     }
 
     public saveTemplate() {
-        this.saveBudgetTemplate(this.budget.budgetTemplate)
+        this.saveBudgetTemplate(this.budgetTemplates.templates)
             .then((res: ResponseInterface) => {
                 if (res.success) {
                     this.alertData.text = 'Budget has been saved successfully!';
@@ -142,7 +144,7 @@ class Template extends Vue {
     }
 
     public canSaveTemplates(): boolean {
-        return !Object.keys(this.budget.budgetTemplate).length;
+        return !Object.keys(this.budgetTemplates.templates).length;
     }
 
     public isTemplateEmpty(): boolean {

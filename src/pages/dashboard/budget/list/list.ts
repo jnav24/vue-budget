@@ -8,6 +8,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 
 @Component({
     components: {
@@ -19,6 +20,7 @@ import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 class List extends Vue {
     @Action public deleteSingleBudget: (num: number) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
+    @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetDialog: boolean = false;
     public confirmData: any = {
         text: 'Are you sure you want to delete this budget?',
@@ -67,7 +69,7 @@ class List extends Vue {
     }
 
     public canAddBudget(): boolean {
-        return !Object.keys(this.budget.budgetTemplate).length;
+        return !Object.keys(this.budgetTemplates.templates).length;
     }
 
     private removeBudget() {
