@@ -3,11 +3,14 @@ import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {FormInterface} from '@/interfaces/form.interface';
 import {validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action} from 'vuex-class';
+import {Action, State} from 'vuex-class';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 
 @Component
 class AddBudgetDialog extends Dialogs {
-    @Action public addSingleBudget: (val: string) => Promise<ResponseInterface>;
+    @Action public saveBudget: (obj: { name: string; expenses: any }) => Promise<ResponseInterface>;
+    @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetValid: boolean = false;
     public form: FormInterface = {
         name: {
@@ -21,7 +24,12 @@ class AddBudgetDialog extends Dialogs {
 
     public addBudget() {
         if (this.addBudgetValid) {
-            this.addSingleBudget(this.form.name.value)
+            const data = {
+                name: this.form.name.value,
+                expenses: this.budgetTemplates.templates.expenses,
+            };
+
+            this.saveBudget(data)
                 .then((res: ResponseInterface) => {
                     if (res.success) {
                         this.closeDialog();

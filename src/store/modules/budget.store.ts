@@ -20,32 +20,17 @@ const currentState: BudgetStateInterface = {
 const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {};
 
 const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
-    async addSingleBudget({ commit }, payload: string): Promise<ResponseInterface> {
+    async saveBudget({ commit }, payload: { name: string; expenses: any }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: '',
+                url: 'budgets',
                 params: {
-                    name: payload,
+                    name: payload.name,
+                    expenses: payload.expenses,
                 },
             };
 
-            // @TODO: this will also return budget template with a budget_id...
-            // @TODO: ...equal to the id below.
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                    data: {
-                        data: {
-                            budget: {
-                                id: 4,
-                                user_id: 1,
-                                name: payload,
-                                created_at: '2019-04-01 00:00:00',
-                            },
-                        },
-                    },
-                });
-            });
+            const response: AxiosResponse = await httpService.authPost(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 const resData = responseService.getDataFromResponse(response);
