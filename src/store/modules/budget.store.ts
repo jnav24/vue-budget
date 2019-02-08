@@ -61,6 +61,24 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async getSingleBudget({ commit }, payload: number): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'budgets/' + payload,
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('updateSingleBudget', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
     async deleteSingleBudget({ commit }, payload: number): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -94,6 +112,13 @@ const mutations: MutationTree<BudgetStateInterface> = {
     },
     addSingleBudget(state, payload: BudgetListInterface) {
         state.budgetList = [payload, ...state.budgetList];
+    },
+    updateSingleBudget(state, payload: any) {
+        const index = state.budgetList.findIndex((obj: any) => obj.id === Number(payload.id));
+
+        if (index > -1) {
+            Vue.set(state.budgetList, index, payload);
+        }
     },
     removeSingleBudget(state, payload: number) {
         const index = state.budgetList.findIndex((num: any) => num.id === payload);

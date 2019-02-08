@@ -10,6 +10,7 @@
 				<v-card>
 					<v-card-title>
 						Profile page... works!
+						<pre>{{ expenses }}</pre>
 						<pre>{{ $route.params.id }}</pre>
 					</v-card-title>
 				</v-card>
