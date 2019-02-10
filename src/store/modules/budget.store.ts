@@ -20,12 +20,13 @@ const currentState: BudgetStateInterface = {
 const getters: GetterTree<BudgetStateInterface, RootStateInterface> = {};
 
 const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
-    async saveBudget({ commit }, payload: { name: string; expenses: any }): Promise<ResponseInterface> {
+    async saveBudget({ commit }, payload: { name: string; cycle: string; expenses: any }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
                 url: 'budgets',
                 params: {
                     name: payload.name,
+                    cycle: payload.cycle,
                     expenses: payload.expenses,
                 },
             };

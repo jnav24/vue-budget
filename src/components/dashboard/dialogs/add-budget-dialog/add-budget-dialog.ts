@@ -78,6 +78,7 @@ class AddBudgetDialog extends Dialogs {
         if (this.addBudgetValid) {
             const data = {
                 name: this.form.name.value,
+                cycle: `${this.form.year.value}-${this.form.month.value}-01 00:00:00`,
                 expenses: this.budgetTemplates.templates.expenses,
             };
 
