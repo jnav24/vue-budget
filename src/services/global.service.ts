@@ -312,11 +312,10 @@ class GlobalService {
         ];
     }
 
-    public getYears() {
+    public getYears(yearLimit: number = 8) {
         const date = new Date();
-        const delim: number = 8;
         const startYear = date.getFullYear();
-        const endYear = date.getFullYear() + delim;
+        const endYear = date.getFullYear() + yearLimit;
         const result = [];
 
         for (let int = startYear; int < endYear; int++) {

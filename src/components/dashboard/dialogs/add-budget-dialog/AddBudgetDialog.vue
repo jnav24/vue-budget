@@ -11,10 +11,36 @@
 
 			<v-card-text>
 				<v-form ref="addBudgetForm" v-model="addBudgetValid">
-					<v-text-field
-						v-model="form.name.value"
-						:rules="form.name.rules"
-						label="Budget Name"></v-text-field>
+					<v-layout>
+						<v-text-field
+							v-model="form.name.value"
+							:rules="form.name.rules"
+							label="Budget Name"></v-text-field>
+					</v-layout>
+
+					<v-layout>
+						<v-flex lg3 xl3>
+							<v-select
+								v-model="form.month.value"
+								:rules="form.month.rules"
+								:items="months"
+								item-text="month_int"
+								item-value="value"
+								label="Month"></v-select>
+						</v-flex>
+
+						<v-spacer></v-spacer>
+
+						<v-flex>
+							<v-select
+								v-model="form.year.value"
+								:rules="form.year.rules"
+								:items="years"
+								item-text="label"
+								item-value="value"
+								label="Year"></v-select>
+						</v-flex>
+					</v-layout>
 				</v-form>
 			</v-card-text>
 
