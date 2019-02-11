@@ -71,8 +71,9 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('updateSingleBudget', responseService.getDataFromResponse(response));
-                return responseService.getSuccessResponse();
+                const resData = responseService.getDataFromResponse(response);
+                commit('updateSingleBudget', resData);
+                return responseService.getSuccessResponse('', resData);
             }
 
             return responseService.getFailedResponse();

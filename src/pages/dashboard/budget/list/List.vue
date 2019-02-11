@@ -73,7 +73,7 @@
 							:headers="tableHeaders">
 							<template slot="items" slot-scope="props">
 								<td class="text-xs-center">{{ props.item.name }}</td>
-								<td class="text-xs-center">{{ formatBudget(props.item.created_at)}}</td>
+								<td class="text-xs-center">{{ formatBudget(props.item.budget_cycle)}}</td>
 								<td class="text-xs-center">
 									<router-link
 										slot="activator"

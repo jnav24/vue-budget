@@ -10,15 +10,26 @@
 
 				<v-card>
 					<v-card-title>
-						<!--<pre>{{ $route.params.id }}</pre>-->
+						<div v-if="isLoading">Loading...</div>
 						<v-tabs
+							v-if="!isLoading"
 							fixed-tabs
 							slider-color="success"
 							v-model="activeTab">
-							<!--<v-tab-->
-								<!--v-for="(expense, index) in expenses"-->
-								<!--:key="expense.id"-->
-								<!--active-class="active-tab">Hello</v-tab>-->
+							<v-tab
+								v-for="(expense, name) in budget.expenses"
+								v-if="expense.length"
+								:key="name"
+								active-class="active-tab">{{ name }}</v-tab>
+
+							<v-tab-item
+								v-for="(expense, name) in budget.expenses"
+								:key="name"
+								v-if="expense.length">
+								<component
+									:is="getComponentName(name)"
+									:data="expense"></component>
+							</v-tab-item>
 						</v-tabs>
 					</v-card-title>
 				</v-card>
