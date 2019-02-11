@@ -4,4 +4,5 @@ export interface BudgetListInterface {
     name: string;
     created_at: string;
     budget_cycle: string;
+    expenses?: any;
 }
