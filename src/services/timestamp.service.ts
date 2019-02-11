@@ -113,7 +113,7 @@ class TimestampService {
         return moment(timestamp).add(val, 'years').format();
     }
 
-    private setDoubleDigits(int: number): string {
+    public setDoubleDigits(int: number): string {
         if (int < 10) {
             return '0' + int;
         }

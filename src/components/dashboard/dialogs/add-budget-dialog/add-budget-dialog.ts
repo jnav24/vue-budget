@@ -78,8 +78,8 @@ class AddBudgetDialog extends Dialogs {
         if (this.addBudgetValid) {
             const data = {
                 name: this.form.name.value,
-                cycle: `${this.form.year.value}-${this.form.month.value}-01 00:00:00`,
-                expenses: this.budgetTemplates.templates.expenses,
+                cycle: `${this.form.year.value}-${timestampService.setDoubleDigits(this.form.month.value)}-01 00:00:00`,
+                expenses: this.resetIdForSaving(),
             };
 
             this.saveBudget(data)
@@ -92,6 +92,19 @@ class AddBudgetDialog extends Dialogs {
                     }
                 });
         }
+    }
+
+    private resetIdForSaving() {
+        const data: any = { ...this.budgetTemplates.templates.expenses };
+
+        for (const expense of Object.keys(data)) {
+            data[expense].map((item: any, index: number) => {
+                item.id = 'temp_' + timestampService.generateUnixId();
+                return item;
+            });
+        }
+
+        return data;
     }
 }
 
