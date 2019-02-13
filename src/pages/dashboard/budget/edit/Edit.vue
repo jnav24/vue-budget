@@ -55,7 +55,7 @@
 
 					<v-spacer></v-spacer>
 
-					<v-flex lg7 xl7>
+					<v-flex lg8 xl8>
 						<v-card>
 							<v-card-title>
 								<div v-if="isLoading">Loading...</div>

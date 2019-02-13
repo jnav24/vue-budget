@@ -1,5 +1,9 @@
-import {Prop, Vue} from 'vue-property-decorator';
-import {budgetService, currencyService, globalService} from '@/module';
+import {Prop, Vue, Component} from 'vue-property-decorator';
+import {budgetService, currencyService, globalService, timestampService} from '@/module';
+
+Component.registerHooks([
+    'mounted',
+]);
 
 class Budgets extends Vue {
     @Prop() public data: any;
@@ -7,6 +11,10 @@ class Budgets extends Vue {
 
     public get budgetData() {
         return this.data;
+    }
+
+    protected getDueDate(date: string) {
+        return timestampService.getCurrentTimestamp('UTC', 'MMM') + date;
     }
 
     protected getType(value: string) {
