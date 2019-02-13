@@ -1,6 +1,17 @@
 .budget-edit {
 	&.page {
 		@include dashboardHeader;
+
+		.header__h1 {
+			margin-bottom: 0;
+		}
+
+		.cycle-title {
+			color: map-get($colors, mid_grey);
+			font-size: 14px;
+			margin-bottom: 35px;
+			padding-left: 3px;
+		}
 	}
 
 	.sidebar {

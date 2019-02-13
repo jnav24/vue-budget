@@ -5,7 +5,9 @@
 	<div class="budget-edit page">
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
-				<h1 class="header__h1">Budget Edit</h1>
+				<h1 class="header__h1">Budget: {{ budget.name }}</h1>
+				<p class="cycle-title">{{ formatCycle(budget.budget_cycle) }}</p>
+
 				<!--<pre>{{ budget }}</pre>-->
 
 				<v-layout>

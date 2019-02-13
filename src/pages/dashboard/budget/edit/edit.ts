@@ -4,7 +4,7 @@ import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
-import {globalService} from '@/module';
+import {globalService, timestampService} from '@/module';
 
 Component.registerHooks([
     'created',
@@ -27,6 +27,10 @@ class Edit extends Vue {
 
     public getComponentName(val: string): string {
         return globalService.ucFirst(globalService.camelCase(val));
+    }
+
+    public formatCycle(date: string): string {
+        return timestampService.format(date, 'MMM YYYY');
     }
 
     public submit() {

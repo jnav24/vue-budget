@@ -20,8 +20,7 @@
 				<v-layout justify-end>
 					<v-btn
 						fab
-						class="edit-button"
-						color="secondary">
+						class="btn--details__icon">
 						<v-icon>edit</v-icon>
 					</v-btn>
 				</v-layout>
