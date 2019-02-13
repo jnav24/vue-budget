@@ -6,9 +6,11 @@ import GlobalService from '@/services/global.service';
 import ValidateService from '@/services/validate.service';
 import TimestampService from '@/services/timestamp.service';
 import BudgetService from '@/services/budget.service';
+import CurrencyService from '@/services/currency.service';
 
 export const budgetService = new BudgetService();
 export const cookiesService = new CookiesService();
+export const currencyService = new CurrencyService();
 export const globalService = new GlobalService();
 export const responseService = new ResponseService();
 export const timestampService = new TimestampService();
