@@ -29,6 +29,7 @@
 	&__paid {
 		background: map-get($colors, success);
 		color: #fff;
+		margin: 0;
 		text-align: center;
 	}
 
