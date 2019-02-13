@@ -6,7 +6,7 @@
 		<v-layout
 			align-center
 			class="budget__row"
-			v-for="(item, index) of budgetData"
+			v-for="(item, index) in budgetData"
 			:key="item.id">
 			<v-flex lg6 xl6>
 				<h3 class="budget__title">{{ item.name }}</h3>

@@ -6,7 +6,7 @@
 		<v-layout
 			align-center
 			class="budget__row"
-			v-for="(item, index) of budgetData"
+			v-for="(item, index) in budgetData"
 			:key="item.id">
 			<v-flex lg1 xl1>
 				<v-icon v-if="isPaid(item)" class="paid-icon">check</v-icon>
