@@ -4,6 +4,7 @@ import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
+import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards.vue';
 import {currencyService, globalService, timestampService} from '@/module';
 
 Component.registerHooks([
@@ -13,13 +14,18 @@ Component.registerHooks([
 @Component({
     components: {
         Banks,
+        CreditCards,
     },
 })
 class Edit extends Vue {
     @Action public getSingleBudget: (id: number) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
-    public activeTab: number = 1;
+    public activeTab: number = 0;
     public budget: any = {};
+
+    public get canSaveBudget() {
+        return false;
+    }
 
     public get isLoading() {
         return !Object.keys(this.budget).length;
@@ -35,6 +41,10 @@ class Edit extends Vue {
 
     public formatDollar(dollar: string): string {
         return currencyService.setCurrency(dollar);
+    }
+
+    public setTabName(value: string): string {
+        return value.replace('_', ' ');
     }
 
     public submit() {
