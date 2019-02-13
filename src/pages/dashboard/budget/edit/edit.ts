@@ -5,6 +5,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
 import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards.vue';
+import Investments from '@/components/dashboard/budgets/investments/Investments.vue';
 import {currencyService, globalService, timestampService} from '@/module';
 
 Component.registerHooks([
@@ -15,6 +16,7 @@ Component.registerHooks([
     components: {
         Banks,
         CreditCards,
+        Investments,
     },
 })
 class Edit extends Vue {
