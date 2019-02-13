@@ -4,7 +4,7 @@ import Budgets from '@/components/dashboard/budgets/budgets';
 @Component
 class Investments extends Budgets {
     public mounted() {
-        this.type = 'investments'
+        this.type = 'investments';
     }
 }
 
