@@ -1,0 +1,38 @@
+.budget {
+	&__due {
+		background: map-get($colors, danger);
+		color: #fff;
+		text-align: center;
+	}
+
+	&__title {
+		font-size: 24px !important;
+		font-weight: 300;
+		margin-bottom: 5px;
+	}
+
+	&__type {
+		color: map_get($colors, mid_grey);
+		font-style: italic;
+		margin: 0;
+	}
+
+	&__paid {
+		background: map-get($colors, success);
+		color: #fff;
+		text-align: center;
+	}
+
+	&__price {
+		color: map_get($colors, danger);
+		font-size: 20px;
+		font-weight: bold;
+		margin: 0;
+		text-align: center;
+	}
+
+	&__price-details {
+		color: map-get($colors, mid_grey);
+		text-align: center;
+	}
+}
