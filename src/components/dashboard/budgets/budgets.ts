@@ -1,5 +1,5 @@
 import {Prop, Vue} from 'vue-property-decorator';
-import {budgetService, globalService} from '@/module';
+import {budgetService, currencyService, globalService} from '@/module';
 
 class Budgets extends Vue {
     @Prop() public data: any;
@@ -12,6 +12,10 @@ class Budgets extends Vue {
     protected getType(value: string) {
         const typeName = globalService.camelCase(this.type);
         return budgetService.getType(value, typeName);
+    }
+
+    protected getDollarAmount(amount: string) {
+        return currencyService.setCurrency(amount);
     }
 }
 

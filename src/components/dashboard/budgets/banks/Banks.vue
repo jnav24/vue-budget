@@ -13,7 +13,7 @@
 			</v-flex>
 
 			<v-flex lg4 xl4>
-				<p class="price">${{ item.amount }}</p>
+				<p class="price">{{ getDollarAmount(item.amount) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
