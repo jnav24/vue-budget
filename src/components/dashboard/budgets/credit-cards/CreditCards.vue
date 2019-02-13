@@ -5,7 +5,7 @@
 	<div class="credit-cards budget">
 		<v-layout
 			align-center
-			class="budget-row"
+			class="budget__row"
 			v-for="(item, index) of budgetData"
 			:key="item.id">
 			<v-flex lg1 xl1>
@@ -13,19 +13,19 @@
 			</v-flex>
 
 			<v-flex lg4 xl4>
-				<h3 class="title">{{ item.name }}</h3>
-				<p class="type">{{ getType(item.credit_card_type_id) }}</p>
-				<p class="type">********{{ item.last_4 }} {{ item.exp_month }}/{{ item.exp_year }}</p>
+				<h3 class="budget__title">{{ item.name }}</h3>
+				<p class="budget__type">{{ getType(item.credit_card_type_id) }}</p>
+				<p class="budget__type">********{{ item.last_4 }} {{ item.exp_month }}/{{ item.exp_year }}</p>
 			</v-flex>
 
 			<v-flex lg3 xl3>
-				<p class="price">{{ getDollarAmount('1000') }}</p>
-				<p class="price-details">(Out of {{ getDollarAmount(item.limit) }})</p>
+				<p class="budget__price price-danger price-tac">{{ getDollarAmount('1000') }}</p>
+				<p class="budget__price-details">(Out of {{ getDollarAmount(item.limit) }})</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
-				<p class="due" v-if="!isPaid(item)">Due {{ getDueDate(item.due_date) }}</p>
-				<p class="paid" v-if="isPaid(item)">Paid {{ getDueDate(item.due_date) }}</p>
+				<p class="budget__due" v-if="!isPaid(item)">Due {{ getDueDate(item.due_date) }}</p>
+				<p class="budget__paid" v-if="isPaid(item)">Paid {{ getDueDate(item.due_date) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>

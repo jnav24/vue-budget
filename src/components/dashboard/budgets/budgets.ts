@@ -14,7 +14,7 @@ class Budgets extends Vue {
     }
 
     protected getDueDate(date: string) {
-        return timestampService.getCurrentTimestamp('UTC', 'MMM') + date;
+        return timestampService.getCurrentTimestamp('UTC', 'MMM') + ' ' + date;
     }
 
     protected getType(value: string) {

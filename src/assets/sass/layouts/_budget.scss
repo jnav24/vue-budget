@@ -1,4 +1,13 @@
 .budget {
+	&__row {
+		border-bottom: 1px solid lighten(map_get($colors, mid_grey), 10%);
+		padding: 30px 0 20px;
+
+		&:last-of-type {
+			border-bottom: 0;
+		}
+	}
+
 	&__due {
 		background: map-get($colors, danger);
 		color: #fff;
@@ -24,11 +33,21 @@
 	}
 
 	&__price {
-		color: map_get($colors, danger);
 		font-size: 20px;
 		font-weight: bold;
 		margin: 0;
-		text-align: center;
+
+		&.price-danger {
+			color: map_get($colors, danger);
+		}
+
+		&.price-success {
+			color: map_get($colors, success);
+		}
+
+		&.price-tac {
+			text-align: center;
+		}
 	}
 
 	&__price-details {

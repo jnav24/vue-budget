@@ -4,16 +4,16 @@
 <template>
 	<div class="budget banks">
 		<v-layout
-			class="bank-row"
+			class="budget__row"
 			v-for="(item, index) in budgetData"
 			:key="item.id">
 			<v-flex lg6 xl6>
-				<h3 class="title">{{ item.name }}</h3>
-				<p class="type">{{ getType(item.bank_type_id) }}</p>
+				<h3 class="budget__title">{{ item.name }}</h3>
+				<p class="budget__type">{{ getType(item.bank_type_id) }}</p>
 			</v-flex>
 
 			<v-flex lg4 xl4>
-				<p class="price">{{ getDollarAmount(item.amount) }}</p>
+				<p class="budget__price price-success">{{ getDollarAmount(item.amount) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
