@@ -3,6 +3,20 @@
 
 <template>
 	<div class="budget-edit page">
+		<v-toolbar height="50" style="background: #474747; position: absolute; top: 0px; left: 0;">
+			<v-layout align-center justify-end>
+				<v-btn :to="{ name: 'budget-list' }">Cancel</v-btn>
+				<v-btn
+					@click="saveTemplate()"
+					color="success"
+					:disabled="!canSaveTemplates"
+					style="color: #fff;">
+					<v-icon>save</v-icon>
+					<span style="display: inline-block; margin-left: 7px;">Save</span>
+				</v-btn>
+			</v-layout>
+		</v-toolbar>
+
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<h1 class="header__h1">Budget: {{ budget.name }}</h1>
@@ -13,15 +27,30 @@
 				<v-layout>
 					<v-flex lg3 xl3 class="sidebar">
 						<v-card>
-							<v-card-title>12356.78</v-card-title>
+							<v-card-title>
+								<div>
+									<p class="amount-text">Total Earned <v-icon color="success">trending_up</v-icon></p>
+									<p class="amount amount-success">{{ formatDollar('12346579.129') }}</p>
+								</div>
+							</v-card-title>
 						</v-card>
 
 						<v-card>
-							<v-card-title>12356.78</v-card-title>
+							<v-card-title>
+								<div>
+									<p class="amount-text">Total Spent <v-icon color="danger">trending_down</v-icon></p>
+									<p class="amount amount-danger">{{ formatDollar('46579.129') }}</p>
+								</div>
+							</v-card-title>
 						</v-card>
 
 						<v-card>
-							<v-card-title>12356.78</v-card-title>
+							<v-card-title>
+								<div>
+									<p class="amount-text">Total Savings <v-icon color="success">trending_up</v-icon></p>
+									<p class="amount amount-success">{{ formatDollar('46579.129') }}</p>
+								</div>
+							</v-card-title>
 						</v-card>
 					</v-flex>
 

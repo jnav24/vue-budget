@@ -4,7 +4,7 @@ import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
-import {globalService, timestampService} from '@/module';
+import {currencyService, globalService, timestampService} from '@/module';
 
 Component.registerHooks([
     'created',
@@ -31,6 +31,10 @@ class Edit extends Vue {
 
     public formatCycle(date: string): string {
         return timestampService.format(date, 'MMM YYYY');
+    }
+
+    public formatDollar(dollar: string): string {
+        return currencyService.setCurrency(dollar);
     }
 
     public submit() {
