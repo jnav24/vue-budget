@@ -1,0 +1,35 @@
+.banks {
+	.bank-row {
+		border-bottom: 1px solid lighten(map_get($colors, mid_grey), 10%);
+		padding: 30px 0 10px;
+
+		&:last-of-type {
+			border-bottom: 0;
+		}
+	}
+
+	.edit-button {
+		height: 40px;
+		width: 40px;
+
+		i {
+			font-size: 16px !important;
+		}
+	}
+
+	.title {
+		font-size: 24px !important;
+		font-weight: 300;
+	}
+
+	.type {
+		color: map_get($colors, mid_grey);
+		font-style: italic;
+	}
+
+	.price {
+		color: map_get($colors, success);
+		font-size: 20px;
+		font-weight: bold;
+	}
+}

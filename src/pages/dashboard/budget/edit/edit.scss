@@ -2,4 +2,10 @@
 	&.page {
 		@include dashboardHeader;
 	}
+
+	.sidebar {
+		.v-card {
+			margin-bottom: 20px !important;
+		}
+	}
 }

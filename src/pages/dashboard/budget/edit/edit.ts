@@ -47,7 +47,6 @@ class Edit extends Vue {
                     }
                 });
         } else {
-            console.log(this.budgetState.budgetList[index]);
             this.budget = this.budgetState.budgetList[index];
         }
     }
