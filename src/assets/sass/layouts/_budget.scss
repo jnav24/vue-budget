@@ -55,4 +55,11 @@
 		color: map-get($colors, mid_grey);
 		text-align: center;
 	}
+
+	&__paid-icon {
+		background: map_get($colors, success);
+		border-radius: 50%;
+		color: #fff !important;
+		padding: 5px;
+	}
 }

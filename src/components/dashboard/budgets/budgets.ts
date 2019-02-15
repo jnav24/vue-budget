@@ -25,6 +25,10 @@ class Budgets extends Vue {
     protected getDollarAmount(amount: string) {
         return currencyService.setCurrency(amount);
     }
+
+    protected isPaid(item: any): boolean {
+        return timestampService.unix() >= timestampService.unix(item.initial_pay_date);
+    }
 }
 
 export default Budgets;

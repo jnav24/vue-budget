@@ -4,6 +4,7 @@
 <template>
 	<div class="budget investments">
 		<v-layout
+			align-center
 			class="budget__row"
 			v-for="(item, index) in budgetData"
 			:key="item.id">

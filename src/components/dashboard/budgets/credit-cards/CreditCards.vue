@@ -9,7 +9,7 @@
 			v-for="(item, index) in budgetData"
 			:key="item.id">
 			<v-flex lg1 xl1>
-				<v-icon v-if="isPaid(item)" class="paid-icon">check</v-icon>
+				<v-icon v-if="isPaid(item)" class="budget__paid-icon">check</v-icon>
 			</v-flex>
 
 			<v-flex lg4 xl4>
