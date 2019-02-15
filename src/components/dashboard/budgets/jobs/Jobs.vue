@@ -18,8 +18,8 @@
 			</v-flex>
 
 			<v-flex lg2 xl2>
-				<p style="margin: 0;text-align: center" v-if="!isPaid(item)">Pay on {{ getPaidDate(item.initial_pay_date) }}</p>
-				<p class="budget__paid" v-if="isPaid(item)">Paid {{ getPaidDate(item.initial_pay_date) }}</p>
+				<p style="margin: 0;text-align: center" v-if="!isCheckPaid(item)">Pay on {{ getPaidDate(item.initial_pay_date) }}</p>
+				<p class="budget__paid" v-if="isCheckPaid(item)">Paid {{ getPaidDate(item.initial_pay_date) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>

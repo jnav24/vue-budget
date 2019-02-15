@@ -8,6 +8,7 @@ import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards
 import Investments from '@/components/dashboard/budgets/investments/Investments.vue';
 import Jobs from '@/components/dashboard/budgets/jobs/Jobs.vue';
 import Medical from '@/components/dashboard/budgets/medical/Medical.vue';
+import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscellaneous.vue';
 import {currencyService, globalService, timestampService} from '@/module';
 
 Component.registerHooks([
@@ -21,6 +22,7 @@ Component.registerHooks([
         Investments,
         Jobs,
         Medical,
+        Miscellaneous,
     },
 })
 class Edit extends Vue {
