@@ -47,7 +47,8 @@
 							<v-card-title>
 								<div>
 									<p class="amount-text">Total Savings <v-icon color="success">trending_up</v-icon></p>
-									<p class="amount amount-success">{{ formatDollar(this.totalSavings) }}</p>
+									<p class="amount amount-danger" v-if="this.totalSavings < 1">{{ formatDollar(this.totalSavings) }}</p>
+									<p class="amount amount-success" v-if="this.totalSavings > 1">{{ formatDollar(this.totalSavings) }}</p>
 								</div>
 							</v-card-title>
 						</v-card>
