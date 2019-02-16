@@ -29,7 +29,7 @@
 							<v-card-title>
 								<div>
 									<p class="amount-text">Total Earned <v-icon color="success">trending_up</v-icon></p>
-									<p class="amount amount-success">{{ formatDollar('12346579.129') }}</p>
+									<p class="amount amount-success">{{ formatDollar(this.totalEarned) }}</p>
 								</div>
 							</v-card-title>
 						</v-card>
@@ -38,7 +38,7 @@
 							<v-card-title>
 								<div>
 									<p class="amount-text">Total Spent <v-icon color="danger">trending_down</v-icon></p>
-									<p class="amount amount-danger">{{ formatDollar('46579.129') }}</p>
+									<p class="amount amount-danger">{{ formatDollar(this.totalSpent) }}</p>
 								</div>
 							</v-card-title>
 						</v-card>
@@ -47,7 +47,7 @@
 							<v-card-title>
 								<div>
 									<p class="amount-text">Total Savings <v-icon color="success">trending_up</v-icon></p>
-									<p class="amount amount-success">{{ formatDollar('46579.129') }}</p>
+									<p class="amount amount-success">{{ formatDollar(this.totalSavings) }}</p>
 								</div>
 							</v-card-title>
 						</v-card>
@@ -77,7 +77,9 @@
 										v-if="expense.length">
 										<component
 											:is="getComponentName(name)"
-											:data="expense"></component>
+											:data="expense"
+											@updateEarned="updateTotalEarned($event)"
+											@updateSpent="updateTotalSpent($event)"></component>
 									</v-tab-item>
 								</v-tabs>
 							</v-card-title>

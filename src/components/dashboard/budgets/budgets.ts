@@ -1,4 +1,4 @@
-import {Prop, Vue, Component} from 'vue-property-decorator';
+import {Prop, Vue, Component, Emit} from 'vue-property-decorator';
 import {budgetService, currencyService, globalService, timestampService} from '@/module';
 
 Component.registerHooks([
@@ -23,6 +23,10 @@ class Budgets extends Vue {
     }
 
     protected getDollarAmount(amount: string) {
+        if (amount === null) {
+            return '0';
+        }
+
         return currencyService.setCurrency(amount);
     }
 
@@ -32,6 +36,16 @@ class Budgets extends Vue {
 
     protected isBillPaid(item: any): boolean {
         return item.paid_date !== null && item.confirmation !== null;
+    }
+
+    @Emit('updateEarned')
+    protected updateEarned(val: number) {
+        // ...
+    }
+
+    @Emit('updateSpent')
+    protected updateSpent(val: number) {
+        // ...
     }
 }
 

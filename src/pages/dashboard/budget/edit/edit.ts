@@ -32,6 +32,9 @@ class Edit extends Vue {
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     public activeTab: number = 0;
     public budget: any = {};
+    public totalEarned: number = 0;
+    public totalSavings: number = 0;
+    public totalSpent: number = 0;
 
     public get canSaveBudget() {
         return false;
@@ -49,8 +52,8 @@ class Edit extends Vue {
         return timestampService.format(date, 'MMM YYYY');
     }
 
-    public formatDollar(dollar: string): string {
-        return currencyService.setCurrency(dollar);
+    public formatDollar(dollar: number | string): string {
+        return currencyService.setCurrency(dollar.toString());
     }
 
     public setTabName(value: string): string {
@@ -59,6 +62,14 @@ class Edit extends Vue {
 
     public submit() {
         // @todo if timestamp unix is >= now unix timestamp, then update the templates
+    }
+
+    public updateTotalEarned() {
+        // ...
+    }
+
+    public updateTotalSpent() {
+        // ...
     }
 
     private created() {
@@ -72,11 +83,49 @@ class Edit extends Vue {
                 .then((res: ResponseInterface) => {
                     if (res.success) {
                         this.budget = res.data;
+                        this.getAllTotals();
                     }
                 });
         } else {
             this.budget = this.budgetState.budgetList[index];
+            this.getAllTotals();
         }
+    }
+
+    private getAllTotals() {
+        this.getTotalEarned();
+        this.getTotalSpent();
+        this.getTotalSavings();
+    }
+
+    private getTotalEarned() {
+        const earned = ['jobs'];
+        this.totalEarned = 0;
+        this.totalEarned = this.getTotals(earned);
+    }
+
+    private getTotalSpent() {
+        const spending = ['credit_cards', 'medical', 'miscellaneous', 'utilities'];
+        this.totalSpent = 0;
+        this.totalSpent = this.getTotals(spending);
+    }
+
+    private getTotalSavings() {
+        this.totalSavings = ((this as any).totalEarned - (this as any).totalSpent);
+    }
+
+    private getTotals(items: any): number {
+        let total = 0;
+
+        for (const item of items) {
+            if (typeof this.budget.expenses[item] !== 'undefined') {
+                for (const budget of this.budget.expenses[item]) {
+                    total = total + Number(budget.amount);
+                }
+            }
+        }
+
+        return total;
     }
 }
 
