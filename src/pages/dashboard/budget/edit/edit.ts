@@ -11,6 +11,7 @@ import Medical from '@/components/dashboard/budgets/medical/Medical.vue';
 import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscellaneous.vue';
 import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
 import {currencyService, globalService, timestampService} from '@/module';
+import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/AddBudgetExpense.vue';
 
 Component.registerHooks([
     'created',
@@ -18,6 +19,7 @@ Component.registerHooks([
 
 @Component({
     components: {
+        AddBudgetExpense,
         Banks,
         CreditCards,
         Investments,
@@ -33,6 +35,8 @@ class Edit extends Vue {
     public activeTab: number = 0;
     public budget: any = {};
     public expenseDialog: boolean = false;
+    public expenseType: number = 0;
+    public expenseData: any = {};
     public totalEarned: number = 0;
     public totalSavings: number = 0;
     public totalSpent: number = 0;
@@ -71,6 +75,21 @@ class Edit extends Vue {
 
     public updateTotalSpent() {
         console.log('update total spent');
+    }
+
+    public closeEditBudgetDialog(bool: boolean) {
+        if (!bool) {
+            this.expenseDialog = bool;
+            this.expenseType = 0;
+            this.expenseData = {};
+        }
+    }
+
+    public submitBudget(data: { valid: boolean; data: any; update: boolean }) {
+        // @TODO: continue here; also show pay_date and confirmation fields on certain expenses
+        // @TODO: remember to not show those two new fields from budget template page
+        console.log('save');
+        console.log(data);
     }
 
     private created() {

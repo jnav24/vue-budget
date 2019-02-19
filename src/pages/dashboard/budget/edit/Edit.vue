@@ -3,6 +3,13 @@
 
 <template>
 	<div class="budget-edit page">
+		<AddBudgetExpense
+			:dialog="expenseDialog"
+			:type="expenseType"
+			:data="expenseData"
+			@submitBudget="submitBudget($event)"
+			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
+
 		<v-toolbar height="50" style="background: #474747; position: absolute; top: 0px; left: 0;">
 			<v-layout align-center justify-end>
 				<v-btn :to="{ name: 'budget-list' }">Cancel</v-btn>
