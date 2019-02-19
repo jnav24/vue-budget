@@ -27,37 +27,37 @@
 						v-if="showTypeForm('banks')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></Bank>
+						@submitForm="submitAndCloseDialog($event)"></Bank>
 					<CreditCard
 						v-if="showTypeForm('credit_cards')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></CreditCard>
+						@submitForm="submitAndCloseDialog($event)"></CreditCard>
 					<Investment
 						v-if="showTypeForm('investments')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></Investment>
+						@submitForm="submitAndCloseDialog($event)"></Investment>
 					<Job
 						v-if="showTypeForm('jobs')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></Job>
+						@submitForm="submitAndCloseDialog($event)"></Job>
 					<Medical
 						v-if="showTypeForm('medical')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></Medical>
+						@submitForm="submitAndCloseDialog($event)"></Medical>
 					<Misc
 						v-if="showTypeForm('miscellaneous')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></Misc>
+						@submitForm="submitAndCloseDialog($event)"></Misc>
 					<Utility
 						v-if="showTypeForm('utilities')"
 						:data="currentData"
 						:dialog="showDialog"
-						@submitForm="closeDialog()"></Utility>
+						@submitForm="submitAndCloseDialog($event)"></Utility>
 				</v-form>
 			</v-card-text>
 		</v-card>

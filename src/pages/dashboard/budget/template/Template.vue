@@ -26,6 +26,7 @@
 			:dialog="expenseDialog"
 			:type="expenseType"
 			:data="expenseData"
+			@submitBudget="submitBudget($event)"
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
 
 		<v-layout justify-center>

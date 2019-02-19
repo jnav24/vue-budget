@@ -1,6 +1,6 @@
 import {Emit, Prop, Vue, Component} from 'vue-property-decorator';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
-import {Mutation, State} from 'vuex-class';
+import {State} from 'vuex-class';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {timestampService} from '@/module';
@@ -13,9 +13,6 @@ Component.registerHooks([
 class BudgetTemplateForm extends Vue {
     @Prop() public data: any;
     @Prop() public dialog: any;
-    @Mutation public addBudgetTemplate: (obj: BudgetListAddInterface) => void;
-    @Mutation public updateBudgetTemplate: (obj: BudgetListAddInterface) => void;
-    @Mutation public updateCanSave: (bool: boolean) => void;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
     public editMode: boolean = false;
     protected resetForm: boolean = false;
@@ -31,50 +28,18 @@ class BudgetTemplateForm extends Vue {
         this.templateValid = obj.valid;
         const data = this.setData();
 
-        if (data.type !== 'blank') {
-            if (obj.update) {
-                this.updateSubmit(data);
-            } else {
-                this.submit(data);
-            }
-        }
+        this.closeForm({ valid: obj.valid, data, update: obj.update });
+        this.editMode = false;
+        this.resetForm = true;
     }
 
     @Emit('submitForm')
-    protected closeForm() {
+    protected closeForm(data: { valid: boolean, data: any; update: boolean  }) {
         // ...
     }
 
     protected setupForm() {
         // ....
-    }
-
-    protected submit(data: BudgetListAddInterface) {
-        if (this.templateValid) {
-            this.addBudgetTemplate(data);
-            this.updateCanSave(true);
-            this.closeForm();
-            this.editMode = false;
-            this.resetForm = true;
-        } else {
-            this.closeForm();
-            this.editMode = false;
-            this.resetForm = true;
-        }
-    }
-
-    protected updateSubmit(data: BudgetListAddInterface) {
-        if (this.templateValid) {
-            this.updateBudgetTemplate(data);
-            this.updateCanSave(true);
-            this.closeForm();
-            this.editMode = false;
-            this.resetForm = true;
-        } else {
-            this.closeForm();
-            this.editMode = false;
-            this.resetForm = true;
-        }
     }
 
     protected setDataForSaving(data: any, type: any): BudgetListAddInterface {

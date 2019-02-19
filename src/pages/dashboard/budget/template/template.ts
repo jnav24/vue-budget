@@ -3,7 +3,7 @@ import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/
 import BudgetTemplate from '@/components/dashboard/budget-template/BudgetTemplate.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {Action, State} from 'vuex-class';
+import {Action, Mutation, State} from 'vuex-class';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
@@ -13,6 +13,7 @@ import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {budgetService} from '@/module';
+import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 
 @Component({
     components: {
@@ -27,6 +28,9 @@ class Template extends Vue {
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
+    @Mutation public addBudgetTemplate: (obj: BudgetListAddInterface) => void;
+    @Mutation public updateBudgetTemplate: (obj: BudgetListAddInterface) => void;
+    @Mutation public updateCanSave: (bool: boolean) => void;
     public alertData: any = {
         text: '',
         type: '',
@@ -124,6 +128,23 @@ class Template extends Vue {
     public openAlertDialog(obj: any) {
         this.alertData = obj;
         this.alertDialog = true;
+    }
+
+    /**
+     * Here I will update the template store
+     *
+     * @param {boolean} bool
+     */
+    public submitBudget(data: { valid: boolean; data: any; update: boolean }) {
+        if (data.valid && data.data.type !== 'blank') {
+            if (data.update) {
+                this.updateBudgetTemplate(data.data);
+            } else {
+                this.addBudgetTemplate(data.data);
+            }
+
+            this.updateCanSave(true);
+        }
     }
 
     public closeEditBudgetDialog(bool: boolean) {

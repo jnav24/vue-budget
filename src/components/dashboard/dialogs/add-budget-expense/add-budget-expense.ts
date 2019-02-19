@@ -1,4 +1,4 @@
-import {Component, Prop, Watch} from 'vue-property-decorator';
+import {Component, Prop, Watch, Emit} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
@@ -52,6 +52,16 @@ class AddBudgetExpense extends Dialogs {
             const index = this.billTypes.findIndex((num: BillTypesInterface) => num.id === this.form.type.value);
             this.selectedType = this.billTypes[index].slug;
         }
+    }
+
+    public submitAndCloseDialog(data: { valid: boolean; data: any; update: boolean }) {
+        this.submitBudget(data);
+        this.closeDialog();
+    }
+
+    @Emit('submitBudget')
+    private submitBudget(budget: { valid: boolean; data: any; update: boolean }) {
+        // ...
     }
 
     @Watch('dialog')
