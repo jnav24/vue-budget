@@ -32,6 +32,7 @@ class Edit extends Vue {
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     public activeTab: number = 0;
     public budget: any = {};
+    public expenseDialog: boolean = false;
     public totalEarned: number = 0;
     public totalSavings: number = 0;
     public totalSpent: number = 0;
@@ -65,11 +66,11 @@ class Edit extends Vue {
     }
 
     public updateTotalEarned() {
-        // ...
+        console.log('update total earned');
     }
 
     public updateTotalSpent() {
-        // ...
+        console.log('update total spent');
     }
 
     private created() {

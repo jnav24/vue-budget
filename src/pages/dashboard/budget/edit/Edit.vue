@@ -18,8 +18,23 @@
 
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
-				<h1 class="header__h1">Budget: {{ budget.name }}</h1>
-				<p class="cycle-title">{{ formatCycle(budget.budget_cycle) }}</p>
+				<v-layout align-center>
+					<v-flex>
+						<h1 class="header__h1">Budget: {{ budget.name }}</h1>
+						<p class="cycle-title">{{ formatCycle(budget.budget_cycle) }}</p>
+					</v-flex>
+
+					<v-flex>
+						<v-layout justify-end>
+							<v-btn
+								@click="expenseDialog = true"
+								color="success">
+								<v-icon class="prepend-icon">add</v-icon>
+								<span>Expense</span>
+							</v-btn>
+						</v-layout>
+					</v-flex>
+				</v-layout>
 
 				<!--<pre>{{ budget }}</pre>-->
 
