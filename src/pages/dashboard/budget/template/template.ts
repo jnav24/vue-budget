@@ -14,6 +14,7 @@ import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {budgetService} from '@/module';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
+import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 
 @Component({
     components: {
@@ -21,6 +22,7 @@ import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
         AlertDialog,
         BudgetTemplate,
         EmptyState,
+        SaveControls,
     },
 })
 class Template extends Vue {
@@ -36,6 +38,7 @@ class Template extends Vue {
         type: '',
     };
     public alertDialog: boolean = false;
+    public canSaveTemplates: boolean = false;
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
     public expenseData: any = {};
@@ -85,10 +88,6 @@ class Template extends Vue {
         ],
     };
     public showPaidForm: boolean = false;
-
-    public get canSaveTemplates() {
-        return this.budgetTemplates.canSave;
-    }
 
     public get expenses() {
         return Object.assign({}, this.budgetTemplates.templates.expenses);
@@ -146,8 +145,7 @@ class Template extends Vue {
                 (this.expenses as any)[data.data.type] = [ ...(this.expenses as any)[data.data.type], data.data.data ];
             }
 
-            // @todo: refine
-            // this.updateCanSave(true);
+            this.canSaveTemplates = true;
         }
     }
 
@@ -175,8 +173,21 @@ class Template extends Vue {
         }
     }
 
-    public saveTemplate() {
-        this.saveBudgetTemplate(this.budgetTemplates.templates)
+    public saveControls(bool: boolean) {
+        if (!bool) {
+            this.$router.push({ name: 'budget-list' });
+        } else {
+            this.saveTemplate();
+        }
+    }
+
+
+    public isTemplateEmpty(): boolean {
+        return budgetService.isExpenseListEmpty(this.expenses);
+    }
+
+    private saveTemplate() {
+        this.saveBudgetTemplate({ id: this.budgetTemplates.templates.id, expenses: this.expenses })
             .then((res: ResponseInterface) => {
                 if (res.success) {
                     this.alertData.text = 'Budget has been saved successfully!';
@@ -188,10 +199,6 @@ class Template extends Vue {
 
                 this.alertDialog = true;
             });
-    }
-
-    public isTemplateEmpty(): boolean {
-        return budgetService.isExpenseListEmpty(this.expenses);
     }
 }
 

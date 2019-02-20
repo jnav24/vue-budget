@@ -3,19 +3,9 @@
 
 <template>
 	<div class="page template">
-		<v-toolbar height="50" style="background: #474747; position: absolute; top: 0px; left: 0;">
-			<v-layout align-center justify-end>
-				<v-btn :to="{ name: 'budget-list' }">Cancel</v-btn>
-				<v-btn
-					@click="saveTemplate()"
-					color="success"
-					:disabled="!canSaveTemplates"
-					style="color: #fff;">
-					<v-icon>save</v-icon>
-					<span style="display: inline-block; margin-left: 7px;">Save</span>
-				</v-btn>
-			</v-layout>
-		</v-toolbar>
+		<SaveControls
+			:canSave="canSaveTemplates"
+			@buttonClicked="saveControls($event)"></SaveControls>
 
 		<AlertDialog
 			:data="alertData"
