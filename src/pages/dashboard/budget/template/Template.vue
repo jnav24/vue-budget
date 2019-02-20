@@ -27,7 +27,7 @@
 			:type="expenseType"
 			:data="expenseData"
 			:showPaidForm="showPaidForm"
-			@submitBudget="submitBudget($event)"
+			@submitBudget="updateExpenses($event)"
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
 
 		<v-layout justify-center>

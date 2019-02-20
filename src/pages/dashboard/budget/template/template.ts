@@ -91,7 +91,7 @@ class Template extends Vue {
     }
 
     public get expenses() {
-        return this.budgetTemplates.templates.expenses;
+        return Object.assign({}, this.budgetTemplates.templates.expenses);
     }
 
     public get bills() {
@@ -135,6 +135,25 @@ class Template extends Vue {
      * Here I will update the template store
      *
      * @param {boolean} bool
+     */
+    public updateExpenses(data: { valid: boolean; data: any; update: boolean }) {
+        if (data.valid && data.data.type !== 'blank') {
+            if (data.update) {
+                const index = (this.expenses as any)[data.data.type]
+                    .findIndex((obj: any) => obj.id === data.data.data.id);
+                Vue.set((this.expenses as any)[data.data.type], index, data.data.data);
+            } else {
+                (this.expenses as any)[data.data.type] = [ ...(this.expenses as any)[data.data.type], data.data.data ];
+            }
+
+            // @todo: refine
+            // this.updateCanSave(true);
+        }
+    }
+
+    /**
+     * @deprecated
+     * @param {{valid: boolean; data: any; update: boolean}} data
      */
     public submitBudget(data: { valid: boolean; data: any; update: boolean }) {
         if (data.valid && data.data.type !== 'blank') {
