@@ -68,7 +68,6 @@ const actions: ActionTree<BudgetTemplateStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addAllBudgetTemplates', responseService.getDataFromResponse(response));
-                commit('updateCanSave', false);
                 return responseService.getSuccessResponse();
             }
 
@@ -83,6 +82,11 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
     addAllBudgetTemplates(state, payload: BudgetTemplateInterface) {
         state.templates = { id: payload.id, expenses: { ...globalService.sortObject(payload.expenses) } };
     },
+    /**
+     * @deprecated
+     * @param state
+     * @param {BudgetListAddInterface} payload
+     */
     addBudgetTemplate(state, payload: BudgetListAddInterface) {
         const tempData = { ...state.templates };
 
@@ -95,6 +99,11 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
             },
         };
     },
+    /**
+     * @deprecated
+     * @param state
+     * @param {BudgetListAddInterface} payload
+     */
     updateBudgetTemplate(state, payload: BudgetListAddInterface) {
         const tempData = { ...state.templates };
         const index = (tempData.expenses as any)[payload.type]
@@ -121,9 +130,6 @@ const mutations: MutationTree<BudgetTemplateStateInterface> = {
                 [payload.type]: tempData,
             }),
         };
-    },
-    updateCanSave(state, payload: boolean) {
-        state.canSave = payload;
     },
 };
 
