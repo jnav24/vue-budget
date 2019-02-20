@@ -4,6 +4,7 @@ import {State} from 'vuex-class';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {timestampService} from '@/module';
+import {FormInterface} from '@/interfaces/form.interface';
 
 Component.registerHooks([
     'mounted',
@@ -13,14 +14,29 @@ Component.registerHooks([
 class BudgetTemplateForm extends Vue {
     @Prop() public data: any;
     @Prop() public dialog: any;
+    @Prop({ default: false }) public showPaidForm: boolean;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
     public editMode: boolean = false;
+    protected paidForm: FormInterface = {};
     protected resetForm: boolean = false;
     protected templateValid: boolean = false;
 
     public mounted() {
         if (this.dialog) {
             this.setupForm();
+        }
+
+        if (this.showPaidForm) {
+            this.paidForm = {
+                confirmation: {
+                    value: {},
+                    rules: [],
+                },
+                paid: {
+                    value: {},
+                    rules: [],
+                },
+            };
         }
     }
 

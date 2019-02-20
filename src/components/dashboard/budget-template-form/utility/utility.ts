@@ -1,19 +1,21 @@
 import {Component} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
-import {timestampService, validateService} from '@/module';
+import {validateService} from '@/module';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
+import ConfirmationForm from '@/components/dashboard/confirmation-form/ConfirmationForm.vue';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
 
 @Component({
     components: {
         BudgetTemplateComponent,
+        ConfirmationForm,
     },
 })
 class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
-    public form: FormInterface = {
+    private utilityForm: FormInterface = {
         name: {
             value: '',
             rules: [
@@ -47,6 +49,10 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         },
     };
 
+    public get form() {
+        return {...this.utilityForm, ...this.paidForm};
+    }
+
     public get types() {
         return this.typesState.utilities;
     }
@@ -70,6 +76,11 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         };
 
         return this.setDataForSaving(data, 'utilities');
+    }
+
+    public updateForm(obj: any) {
+        this.form.confirmation.value = obj.confirmation;
+        this.form.paid.value = obj.paid;
     }
 }
 
