@@ -65,6 +65,7 @@ class BudgetTemplateForm extends Vue {
 
     protected setDataForSaving(data: any, type: any): BudgetListAddInterface {
         let id: any;
+        let paid: any = {};
 
         if (typeof this.data !== 'undefined' && typeof this.data.id !== 'undefined') {
             id = this.data.id;
@@ -72,9 +73,16 @@ class BudgetTemplateForm extends Vue {
             id = 'temp_' + timestampService.generateUnixId();
         }
 
+        if (this.showPaidForm) {
+            paid = {
+                confirmation: this.form.confirmation.value,
+                paid: this.form.paid.value,
+            };
+        }
+
         return {
             type,
-            data: { ...data, id },
+            data: { ...data, id, ...paid },
         };
     }
 
