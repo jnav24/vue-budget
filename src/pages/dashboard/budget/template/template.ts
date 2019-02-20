@@ -84,6 +84,7 @@ class Template extends Vue {
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
     };
+    public showPaidForm: boolean = false;
 
     public get canSaveTemplates() {
         return this.budgetTemplates.canSave;

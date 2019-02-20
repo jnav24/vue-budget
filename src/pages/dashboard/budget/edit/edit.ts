@@ -37,6 +37,7 @@ class Edit extends Vue {
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
     public expenseData: any = {};
+    public showPaidForm: boolean = true;
     public totalEarned: number = 0;
     public totalSavings: number = 0;
     public totalSpent: number = 0;

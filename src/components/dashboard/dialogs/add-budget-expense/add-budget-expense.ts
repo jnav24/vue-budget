@@ -26,6 +26,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
 })
 class AddBudgetExpense extends Dialogs {
     @Prop() public type: number;
+    @Prop() public showPaidForm: boolean;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     public editMode: boolean = false;
     public expenseValid: boolean = false;
