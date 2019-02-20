@@ -94,11 +94,20 @@ class Edit extends Vue {
     }
 
     public submitBudget(data: { valid: boolean; data: any; update: boolean }) {
-        // @TODO: continue here; also show pay_date and confirmation fields on certain expenses
-        // @TODO: remember to not show those two new fields from budget template page
-        console.log('save');
-        console.log(data);
-        this.canSaveBudget = true;
+        if (data.valid && data.data.type !== 'blank') {
+            if (data.update) {
+                const index = (this.budget.expenses as any)[data.data.type]
+                    .findIndex((obj: any) => obj.id === data.data.data.id);
+                Vue.set((this.budget.expenses as any)[data.data.type], index, data.data.data);
+            } else {
+                (this.budget.expenses as any)[data.data.type] = [
+                    ...(this.budget.expenses as any)[data.data.type],
+                    data.data.data,
+                ];
+            }
+
+            this.canSaveBudget = true;
+        }
     }
 
     private created() {
