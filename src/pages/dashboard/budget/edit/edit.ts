@@ -12,6 +12,7 @@ import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscella
 import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
 import {currencyService, globalService, timestampService} from '@/module';
 import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/AddBudgetExpense.vue';
+import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 
 Component.registerHooks([
     'created',
@@ -26,6 +27,7 @@ Component.registerHooks([
         Jobs,
         Medical,
         Miscellaneous,
+        SaveControls,
         Utilities,
     },
 })
@@ -34,6 +36,7 @@ class Edit extends Vue {
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     public activeTab: number = 0;
     public budget: any = {};
+    public canSaveBudget: boolean = false;
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
     public expenseData: any = {};
@@ -41,10 +44,6 @@ class Edit extends Vue {
     public totalEarned: number = 0;
     public totalSavings: number = 0;
     public totalSpent: number = 0;
-
-    public get canSaveBudget() {
-        return false;
-    }
 
     public get isLoading() {
         return !Object.keys(this.budget).length;
@@ -70,6 +69,14 @@ class Edit extends Vue {
         // @todo if timestamp unix is >= now unix timestamp, then update the templates
     }
 
+    public saveControls(bool: boolean) {
+        if (bool) {
+            // ...
+        } else {
+            // ...
+        }
+    }
+
     public updateTotalEarned() {
         console.log('update total earned');
     }
@@ -91,6 +98,7 @@ class Edit extends Vue {
         // @TODO: remember to not show those two new fields from budget template page
         console.log('save');
         console.log(data);
+        this.canSaveBudget = true;
     }
 
     private created() {

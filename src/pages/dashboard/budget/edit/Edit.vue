@@ -11,18 +11,9 @@
 			@submitBudget="submitBudget($event)"
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
 
-		<v-toolbar height="50" style="background: #474747; position: absolute; top: 0px; left: 0;">
-			<v-layout align-center justify-end>
-				<v-btn :to="{ name: 'budget-list' }">Cancel</v-btn>
-				<v-btn
-					color="success"
-					:disabled="!canSaveBudget"
-					style="color: #fff;">
-					<v-icon>save</v-icon>
-					<span style="display: inline-block; margin-left: 7px;">Save</span>
-				</v-btn>
-			</v-layout>
-		</v-toolbar>
+		<SaveControls
+			:canSave="canSaveBudget"
+			@buttonClicked="saveControls($event)"></SaveControls>
 
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
