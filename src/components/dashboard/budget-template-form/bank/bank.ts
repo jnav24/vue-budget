@@ -1,7 +1,7 @@
 import {Component} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
-import {timestampService, validateService} from '@/module';
+import {validateService} from '@/module';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
@@ -12,7 +12,7 @@ import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budg
     },
 })
 class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public form: FormInterface = {
+    protected templateForm: FormInterface = {
         name: {
             value: '',
             rules: [

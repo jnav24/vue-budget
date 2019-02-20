@@ -13,7 +13,7 @@ import BudgetTemplateComponent from '@/components/dashboard/budget-template-form
 })
 class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
-    public form: FormInterface = {
+    protected templateForm: FormInterface = {
         name: {
             value: '',
             rules: [
