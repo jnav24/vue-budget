@@ -1,0 +1,19 @@
+.save-controls {
+	.toolbar {
+		background: #474747;
+		left: 0;
+		position: absolute;
+		top: 0;
+	}
+
+	.save-btn {
+		color: #fff;
+
+		.icon {}
+
+		.save-btn__text {
+			display: inline-block;
+			margin-left: 7px;
+		}
+	}
+}
