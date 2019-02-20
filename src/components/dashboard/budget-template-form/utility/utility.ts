@@ -15,7 +15,7 @@ import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budg
 })
 class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
-    private utilityForm: FormInterface = {
+    protected templateForm: FormInterface = {
         name: {
             value: '',
             rules: [
@@ -48,10 +48,6 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             ],
         },
     };
-
-    public get form() {
-        return {...this.utilityForm, ...this.paidForm};
-    }
 
     public get types() {
         return this.typesState.utilities;

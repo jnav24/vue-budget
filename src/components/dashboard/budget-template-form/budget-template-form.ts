@@ -19,6 +19,7 @@ class BudgetTemplateForm extends Vue {
     public editMode: boolean = false;
     protected paidForm: FormInterface = {};
     protected resetForm: boolean = false;
+    protected templateForm: FormInterface = {};
     protected templateValid: boolean = false;
 
     public mounted() {
@@ -38,6 +39,10 @@ class BudgetTemplateForm extends Vue {
                 },
             };
         }
+    }
+
+    public get form() {
+        return { ...this.templateForm, ...this.paidForm };
     }
 
     public validateForm(obj: { valid: boolean; update: boolean }) {
