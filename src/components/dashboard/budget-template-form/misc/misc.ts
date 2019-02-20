@@ -1,14 +1,16 @@
 import {Component} from 'vue-property-decorator';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
-import {timestampService, validateService} from '@/module';
+import {validateService} from '@/module';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
+import ConfirmationForm from '@/components/dashboard/confirmation-form/ConfirmationForm.vue';
 
 @Component({
     components: {
         BudgetTemplateComponent,
+        ConfirmationForm,
     },
 })
 class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {

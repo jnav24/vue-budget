@@ -73,11 +73,6 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
         return this.setDataForSaving(data, 'utilities');
     }
-
-    public updateForm(obj: any) {
-        this.form.confirmation.value = obj.confirmation;
-        this.form.paid.value = obj.paid;
-    }
 }
 
 export default Utility;

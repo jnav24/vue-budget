@@ -84,6 +84,11 @@ class BudgetTemplateForm extends Vue {
             data: {},
         };
     }
+
+    protected updateForm(obj: any) {
+        this.form.confirmation.value = obj.confirmation;
+        this.form.paid.value = obj.paid;
+    }
 }
 
 export default BudgetTemplateForm;

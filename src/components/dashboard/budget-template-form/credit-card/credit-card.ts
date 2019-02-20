@@ -5,10 +5,12 @@ import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
+import ConfirmationForm from '@/components/dashboard/confirmation-form/ConfirmationForm.vue';
 
 @Component({
     components: {
         BudgetTemplateComponent,
+        ConfirmationForm,
     },
 })
 class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterface {

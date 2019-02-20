@@ -90,6 +90,10 @@
 						label="Exp. Year"></v-autocomplete>
 				</v-flex>
 			</v-layout>
+
+			<ConfirmationForm
+				v-if="showPaidForm"
+				@updateFormData="updateForm($event)"></ConfirmationForm>
 		</BudgetTemplateComponent>
 	</div>
 </template>

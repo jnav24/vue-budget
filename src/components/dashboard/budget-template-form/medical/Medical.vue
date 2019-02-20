@@ -46,6 +46,10 @@
 						label="Due Date"></v-select>
 				</v-flex>
 			</v-layout>
+
+			<ConfirmationForm
+				v-if="showPaidForm"
+				@updateFormData="updateForm($event)"></ConfirmationForm>
 		</BudgetTemplateComponent>
 	</div>
 </template>
