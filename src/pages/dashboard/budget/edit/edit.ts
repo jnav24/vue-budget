@@ -107,6 +107,7 @@ class Edit extends Vue {
             }
 
             this.canSaveBudget = true;
+            this.getAllTotals();
         }
     }
 
