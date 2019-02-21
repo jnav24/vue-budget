@@ -91,6 +91,10 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             value: 0,
             rules: [],
         },
+        amount: {
+            value: '',
+            rules: [],
+        },
     };
 
     public get types() {
@@ -120,6 +124,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             this.form.last4.value = this.data.last_4;
             this.form.expMonth.value = this.data.exp_month;
             this.form.expYear.value = this.data.exp_year;
+            this.form.amount.value = this.data.amount;
             this.setupPaidData();
         }
     }
@@ -134,6 +139,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             last_4: this.form.last4.value,
             exp_month: this.form.expMonth.value,
             exp_year: this.form.expYear.value,
+            amount: this.form.amount.value,
         };
 
         return this.setDataForSaving(data, 'credit_cards');

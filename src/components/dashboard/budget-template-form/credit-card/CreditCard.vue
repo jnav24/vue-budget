@@ -47,6 +47,15 @@
 				</v-flex>
 			</v-layout>
 
+			<v-layout>
+				<v-flex lg5 xl5>
+					<v-text-field
+						v-model="form.amount.value"
+						:rules="form.amount.rules"
+						label="Amount Due"></v-text-field>
+				</v-flex>
+			</v-layout>
+
 			<h3 style="margin: 30px 0;text-align: left;">Optional</h3>
 
 			<v-layout>
