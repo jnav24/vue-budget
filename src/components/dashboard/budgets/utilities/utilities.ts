@@ -5,6 +5,7 @@ import Budgets from '@/components/dashboard/budgets/budgets';
 class Utilities extends Budgets {
     public mounted() {
         this.type = 'utilities';
+        this.getTypeId();
     }
 }
 

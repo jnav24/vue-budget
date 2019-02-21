@@ -6,6 +6,7 @@ import {timestampService} from '@/module';
 class Jobs extends Budgets {
     public mounted() {
         this.type = 'jobs';
+        this.getTypeId();
     }
 
     public getPaidDate(date: string): string {

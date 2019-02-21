@@ -30,6 +30,7 @@
 				<v-layout justify-end>
 					<v-btn
 						fab
+						@click="openEditBudget({ type: typeId, data: item })"
 						class="btn--details__icon">
 						<v-icon>edit</v-icon>
 					</v-btn>
