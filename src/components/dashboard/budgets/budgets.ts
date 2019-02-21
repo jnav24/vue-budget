@@ -8,9 +8,15 @@ Component.registerHooks([
 class Budgets extends Vue {
     @Prop() public data: any;
     public type: string = '';
+    protected typeId: number = 0;
 
     public get budgetData() {
         return this.data;
+    }
+
+    @Emit('openEditBudget')
+    public openEditBudget(obj: { type: number; data: any }) {
+        // ...
     }
 
     protected getDueDate(date: string): string {
@@ -20,6 +26,10 @@ class Budgets extends Vue {
     protected getType(value: string) {
         const typeName = globalService.camelCase(this.type);
         return budgetService.getType(value, typeName);
+    }
+
+    protected getTypeId() {
+        this.typeId = budgetService.getBillTypeId(this.type);
     }
 
     protected getDollarAmount(amount: string) {
@@ -36,16 +46,6 @@ class Budgets extends Vue {
 
     protected isBillPaid(item: any): boolean {
         return item.paid_date !== null && item.confirmation !== null;
-    }
-
-    @Emit('updateEarned')
-    protected updateEarned(val: number) {
-        // ...
-    }
-
-    @Emit('updateSpent')
-    protected updateSpent(val: number) {
-        // ...
     }
 }
 

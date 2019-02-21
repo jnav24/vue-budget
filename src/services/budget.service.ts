@@ -45,6 +45,21 @@ class BudgetService {
 
         return result;
     }
+
+    /**
+     * Get Bill type id by type slug
+     *
+     * @param {string} type
+     */
+    public getBillTypeId(type: string) {
+        const index = store.state.Types.bills.findIndex((obj: any) => obj.slug === type);
+
+        if (index > -1) {
+            return (store.state.Types.bills as any)[index].id;
+        }
+
+        return -1;
+    }
 }
 
 export default BudgetService;

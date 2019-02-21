@@ -77,20 +77,18 @@ class Edit extends Vue {
         }
     }
 
-    public updateTotalEarned() {
-        console.log('update total earned');
-    }
-
-    public updateTotalSpent() {
-        console.log('update total spent');
-    }
-
     public closeEditBudgetDialog(bool: boolean) {
         if (!bool) {
             this.expenseDialog = bool;
             this.expenseType = 0;
             this.expenseData = {};
         }
+    }
+
+    public openEditBudgetDialog(obj: { type: number; data: any }) {
+        this.expenseDialog = true;
+        this.expenseType = obj.type;
+        this.expenseData = obj.data;
     }
 
     public submitBudget(data: { valid: boolean; data: any; update: boolean }) {

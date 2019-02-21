@@ -93,8 +93,7 @@
 										<component
 											:is="getComponentName(name)"
 											:data="expense"
-											@updateEarned="updateTotalEarned($event)"
-											@updateSpent="updateTotalSpent($event)"></component>
+											@openEditBudget="openEditBudgetDialog($event)"></component>
 									</v-tab-item>
 								</v-tabs>
 							</v-card-title>
