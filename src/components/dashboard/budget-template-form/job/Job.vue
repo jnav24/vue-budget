@@ -31,8 +31,8 @@
 						v-model="form.pay_period.value"
 						:rules="form.pay_period.rules"
 						:items="payPeriods"
-						item-value="value"
-						item-text="text"
+						item-value="id"
+						item-text="name"
 						label="Pay Period"></v-select>
 				</v-flex>
 

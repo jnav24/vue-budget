@@ -12,12 +12,6 @@ import BudgetTemplateComponent from '@/components/dashboard/budget-template-form
     },
 })
 class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public payPeriods: any = [
-        { value: '1', text: 'Weekly' },
-        { value: '2', text: 'Bi-Weekly' },
-        { value: '3', text: 'Semi-Monthly' },
-        { value: '4', text: 'Monthly' },
-    ];
     public picker: boolean = false;
     protected templateForm: FormInterface = {
         name: {
@@ -47,6 +41,10 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             rules: [],
         },
     };
+
+    public get payPeriods() {
+        return this.typesState.jobs;
+    }
 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
