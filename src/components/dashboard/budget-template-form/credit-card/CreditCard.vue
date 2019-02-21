@@ -93,6 +93,7 @@
 
 			<ConfirmationForm
 				v-if="showPaidForm"
+				:data="form"
 				@updateFormData="updateForm($event)"></ConfirmationForm>
 		</BudgetTemplateComponent>
 	</div>

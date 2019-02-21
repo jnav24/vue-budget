@@ -60,6 +60,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.amount.value = this.data.amount;
             this.form.due.value = this.data.due_date;
             this.form.type.value = this.data.medical_type_id;
+            this.setupPaidData();
         }
     }
 

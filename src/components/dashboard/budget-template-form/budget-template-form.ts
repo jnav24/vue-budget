@@ -7,6 +7,7 @@ import {timestampService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
 
 Component.registerHooks([
+    'created',
     'mounted',
 ]);
 
@@ -22,22 +23,24 @@ class BudgetTemplateForm extends Vue {
     protected templateForm: FormInterface = {};
     protected templateValid: boolean = false;
 
-    public mounted() {
-        if (this.dialog) {
-            this.setupForm();
-        }
-
+    public created() {
         if (this.showPaidForm) {
             this.paidForm = {
                 confirmation: {
-                    value: {},
+                    value: '',
                     rules: [],
                 },
                 paid: {
-                    value: {},
+                    value: '',
                     rules: [],
                 },
             };
+        }
+    }
+
+    public mounted() {
+        if (this.dialog) {
+            this.setupForm();
         }
     }
 
@@ -96,6 +99,13 @@ class BudgetTemplateForm extends Vue {
     protected updateForm(obj: any) {
         this.form.confirmation.value = obj.confirmation;
         this.form.paid.value = obj.paid;
+    }
+
+    protected setupPaidData() {
+        if (this.showPaidForm) {
+            this.form.paid.value = this.data.paid_date;
+            this.form.confirmation.value = this.data.confirmation;
+        }
     }
 }
 

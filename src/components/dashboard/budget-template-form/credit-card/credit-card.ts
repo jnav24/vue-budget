@@ -57,7 +57,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
                 },
                 (v: any) => {
                     if (!!v) {
-                        return validateService.isValidLength(v, 2) || 'APR must be at least two characters';
+                        // return validateService.isValidLength(v, 1) || 'APR must be at least two characters';
                     }
 
                     return true;
@@ -120,6 +120,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             this.form.last4.value = this.data.last_4;
             this.form.expMonth.value = this.data.exp_month;
             this.form.expYear.value = this.data.exp_year;
+            this.setupPaidData();
         }
     }
 
