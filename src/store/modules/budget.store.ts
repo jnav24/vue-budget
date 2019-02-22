@@ -46,7 +46,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
     },
     async updateBudget(
         { commit },
-        payload: { id: number; name: string; cycle: string; expenses: any },
+        payload: { id: number; name: string; budget_cycle: string; expenses: any },
     ): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -54,7 +54,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
                 params: {
                     id: payload.id,
                     name: payload.name,
-                    cycle: payload.cycle,
+                    cycle: payload.budget_cycle,
                     expenses: payload.expenses,
                 },
             };
