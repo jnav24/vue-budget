@@ -44,6 +44,34 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async updateBudget(
+        { commit },
+        payload: { id: number; name: string; cycle: string; expenses: any },
+    ): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'budgets',
+                params: {
+                    id: payload.id,
+                    name: payload.name,
+                    cycle: payload.cycle,
+                    expenses: payload.expenses,
+                },
+            };
+
+            const response: AxiosResponse = await httpService.authPost(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                const resData = responseService.getDataFromResponse(response);
+                commit('updateSingleBudget', resData);
+                return responseService.getSuccessResponse('', { id: resData.id });
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
     async getAllBudgets({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
