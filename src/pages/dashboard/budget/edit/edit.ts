@@ -15,6 +15,7 @@ import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
+import {SaveControlsInterface} from '@/interfaces/save-controls.interface';
 
 Component.registerHooks([
     'created',
@@ -81,8 +82,8 @@ class Edit extends Vue {
         // @todo if timestamp unix is >= now unix timestamp, then update the templates
     }
 
-    public saveControls(bool: boolean) {
-        if (bool) {
+    public saveControls(obj: SaveControlsInterface) {
+        if (obj.save) {
             this.updateBudget(this.budget)
                 .then((res: ResponseInterface) => {
                     console.log(res);
@@ -113,7 +114,7 @@ class Edit extends Vue {
         this.expenseData = obj.data;
     }
 
-    public submitBudget(data: { valid: boolean; data: any; update: boolean }) {
+    public saveLocalBudgetState(data: { valid: boolean; data: any; update: boolean }) {
         if (data.valid && data.data.type !== 'blank') {
             if (data.update) {
                 const index = (this.budget.expenses as any)[data.data.type]

@@ -14,6 +14,7 @@ import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {budgetService} from '@/module';
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
+import {SaveControlsInterface} from '@/interfaces/save-controls.interface';
 
 @Component({
     components: {
@@ -153,8 +154,8 @@ class Template extends Vue {
         }
     }
 
-    public saveControls(bool: boolean) {
-        if (!bool) {
+    public saveControls(obj: SaveControlsInterface) {
+        if (!obj.save) {
             this.$router.push({ name: 'budget-list' });
         } else {
             this.saveTemplate();
