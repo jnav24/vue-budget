@@ -19,7 +19,7 @@
 					color="success"
 					:disabled="!canSave"
 					class="save-btn">
-					<v-icon class="save-btn__icon">save</v-icon>
+					<v-icon class="save-btn__icon">exit_to_app</v-icon>
 					<span class="save-btn__text">Save &amp; Exit</span>
 				</v-btn>
 			</v-layout>
