@@ -6,7 +6,7 @@
 		<ConfirmDialog
 			:data="confirmData"
 			:dialog="confirmDialog"
-			@updateDialog="emitConfimDialog($event)"
+			@updateDialog="emitConfirmDialog($event)"
 			@updateData="emitConfirmData($event)"></ConfirmDialog>
 
 		<AddBudgetDialog

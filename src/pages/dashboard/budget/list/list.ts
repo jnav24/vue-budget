@@ -54,7 +54,7 @@ class List extends Vue {
         this.addBudgetDialog = dialog;
     }
 
-    public emitConfimDialog(dialog: boolean) {
+    public emitConfirmDialog(dialog: boolean) {
         this.confirmDialog = dialog;
 
         if (!dialog) {
