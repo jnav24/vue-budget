@@ -16,6 +16,7 @@ import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue'
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import {SaveControlsInterface} from '@/interfaces/save-controls.interface';
+import {AlertInterface} from '@/interfaces/alert.interface';
 
 Component.registerHooks([
     'created',
@@ -40,6 +41,11 @@ class Edit extends Vue {
     @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     public activeTab: number = 0;
+    public alert: AlertInterface = {
+        display: false,
+        msg: '',
+        type: 'error',
+    };
     public budget: any = {};
     public canSaveBudget: boolean = false;
     public confirmCancelDialog = false;
@@ -86,9 +92,23 @@ class Edit extends Vue {
         if (obj.save) {
             this.updateBudget(this.budget)
                 .then((res: ResponseInterface) => {
-                    console.log(res);
                     if (res.success) {
-                        console.log('updated budget');
+                        this.alert.msg = 'Budget has been updated successfully.';
+                        this.alert.type = 'success';
+                        this.alert.display = true;
+                        this.canSaveBudget = false;
+
+                        if (obj.exit) {
+                            this.$router.push({ name: 'budget-list' });
+                        }
+
+                        setTimeout(() => {
+                            this.alert.display = false;
+                        }, 5000);
+                    } else {
+                        this.alert.msg = 'There was an error saving the budget. Please try again later.';
+                        this.alert.type = 'error';
+                        this.alert.display = true;
                     }
                 });
         } else {

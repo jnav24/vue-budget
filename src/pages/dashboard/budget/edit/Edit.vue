@@ -23,6 +23,13 @@
 
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
+				<v-alert
+					:value="alert.display"
+					transition="slide-y-transition"
+					:type="alert.type">
+					{{ alert.msg }}
+				</v-alert>
+
 				<v-layout align-center>
 					<v-flex>
 						<h1 class="header__h1">Budget: {{ budget.name }}</h1>
