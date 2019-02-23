@@ -4,34 +4,34 @@ import Dialogs from '@/components/dashboard/dialogs/dialogs';
 @Component
 class ConfirmDialog extends Dialogs {
     public hasButtonText(): boolean {
-        return typeof this.data !== 'undefined' &&
-            typeof this.data.button !== 'undefined' &&
-            typeof this.data.button.color !== 'undefined' &&
-            typeof this.data.button.text !== 'undefined' &&
-            this.data.button.color.trim() !== '' &&
-            this.data.button.text.trim() !== '';
+        return typeof this.currentData !== 'undefined' &&
+            typeof this.currentData.button !== 'undefined' &&
+            typeof this.currentData.button.color !== 'undefined' &&
+            typeof this.currentData.button.text !== 'undefined' &&
+            this.currentData.button.color.trim() !== '' &&
+            this.currentData.button.text.trim() !== '';
     }
 
     public hasButtonCancel(): boolean {
-        return typeof this.data !== 'undefined' &&
-            typeof this.data.button !== 'undefined' &&
-            typeof this.data.button.cancel !== 'undefined' &&
-            this.data.button.cancel.trim() !== '';
+        return typeof this.currentData !== 'undefined' &&
+            typeof this.currentData.button !== 'undefined' &&
+            typeof this.currentData.button.cancel !== 'undefined' &&
+            this.currentData.button.cancel.trim() !== '';
     }
 
     public hasIcon(): boolean {
-        return typeof this.data !== 'undefined' &&
-            typeof this.data.icon !== 'undefined' &&
-            typeof this.data.icon.text !== 'undefined' &&
-            typeof this.data.icon.color !== 'undefined' &&
-            this.data.icon.text.trim() !== '' &&
-            this.data.icon.color.trim() !== '';
+        return typeof this.currentData !== 'undefined' &&
+            typeof this.currentData.icon !== 'undefined' &&
+            typeof this.currentData.icon.text !== 'undefined' &&
+            typeof this.currentData.icon.color !== 'undefined' &&
+            this.currentData.icon.text.trim() !== '' &&
+            this.currentData.icon.color.trim() !== '';
     }
 
     public hasText(): boolean {
-        return typeof this.data !== 'undefined' &&
-            typeof this.data.text !== 'undefined' &&
-            this.data.text.trim() !== '';
+        return typeof this.currentData !== 'undefined' &&
+            typeof this.currentData.text !== 'undefined' &&
+            this.currentData.text.trim() !== '';
     }
 
     public submitDialog(val: number = 0) {

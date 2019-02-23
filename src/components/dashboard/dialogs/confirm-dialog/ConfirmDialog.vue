@@ -8,10 +8,10 @@
 		v-model="showDialog">
 		<v-card :class="[$style['confirm-card']]">
 			<v-card-text>
-				<v-icon v-if="hasIcon()" :class="[$style['confirm-icon'], $style[data.icon.color]]">{{ data.icon.text }}</v-icon>
+				<v-icon v-if="hasIcon()" :class="[$style['confirm-icon'], $style[currentData.icon.color]]">{{ currentData.icon.text }}</v-icon>
 				<v-icon v-if="!hasIcon()" :class="[$style['confirm-icon'], $style['danger']]">error_outline</v-icon>
 
-				<p v-if="hasText()" :class="$style['confirm-text']">{{ data.text }}</p>
+				<p v-if="hasText()" :class="$style['confirm-text']">{{ currentData.text }}</p>
 				<p v-if="!hasText()" :class="$style['confirm-text']">Are you sure?</p>
 			</v-card-text>
 
@@ -19,15 +19,15 @@
 				<v-layout justify-center>
 					<v-btn
 						@click="submitDialog(0)">
-						<span v-if="hasButtonCancel()">{{ data.button.cancel }}</span>
+						<span v-if="hasButtonCancel()">{{ currentData.button.cancel }}</span>
 						<span v-if="!hasButtonCancel()">Cancel</span>
 					</v-btn>
 					<v-btn
 						v-if="hasButtonText()"
 						@click="submitDialog(1)"
-						:class="[$style['btn-' + data.button.color]]"
+						:class="[$style['btn-' + currentData.button.color]]"
 						dark>
-						<span>{{ data.button.text }}</span>
+						<span>{{ currentData.button.text }}</span>
 					</v-btn>
 
 					<v-btn
