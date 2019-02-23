@@ -15,6 +15,12 @@
 			:canSave="canSaveBudget"
 			@buttonClicked="saveControls($event)"></SaveControls>
 
+		<ConfirmDialog
+			:data="confirmCancelData"
+			:dialog="confirmCancelDialog"
+			@updateDialog="emitConfirmCancelDialog($event)"
+			@updateData="emitConfirmCancelData($event)"></ConfirmDialog>
+
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<v-layout align-center>

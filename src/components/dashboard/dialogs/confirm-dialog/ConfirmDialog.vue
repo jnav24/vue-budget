@@ -8,7 +8,9 @@
 		v-model="showDialog">
 		<v-card :class="[$style['confirm-card']]">
 			<v-card-text>
-				<v-icon v-if="hasIcon()" :class="[$style['confirm-icon'], $style[currentData.icon.color]]">{{ currentData.icon.text }}</v-icon>
+				<v-icon v-if="hasIcon()" :class="[$style['confirm-icon'], $style[currentData.icon.color]]">
+					{{ currentData.icon.text }}
+				</v-icon>
 				<v-icon v-if="!hasIcon()" :class="[$style['confirm-icon'], $style['danger']]">error_outline</v-icon>
 
 				<p v-if="hasText()" :class="$style['confirm-text']">{{ currentData.text }}</p>

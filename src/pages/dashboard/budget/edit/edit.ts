@@ -14,6 +14,7 @@ import {currencyService, globalService, timestampService} from '@/module';
 import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/AddBudgetExpense.vue';
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
+import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 
 Component.registerHooks([
     'created',
@@ -23,6 +24,7 @@ Component.registerHooks([
     components: {
         AddBudgetExpense,
         Banks,
+        ConfirmDialog,
         CreditCards,
         Investments,
         Jobs,
@@ -39,6 +41,14 @@ class Edit extends Vue {
     public activeTab: number = 0;
     public budget: any = {};
     public canSaveBudget: boolean = false;
+    public confirmCancelDialog = false;
+    public confirmCancelData = {
+        button: {
+            color: 'danger',
+            text: 'Exit without saving',
+        },
+        text: 'If you proceed, you will lose your unsaved changes. Would you like to save your changes?',
+    };
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
     public expenseData: any = {};
@@ -81,8 +91,11 @@ class Edit extends Vue {
                     }
                 });
         } else {
-            // @TODO: check if save is not disabled and show confirm dialog
-            this.$router.push({ name: 'budget-list' });
+            if (this.canSaveBudget) {
+                this.confirmCancelDialog = true;
+            } else {
+                this.$router.push({ name: 'budget-list' });
+            }
         }
     }
 
@@ -116,6 +129,16 @@ class Edit extends Vue {
             this.canSaveBudget = true;
             this.getAllTotals();
         }
+    }
+
+    public emitConfirmCancelData(bool: any) {
+        if (bool) {
+            this.$router.push({ name: 'budget-list' });
+        }
+    }
+
+    public emitConfirmCancelDialog(bool: boolean) {
+        this.confirmCancelDialog = bool;
     }
 
     private created() {
