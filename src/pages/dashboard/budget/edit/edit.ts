@@ -13,6 +13,7 @@ import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
 import {currencyService, globalService, timestampService} from '@/module';
 import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/AddBudgetExpense.vue';
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
+import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 
 Component.registerHooks([
     'created',
@@ -33,6 +34,7 @@ Component.registerHooks([
 })
 class Edit extends Vue {
     @Action public getSingleBudget: (id: number) => Promise<ResponseInterface>;
+    @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     public activeTab: number = 0;
     public budget: any = {};
@@ -71,9 +73,16 @@ class Edit extends Vue {
 
     public saveControls(bool: boolean) {
         if (bool) {
-            // ...
+            this.updateBudget(this.budget)
+                .then((res: ResponseInterface) => {
+                    console.log(res);
+                    if (res.success) {
+                        console.log('updated budget');
+                    }
+                });
         } else {
-            // ...
+            // @TODO: check if save is not disabled and show confirm dialog
+            this.$router.push({ name: 'budget-list' });
         }
     }
 
