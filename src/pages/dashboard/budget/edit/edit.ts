@@ -17,6 +17,8 @@ import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import {SaveControlsInterface} from '@/interfaces/save-controls.interface';
 import {AlertInterface} from '@/interfaces/alert.interface';
+import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
+import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 
 Component.registerHooks([
     'created',
@@ -38,8 +40,11 @@ Component.registerHooks([
 })
 class Edit extends Vue {
     @Action public getSingleBudget: (id: number) => Promise<ResponseInterface>;
+    @Action public saveBudgetTemplate: (budget: BudgetTemplateInterface) => Promise<ResponseInterface>;
     @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
+    @State((state: RootStateInterface) => state.BudgetTemplates)
+    public budgetTemplateState: BudgetTemplateStateInterface;
     public activeTab: number = 0;
     public alert: AlertInterface = {
         display: false,
@@ -84,10 +89,6 @@ class Edit extends Vue {
         return value.replace('_', ' ');
     }
 
-    public submit() {
-        // @todo if timestamp unix is >= now unix timestamp, then update the templates
-    }
-
     public saveControls(obj: SaveControlsInterface) {
         if (obj.save) {
             this.updateBudget(this.budget)
@@ -97,6 +98,10 @@ class Edit extends Vue {
                         this.alert.type = 'success';
                         this.alert.display = true;
                         this.canSaveBudget = false;
+
+                        if (this.setLatestBudget()) {
+                            // this.updateBudgetTemplate();
+                        }
 
                         if (obj.exit) {
                             this.$router.push({ name: 'budget-list' });
@@ -216,6 +221,49 @@ class Edit extends Vue {
         }
 
         return total;
+    }
+
+    private setLatestBudget(): boolean {
+        const index = this.budgetState.budgetList.findIndex((budget: any) => budget.id === this.budget.id);
+        const startOfMonth = timestampService.getStartDayOfMonth();
+        return index === 0 && timestampService.unix(this.budget.budget_cycle) >= timestampService.unix(startOfMonth);
+    }
+
+    // @todo: needs work
+    private updateBudgetTemplate() {
+        const data: BudgetTemplateInterface = {
+            expenses: {
+                banks: [],
+            },
+        };
+
+        const budgetIndex = this.budgetState.budgetList.findIndex((budget: any) => {
+            return budget.id === this.budget.id;
+        });
+
+        if (budgetIndex > -1) {
+            const budget = this.budgetState.budgetList[budgetIndex];
+        }
+
+
+
+        // get the
+        for (const bank of this.budgetTemplateState.templates.expenses.banks) {
+            const index = this.budget.expenses.banks.findIndex((item: any) => {
+                console.log(bank);
+                console.log(item);
+                return bank.id === item.id;
+            });
+
+            if (index > -1) {
+                console.log(this.budget.expenses.banks[index]);
+                data.expenses.banks.push(
+                    Object.assign({}, bank, this.budget.expenses.banks[index]),
+                );
+            }
+        }
+
+        // this.saveBudgetTemplate(data);
     }
 }
 

@@ -120,6 +120,14 @@ class TimestampService {
 
         return int.toString();
     }
+
+    public getStartDayOfMonth(value: string = '', format: string = 'YYYY-MM-DD HH:mm:ss') {
+        if (value.trim() === '') {
+            return moment().startOf('month').format(format);
+        }
+
+        return moment(value).startOf('month').format(format);
+    }
 }
 
 export default TimestampService;

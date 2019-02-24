@@ -1,12 +1,12 @@
 export interface BudgetTemplateInterface {
     id?: number;
     expenses: {
-        bank?: any;
-        credit_card?: any;
-        investment?: any;
-        job?: any;
+        banks?: any;
+        credit_cards?: any;
+        investments?: any;
+        jobs?: any;
         medical?: any;
         miscellaneous?: any;
-        utility?: any;
+        utilities?: any;
     };
 }
