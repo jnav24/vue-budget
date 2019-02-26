@@ -100,7 +100,7 @@ class Edit extends Vue {
                         this.canSaveBudget = false;
 
                         if (this.setLatestBudget()) {
-                            // this.updateBudgetTemplate();
+                            this.updateBudgetTemplate();
                         }
 
                         if (obj.exit) {
@@ -229,7 +229,6 @@ class Edit extends Vue {
         return index === 0 && timestampService.unix(this.budget.budget_cycle) >= timestampService.unix(startOfMonth);
     }
 
-    // @todo: needs work
     private updateBudgetTemplate() {
         const data: BudgetTemplateInterface = {
             expenses: {
@@ -237,33 +236,24 @@ class Edit extends Vue {
             },
         };
 
-        const budgetIndex = this.budgetState.budgetList.findIndex((budget: any) => {
-            return budget.id === this.budget.id;
-        });
-
-        if (budgetIndex > -1) {
-            const budget = this.budgetState.budgetList[budgetIndex];
-        }
-
-
-
-        // get the
-        for (const bank of this.budgetTemplateState.templates.expenses.banks) {
-            const index = this.budget.expenses.banks.findIndex((item: any) => {
-                console.log(bank);
-                console.log(item);
-                return bank.id === item.id;
+        this.budget.expenses.banks.map((budget: any) => {
+            const index = this.budgetTemplateState.templates.expenses.banks.findIndex((obj: any) => {
+                return obj.id === budget.bank_template_id;
             });
 
             if (index > -1) {
-                console.log(this.budget.expenses.banks[index]);
-                data.expenses.banks.push(
-                    Object.assign({}, bank, this.budget.expenses.banks[index]),
+                const temp = Object.assign(
+                    {},
+                    this.budgetTemplateState.templates.expenses.banks[index],
+                    { amount: budget.amount },
                 );
+                data.expenses.banks.push(temp);
             }
-        }
+        });
 
-        // this.saveBudgetTemplate(data);
+        if (data.expenses.banks.length) {
+            this.saveBudgetTemplate(data);
+        }
     }
 }
 

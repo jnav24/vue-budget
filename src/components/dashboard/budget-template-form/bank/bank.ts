@@ -38,6 +38,10 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
                 },
             ],
         },
+        bank_template_id: {
+            value: 0,
+            rules: [],
+        },
     };
 
     public get types() {
@@ -50,6 +54,7 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
             this.form.type.value = this.data.bank_type_id;
+            this.form.bank_template_id.value = this.data.bank_template_id || 0;
         }
     }
 
@@ -58,6 +63,7 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             name: this.form.name.value,
             amount: this.form.amount.value,
             bank_type_id: this.form.type.value,
+            bank_template_id: this.form.bank_template_id.value,
         };
 
         return this.setDataForSaving(data, 'banks');
