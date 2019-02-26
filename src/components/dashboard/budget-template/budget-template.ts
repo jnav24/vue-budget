@@ -21,7 +21,6 @@ class BudgetTemplate extends Vue {
     @Prop() public headers: DataTableHeadersInterface[];
     @Prop() public type: string;
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;
-    @Mutation public removeTemplateElement: (obj: BudgetTemplateRemoveInterface) => void;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     public alertData: any = {
         text: '',
@@ -50,7 +49,11 @@ class BudgetTemplate extends Vue {
 
     public removeElement() {
         if (this.deletedItem.id.toString().indexOf('temp_') > -1 && typeof this.type !== 'undefined') {
-            this.removeTemplateElement({ type: this.type, id: this.deletedItem.id });
+            const index = this.tableList.findIndex((item: any) => item.id === this.deletedItem.id);
+
+            if (index > -1) {
+                this.tableList.splice(index, 1);
+            }
         } else {
             this.removeTemplateElementAction({ type: this.type, id: this.deletedItem.id })
                 .then((res: ResponseInterface) => {
