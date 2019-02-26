@@ -181,6 +181,7 @@ class Template extends Vue {
                 if (res.success) {
                     this.alertData.text = 'Budget has been saved successfully!';
                     this.alertData.type = 'success';
+                    this.canSaveTemplates = false;
                 } else {
                     this.alertData.text = 'Budget couldn\'t be saved at this time. Please try again later.';
                     this.alertData.type = 'danger';
