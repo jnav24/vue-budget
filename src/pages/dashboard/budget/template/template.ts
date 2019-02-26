@@ -138,8 +138,10 @@ class Template extends Vue {
                 const index = (this.expenses as any)[data.data.type]
                     .findIndex((obj: any) => obj.id === data.data.data.id);
                 Vue.set((this.expenses as any)[data.data.type], index, data.data.data);
-            } else {
+            } else if (typeof (this.expenses as any)[data.data.type] !== 'undefined') {
                 (this.expenses as any)[data.data.type] = [ ...(this.expenses as any)[data.data.type], data.data.data ];
+            } else {
+                (this.expenses as any)[data.data.type] = [ data.data.data ];
             }
 
             this.canSaveTemplates = true;

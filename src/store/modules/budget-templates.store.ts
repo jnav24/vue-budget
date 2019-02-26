@@ -10,7 +10,9 @@ import {AxiosResponse} from 'axios';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import Vue from 'vue';
 
-const templates: BudgetTemplateInterface = {} as BudgetTemplateInterface;
+const templates: BudgetTemplateInterface = {
+    expenses: {},
+};
 
 const currentState: BudgetTemplateStateInterface = {
     canSave: false,
