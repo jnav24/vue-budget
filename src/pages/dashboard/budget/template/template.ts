@@ -85,9 +85,15 @@ class Template extends Vue {
         ],
     };
     public showPaidForm: boolean = false;
+    public tempData: any = {};
 
     public get expenses() {
-        return Object.assign({}, this.budgetTemplates.templates.expenses);
+        this.tempData = { ...this.budgetTemplates.templates.expenses };
+        return this.tempData;
+    }
+
+    public set expenses(obj: any) {
+        this.tempData = obj;
     }
 
     public get bills() {
