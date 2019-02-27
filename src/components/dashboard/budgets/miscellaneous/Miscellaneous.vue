@@ -17,7 +17,7 @@
 			</v-flex>
 
 			<v-flex lg2 xl2>
-				<p class="budget__price price-success">{{ getDollarAmount(item.amount) }}</p>
+				<p class="budget__price price-danger">{{ getDollarAmount(item.amount) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
