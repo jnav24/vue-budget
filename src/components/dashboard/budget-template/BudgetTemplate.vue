@@ -33,7 +33,7 @@
 								fab
 								@click="markForDeletion(props.item)"
 								class="btn--details__icon">
-								<v-icon>cancel</v-icon>
+								<v-icon>delete</v-icon>
 							</v-btn>
 						</td>
 					</template>

@@ -9,10 +9,12 @@ import {budgetService, timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
+import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 
 @Component({
     components: {
         AddBudgetDialog,
+        AlertDialog,
         ConfirmDialog,
         EmptyState,
     },
@@ -22,6 +24,11 @@ class List extends Vue {
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetDialog: boolean = false;
+    public alertData: any = {
+        text: '',
+        type: '',
+    };
+    public alertDialog: boolean = false;
     public confirmData: any = {
         text: 'Are you sure you want to delete this budget?',
     };
@@ -80,13 +87,23 @@ class List extends Vue {
         this.$router.push({ name: 'budget-template' });
     }
 
+    public emitAlertDialog(bool: boolean) {
+        this.alertDialog = bool;
+    }
+
     private removeBudget() {
         if (this.delete) {
             this.deleteSingleBudget(this.delete)
                 .then((res: ResponseInterface) => {
                     if (res.success) {
-                        console.log(this.budget.budgetList);
+                        this.alertData.text = 'Budget was removed successfully';
+                        this.alertData.type = 'success';
+                    } else {
+                        this.alertData.text = 'Budget couldn\'t be removed at this time. Please try again later.';
+                        this.alertData.type = 'danger';
                     }
+
+                    this.alertDialog = true;
                 });
         }
     }

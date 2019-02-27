@@ -3,6 +3,11 @@
 
 <template>
 	<div class="page budget">
+		<AlertDialog
+			:data="alertData"
+			:dialog="alertDialog"
+			@updateDialog="emitAlertDialog($event)"></AlertDialog>
+
 		<ConfirmDialog
 			:data="confirmData"
 			:dialog="confirmDialog"
