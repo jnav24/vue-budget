@@ -48,8 +48,6 @@
 					</v-flex>
 				</v-layout>
 
-				<!--<pre>{{ budget }}</pre>-->
-
 				<v-layout>
 					<v-flex lg3 xl3 class="sidebar">
 						<v-card>
@@ -105,6 +103,7 @@
 										v-if="expense.length">
 										<component
 											:is="getComponentName(name)"
+											:cycle="budget.budget_cycle"
 											:data="expense"
 											@openEditBudget="openEditBudgetDialog($event)"></component>
 									</v-tab-item>

@@ -6,6 +6,7 @@ Component.registerHooks([
 ]);
 
 class Budgets extends Vue {
+    @Prop() public cycle: any;
     @Prop() public data: any;
     public type: string = '';
     protected typeId: number = 0;
@@ -20,7 +21,7 @@ class Budgets extends Vue {
     }
 
     protected getDueDate(date: string): string {
-        return timestampService.getCurrentTimestamp('UTC', 'MMM') + ' ' + date;
+        return timestampService.format(this.cycle, 'MMM') + ' ' + date;
     }
 
     protected getType(value: string) {
