@@ -39,6 +39,7 @@ class ConfirmationForm extends Vue {
     }
 
     public updateData() {
+        this.menu = false;
         this.updateFormData({
             confirmation: this.form.confirmation.value,
             paid: this.form.paid.value,

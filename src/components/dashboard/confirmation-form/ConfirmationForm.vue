@@ -32,7 +32,7 @@
 				<v-date-picker
 					no-title
 					v-model="form.paid.value"
-					@input="menu = false; updateData()"></v-date-picker>
+					@input="updateData()"></v-date-picker>
 			</v-menu>
 		</v-flex>
 	</v-layout>
