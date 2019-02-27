@@ -25,6 +25,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
     },
 })
 class AddBudgetExpense extends Dialogs {
+    @Prop() public cycle: string;
     @Prop() public type: number;
     @Prop() public showPaidForm: boolean;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;

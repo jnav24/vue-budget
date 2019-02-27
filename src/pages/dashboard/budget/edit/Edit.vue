@@ -7,6 +7,7 @@
 			:dialog="expenseDialog"
 			:type="expenseType"
 			:data="expenseData"
+			:cycle="expenseCycle"
 			:showPaidForm="showPaidForm"
 			@submitBudget="saveLocalBudgetState($event)"
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>

@@ -32,6 +32,7 @@
 						v-if="showTypeForm('credit_cards')"
 						:data="currentData"
 						:dialog="showDialog"
+						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></CreditCard>
 					<Investment
@@ -48,18 +49,21 @@
 						v-if="showTypeForm('medical')"
 						:data="currentData"
 						:dialog="showDialog"
+						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></Medical>
 					<Misc
 						v-if="showTypeForm('miscellaneous')"
 						:data="currentData"
 						:dialog="showDialog"
+						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></Misc>
 					<Utility
 						v-if="showTypeForm('utilities')"
 						:data="currentData"
 						:dialog="showDialog"
+						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></Utility>
 				</v-form>

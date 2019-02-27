@@ -13,6 +13,7 @@ Component.registerHooks([
 
 @Component
 class BudgetTemplateForm extends Vue {
+    @Prop({ default: timestampService.getCurrentTimestamp('UTC', 'YYYY-MM-DD') }) public cycle: string;
     @Prop() public data: any;
     @Prop() public dialog: any;
     @Prop({ default: false }) public showPaidForm: boolean;
@@ -103,7 +104,14 @@ class BudgetTemplateForm extends Vue {
 
     protected setupPaidData() {
         if (this.showPaidForm) {
-            this.form.paid.value = this.data.paid_date;
+            let paid = this.data.paid_date;
+
+            if (this.data.paid_date === null || this.data.paid_date.trim() === '') {
+                paid = `${timestampService.format(this.cycle, 'YYYY')}-`;
+                paid += `${timestampService.format(this.cycle, 'MM')}-${this.data.due_date}`;
+            }
+
+            this.form.paid.value = paid;
             this.form.confirmation.value = this.data.confirmation;
         }
     }

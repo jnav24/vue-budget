@@ -61,6 +61,7 @@ class Edit extends Vue {
         },
         text: 'If you proceed, you will lose your unsaved changes. Would you like to save your changes?',
     };
+    public expenseCycle: string = timestampService.getCurrentTimestamp('UTC', 'YYYY-MM-DD');
     public expenseDialog: boolean = false;
     public expenseType: number = 0;
     public expenseData: any = {};
@@ -127,6 +128,7 @@ class Edit extends Vue {
 
     public closeEditBudgetDialog(bool: boolean) {
         if (!bool) {
+            this.expenseCycle = timestampService.getCurrentTimestamp('UTC', 'YYYY-MM-DD');
             this.expenseDialog = bool;
             this.expenseType = 0;
             this.expenseData = {};
@@ -134,6 +136,7 @@ class Edit extends Vue {
     }
 
     public openEditBudgetDialog(obj: { type: number; data: any }) {
+        this.expenseCycle = this.budget.budget_cycle;
         this.expenseDialog = true;
         this.expenseType = obj.type;
         this.expenseData = obj.data;
