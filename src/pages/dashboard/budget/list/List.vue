@@ -89,7 +89,7 @@
 										small
 										@click="deleteBudget(props.item.id)"
 										class="btn--details__icon">
-										<v-icon>cancel</v-icon>
+										<v-icon>delete</v-icon>
 									</v-btn>
 								</td>
 							</template>

@@ -112,17 +112,10 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
     async deleteSingleBudget({ commit }, payload: number): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: '',
-                params: {
-                    id: payload,
-                },
+                url: 'budgets/' + payload,
             };
 
-            const response: any = await new Promise((resolve) => {
-                resolve({
-                    status: 200,
-                });
-            });
+            const response: AxiosResponse = await httpService.authDelete(data);
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('removeSingleBudget', payload);
