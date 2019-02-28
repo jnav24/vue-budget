@@ -1,9 +1,8 @@
-export interface BanksInterface {
+export interface InvestmentsInterface {
     id: number | string;
     name: string;
     amount: string;
-    bank_template_id: number;
-    bank_type_id: number;
+    investment_type_id: number;
     budget_id?: number;
     budget_template_id?: number;
     created_at: string;
