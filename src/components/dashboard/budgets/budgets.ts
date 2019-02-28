@@ -46,7 +46,8 @@ class Budgets extends Vue {
     }
 
     protected isBillPaid(item: any): boolean {
-        return item.paid_date !== null && item.confirmation !== null;
+        return item.paid_date !== null && typeof item.paid_date !== 'undefined' &&
+            item.confirmation !== null && typeof item.confirmation !== 'undefined';
     }
 }
 
