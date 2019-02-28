@@ -5,6 +5,7 @@ import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import {timestampService, validateService} from '@/module';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
+import {JobsInterface} from '@/interfaces/jobs.interface';
 
 @Component({
     components: {
@@ -59,7 +60,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     }
 
     public setData(): BudgetListAddInterface {
-        const data = {
+        const data: JobsInterface = {
             name: this.form.name.value,
             amount: this.form.amount.value,
             job_type_id: this.form.pay_period.value,

@@ -6,6 +6,7 @@ import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-templat
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
 import ConfirmationForm from '@/components/dashboard/confirmation-form/ConfirmationForm.vue';
+import {MedicalInterface} from '@/interfaces/medical.interface';
 
 @Component({
     components: {
@@ -65,7 +66,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     }
 
     public setData(): BudgetListAddInterface {
-        const data = {
+        const data: MedicalInterface = {
             name: this.form.name.value,
             amount: this.form.amount.value,
             due_date: this.form.due.value,

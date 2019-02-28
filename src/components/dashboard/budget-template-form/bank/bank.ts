@@ -5,6 +5,7 @@ import {validateService} from '@/module';
 import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
+import {BanksInterface} from '@/interfaces/banks.interface';
 
 @Component({
     components: {
@@ -59,7 +60,7 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     }
 
     public setData(): BudgetListAddInterface {
-        const data = {
+        const data: BanksInterface = {
             name: this.form.name.value,
             amount: this.form.amount.value,
             bank_type_id: this.form.type.value,

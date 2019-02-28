@@ -6,6 +6,7 @@ import BudgetTemplateComponent from '@/components/dashboard/budget-template-form
 import ConfirmationForm from '@/components/dashboard/confirmation-form/ConfirmationForm.vue';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
+import {UtilitiesInterface} from '@/interfaces/utilities.interface';
 
 @Component({
     components: {
@@ -65,7 +66,7 @@ class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     }
 
     public setData(): BudgetListAddInterface {
-        const data = {
+        const data: UtilitiesInterface = {
             name: this.form.name.value,
             amount: this.form.amount.value,
             utility_type_id: this.form.type.value,
