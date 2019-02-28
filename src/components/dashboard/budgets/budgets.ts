@@ -21,7 +21,14 @@ class Budgets extends Vue {
     }
 
     protected getDueDate(date: string): string {
-        return timestampService.format(this.cycle, 'MMM') + ' ' + date;
+        const actualEndDay: string = timestampService.getEndDayOfMonth(this.cycle, 'D');
+        let endDay: string = date;
+
+        if (Number(date) > Number(actualEndDay)) {
+            endDay = actualEndDay;
+        }
+
+        return timestampService.format(this.cycle, 'MMM') + ' ' + endDay;
     }
 
     protected setPaidDate(date: string): string {

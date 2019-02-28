@@ -128,6 +128,14 @@ class TimestampService {
 
         return moment(value).startOf('month').format(format);
     }
+
+    public getEndDayOfMonth(value: string = '', format: string = 'YYY-MM-DD HH:mm:ss'): string {
+        if (value.trim() === '') {
+            return moment().endOf('month').format(format);
+        }
+
+        return moment(value).endOf('month').format(format);
+    }
 }
 
 export default TimestampService;
