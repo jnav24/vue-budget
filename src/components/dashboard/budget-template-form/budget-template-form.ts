@@ -80,7 +80,7 @@ class BudgetTemplateForm extends Vue {
         if (this.showPaidForm) {
             paid = {
                 confirmation: this.form.confirmation.value,
-                paid: this.form.paid.value,
+                paid_date: this.form.paid.value,
             };
         }
 
