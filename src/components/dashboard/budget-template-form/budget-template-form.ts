@@ -111,8 +111,15 @@ class BudgetTemplateForm extends Vue {
                 typeof this.data.paid_date === 'undefined' ||
                 this.data.paid_date.trim() === ''
             ) {
+                let day: string = this.data.due_date;
+                const actualEndDay: string = timestampService.getEndDayOfMonth(this.cycle, 'D');
+
+                if (Number(day) > Number(actualEndDay)) {
+                    day = actualEndDay;
+                }
+
                 paid = `${timestampService.format(this.cycle, 'YYYY')}-`;
-                paid += `${timestampService.format(this.cycle, 'MM')}-${this.data.due_date}`;
+                paid += `${timestampService.format(this.cycle, 'MM')}-${day}`;
             }
 
             this.form.paid.value = paid;
