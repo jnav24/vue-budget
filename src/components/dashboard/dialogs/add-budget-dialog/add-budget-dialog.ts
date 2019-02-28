@@ -7,6 +7,7 @@ import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import { cloneDeep } from 'lodash';
 
 Component.registerHooks([
     'mounted',
@@ -95,7 +96,7 @@ class AddBudgetDialog extends Dialogs {
     }
 
     private resetIdForSaving() {
-        const data: any = { ...this.budgetTemplates.templates.expenses };
+        const data: any = cloneDeep(this.budgetTemplates.templates.expenses);
 
         for (const expense of Object.keys(data)) {
             data[expense].map((item: any, index: number) => {
