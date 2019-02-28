@@ -10,8 +10,8 @@ export interface CreditCardsInterface {
     credit_card_type_id: number;
     budget_id?: number;
     budget_template_id?: number;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
     paid_date?: string;
     confirmation?: string;
     amount: string;
