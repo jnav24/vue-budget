@@ -99,6 +99,11 @@ class AddBudgetDialog extends Dialogs {
 
         for (const expense of Object.keys(data)) {
             data[expense].map((item: any, index: number) => {
+                if (expense === 'banks') {
+                    const id = item.id;
+                    item.bank_template_id = id;
+                }
+
                 item.id = 'temp_' + timestampService.generateUnixId();
                 return item;
             });
