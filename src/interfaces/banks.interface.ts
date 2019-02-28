@@ -1,5 +1,5 @@
 export interface BanksInterface {
-    id: number | string;
+    id?: number | string;
     name: string;
     amount: string;
     bank_template_id: number;

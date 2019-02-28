@@ -1,5 +1,5 @@
 export interface MedicalInterface {
-    id: number | string;
+    id?: number | string;
     name: string;
     amount: string;
     medical_type_id: number;

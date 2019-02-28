@@ -1,5 +1,5 @@
 export interface UtilitiesInterface {
-    id: number | string;
+    id?: number | string;
     name: string;
     amount: string;
     budget_id?: number;

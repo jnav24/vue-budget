@@ -1,5 +1,5 @@
 export interface JobsInterface {
-    id: number | string;
+    id?: number | string;
     name: string;
     amount: string;
     job_type_id: number;
