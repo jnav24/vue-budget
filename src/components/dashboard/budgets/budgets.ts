@@ -24,6 +24,10 @@ class Budgets extends Vue {
         return timestampService.format(this.cycle, 'MMM') + ' ' + date;
     }
 
+    protected setPaidDate(date: string): string {
+        return timestampService.format(date, 'MMM D');
+    }
+
     protected getType(value: string) {
         const typeName = globalService.camelCase(this.type);
         return budgetService.getType(value, typeName);

@@ -23,7 +23,7 @@
 
 			<v-flex lg2 xl2>
 				<p class="budget__due" v-if="!isBillPaid(item)">Due {{ getDueDate(item.due_date) }}</p>
-				<p class="budget__paid" v-if="isBillPaid(item)">Paid {{ getDueDate(item.due_date) }}</p>
+				<p class="budget__paid" v-if="isBillPaid(item)">Paid {{ setPaidDate(item.paid_date) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
