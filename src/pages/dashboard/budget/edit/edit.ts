@@ -236,6 +236,12 @@ class Edit extends Vue {
         const data: BudgetTemplateInterface = {
             expenses: {
                 banks: [],
+                credit_cards: [],
+                investments: [],
+                jobs: [],
+                medical: [],
+                miscellaneous: [],
+                utilities: [],
             },
         };
 

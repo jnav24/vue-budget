@@ -17,7 +17,7 @@ import {globalService} from '@/module';
 })
 class BudgetTemplate extends Vue {
     @Prop() public name: string;
-    @Prop() public data: any;
+    @Prop() public data: any[];
     @Prop() public headers: DataTableHeadersInterface[];
     @Prop() public type: string;
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;

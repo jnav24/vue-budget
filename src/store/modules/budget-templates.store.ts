@@ -11,7 +11,15 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import Vue from 'vue';
 
 const templates: BudgetTemplateInterface = {
-    expenses: {},
+    expenses: {
+        banks: [],
+        credit_cards: [],
+        investments: [],
+        jobs: [],
+        medical: [],
+        miscellaneous: [],
+        utilities: [],
+    },
 };
 
 const currentState: BudgetTemplateStateInterface = {

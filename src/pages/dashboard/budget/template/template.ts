@@ -104,7 +104,7 @@ class Template extends Vue {
         return this.headers[name] || [];
     }
 
-    public getTemplateList(name: string) {
+    public getTemplateList(name: string): any[] {
         return (this.expenses as any)[name];
     }
 

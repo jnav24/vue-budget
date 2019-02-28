@@ -57,7 +57,7 @@ class AddBudgetDialog extends Dialogs {
     }
 
     public nextCycle(format: 'M' | 'Y') {
-        let result: any = timestampService.getCurrentTimestamp('UTC');
+        let result: string = timestampService.getCurrentTimestamp('UTC');
 
         if (this.budgets.length) {
             const recent = this.budgets[0];
