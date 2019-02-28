@@ -84,7 +84,7 @@ class BudgetTemplate extends Vue {
         }
     }
 
-    public get currentType() {
+    public get currentType(): BillTypesInterface | undefined {
         return this.types.bills.filter((type: BillTypesInterface) => type.slug === this.type).shift();
     }
 

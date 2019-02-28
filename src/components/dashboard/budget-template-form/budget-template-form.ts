@@ -15,7 +15,7 @@ Component.registerHooks([
 class BudgetTemplateForm extends Vue {
     @Prop({ default: timestampService.getCurrentTimestamp('UTC', 'YYYY-MM-DD') }) public cycle: string;
     @Prop() public data: any;
-    @Prop() public dialog: any;
+    @Prop() public dialog: boolean;
     @Prop({ default: false }) public showPaidForm: boolean;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
     public editMode: boolean = false;
