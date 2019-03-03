@@ -15,7 +15,10 @@
 			<v-flex lg4 xl4>
 				<h3 class="budget__title">{{ item.name }}</h3>
 				<p class="budget__type">{{ getType(item.credit_card_type_id) }}</p>
-				<p class="budget__type">********{{ item.last_4 }} {{ item.exp_month }}/{{ item.exp_year }}</p>
+				<p class="budget__type">
+					<span v-if="hasLast4(item)">********{{ item.last_4 }}</span>
+					<span v-if="hasExpiration(item)">{{ item.exp_month }}/{{ item.exp_year }}</span>
+				</p>
 			</v-flex>
 
 			<v-flex lg3 xl3>
