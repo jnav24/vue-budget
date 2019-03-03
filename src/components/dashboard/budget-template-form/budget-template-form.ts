@@ -32,7 +32,7 @@ class BudgetTemplateForm extends Vue {
                     rules: [],
                 },
                 paid: {
-                    value: '',
+                    value: timestampService.getCurrentTimestamp('UTC', 'YYYY-MM-DD hh:mm:ss'),
                     rules: [],
                 },
             };
