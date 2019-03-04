@@ -23,7 +23,8 @@
 
 			<v-flex lg3 xl3>
 				<p class="budget__price price-danger price-tac">{{ getDollarAmount(item.amount) }}</p>
-				<p class="budget__price-details">({{ item.balance }} out of {{ getDollarAmount(item.limit) }})</p>
+				<p class="budget__price-details">Balance {{ getDollarAmount(item.balance) }}</p>
+				<p class="budget__price-details">Limit {{ getDollarAmount(item.limit) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
