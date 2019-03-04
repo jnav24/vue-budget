@@ -54,6 +54,15 @@
 						:rules="form.amount.rules"
 						label="Amount Due"></v-text-field>
 				</v-flex>
+
+				<v-spacer></v-spacer>
+
+				<v-flex lg6 xl6>
+					<v-text-field
+						v-model="form.balance.value"
+						:rules="form.balance.rules"
+						label="Balance"></v-text-field>
+				</v-flex>
 			</v-layout>
 
 			<h3 style="margin: 30px 0;text-align: left;">Optional</h3>

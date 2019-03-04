@@ -96,6 +96,10 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             value: '',
             rules: [],
         },
+        balance: {
+            value: '',
+            rules: [],
+        },
     };
 
     public get types() {
