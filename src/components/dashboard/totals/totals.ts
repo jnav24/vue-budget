@@ -10,6 +10,6 @@ export default class Totals extends Vue {
     @Prop({ default: true }) public trending: boolean;
 
     public get formatDollar(): string {
-        return currencyService.setCurrency(this.totalAmount);
+        return currencyService.setCurrency(this.totalAmount.toString());
     }
 }

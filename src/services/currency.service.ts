@@ -7,7 +7,7 @@ class CurrencyService {
      * @returns {string}
      */
     public setCurrency(amount: string, currency: string = 'usd'): string {
-        if (amount.trim() === '' || currency.trim() === '') {
+        if (typeof amount !== 'string' || amount.trim() === '' || currency.trim() === '') {
             return 'No value entered';
         }
 
