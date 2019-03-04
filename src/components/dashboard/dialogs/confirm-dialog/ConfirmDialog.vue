@@ -8,36 +8,22 @@
 		v-model="showDialog">
 		<v-card :class="[$style['confirm-card']]">
 			<v-card-text>
-				<v-icon v-if="hasIcon()" :class="[$style['confirm-icon'], $style[currentData.icon.color]]">
-					{{ currentData.icon.text }}
-				</v-icon>
-				<v-icon v-if="!hasIcon()" :class="[$style['confirm-icon'], $style['danger']]">error_outline</v-icon>
-
-				<p v-if="hasText()" :class="$style['confirm-text']">{{ currentData.text }}</p>
-				<p v-if="!hasText()" :class="$style['confirm-text']">Are you sure?</p>
+				<v-icon :class="[$style['confirm-icon'], $style[iconColor]]">{{ iconType }}</v-icon>
+				<p :class="$style['confirm-text']">{{ message }}</p>
 			</v-card-text>
 
 			<v-card-actions>
 				<v-layout justify-center>
 					<v-btn
 						@click="submitDialog(0)">
-						<span v-if="hasButtonCancel()">{{ currentData.button.cancel }}</span>
-						<span v-if="!hasButtonCancel()">Cancel</span>
-					</v-btn>
-					<v-btn
-						v-if="hasButtonText()"
-						@click="submitDialog(1)"
-						:class="[$style['btn-' + currentData.button.color]]"
-						dark>
-						<span>{{ currentData.button.text }}</span>
+						<span>{{ cancelText }}</span>
 					</v-btn>
 
 					<v-btn
-						v-if="!hasButtonText()"
 						@click="submitDialog(1)"
-						:class="[$style['btn-danger']]"
+						:class="[$style['btn-' + submitColor]]"
 						dark>
-						<span>Confirm</span>
+						<span>{{ submitText }}</span>
 					</v-btn>
 				</v-layout>
 			</v-card-actions>

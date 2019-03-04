@@ -54,13 +54,10 @@ class Edit extends Vue {
     public budget: any = {};
     public canSaveBudget: boolean = false;
     public confirmCancelDialog = false;
-    public confirmCancelData = {
-        button: {
-            color: 'danger',
-            text: 'Exit without saving',
-        },
-        text: 'If you proceed, you will lose your unsaved changes. Would you like to save your changes?',
-    };
+    public confirmMessage: string = `
+        If you proceed, you will lose your unsaved changes. Would you like to save your changes?
+    `;
+    public confirmSubmitText: string = 'Exit without saving';
     public expenseCycle: string = timestampService.getCurrentTimestamp('UTC', 'YYYY-MM-DD');
     public expenseDialog: boolean = false;
     public expenseType: number = 0;

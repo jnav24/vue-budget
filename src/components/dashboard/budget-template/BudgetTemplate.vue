@@ -4,7 +4,8 @@
 <template>
 	<div class="budget-template">
 		<ConfirmDialog
-			:data="confirmData"
+			:message="confirmMessage"
+			:submit-text="confirmSubmitText"
 			:dialog="confirmDialog"
 			@updateDialog="emitConfimDialog($event)"
 			@updateData="emitConfirmData($event)"></ConfirmDialog>

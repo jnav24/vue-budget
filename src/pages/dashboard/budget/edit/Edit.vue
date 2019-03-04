@@ -17,7 +17,8 @@
 			@buttonClicked="saveControls($event)"></SaveControls>
 
 		<ConfirmDialog
-			:data="confirmCancelData"
+			:submit-text="confirmSubmitText"
+			:message="confirmMessage"
 			:dialog="confirmCancelDialog"
 			@updateDialog="emitConfirmCancelDialog($event)"
 			@updateData="emitConfirmCancelData($event)"></ConfirmDialog>

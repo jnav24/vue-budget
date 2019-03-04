@@ -26,10 +26,11 @@ class BudgetTemplate extends Vue {
         text: '',
         type: '',
     };
-    public confirmData: any = {
-        text: 'By continuing, this item will be permanently deleted. Are you sure you want to delete this?',
-    };
     public confirmDialog: boolean = false;
+    public confirmMessage: string = `
+        By continuing, this item will be permanently deleted. Are you sure you want to delete this?
+    `;
+    public confirmSubmitText: string = 'Yes, please delete';
     public deletedItem: any = {};
     public tableInfo: DataTableInterface = {
         rowsPerPageItems: [25, 50, 75],

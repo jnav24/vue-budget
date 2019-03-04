@@ -29,10 +29,8 @@ class List extends Vue {
         type: '',
     };
     public alertDialog: boolean = false;
-    public confirmData: any = {
-        text: 'Are you sure you want to delete this budget?',
-    };
     public confirmDialog: boolean = false;
+    public confirmMessage: string = 'Are you sure you want to delete this budget?';
     public search: string = '';
     public tableHeaders: any = [
         { text: 'Name', value: 'name', sortable: false, class: ['text-xs-center'] },

@@ -9,7 +9,7 @@
 			@updateDialog="emitAlertDialog($event)"></AlertDialog>
 
 		<ConfirmDialog
-			:data="confirmData"
+			:message="confirmMessage"
 			:dialog="confirmDialog"
 			@updateDialog="emitConfirmDialog($event)"
 			@updateData="emitConfirmData($event)"></ConfirmDialog>
