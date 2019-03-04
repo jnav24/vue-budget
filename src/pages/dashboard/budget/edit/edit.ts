@@ -83,10 +83,6 @@ class Edit extends Vue {
         return timestampService.format(date, 'MMM YYYY');
     }
 
-    public formatDollar(dollar: number | string): string {
-        return currencyService.setCurrency(dollar.toString());
-    }
-
     public setTabName(value: string): string {
         return value.replace('_', ' ');
     }
