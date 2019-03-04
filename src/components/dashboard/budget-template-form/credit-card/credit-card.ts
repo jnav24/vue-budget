@@ -130,6 +130,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             this.form.expMonth.value = this.data.exp_month;
             this.form.expYear.value = this.data.exp_year;
             this.form.amount.value = this.data.amount;
+            this.form.balance.value = this.data.balance;
             this.setupPaidData();
         }
     }
@@ -145,6 +146,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             exp_month: this.form.expMonth.value,
             exp_year: this.form.expYear.value,
             amount: this.form.amount.value || '0',
+            balance: this.form.balance.value || '0',
         };
 
         return this.setDataForSaving(data, 'credit_cards');

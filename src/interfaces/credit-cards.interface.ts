@@ -15,4 +15,5 @@ export interface CreditCardsInterface {
     paid_date?: string;
     confirmation?: string;
     amount: string;
+    balance: string;
 }
