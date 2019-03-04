@@ -79,6 +79,12 @@
 								</div>
 							</v-card-title>
 						</v-card>
+
+						<v-divider style="margin: 30px 0;"></v-divider>
+
+						<Totals
+							total-amount="123456789.99"
+							total-title="in Banks"></Totals>
 					</v-flex>
 
 					<v-spacer></v-spacer>
