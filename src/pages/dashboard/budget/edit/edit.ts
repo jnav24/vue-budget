@@ -65,6 +65,7 @@ class Edit extends Vue {
     public expenseType: number = 0;
     public expenseData: any = {};
     public showPaidForm: boolean = true;
+    public totalInBanks: number = 0;
     public totalEarned: number = 0;
     public totalSavings: number = 0;
     public totalSpent: number = 0;
@@ -190,9 +191,16 @@ class Edit extends Vue {
     }
 
     private getAllTotals() {
+        this.getTotalInBanks();
         this.getTotalEarned();
         this.getTotalSpent();
         this.getTotalSavings();
+    }
+
+    private getTotalInBanks() {
+        const earned = ['banks'];
+        this.totalInBanks = 0;
+        this.totalInBanks = this.getTotals(earned);
     }
 
     private getTotalEarned() {

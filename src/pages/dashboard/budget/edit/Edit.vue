@@ -83,7 +83,7 @@
 						<v-divider style="margin: 30px 0;"></v-divider>
 
 						<Totals
-							total-amount="123456789.99"
+							:total-amount="totalInBanks"
 							total-title="in Banks"></Totals>
 					</v-flex>
 
