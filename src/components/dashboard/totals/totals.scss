@@ -1,0 +1,22 @@
+.totals {
+	.amount {
+		font-size: 32px;
+		font-weight: bold;
+		margin: 0;
+
+		&-text {
+			color: map_get($colors, mid_grey);
+			font-size: 18px;
+			font-weight: 300;
+			margin: 0;
+		}
+
+		&.amount-success {
+			color: map_get($colors, success);
+		}
+
+		&.amount-danger {
+			color: map_get($colors, danger);
+		}
+	}
+}
