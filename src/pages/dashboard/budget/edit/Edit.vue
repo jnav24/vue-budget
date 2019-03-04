@@ -52,39 +52,30 @@
 
 				<v-layout>
 					<v-flex lg3 xl3 class="sidebar">
-						<v-card>
-							<v-card-title>
-								<div>
-									<p class="amount-text">Total Earned <v-icon color="success">trending_up</v-icon></p>
-									<p class="amount amount-success">{{ formatDollar(this.totalEarned) }}</p>
-								</div>
-							</v-card-title>
-						</v-card>
+						<Totals
+							:total-amount="totalEarned"
+							total-title="Earned"></Totals>
 
-						<v-card>
-							<v-card-title>
-								<div>
-									<p class="amount-text">Total Spent <v-icon color="danger">trending_down</v-icon></p>
-									<p class="amount amount-danger">{{ formatDollar(this.totalSpent) }}</p>
-								</div>
-							</v-card-title>
-						</v-card>
+						<Totals
+							amount-color="danger"
+							:total-amount="totalSpent"
+							total-title="Spent"
+							:trending="false"></Totals>
 
-						<v-card>
-							<v-card-title>
-								<div>
-									<p class="amount-text">Total Savings <v-icon color="success">trending_up</v-icon></p>
-									<p class="amount amount-danger" v-if="this.totalSavings < 1">{{ formatDollar(this.totalSavings) }}</p>
-									<p class="amount amount-success" v-if="this.totalSavings > 1">{{ formatDollar(this.totalSavings) }}</p>
-								</div>
-							</v-card-title>
-						</v-card>
+						<Totals
+							:dynamic-color="true"
+							:total-amount="totalSavings"
+							total-title="Savings"></Totals>
 
 						<v-divider style="margin: 30px 0;"></v-divider>
 
 						<Totals
 							:total-amount="totalInBanks"
 							total-title="in Banks"></Totals>
+
+						<Totals
+							:total-amount="totalInvestments"
+							total-title="Investments"></Totals>
 					</v-flex>
 
 					<v-spacer></v-spacer>

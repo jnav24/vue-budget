@@ -15,7 +15,7 @@
 					<p class="amount" :class="['amount-' + amountColor]" v-if="!dynamicColor">{{ formatDollar }}</p>
 
 					<p class="amount amount-danger" v-if="dynamicColor && totalAmount < 1">{{ formatDollar }}</p>
-					<p class="amount amount-success" v-if="dynamicColor && totalAmount > 1">{{ formatDollar }}</p>
+					<p class="amount amount-success" v-if="dynamicColor && totalAmount >= 1">{{ formatDollar }}</p>
 				</div>
 			</v-card-title>
 		</v-card>
