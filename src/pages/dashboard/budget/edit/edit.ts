@@ -44,6 +44,7 @@ class Edit extends Vue {
     @Action public getSingleBudget: (id: number) => Promise<ResponseInterface>;
     @Action public saveBudgetTemplate: (budget: BudgetTemplateInterface) => Promise<ResponseInterface>;
     @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
+    @Action public getAllBudgetTemplates: () => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates)
     public budgetTemplateState: BudgetTemplateStateInterface;
@@ -272,7 +273,10 @@ class Edit extends Vue {
         });
 
         if (data.expenses.banks.length) {
-            this.saveBudgetTemplate(data);
+            this.saveBudgetTemplate(data)
+                .then((res: ResponseInterface) => {
+                    this.getAllBudgetTemplates();
+                });
         }
     }
 }
