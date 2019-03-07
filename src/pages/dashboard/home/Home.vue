@@ -9,7 +9,7 @@
 
 				<v-card>
 					<v-card-title>
-						<ChartLine></ChartLine>
+						<ChartLine :options="chartOptions" :data="chartData"></ChartLine>
 					</v-card-title>
 				</v-card>
 			</v-flex>

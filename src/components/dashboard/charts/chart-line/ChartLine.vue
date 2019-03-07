@@ -3,6 +3,8 @@
 
 <template>
 	<div class="charts chart-line">
-		Line Chart
+		<InternalLineChart
+			:chart-data="data"
+			:options="options"></InternalLineChart>
 	</div>
 </template>
