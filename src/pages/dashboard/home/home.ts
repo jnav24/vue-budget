@@ -1,7 +1,10 @@
 import { Vue, Component } from 'vue-property-decorator';
 import ChartLine from '@/components/dashboard/charts/chart-line/ChartLine.vue';
 import {ChartDataInterface} from '@/interfaces/chart-data.interface';
-import {timestampService} from '@/module';
+import {currencyService, timestampService} from '@/module';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {State} from 'vuex-class';
+import {AggregationStateInterface} from '@/interfaces/aggregation-state.interface';
 
 @Component({
     components: {
@@ -9,6 +12,7 @@ import {timestampService} from '@/module';
     },
 })
 class Home extends Vue {
+    @State((state: RootStateInterface) => state.Aggregation) public aggregationState: AggregationStateInterface;
     public chartOptions: any = {
         responsive: true,
         maintainAspectRatio: false,
@@ -36,6 +40,62 @@ class Home extends Vue {
 
     public get currentYear() {
         return timestampService.getCurrentTimestamp('UTC', 'YYYY');
+    }
+
+    public get budgetAggregate() {
+        return this.aggregationState.budget;
+    }
+
+    public get averageEarned() {
+        return this.getAverage('totalEarned');
+    }
+
+    public get totalEarned() {
+        return this.getTotal('earned');
+    }
+
+    public get averageSaved() {
+        return this.getAverage('totalSaved');
+    }
+
+    public get totalSaved() {
+        return this.getTotal('saved');
+    }
+
+    public get averageSpent() {
+        return this.getAverage('totalSpent');
+    }
+
+    public get totalSpent() {
+        return this.getTotal('spent');
+    }
+
+    private getAverage(name: string) {
+        const defaultSum: string = currencyService.setCurrency('0');
+
+        if (typeof (this as any)[name] !== 'undefined' && (this as any)[name] !== defaultSum) {
+            const earned = (this as any)[name].toString().replace('$', '');
+            return currencyService.setCurrency((Number(earned) / 12).toString());
+        }
+
+        return defaultSum;
+    }
+
+    private getTotal(key: string) {
+        if (
+            typeof (this.budgetAggregate as any)[this.currentYear] !== 'undefined' &&
+            typeof (this.budgetAggregate as any)[this.currentYear][key] !== 'undefined'
+        ) {
+            let sum = 0;
+
+            for (const value of (this.budgetAggregate as any)[this.currentYear][key]) {
+                sum = Number((sum + Number(value)).toFixed(2));
+            }
+
+            return sum;
+        }
+
+        return currencyService.setCurrency('0');
     }
 }
 

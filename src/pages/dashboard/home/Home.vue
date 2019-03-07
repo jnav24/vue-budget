@@ -13,13 +13,14 @@
 					<v-flex lg2 xl2>
 						<v-layout justify-end>
 							<v-btn color="danger" dark>Bills unpaid: 2</v-btn>
+							<v-btn color="success" dark>All Bills Paid</v-btn>
 						</v-layout>
 					</v-flex>
 				</v-layout>
 
 				<v-card style="margin-bottom: 50px;">
 					<v-card-title>
-						<v-layout align-center style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+						<v-layout align-center>
 							<v-flex lg10 xl10>
 								<h2 class="chart-title">Year to Date</h2>
 							</v-flex>
@@ -47,8 +48,8 @@
 							<v-card-text class="content">
 								<p class="icon"><v-icon>trending_up</v-icon></p>
 								<p class="total">Total Earned {{ currentYear }}</p>
-								<p class="amount">$38561.97</p>
-								<p class="average">Monthly Average $1287.43</p>
+								<p class="amount">{{ totalEarned }}</p>
+								<p class="average">Monthly Average {{ averageEarned }}</p>
 							</v-card-text>
 						</v-card>
 					</div>
@@ -58,8 +59,8 @@
 							<v-card-text class="content">
 								<p class="icon"><v-icon>trending_down</v-icon></p>
 								<p class="total">Total Spent {{ currentYear }}</p>
-								<p class="amount">$38561.97</p>
-								<p class="average">Monthly Average $1287.43</p>
+								<p class="amount">{{ totalSpent }}</p>
+								<p class="average">Monthly Average {{ averageSpent }}</p>
 							</v-card-text>
 						</v-card>
 					</div>
@@ -69,8 +70,8 @@
 							<v-card-text class="content">
 								<p class="icon"><v-icon>attach_money</v-icon></p>
 								<p class="total">Total Saved {{ currentYear }}</p>
-								<p class="amount">$38561.97</p>
-								<p class="average">Monthly Average $1287.43</p>
+								<p class="amount">{{ totalSaved }}</p>
+								<p class="average">Monthly Average {{ averageSaved }}</p>
 							</v-card-text>
 						</v-card>
 					</div>
@@ -79,13 +80,13 @@
 		</v-layout>
 
 		<ul>
-			<li>Year to date spent</li>
-			<li>Year to date saved</li>
-			<li>Year to date earned</li>
-			<li>add drop down for year for chart</li>
-			<li>show unpaid bills for current cycle; maybe right of the page title with a link to the budget page</li>
+			<li>DONE Year to date spent</li>
+			<li>DONE Year to date saved</li>
+			<li>DONE Year to date earned</li>
+			<li>DONE add drop down for year for chart</li>
+			<li>DONE show unpaid bills for current cycle; maybe right of the page title with a link to the budget page</li>
 			<li>make an aggregate table that gets updated everytime budget is saved. id, user_id, budget_id, spent | saved | earned, and value</li>
-			<li>on the bottom three boxes, put the average value as well as the total</li>
+			<li>DONE on the bottom three boxes, put the average value as well as the total</li>
 		</ul>
 
 		<pre style="text-align: left;">
