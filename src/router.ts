@@ -42,6 +42,7 @@ function initStore() {
         store.dispatch('isLoggedIn');
     }
 
+    store.dispatch('getYearlyAggregations');
     store.dispatch('getAllBudgetTemplates');
     store.dispatch('getAllBudgets');
     store.dispatch('getAllBankTypes');
