@@ -29,6 +29,10 @@ class Home extends Vue {
             },
         ],
     };
+    public selectedYear: string = '2019';
+    public years: Array<{ value: string; label: string; }> = [
+        { value: '2019', label: '2019' },
+    ];
 
     public get currentYear() {
         return timestampService.getCurrentTimestamp('UTC', 'YYYY');

@@ -19,14 +19,19 @@
 
 				<v-card style="margin-bottom: 50px;">
 					<v-card-title>
-						<v-layout>
-							<v-flex>
-								<h2>Year to date</h2>
+						<v-layout align-center style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+							<v-flex lg10 xl10>
+								<h2 class="chart-title">Year to Date</h2>
 							</v-flex>
 
-							<v-flex>
+							<v-flex lg2 xl2>
 								<v-layout justify-end>
-									drop down here
+									<v-select
+										v-model="selectedYear"
+										:items="years"
+										item-value="value"
+										item-text="label"
+										label="Select Year"></v-select>
 								</v-layout>
 							</v-flex>
 						</v-layout>
