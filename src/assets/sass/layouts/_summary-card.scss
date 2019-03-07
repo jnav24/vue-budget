@@ -1,0 +1,45 @@
+@mixin summaryCard($background: #fff, $textColor: #000) {
+	.v-card {
+		background: $background;
+		height: 150px;
+		overflow: hidden;
+	}
+
+	.v-icon {
+		color: darken($background, 20%);
+	}
+
+	.content {
+		@include posa(n,0,0,n);
+	}
+
+	p {
+		color: $textColor;
+		line-height: 1.25;
+		margin: 0;
+
+		&.total {
+			font-size: pxtoem(24);
+			font-weight: 300;
+		}
+
+		&.amount {
+			font-size: pxtoem(36);
+			font-weight: bold;
+		}
+
+		&.average {
+			color: rgba($textColor, 0.8);
+			font-size: pxtoem(16);
+		}
+	}
+
+	.icon {
+		@include posa(n,n,-50%,-10%);
+		@include transform(rotate(-5deg));
+
+		.v-icon {
+			font-size: pxtoem(250);
+		}
+	}
+}

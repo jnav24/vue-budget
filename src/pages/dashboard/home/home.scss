@@ -1,3 +1,24 @@
 .home.page {
 	@include dashboardHeader;
+
+	.summary-cards {
+		@include colgrid(0.25, 3);
+
+		.col {
+			//overflow: hidden;
+			text-align: right;
+		}
+
+		.summary-card__earned {
+			@include summaryCard(map_get($colors, secondary), darken(map_get($colors, mid_grey), 20%));
+		}
+
+		.summary-card__saved {
+			@include summaryCard(map_get($colors, primary), #fff);
+		}
+
+		.summary-card__spent {
+			@include summaryCard(map_get($colors, danger), #fff);
+		}
+	}
 }
