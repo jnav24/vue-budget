@@ -9,7 +9,7 @@
 
 				<v-card>
 					<v-card-title>
-						Dashboard page... works!
+						<ChartLine></ChartLine>
 					</v-card-title>
 				</v-card>
 			</v-flex>
