@@ -6,6 +6,7 @@ import User from './modules/user.store';
 import { cookiesService } from '@/module';
 import Types from '@/store/modules/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
+import Aggregation from '@/store/modules/aggregation.store';
 
 Vue.use(Vuex);
 
@@ -33,6 +34,7 @@ export default new Vuex.Store<RootStateInterface>({
     actions,
     mutations,
     modules: {
+        Aggregation,
         Budget,
         BudgetTemplates,
         Types,
