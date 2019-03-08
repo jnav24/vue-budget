@@ -14,7 +14,19 @@ const currentState: AggregationStateInterface = {
     unpaid,
 };
 
-const getters: GetterTree<AggregationStateInterface, RootStateInterface> = {};
+const getters: GetterTree<AggregationStateInterface, RootStateInterface> = {
+    totalUnpaid: (state) => {
+        let total = 0;
+
+        if (typeof state.unpaid.totals !== 'undefined') {
+            for (const key of Object.keys(state.unpaid.totals)) {
+                total += Number(state.unpaid.totals[key]);
+            }
+
+        }
+        return total;
+    },
+};
 
 const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
     async getYearlyAggregations({ commit }): Promise<ResponseInterface> {

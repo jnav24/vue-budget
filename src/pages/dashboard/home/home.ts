@@ -3,7 +3,7 @@ import ChartLine from '@/components/dashboard/charts/chart-line/ChartLine.vue';
 import {ChartDataInterface} from '@/interfaces/chart-data.interface';
 import {currencyService, timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {State} from 'vuex-class';
+import {Getter, State} from 'vuex-class';
 import {AggregationStateInterface} from '@/interfaces/aggregation-state.interface';
 
 @Component({
@@ -12,6 +12,7 @@ import {AggregationStateInterface} from '@/interfaces/aggregation-state.interfac
     },
 })
 class Home extends Vue {
+    @Getter public totalUnpaid: number;
     @State((state: RootStateInterface) => state.Aggregation) public aggregationState: AggregationStateInterface;
     public chartOptions: any = {
         responsive: true,

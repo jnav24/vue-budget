@@ -12,11 +12,19 @@
 
 					<v-flex lg2 xl2>
 						<v-layout justify-end>
-							<v-btn color="danger" dark>
+							<v-btn
+								v-if="totalUnpaid"
+								:to="{ name: 'budget-edit', params: { id: aggregationState.unpaid.id } }"
+								color="danger"
+								dark>
 								<v-icon>error</v-icon>
-								<span style="margin-left: 5px;">Bills unpaid: 2</span>
+								<span style="margin-left: 5px;">Bills unpaid: {{ totalUnpaid }}</span>
 							</v-btn>
-							<v-btn color="success" dark>
+							<v-btn
+								v-if="!totalUnpaid"
+								:to="{ name: 'budget-edit', params: { id: aggregationState.unpaid.id } }"
+								color="success"
+								dark>
 								<v-icon>check_circle</v-icon>
 								<span style="margin-left: 5px;">All Bills Paid</span>
 							</v-btn>
