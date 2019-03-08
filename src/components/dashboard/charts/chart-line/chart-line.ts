@@ -10,4 +10,8 @@ import InternalLineChart from '@/components/dashboard/charts/InternalLineChart.j
 export default class ChartLine extends Vue {
     @Prop() public data: any;
     @Prop() public options: any;
+
+    public get currentData() {
+        return this.data;
+    }
 }

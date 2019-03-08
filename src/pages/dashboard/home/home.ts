@@ -17,26 +17,8 @@ class Home extends Vue {
         responsive: true,
         maintainAspectRatio: false,
     };
-    public chartData: ChartDataInterface = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-            'October', 'November', 'December'],
-        datasets: [
-            {
-                label: 'Savings',
-                backgroundColor: 'rgba(68,173,168,0.7)',
-                data: [40.3, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
-            },
-            {
-                label: 'Spent',
-                backgroundColor: 'rgba(198,40,40,0.5)',
-                data: [80, 70, 62, 59, 30, 70, 29, 90, 30, 20, 42, 61],
-            },
-        ],
-    };
+    public data: ChartDataInterface = {} as ChartDataInterface;
     public selectedYear: string = '2019';
-    public years: Array<{ value: string; label: string; }> = [
-        { value: '2019', label: '2019' },
-    ];
 
     public get currentYear() {
         return timestampService.getCurrentTimestamp('UTC', 'YYYY');
@@ -68,6 +50,56 @@ class Home extends Vue {
 
     public get totalSpent() {
         return this.getTotal('spent');
+    }
+
+    public get isAggregateEmpty() {
+        return !Object.keys(this.budgetAggregate).length;
+    }
+
+    public get chartData() {
+        const saved: string = 'saved';
+        const spent: string = 'spent';
+
+        if (
+            typeof (this.budgetAggregate as any)[this.selectedYear] !== 'undefined' &&
+            typeof (this.budgetAggregate as any)[this.selectedYear][saved] !== 'undefined' &&
+            typeof (this.budgetAggregate as any)[this.selectedYear][spent] !== 'undefined'
+        ) {
+            return {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                    'October', 'November', 'December'],
+                datasets: [
+                    {
+                        label: 'Savings',
+                        backgroundColor: 'rgba(68,173,168,0.7)',
+                        data: (this.budgetAggregate as any)[this.selectedYear][saved],
+                    },
+                    {
+                        label: 'Spent',
+                        backgroundColor: 'rgba(198,40,40,0.5)',
+                        data: (this.budgetAggregate as any)[this.selectedYear][spent],
+                    },
+                ],
+            };
+        }
+
+        return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    }
+
+    public get years(): Array<{ value: string; label: string; }> {
+        if (typeof (this.budgetAggregate as any)[this.currentYear] !== 'undefined') {
+            const allYears: any[] = [];
+
+            for (const year of Object.keys(this.budgetAggregate)) {
+                allYears.unshift({ value: year, label: year });
+            }
+
+            return allYears;
+        }
+
+        return  [
+            { value: '2019', label: '2019' },
+        ];
     }
 
     private getAverage(name: string) {

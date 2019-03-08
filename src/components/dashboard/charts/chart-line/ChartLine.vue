@@ -4,7 +4,7 @@
 <template>
 	<div class="charts chart-line">
 		<InternalLineChart
-			:chart-data="data"
+			:chart-data="currentData"
 			:options="options"></InternalLineChart>
 	</div>
 </template>
