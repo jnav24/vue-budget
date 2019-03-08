@@ -5,9 +5,11 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {httpService, responseService} from '@/module';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
+import {AggregationUnpaidInterface} from '@/interfaces/aggregation-unpaid.interface';
+import {AggregationBudgetInterface} from '@/interfaces/aggregation-budget.interface';
 
-const budget: any[] = [];
-const unpaid: any = {};
+const budget: AggregationBudgetInterface = {} as AggregationBudgetInterface;
+const unpaid: AggregationUnpaidInterface = {} as AggregationUnpaidInterface;
 
 const currentState: AggregationStateInterface = {
     budget,
@@ -20,7 +22,7 @@ const getters: GetterTree<AggregationStateInterface, RootStateInterface> = {
 
         if (typeof state.unpaid.totals !== 'undefined') {
             for (const key of Object.keys(state.unpaid.totals)) {
-                total += Number(state.unpaid.totals[key]);
+                total += Number((state.unpaid.totals as any)[key]);
             }
 
         }
@@ -68,10 +70,10 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
 };
 
 const mutations: MutationTree<AggregationStateInterface> = {
-    setBudgetAggregation(state, payload: any[]) {
+    setBudgetAggregation(state, payload: AggregationBudgetInterface) {
         state.budget = payload;
     },
-    addUnpaidBillCount(state, payload: any) {
+    addUnpaidBillCount(state, payload: AggregationUnpaidInterface) {
         state.unpaid = payload;
     },
 };
