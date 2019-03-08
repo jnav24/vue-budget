@@ -18,7 +18,6 @@ class Home extends Vue {
         responsive: true,
         maintainAspectRatio: false,
     };
-    public data: ChartDataInterface = {} as ChartDataInterface;
     public selectedYear: string = '2019';
 
     public get currentYear() {
@@ -57,7 +56,7 @@ class Home extends Vue {
         return !Object.keys(this.budgetAggregate).length;
     }
 
-    public get chartData() {
+    public get chartData(): ChartDataInterface {
         const saved: string = 'saved';
         const spent: string = 'spent';
 
@@ -84,7 +83,10 @@ class Home extends Vue {
             };
         }
 
-        return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        return {
+            labels: [],
+            datasets: [],
+        };
     }
 
     public get years(): Array<{ value: string; label: string; }> {
