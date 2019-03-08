@@ -43,6 +43,7 @@ function initStore() {
     }
 
     store.dispatch('getYearlyAggregations');
+    store.dispatch('getUnpaidBillTotals');
     store.dispatch('getAllBudgetTemplates');
     store.dispatch('getAllBudgets');
     store.dispatch('getAllBankTypes');

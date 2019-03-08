@@ -12,8 +12,14 @@
 
 					<v-flex lg2 xl2>
 						<v-layout justify-end>
-							<v-btn color="danger" dark>Bills unpaid: 2</v-btn>
-							<v-btn color="success" dark>All Bills Paid</v-btn>
+							<v-btn color="danger" dark>
+								<v-icon>error</v-icon>
+								<span style="margin-left: 5px;">Bills unpaid: 2</span>
+							</v-btn>
+							<v-btn color="success" dark>
+								<v-icon>check_circle</v-icon>
+								<span style="margin-left: 5px;">All Bills Paid</span>
+							</v-btn>
 						</v-layout>
 					</v-flex>
 				</v-layout>
