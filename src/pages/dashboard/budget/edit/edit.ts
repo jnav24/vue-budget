@@ -46,6 +46,7 @@ class Edit extends Vue {
     @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
     @Action public getAllBudgetTemplates: () => Promise<ResponseInterface>;
     @Action public getUnpaidBillTotals: () => Promise<ResponseInterface>;
+    @Action public saveYearlyAggregations: () => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates)
     public budgetTemplateState: BudgetTemplateStateInterface;
@@ -101,6 +102,7 @@ class Edit extends Vue {
 
                         if (this.setLatestBudget()) {
                             this.updateBudgetTemplate();
+                            this.saveYearlyAggregations();
                         }
 
                         this.getUnpaidBillTotals();
