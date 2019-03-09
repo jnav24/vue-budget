@@ -67,6 +67,25 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async getCurrentYearAggregate({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'current-budget-aggregate',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+            console.log(response);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                // commit('setBudgetAggregation', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
 };
 
 const mutations: MutationTree<AggregationStateInterface> = {

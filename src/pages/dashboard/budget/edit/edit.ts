@@ -46,6 +46,7 @@ class Edit extends Vue {
     @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
     @Action public getAllBudgetTemplates: () => Promise<ResponseInterface>;
     @Action public getUnpaidBillTotals: () => Promise<ResponseInterface>;
+    @Action public getCurrentYearAggregate: () => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates)
     public budgetTemplateState: BudgetTemplateStateInterface;
@@ -103,6 +104,7 @@ class Edit extends Vue {
                             this.updateBudgetTemplate();
                             // change to getSingleYearAggregation()
                             // remove saveYearlyAggreations call and actions
+                            this.getCurrentYearAggregate();
                         }
 
                         this.getUnpaidBillTotals();
