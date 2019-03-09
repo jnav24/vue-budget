@@ -70,7 +70,7 @@ class Home extends Vue {
                     'October', 'November', 'December'],
                 datasets: [
                     {
-                        label: 'Savings',
+                        label: 'Earned',
                         backgroundColor: 'rgba(68,173,168,0.7)',
                         data: (this.budgetAggregate as any)[this.selectedYear][saved],
                     },

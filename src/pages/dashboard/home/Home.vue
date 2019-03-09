@@ -5,7 +5,7 @@
 	<div class="page home">
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
-				<v-layout align-center>
+				<v-layout align-center style="margin-bottom: 25px;">
 					<v-flex lg10 xl10>
 						<h1 class="header__h1">Dashboard</h1>
 					</v-flex>
@@ -94,24 +94,9 @@
 		</v-layout>
 
 		<ul>
-			<li>DONE Year to date spent</li>
-			<li>DONE Year to date saved</li>
-			<li>DONE Year to date earned</li>
-			<li>DONE add drop down for year for chart</li>
-			<li>DONE show unpaid bills for current cycle; maybe right of the page title with a link to the budget page</li>
-			<li>make an aggregate table that gets updated everytime budget is saved. id, user_id, budget_id, spent | saved | earned, and value</li>
-			<li>DONE on the bottom three boxes, put the average value as well as the total</li>
+			<li>DONE create the interfaces for totals</li>
+			<li>saving a budget, updates the aggregate table and the aggregate state</li>
+			<li>DONE saving a budget, update the total</li>
 		</ul>
-
-		<pre style="text-align: left;">
-			example of data:
-			[
-				2019: {
-					earned: [],
-					saved: [],
-					spent: [],
-				}
-			]
-		</pre>
 	</div>
 </template>
