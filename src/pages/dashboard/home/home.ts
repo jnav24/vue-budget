@@ -107,10 +107,11 @@ class Home extends Vue {
 
     private getAverage(name: string) {
         const defaultSum: string = currencyService.setCurrency('0');
+        const currentMonth = timestampService.getCurrentTimestamp('UTC', 'M');
 
         if (typeof (this as any)[name] !== 'undefined' && (this as any)[name] !== defaultSum) {
             const earned = (this as any)[name].toString().replace('$', '');
-            return currencyService.setCurrency((Number(earned) / 12).toString());
+            return currencyService.setCurrency((Number(earned) / Number(currentMonth)).toString());
         }
 
         return defaultSum;

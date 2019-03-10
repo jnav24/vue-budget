@@ -92,11 +92,5 @@
 				</div>
 			</v-flex>
 		</v-layout>
-
-		<ul>
-			<li>DONE create the interfaces for totals</li>
-			<li>saving a budget, updates the aggregate table and the aggregate state</li>
-			<li>DONE saving a budget, update the total</li>
-		</ul>
 	</div>
 </template>
