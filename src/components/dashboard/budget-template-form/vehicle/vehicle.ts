@@ -1,11 +1,18 @@
 import { Component } from 'vue-property-decorator';
+import BudgetTemplateComponent from '@/components/dashboard/budget-template-form/BudgetTemplateForm.vue';
 import BudgetTemplateForm from '@/components/dashboard/budget-template-form/budget-template-form';
 import {BudgetTemplateFormInterface} from '@/components/dashboard/budget-template-form/budget-template-form.interface';
+import ConfirmationForm from '@/components/dashboard/confirmation-form/ConfirmationForm.vue';
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {VehicleInterface} from '@/interfaces/vehicle.interface';
 
-@Component
+@Component({
+    components: {
+        BudgetTemplateComponent,
+        ConfirmationForm,
+    },
+})
 class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     protected templateForm: FormInterface = {
         make: {
