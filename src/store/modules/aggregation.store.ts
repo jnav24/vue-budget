@@ -7,6 +7,7 @@ import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
 import {AggregationUnpaidInterface} from '@/interfaces/aggregation-unpaid.interface';
 import {AggregationBudgetInterface} from '@/interfaces/aggregation-budget.interface';
+import Vue from 'vue';
 
 const budget: AggregationBudgetInterface = {} as AggregationBudgetInterface;
 const unpaid: AggregationUnpaidInterface = {} as AggregationUnpaidInterface;
@@ -70,14 +71,13 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
     async getCurrentYearAggregate({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: 'current-budget-aggregate',
+                url: 'current-budget-aggregate/2019',
             };
 
             const response: AxiosResponse = await httpService.authGet(data);
-            console.log(response);
 
             if (responseService.isSuccessResponse(response.status)) {
-                // commit('setBudgetAggregation', responseService.getDataFromResponse(response));
+                commit('updateBudgetAggregation', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -91,6 +91,13 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
 const mutations: MutationTree<AggregationStateInterface> = {
     setBudgetAggregation(state, payload: AggregationBudgetInterface) {
         state.budget = payload;
+    },
+    updateBudgetAggregation(state, payload: AggregationBudgetInterface) {
+        const year = Object.keys(payload).shift();
+
+        if (typeof year === 'string') {
+            Vue.set(state.budget, year, payload[year]);
+        }
     },
     addUnpaidBillCount(state, payload: AggregationUnpaidInterface) {
         state.unpaid = payload;

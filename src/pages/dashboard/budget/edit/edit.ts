@@ -100,13 +100,15 @@ class Edit extends Vue {
                         this.alert.display = true;
                         this.canSaveBudget = false;
 
+                        // make sure aggregate always updates
+
                         if (this.setLatestBudget()) {
                             this.updateBudgetTemplate();
                             // change to getSingleYearAggregation()
                             // remove saveYearlyAggreations call and actions
-                            this.getCurrentYearAggregate();
                         }
 
+                        this.getCurrentYearAggregate();
                         this.getUnpaidBillTotals();
 
                         if (obj.exit) {
