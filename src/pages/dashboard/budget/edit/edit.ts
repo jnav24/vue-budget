@@ -56,7 +56,7 @@ class Edit extends Vue {
         msg: '',
         type: 'error',
     };
-    public budget: any = {};
+    public budget: BudgetListInterface = {} as BudgetListInterface;
     public canSaveBudget: boolean = false;
     public confirmCancelDialog = false;
     public confirmMessage: string = `
