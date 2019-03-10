@@ -46,7 +46,7 @@ class Edit extends Vue {
     @Action public updateBudget: (obj: BudgetListInterface) => Promise<ResponseInterface>;
     @Action public getAllBudgetTemplates: () => Promise<ResponseInterface>;
     @Action public getUnpaidBillTotals: () => Promise<ResponseInterface>;
-    @Action public getCurrentYearAggregate: () => Promise<ResponseInterface>;
+    @Action public getSelectedYearAggregate: (obj: { year: string }) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates)
     public budgetTemplateState: BudgetTemplateStateInterface;
@@ -100,16 +100,14 @@ class Edit extends Vue {
                         this.alert.display = true;
                         this.canSaveBudget = false;
 
-                        // make sure aggregate always updates
-
                         if (this.setLatestBudget()) {
                             this.updateBudgetTemplate();
-                            // change to getSingleYearAggregation()
-                            // remove saveYearlyAggreations call and actions
+                            this.getUnpaidBillTotals();
                         }
 
-                        this.getCurrentYearAggregate();
-                        this.getUnpaidBillTotals();
+                        this.getSelectedYearAggregate({
+                            year: timestampService.format(this.budget.budget_cycle, 'YYYY'),
+                        });
 
                         if (obj.exit) {
                             this.$router.push({ name: 'budget-list' });

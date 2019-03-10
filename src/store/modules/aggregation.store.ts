@@ -68,10 +68,10 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async getCurrentYearAggregate({ commit }): Promise<ResponseInterface> {
+    async getSelectedYearAggregate({ commit }, payload: { year: string }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: 'current-budget-aggregate/2019',
+                url: 'current-budget-aggregate/' + payload.year,
             };
 
             const response: AxiosResponse = await httpService.authGet(data);
