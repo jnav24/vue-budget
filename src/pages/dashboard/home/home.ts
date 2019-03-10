@@ -57,12 +57,12 @@ class Home extends Vue {
     }
 
     public get chartData(): ChartDataInterface {
-        const saved: string = 'saved';
+        const earned: string = 'earned';
         const spent: string = 'spent';
 
         if (
             typeof (this.budgetAggregate as any)[this.selectedYear] !== 'undefined' &&
-            typeof (this.budgetAggregate as any)[this.selectedYear][saved] !== 'undefined' &&
+            typeof (this.budgetAggregate as any)[this.selectedYear][earned] !== 'undefined' &&
             typeof (this.budgetAggregate as any)[this.selectedYear][spent] !== 'undefined'
         ) {
             return {
@@ -72,7 +72,7 @@ class Home extends Vue {
                     {
                         label: 'Earned',
                         backgroundColor: 'rgba(68,173,168,0.7)',
-                        data: (this.budgetAggregate as any)[this.selectedYear][saved],
+                        data: (this.budgetAggregate as any)[this.selectedYear][earned],
                     },
                     {
                         label: 'Spent',
