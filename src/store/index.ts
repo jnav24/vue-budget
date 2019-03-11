@@ -7,6 +7,7 @@ import { cookiesService } from '@/module';
 import Types from '@/store/modules/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import Aggregation from '@/store/modules/aggregation.store';
+import Controls from '@/store/modules/controls.store';
 
 Vue.use(Vuex);
 
@@ -37,6 +38,7 @@ export default new Vuex.Store<RootStateInterface>({
         Aggregation,
         Budget,
         BudgetTemplates,
+        Controls,
         Types,
         User,
     },
