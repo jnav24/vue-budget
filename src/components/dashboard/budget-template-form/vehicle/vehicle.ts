@@ -6,6 +6,7 @@ import ConfirmationForm from '@/components/dashboard/confirmation-form/Confirmat
 import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {VehicleInterface} from '@/interfaces/vehicle.interface';
+import {validateService} from '@/module';
 
 @Component({
     components: {
@@ -30,6 +31,30 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         mileage: {
             value: '',
             rules: [],
+        },
+        type: {
+            value: '',
+            rules: [
+                (v: any) => !!v || 'Name is required',
+            ],
+        },
+        due: {
+            value: 0,
+            rules: [
+                (v: any) => !!v || 'Due date is required',
+            ],
+        },
+        amount: {
+            value: 0,
+            rules: [
+                (v: any) => {
+                    if (!!v) {
+                        return validateService.isDollarAmount(v) || 'Not a valid dollar amount';
+                    }
+
+                    return true;
+                },
+            ],
         },
     };
 
