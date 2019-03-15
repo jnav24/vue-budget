@@ -1,13 +1,16 @@
 import { Vue, Component } from 'vue-property-decorator';
-import { Action } from 'vuex-class';
+import {Action, State} from 'vuex-class';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {responseService, globalService, validateService} from '@/module';
+import {responseService, validateService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
 import {AlertInterface} from '@/interfaces/alert.interface';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {ControlsStateInterface} from '@/interfaces/controls-state.interface';
 
 @Component
 class Register extends Vue {
     @Action public registerUser: (obj: any) => Promise<ResponseInterface>;
+    @State((state: RootStateInterface) => state.Controls) public controlsState: ControlsStateInterface;
     public alert: AlertInterface = {
         type: 'error',
         msg: '',
@@ -73,6 +76,10 @@ class Register extends Vue {
 
     public set phoneNumberFormat(phone: string) {
         this.form.phone_number.value = phone;
+    }
+
+    public get showRegisterForm() {
+        return this.controlsState.canRegister;
     }
 
     public validateAll() {

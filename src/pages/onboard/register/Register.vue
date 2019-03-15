@@ -16,7 +16,12 @@
 							{{ alert.msg }}
 						</v-alert>
 
-						<v-card-text>
+						<v-card-text v-if="!showRegisterForm">
+							<p style="font-size: 24px;margin-bottom: 0;">Sorry, registration is closed.</p>
+							<p style="font-size: 18px;">Please try again later.</p>
+						</v-card-text>
+
+						<v-card-text v-if="showRegisterForm">
 							<v-layout>
 								<v-flex xs12 sm5 md5 lg5>
 									<v-text-field
@@ -72,7 +77,7 @@
 							</v-layout>
 						</v-card-text>
 
-						<v-card-actions>
+						<v-card-actions v-if="showRegisterForm">
 							<v-btn
 								color="button"
 								@click="submit"
