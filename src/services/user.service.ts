@@ -35,7 +35,7 @@ class UserService {
             const data: UrlInterface = {
                 url: 'auth/forgetpassword',
                 params: {
-                    email,
+                    username: email,
                 },
             };
 
