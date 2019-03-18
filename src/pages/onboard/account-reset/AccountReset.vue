@@ -2,7 +2,7 @@
 <style src="./account-reset.scss" lang="scss" scoped></style>
 
 <template>
-	<div class="page account-reset">
+	<div class="page-sub account-reset">
 		<v-layout justify-center>
 			<v-flex xs12 sm10 md6 lg4 xl3>
 				<v-form ref="resetForm" v-model="formValid">
