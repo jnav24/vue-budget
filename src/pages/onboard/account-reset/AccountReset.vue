@@ -34,7 +34,7 @@
 
 						<v-card-actions>
 							<v-btn
-								class="btn--submit"
+								color="button"
 								@click="submit"
 								:disabled="!formValid"
 								block>Submit</v-btn>
