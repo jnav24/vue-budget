@@ -237,7 +237,7 @@ class Edit extends Vue {
         for (const item of items) {
             if (typeof this.budget.expenses[item] !== 'undefined') {
                 for (const budget of this.budget.expenses[item]) {
-                    if (item === 'miscellaneous' && !budget.track_total) {
+                    if (item === 'miscellaneous' && !!budget.track_total) {
                         continue;
                     }
 
