@@ -15,7 +15,6 @@ import {MiscellaneousInterface} from '@/interfaces/miscellaneous.interface';
     },
 })
 class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public checkbox: boolean = false;
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     protected templateForm: FormInterface = {
         name: {
@@ -24,6 +23,10 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
                 (v: any) => !!v || 'Name is required',
                 (v: any) => validateService.isValidLength(v, 3) || 'Name is not long enough',
             ],
+        },
+        track_total: {
+            value: false,
+            rules: [],
         },
         due: {
             value: 0,
@@ -51,6 +54,7 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             this.form.name.value = this.data.name;
             this.form.amount.value = this.data.amount;
             this.form.due.value = this.data.due_date;
+            this.form.track_total.value = this.data.track_total;
             this.setupPaidData();
         }
     }
@@ -60,6 +64,7 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             name: this.form.name.value,
             amount: this.form.amount.value,
             due_date: this.form.due.value,
+            track_total: this.form.track_total.value,
         };
 
         return this.setDataForSaving(data, 'miscellaneous');
