@@ -15,6 +15,14 @@ import {validateService} from '@/module';
     },
 })
 class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface {
+    public tableHeaders = [
+        'select',
+        'make',
+        'model',
+        'year',
+        'mileage',
+        'actions',
+    ];
     protected templateForm: FormInterface = {
         make: {
             value: '',

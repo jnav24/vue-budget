@@ -7,6 +7,8 @@
 			:edit-mode="editMode"
 			:reset="resetForm"
 			@buttonClicked="validateForm($event)">
+			Maybe show this section on the template page and have here where they select a vehicle?
+			although user would have to add a vehicle and reoccurring bill
 			<v-layout>
 				<v-flex lg3 xl3>
 					<v-text-field
@@ -32,7 +34,23 @@
 						v-model="form.year.value"
 						:rules="form.year.rules"></v-text-field>
 				</v-flex>
+
+				<v-spacer></v-spacer>
+
+				<v-flex>
+					<v-btn
+						color="success">
+						<v-icon>add</v-icon>
+						<span>Add</span>
+					</v-btn>
+				</v-flex>
 			</v-layout>
+
+			<div class="vehicle_list">
+				blah
+			</div>
+
+			<v-divider></v-divider>
 
 			<v-layout>
 				<v-flex lg5 xl5>

@@ -1,0 +1,9 @@
+.vehicle.budget-template {
+	.vehicle_list {
+		border: 1px solid map_get($colors, mid_grey);
+		height: 150px;
+		margin-bottom: 30px;
+		overflow-y: auto;
+		width: 100%;
+	}
+}
