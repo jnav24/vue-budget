@@ -35,7 +35,7 @@
 				</v-flex>
 			</v-layout>
 
-			<v-layout align-center>
+			<v-layout v-if="showPaidForm" align-center>
 				<v-tooltip bottom>
 					<template slot="activator">
 						<v-icon style="margin-top: -5px; margin-right: 10px; font-size: 22px;">help</v-icon>
