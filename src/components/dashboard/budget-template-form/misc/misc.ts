@@ -15,6 +15,7 @@ import {MiscellaneousInterface} from '@/interfaces/miscellaneous.interface';
     },
 })
 class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
+    public checkbox: boolean = false;
     public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     protected templateForm: FormInterface = {
         name: {
