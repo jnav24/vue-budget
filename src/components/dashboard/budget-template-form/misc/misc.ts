@@ -25,7 +25,7 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             ],
         },
         track_total: {
-            value: false,
+            value: 0,
             rules: [],
         },
         due: {
@@ -64,7 +64,7 @@ class Misc extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             name: this.form.name.value,
             amount: this.form.amount.value,
             due_date: this.form.due.value,
-            track_total: this.form.track_total.value,
+            track_total: Number(this.form.track_total.value),
         };
 
         return this.setDataForSaving(data, 'miscellaneous');
