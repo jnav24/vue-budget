@@ -231,12 +231,16 @@ class Edit extends Vue {
         this.totalSavings = ((this as any).totalEarned - (this as any).totalSpent);
     }
 
-    private getTotals(items: any): number {
+    private getTotals(items: any[]): number {
         let total = 0;
 
         for (const item of items) {
             if (typeof this.budget.expenses[item] !== 'undefined') {
                 for (const budget of this.budget.expenses[item]) {
+                    if (item === 'miscellaneous' && !budget.track_total) {
+                        continue;
+                    }
+
                     total = total + Number(budget.amount);
                 }
             }
