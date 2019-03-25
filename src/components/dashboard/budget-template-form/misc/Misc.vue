@@ -48,7 +48,7 @@
 
 				<v-checkbox
 					color="primary"
-					v-model="form.track_total.value"
+					v-model="form.not_track_amount.value"
 					label="Do not calculate this payment in the total?"></v-checkbox>
 			</v-layout>
 
