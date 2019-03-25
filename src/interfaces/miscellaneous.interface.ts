@@ -9,5 +9,5 @@ export interface MiscellaneousInterface {
     due_date: string;
     paid_date?: string;
     confirmation?: string;
-    track_total?: number;
+    not_track_amount?: number;
 }

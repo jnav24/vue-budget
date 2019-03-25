@@ -10,7 +10,7 @@ class Miscellaneous extends Budgets {
     }
 
     public isAmountNotTracked(item: MiscellaneousInterface): boolean {
-        return !!item.track_total;
+        return !!item.not_track_amount;
     }
 }
 
