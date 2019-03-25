@@ -11,6 +11,7 @@
 	&__due {
 		background: map-get($colors, danger);
 		color: #fff;
+		margin: 0;
 		text-align: center;
 	}
 
@@ -59,6 +60,14 @@
 
 	&__paid-icon {
 		background: map_get($colors, success);
+		border-radius: 50%;
+		color: #fff !important;
+		margin-right: 5px;
+		padding: 5px;
+	}
+
+	&__track-icon {
+		background: map_get($colors, danger);
 		border-radius: 50%;
 		color: #fff !important;
 		padding: 5px;
