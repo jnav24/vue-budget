@@ -30,6 +30,24 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
+                    // @TODO replace temp vehicle data
+                    const userVehicles: UserVehicleInterface[] = [
+                        {
+                            id: 1,
+                            make: 'Porsche',
+                            model: 'Cayenne',
+                            year: '2020',
+                            color: 'black',
+                        },
+                        {
+                            id: 2,
+                            make: 'Lexus',
+                            model: 'NX 350',
+                            year: '2020',
+                            color: 'black',
+                        },
+                    ];
+                    commit('addUserVehicles', userVehicles);
                     commit('addUser', response.data.data.user);
                     return responseService.getSuccessResponse();
                 }
@@ -122,6 +140,9 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 const mutations: MutationTree<UserStateInterface> = {
     addUser(state, usr: UserInterface) {
         state.user = usr;
+    },
+    addUserVehicles(state, payload: UserVehicleInterface[]) {
+        state.vehicles = payload;
     },
     resetUserState(state) {
         state.user = {} as UserInterface;

@@ -39,6 +39,7 @@
 				<v-layout>
 					<v-flex>
 						<v-text-field
+							v-model="form.make.value"
 							label="Make"></v-text-field>
 					</v-flex>
 
@@ -46,6 +47,7 @@
 
 					<v-flex>
 						<v-text-field
+							v-model="form.model.value"
 							label="Model"></v-text-field>
 					</v-flex>
 				</v-layout>
@@ -53,6 +55,7 @@
 				<v-layout>
 					<v-flex sm3 md3 lg3 xl3>
 						<v-text-field
+							v-model="form.color.value"
 							label="Color"></v-text-field>
 					</v-flex>
 
@@ -60,6 +63,7 @@
 
 					<v-flex sm3 md3 lg3 xl3>
 						<v-text-field
+							v-model="form.year.value"
 							label="Year"></v-text-field>
 					</v-flex>
 
@@ -72,15 +76,26 @@
 				</v-layout>
 
 				<v-btn
+					@click="addVehicle()"
 					color="success">Add Vehicle</v-btn>
 			</v-flex>
 
 			<v-spacer></v-spacer>
 
 			<v-flex sm6 md6 lg6 xl6 class="vehicle-list">
-				<div class="vehicle-list__empty">
+				<div v-if="!vehicles.length" class="vehicle-list__empty">
 					<v-icon class="empty-icon">hourglass_empty</v-icon>
 					<p>You have no vehicles saved. Add some vehicles on the left.</p>
+				</div>
+
+				<div v-if="vehicles.length">
+					<v-list>
+						<v-list-tile v-for="(item, index) in vehicles" :key="item.id">
+							<v-list-tile-content>
+								<v-list-tile-title>{{ item.make }} {{ item.model }}</v-list-tile-title>
+							</v-list-tile-content>
+						</v-list-tile>
+					</v-list>
 				</div>
 			</v-flex>
 		</v-layout>

@@ -8,6 +8,8 @@ import UserSecurity from '@/components/dashboard/profile/user-security/UserSecur
         UserSecurity,
     },
 })
-class Profile extends Vue {}
+class Profile extends Vue {
+    public activeTab: number = 0;
+}
 
 export default Profile;
