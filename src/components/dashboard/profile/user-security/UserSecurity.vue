@@ -3,6 +3,6 @@
 
 <template>
 	<div class="profile user-security">
-		hello motto!
+		Coming soon...!
 	</div>
 </template>
