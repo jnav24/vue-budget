@@ -22,6 +22,10 @@ class Dashboard extends Vue {
     ];
     public mobileMenu: boolean = false;
 
+    public goToProfile() {
+        this.$router.push({ name: 'profile' });
+    }
+
     public logout() {
         this.$store
             .dispatch('logUserOut')
