@@ -3,7 +3,12 @@
 
 <template>
 	<div class="profile page">
-		<v-layout justify-center>
+		<div class="banner-container">
+			<div class="banner-bkgd"></div>
+			<img src="@/assets/images/banner_user_profile.jpg" class="banner-image">
+		</div>
+
+		<v-layout style="position: relative;z-index: 2;" justify-center>
 			<v-flex lg8 xl8>
 				<h1 class="header__h1">Profile</h1>
 
