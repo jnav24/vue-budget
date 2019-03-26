@@ -8,6 +8,7 @@
 		<v-layout>
 			<v-flex lg5 xl5>
 				<v-text-field
+					v-model="form.first_name.value"
 					label="First Name"></v-text-field>
 			</v-flex>
 
@@ -15,6 +16,7 @@
 
 			<v-flex lg5 xl5>
 				<v-text-field
+					v-model="form.last_name.value"
 					label="Last Name"></v-text-field>
 			</v-flex>
 		</v-layout>
@@ -23,6 +25,7 @@
 			<v-flex lg5 xl5>
 				<v-text-field
 					disabled
+					v-model="form.email.value"
 					label="Email"></v-text-field>
 			</v-flex>
 		</v-layout>
