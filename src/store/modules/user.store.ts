@@ -8,12 +8,15 @@ import { cookiesService, responseService, httpService, userService } from '@/mod
 import {UrlInterface} from '@/interfaces/url.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 const user: UserInterface = {} as UserInterface;
+const vehicles: UserVehicleInterface[] = [];
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
 const currentState: UserStateInterface = {
     user,
+    vehicles,
 };
 
 const getters: GetterTree<UserStateInterface, RootStateInterface> = {};
