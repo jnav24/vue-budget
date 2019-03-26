@@ -25,7 +25,7 @@
 							</v-tab-item>
 
 							<v-tab-item>
-								hello security
+								<UserSecurity></UserSecurity>
 							</v-tab-item>
 						</v-tabs>
 					</v-card-text>
