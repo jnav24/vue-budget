@@ -8,9 +8,22 @@
 				<h1 class="header__h1">Profile</h1>
 
 				<v-card>
-					<v-card-title>
-						Profile page... works!
-					</v-card-title>
+					<v-card-text>
+						<v-tabs
+							slider-color="success"
+							v-model="activeTab">
+							<v-tab>User Profile</v-tab>
+							<v-tab>Security</v-tab>
+
+							<v-tab-item>
+								<UserProfile></UserProfile>
+							</v-tab-item>
+
+							<v-tab-item>
+								hello security
+							</v-tab-item>
+						</v-tabs>
+					</v-card-text>
 				</v-card>
 			</v-flex>
 		</v-layout>
