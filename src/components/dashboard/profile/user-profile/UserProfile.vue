@@ -90,11 +90,25 @@
 
 				<div v-if="vehicles.length">
 					<v-list>
-						<v-list-tile v-for="(item, index) in vehicles" :key="item.id">
-							<v-list-tile-content>
-								<v-list-tile-title>{{ item.make }} {{ item.model }}</v-list-tile-title>
-							</v-list-tile-content>
-						</v-list-tile>
+						<template v-for="(item, index) in vehicles">
+							<v-list-tile :key="item.id">
+								<v-list-tile-content>
+									<v-list-tile-title>{{item.year }} {{ item.make }} {{ item.model }}</v-list-tile-title>
+								</v-list-tile-content>
+
+								<v-list-tile-action>
+									<v-layout>
+										<v-icon>edit</v-icon>
+										<v-icon>delete</v-icon>
+									</v-layout>
+								</v-list-tile-action>
+							</v-list-tile>
+
+							<v-divider
+								v-if="index + 1 < vehicles.length"
+								:key="index"
+							></v-divider>
+						</template>
 					</v-list>
 				</div>
 			</v-flex>
