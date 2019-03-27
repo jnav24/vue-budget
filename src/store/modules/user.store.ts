@@ -9,6 +9,7 @@ import {UrlInterface} from '@/interfaces/url.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
+import {ProfileInterface} from '@/interfaces/profile.interface';
 
 const user: UserInterface = {} as UserInterface;
 const vehicles: UserVehicleInterface[] = [];
@@ -133,6 +134,27 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             } else {
                 return responseService.getFailedResponse();
             }
+        }
+    },
+    async updateUserProfile({ commit }, payload: ProfileInterface): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'user-profile',
+                params: payload,
+            };
+
+            const response: AxiosResponse = await httpService.authPost(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                // get data from response
+                // update user state
+                // update vehicle state
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
         }
     },
 };

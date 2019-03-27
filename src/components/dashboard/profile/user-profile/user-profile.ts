@@ -1,10 +1,12 @@
 import { Vue, Component } from 'vue-property-decorator';
-import {State} from 'vuex-class';
+import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {timestampService} from '@/module';
+import {ResponseInterface} from '@/interfaces/response.interface';
+import {ProfileInterface} from '@/interfaces/profile.interface';
 
 Component.registerHooks([
     'mounted',
@@ -12,6 +14,7 @@ Component.registerHooks([
 
 @Component
 export default class UserProfile extends Vue {
+    @Action public updateUserProfile: (obj: ProfileInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
     public form: FormInterface = {
         first_name: {
@@ -78,6 +81,20 @@ export default class UserProfile extends Vue {
 
             this.vehicles = [ ...this.vehicles, newVehicle];
             this.resetVehicleForm();
+        }
+    }
+
+    public submit() {
+        if (true) {
+            const data: ProfileInterface = {
+                profile: {
+                    first_name: this.form.first_name.value,
+                    last_name: this.form.last_name.value,
+                },
+                vehicles: [ ...this.vehicles ],
+            };
+
+            this.updateUserProfile(data);
         }
     }
 

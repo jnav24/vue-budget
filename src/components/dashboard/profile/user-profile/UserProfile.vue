@@ -98,8 +98,16 @@
 
 								<v-list-tile-action>
 									<v-layout>
-										<v-icon>edit</v-icon>
-										<v-icon>delete</v-icon>
+										<v-btn
+											fab
+											class="btn--details__icon">
+											<v-icon>edit</v-icon>
+										</v-btn>
+										<v-btn
+											fab
+											class="btn--details__icon">
+											<v-icon>delete</v-icon>
+										</v-btn>
 									</v-layout>
 								</v-list-tile-action>
 							</v-list-tile>
@@ -116,6 +124,7 @@
 
 		<div class="actions">
 			<v-btn
+				@click="submit()"
 				color="success">Save</v-btn>
 		</div>
 	</div>
