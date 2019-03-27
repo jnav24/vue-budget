@@ -20,6 +20,7 @@ import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog
     },
 })
 class List extends Vue {
+    @Action public getYearlyAggregations: () => Promise<ResponseInterface>;
     @Action public deleteSingleBudget: (num: number) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
@@ -96,6 +97,7 @@ class List extends Vue {
                     if (res.success) {
                         this.alertData.text = 'Budget was removed successfully';
                         this.alertData.type = 'success';
+                        this.getYearlyAggregations();
                     } else {
                         this.alertData.text = 'Budget couldn\'t be removed at this time. Please try again later.';
                         this.alertData.type = 'danger';
