@@ -118,6 +118,7 @@ export default class UserProfile extends Vue {
                 color: this.form.color.value,
                 year: this.form.year.value,
                 license: this.form.license.value,
+                active: 1,
             };
 
             this.vehicles = [ ...this.vehicles, newVehicle];
@@ -149,7 +150,7 @@ export default class UserProfile extends Vue {
 
     public emitDeleteVehicle(val: number) {
         if (val) {
-            // delete vehicle
+            this.setVehicleAsInactive();
         }
 
         this.selectedVehicle = {} as UserVehicleInterface;
@@ -167,5 +168,16 @@ export default class UserProfile extends Vue {
         this.form.license.value = '';
         const refs: any = this.$refs.vehicleForm;
         refs.reset();
+    }
+
+    private setVehicleAsInactive() {
+        const index = this.vehicles.findIndex((vehicle: UserVehicleInterface) => {
+            return vehicle.id === this.selectedVehicle.id;
+        });
+
+        if (index > -1) {
+            this.selectedVehicle.active = 0;
+            Vue.set(this.vehicles, index, this.selectedVehicle);
+        }
     }
 }
