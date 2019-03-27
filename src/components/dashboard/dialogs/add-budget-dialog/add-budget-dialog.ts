@@ -15,6 +15,7 @@ Component.registerHooks([
 
 @Component
 class AddBudgetDialog extends Dialogs {
+    @Action public getYearlyAggregations: () => Promise<ResponseInterface>;
     @Action public saveBudget: (obj: { name: string; expenses: any }) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
@@ -90,6 +91,7 @@ class AddBudgetDialog extends Dialogs {
                         const ref: any = this.$refs.addBudgetForm;
                         ref.reset();
                         this.$router.push({ name: 'budget-edit', params: { id: res.data.id } });
+                        this.getYearlyAggregations();
                     }
                 });
         }
