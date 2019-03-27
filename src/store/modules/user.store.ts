@@ -131,7 +131,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addUser', response.data.data.profile);
-                // commit('addUserVehicles', response.data.data.vehicles);
+                commit('addUserVehicles', response.data.data.vehicles);
                 return responseService.getSuccessResponse();
             }
 
