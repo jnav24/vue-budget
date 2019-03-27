@@ -4,7 +4,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
-import {timestampService} from '@/module';
+import {timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
 
@@ -19,11 +19,17 @@ export default class UserProfile extends Vue {
     public form: FormInterface = {
         first_name: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Please enter your first name',
+                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
+            ],
         },
         last_name: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Please enter your last name',
+                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
+            ],
         },
         email: {
             value: '',
@@ -31,19 +37,33 @@ export default class UserProfile extends Vue {
         },
         make: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Please enter a make of your vehicle',
+                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
+            ],
         },
         model: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Please enter a model of your vehicle',
+                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
+            ],
         },
         color: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Please enter the color of your vehicle',
+                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
+            ],
         },
         year: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Please enter the year of your vehicle',
+                (v: any) => validateService.isNumeric(v) || 'Only numbers are accepted',
+                (v: any) => validateService.isValidLength(v, 4) || 'Must be 4 digits long',
+                (v: any) => validateService.isMaxLength(v, 4) || 'Must be 4 digits long',
+            ],
         },
         license: {
             value: '',
