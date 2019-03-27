@@ -45,6 +45,10 @@ export default class UserProfile extends Vue {
             value: '',
             rules: [],
         },
+        license: {
+            value: '',
+            rules: [],
+        },
     };
     private tempVehicles: UserVehicleInterface[] = [];
 
@@ -77,6 +81,7 @@ export default class UserProfile extends Vue {
                 model: this.form.model.value,
                 color: this.form.color.value,
                 year: this.form.year.value,
+                license: this.form.license.value,
             };
 
             this.vehicles = [ ...this.vehicles, newVehicle];
@@ -103,5 +108,6 @@ export default class UserProfile extends Vue {
         this.form.model.value = '';
         this.form.color.value = '';
         this.form.year.value = '';
+        this.form.license.value = '';
     }
 }
