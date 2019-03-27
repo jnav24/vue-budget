@@ -106,8 +106,8 @@
 
 				<div v-if="vehicles.length">
 					<v-list>
-						<template v-for="(item, index) in vehicles">
-							<v-list-tile :key="item.id">
+						<div v-for="(item, index) in vehicles" :key="item.id">
+							<v-list-tile>
 								<v-list-tile-content>
 									<v-list-tile-title>{{item.year }} {{ item.make }} {{ item.model }}</v-list-tile-title>
 								</v-list-tile-content>
@@ -132,7 +132,7 @@
 								v-if="index + 1 < vehicles.length"
 								:key="index"
 							></v-divider>
-						</template>
+						</div>
 					</v-list>
 				</div>
 			</v-flex>
