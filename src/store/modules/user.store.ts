@@ -146,9 +146,8 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authPost(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                // get data from response
-                // update user state
-                // update vehicle state
+                commit('addUser', response.data.data.profile);
+                // commit('addUserVehicles', response.data.data.vehicles);
                 return responseService.getSuccessResponse();
             }
 
