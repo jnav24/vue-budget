@@ -10,6 +10,10 @@
 			@updateData="emitDeleteVehicle($event)"
 			@updateDialog="updateDeleteVehicleDialog($event)"></ConfirmDialog>
 
+		<EditVehicleDialog
+			:dialog="editVehicleDialog"
+			@updateDialog="updateEditVehicleDialog($event)"></EditVehicleDialog>
+
 		<h3 class="header__h3 mt20">Basic Details</h3>
 
 		<v-form v-model="profileValid">

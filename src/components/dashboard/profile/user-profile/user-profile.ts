@@ -8,6 +8,7 @@ import {timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
+import EditVehicleDialog from '@/components/dashboard/dialogs/edit-vehicle-dialog/EditVehicleDialog.vue';
 
 Component.registerHooks([
     'mounted',
@@ -16,6 +17,7 @@ Component.registerHooks([
 @Component({
     components: {
         ConfirmDialog,
+        EditVehicleDialog,
     },
 })
 export default class UserProfile extends Vue {
@@ -165,6 +167,10 @@ export default class UserProfile extends Vue {
 
     public updateDeleteVehicleDialog(val: boolean) {
         this.deleteVehicleDialog = val;
+    }
+
+    public updateEditVehicleDialog(val: boolean) {
+        this.editVehicleDialog = val;
     }
 
     private resetVehicleForm() {
