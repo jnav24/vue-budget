@@ -151,6 +151,7 @@ export default class UserProfile extends Vue {
     public emitDeleteVehicle(val: number) {
         if (val) {
             this.setVehicleAsInactive();
+            this.vehicleChanged = true;
         }
 
         this.selectedVehicle = {} as UserVehicleInterface;

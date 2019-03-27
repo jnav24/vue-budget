@@ -113,7 +113,7 @@
 
 				<div v-if="vehicles.length">
 					<v-list>
-						<div v-for="(item, index) in vehicles" :key="item.id">
+						<div v-for="(item, index) in vehicles" :key="item.id" v-if="item.active">
 							<v-list-tile>
 								<v-list-tile-content>
 									<v-list-tile-title>{{item.year }} {{ item.make }} {{ item.model }}</v-list-tile-title>
