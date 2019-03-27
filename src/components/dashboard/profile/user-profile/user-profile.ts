@@ -26,6 +26,7 @@ export default class UserProfile extends Vue {
         message: '',
     };
     public deleteVehicleDialog: boolean = false;
+    public editVehicleDialog: boolean = false;
     public form: FormInterface = {
         first_name: {
             value: '',
@@ -138,6 +139,11 @@ export default class UserProfile extends Vue {
 
             this.updateUserProfile(data);
         }
+    }
+
+    public showEditVehicleDialog(vehicle: UserVehicleInterface) {
+        this.editVehicleDialog = true;
+        this.selectedVehicle = vehicle;
     }
 
     public showDeleteVehicleDialog(vehicle: UserVehicleInterface) {

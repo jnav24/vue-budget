@@ -123,6 +123,7 @@
 									<v-layout>
 										<v-btn
 											fab
+											@click="showEditVehicleDialog(item)"
 											class="btn--details__icon">
 											<v-icon>edit</v-icon>
 										</v-btn>
