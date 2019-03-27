@@ -8,6 +8,10 @@ html, body {
 		font-weight: 300;
 		font-size: 42px;
 		margin-bottom: 25px;
+
+		&.invert {
+			color: #fff;
+		}
 	}
 
 	&__h3 {
@@ -15,5 +19,15 @@ html, body {
 		font-weight: 300;
 		font-size: 30px;
 		margin-bottom: 25px;
+
+		&.invert {
+			color: #fff;
+		}
+	}
+}
+
+.mt {
+	&20 {
+		margin-top: 20px;
 	}
 }

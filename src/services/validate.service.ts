@@ -51,6 +51,10 @@ class ValidateService {
     public isDollarAmount(value: string) {
         return /^[0-9]+(\.[0-9][0-9])?$/.test(value);
     }
+
+    public isMaxLength(value: string | any[] = '', len: number = 5): boolean {
+        return value.length === len;
+    }
 }
 
 export default ValidateService;

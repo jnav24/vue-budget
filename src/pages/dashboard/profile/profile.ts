@@ -1,6 +1,15 @@
 import { Component, Vue } from 'vue-property-decorator';
+import UserProfile from '@/components/dashboard/profile/user-profile/UserProfile.vue';
+import UserSecurity from '@/components/dashboard/profile/user-security/UserSecurity.vue';
 
-@Component
-class Profile extends Vue {}
+@Component({
+    components: {
+        UserProfile,
+        UserSecurity,
+    },
+})
+class Profile extends Vue {
+    public activeTab: number = 0;
+}
 
 export default Profile;

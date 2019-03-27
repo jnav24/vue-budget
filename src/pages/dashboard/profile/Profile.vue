@@ -3,14 +3,32 @@
 
 <template>
 	<div class="profile page">
-		<v-layout justify-center>
+		<div class="banner-container">
+			<div class="banner-bkgd"></div>
+			<img src="@/assets/images/banner_user_profile.jpg" class="banner-image">
+		</div>
+
+		<v-layout style="position: relative;z-index: 2;" justify-center>
 			<v-flex lg8 xl8>
-				<h1 class="header__h1">Profile</h1>
+				<h1 class="header__h1 invert">Profile</h1>
 
 				<v-card>
-					<v-card-title>
-						Profile page... works!
-					</v-card-title>
+					<v-card-text>
+						<v-tabs
+							slider-color="success"
+							v-model="activeTab">
+							<v-tab>User Profile</v-tab>
+							<v-tab>Security</v-tab>
+
+							<v-tab-item>
+								<UserProfile></UserProfile>
+							</v-tab-item>
+
+							<v-tab-item>
+								<UserSecurity></UserSecurity>
+							</v-tab-item>
+						</v-tabs>
+					</v-card-text>
 				</v-card>
 			</v-flex>
 		</v-layout>

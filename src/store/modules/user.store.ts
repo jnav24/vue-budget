@@ -8,12 +8,16 @@ import { cookiesService, responseService, httpService, userService } from '@/mod
 import {UrlInterface} from '@/interfaces/url.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
+import {ProfileInterface} from '@/interfaces/profile.interface';
 
 const user: UserInterface = {} as UserInterface;
+const vehicles: UserVehicleInterface[] = [];
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
 const currentState: UserStateInterface = {
     user,
+    vehicles,
 };
 
 const getters: GetterTree<UserStateInterface, RootStateInterface> = {};
@@ -27,6 +31,24 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
+                    // @TODO replace temp vehicle data
+                    const userVehicles: UserVehicleInterface[] = [
+                        {
+                            id: 1,
+                            make: 'Porsche',
+                            model: 'Cayenne',
+                            year: '2020',
+                            color: 'black',
+                        },
+                        {
+                            id: 2,
+                            make: 'Lexus',
+                            model: 'NX 350',
+                            year: '2020',
+                            color: 'black',
+                        },
+                    ];
+                    commit('addUserVehicles', userVehicles);
                     commit('addUser', response.data.data.user);
                     return responseService.getSuccessResponse();
                 }
@@ -114,11 +136,34 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             }
         }
     },
+    async updateUserProfile({ commit }, payload: ProfileInterface): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'user-profile',
+                params: payload,
+            };
+
+            const response: AxiosResponse = await httpService.authPost(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addUser', response.data.data.profile);
+                // commit('addUserVehicles', response.data.data.vehicles);
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
 };
 
 const mutations: MutationTree<UserStateInterface> = {
     addUser(state, usr: UserInterface) {
         state.user = usr;
+    },
+    addUserVehicles(state, payload: UserVehicleInterface[]) {
+        state.vehicles = payload;
     },
     resetUserState(state) {
         state.user = {} as UserInterface;

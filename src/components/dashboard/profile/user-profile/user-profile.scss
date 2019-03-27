@@ -1,0 +1,31 @@
+.profile.user-profile {
+	.vehicle-form {
+		background: map-get($colors, lite_grey);
+		padding: 10px;
+	}
+
+	.vehicle-list {
+		border: 1px solid darken(map_get($colors, lite_grey), 10%);
+		overflow-y: auto;
+
+		&__empty {
+			padding-top: 8%;
+			text-align: center;
+
+			.v-icon {
+				color: map_get($colors, mid_grey);
+				font-size: 62px;
+			}
+
+			p {
+				color: map_get($colors, mid_grey);
+				padding-top: 10px;
+			}
+		}
+	}
+
+	.actions {
+		padding-top: 20px;
+		text-align: right;
+	}
+}

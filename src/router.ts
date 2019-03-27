@@ -162,6 +162,14 @@ const router = new Router({
                     },
                     component: () => import('@/pages/dashboard/budget/template/Template.vue'),
                 },
+                {
+                    path: 'profile',
+                    name: 'profile',
+                    meta: {
+                        middleware: [auth],
+                    },
+                    component: () => import('@/pages/dashboard/profile/Profile.vue'),
+                },
             ],
         },
     ],

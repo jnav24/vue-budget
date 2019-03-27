@@ -1,3 +1,27 @@
 .profile.page {
 	@include dashboardHeader;
+
+	.banner-container {
+		height: 200px;
+		overflow: hidden;
+		width: 100%;
+		z-index: 1;
+		@include posa(0,n,n,0);
+
+		.banner-bkgd {
+			background: rgba(map_get($colors, primary), 0.4);
+			height: 100%;
+			z-index: 2;
+		}
+
+		.banner-image {
+			min-height: 100%;
+			z-index: 1;
+		}
+
+		.banner-image, .banner-bkgd {
+			width: 100%;
+			@include posa(0,n,n,0);
+		}
+	}
 }

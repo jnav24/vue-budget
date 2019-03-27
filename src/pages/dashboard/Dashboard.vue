@@ -38,6 +38,10 @@
 							</v-btn>
 
 							<v-list>
+								<v-list-tile @click="goToProfile()">
+									<v-list-tile-title>Profile</v-list-tile-title>
+								</v-list-tile>
+
 								<v-list-tile @click="logout()">
 									<v-list-tile-title>Logout</v-list-tile-title>
 								</v-list-tile>

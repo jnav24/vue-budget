@@ -3,6 +3,6 @@ export interface UserInterface {
     last_name?: string;
     id?: string;
     user_id?: string;
-    email: string;
-    token: string;
+    email?: string;
+    token?: string;
 }
