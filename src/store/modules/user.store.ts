@@ -31,24 +31,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
-                    // @TODO replace temp vehicle data
-                    const userVehicles: UserVehicleInterface[] = [
-                        {
-                            id: 1,
-                            make: 'Porsche',
-                            model: 'Cayenne',
-                            year: '2020',
-                            color: 'black',
-                        },
-                        {
-                            id: 2,
-                            make: 'Lexus',
-                            model: 'NX 350',
-                            year: '2020',
-                            color: 'black',
-                        },
-                    ];
-                    commit('addUserVehicles', userVehicles);
+                    commit('addUserVehicles', response.data.data.vehicles);
                     commit('addUser', response.data.data.user);
                     return responseService.getSuccessResponse();
                 }
@@ -71,6 +54,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const res: AxiosResponse = await httpService.post(data);
 
             if (responseService.isSuccessResponse(res.status)) {
+                commit('addUserVehicles', res.data.data.vehicles);
                 commit('addUser', res.data.data.user);
                 cookiesService.setCookie(userCookieName, res.data.data.token);
                 return responseService.getSuccessResponse();
