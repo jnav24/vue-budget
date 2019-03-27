@@ -70,6 +70,10 @@ export default class UserProfile extends Vue {
             rules: [],
         },
     };
+    public profileChanged: boolean = false;
+    public profileValid: boolean = false;
+    public vehicleChanged: boolean = false;
+    public vehicleValid: boolean = false;
     private tempVehicles: UserVehicleInterface[] = [];
 
     public get user() {
@@ -94,7 +98,8 @@ export default class UserProfile extends Vue {
     }
 
     public addVehicle() {
-        if (true) {
+        if (this.vehicleValid) {
+            this.vehicleChanged = true;
             const newVehicle: UserVehicleInterface = {
                 id: 'temp_' + timestampService.generateUnixId(),
                 make: this.form.make.value,
@@ -110,7 +115,7 @@ export default class UserProfile extends Vue {
     }
 
     public submit() {
-        if (true) {
+        if ((this.profileValid && this.profileChanged) || this.vehicleChanged ) {
             const data: ProfileInterface = {
                 profile: {
                     first_name: this.form.first_name.value,
@@ -129,5 +134,7 @@ export default class UserProfile extends Vue {
         this.form.color.value = '';
         this.form.year.value = '';
         this.form.license.value = '';
+        const refs: any = this.$refs.vehicleForm;
+        refs.reset();
     }
 }
