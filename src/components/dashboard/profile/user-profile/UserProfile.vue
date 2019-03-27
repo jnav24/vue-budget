@@ -3,6 +3,13 @@
 
 <template>
 	<div class="profile user-profile">
+		<ConfirmDialog
+			:dialog="deleteVehicleDialog"
+			:submit-text="deleteVehicle.submitText"
+			:message="deleteVehicle.message"
+			@updateData="emitDeleteVehicle($event)"
+			@updateDialog="updateDeleteVehicleDialog($event)"></ConfirmDialog>
+
 		<h3 class="header__h3 mt20">Basic Details</h3>
 
 		<v-form v-model="profileValid">
@@ -121,6 +128,7 @@
 										</v-btn>
 										<v-btn
 											fab
+											@click="showDeleteVehicleDialog(item)"
 											class="btn--details__icon">
 											<v-icon>delete</v-icon>
 										</v-btn>

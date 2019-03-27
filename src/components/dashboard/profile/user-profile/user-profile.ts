@@ -7,15 +7,25 @@ import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
+import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 
 Component.registerHooks([
     'mounted',
 ]);
 
-@Component
+@Component({
+    components: {
+        ConfirmDialog,
+    },
+})
 export default class UserProfile extends Vue {
     @Action public updateUserProfile: (obj: ProfileInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
+    public deleteVehicle = {
+        submitText: 'Delete Vehicle',
+        message: '',
+    };
+    public deleteVehicleDialog: boolean = false;
     public form: FormInterface = {
         first_name: {
             value: '',
@@ -72,6 +82,7 @@ export default class UserProfile extends Vue {
     };
     public profileChanged: boolean = false;
     public profileValid: boolean = false;
+    public selectedVehicle: UserVehicleInterface = {} as UserVehicleInterface;
     public vehicleChanged: boolean = false;
     public vehicleValid: boolean = false;
     private tempVehicles: UserVehicleInterface[] = [];
@@ -126,6 +137,26 @@ export default class UserProfile extends Vue {
 
             this.updateUserProfile(data);
         }
+    }
+
+    public showDeleteVehicleDialog(vehicle: UserVehicleInterface) {
+        this.deleteVehicle.message = `
+            Are you sure you want to delete, ${vehicle.year} ${vehicle.make} ${vehicle.model}, vehicle?
+        `;
+        this.deleteVehicleDialog = true;
+        this.selectedVehicle = vehicle;
+    }
+
+    public emitDeleteVehicle(val: number) {
+        if (val) {
+            // delete vehicle
+        }
+
+        this.selectedVehicle = {} as UserVehicleInterface;
+    }
+
+    public updateDeleteVehicleDialog(val: boolean) {
+        this.deleteVehicleDialog = val;
     }
 
     private resetVehicleForm() {
