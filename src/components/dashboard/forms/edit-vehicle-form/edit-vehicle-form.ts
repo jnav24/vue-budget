@@ -46,6 +46,7 @@ export default class EditVehicleForm extends Vue {
             rules: [],
         },
     };
+    public vehicleChanged: boolean = false;
     public vehicleValid: boolean = false;
 
     public mounted() {
@@ -59,25 +60,30 @@ export default class EditVehicleForm extends Vue {
             this.form.color.value = this.data.color;
             this.form.year.value = this.data.year;
             this.form.license.value = this.data.license;
-            this.updateFormData();
+            this.setupEmitFormData();
         }
     }
 
     public updateFormData() {
+        this.vehicleChanged = true;
         setTimeout(() => {
-            const data = {
-                valid: this.vehicleValid,
-                form: {
-                    id: 1,
-                    make: this.form.make.value,
-                    model: this.form.model.value,
-                    color: this.form.color.value,
-                    year: this.form.year.value,
-                    active: 1,
-                },
-            };
-            this.updateData(data);
+            this.setupEmitFormData();
         }, 10);
+    }
+
+    private setupEmitFormData() {
+        const data = {
+            valid: this.vehicleChanged && this.vehicleValid,
+            form: {
+                id: 1,
+                make: this.form.make.value,
+                model: this.form.model.value,
+                color: this.form.color.value,
+                year: this.form.year.value,
+                active: 1,
+            },
+        };
+        this.updateData(data);
     }
 
     @Emit('updateData')
