@@ -7,8 +7,10 @@
 		max-width="500px"
 		v-model="showDialog">
 		<v-card>
+			<v-card-title class="dialog--title">Edit Vehicle</v-card-title>
+
 			<v-card-text>
-				Edit your vehicle
+				<EditVehicleForm></EditVehicleForm>
 			</v-card-text>
 		</v-card>
 	</v-dialog>
