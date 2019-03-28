@@ -12,14 +12,15 @@
 			<v-card-text>
 				<EditVehicleForm
 					v-if="showDialog"
-					:data="currentData"></EditVehicleForm>
+					:data="currentData"
+					@updateData="emitVehicleData($event)"></EditVehicleForm>
 			</v-card-text>
 
 			<v-card-actions>
 				<v-layout justify-end>
 					<v-btn>Cancel</v-btn>
 					<v-btn
-						dark
+						:disabled="!formValid"
 						color="success">Update Vehicle</v-btn>
 				</v-layout>
 			</v-card-actions>

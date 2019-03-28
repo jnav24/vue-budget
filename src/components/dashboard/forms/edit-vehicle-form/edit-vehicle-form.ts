@@ -59,22 +59,25 @@ export default class EditVehicleForm extends Vue {
             this.form.color.value = this.data.color;
             this.form.year.value = this.data.year;
             this.form.license.value = this.data.license;
+            this.updateFormData();
         }
     }
 
     public updateFormData() {
-        const data = {
-            valid: this.vehicleValid,
-            form: {
-                id: 1,
-                make: this.form.make.value,
-                model: this.form.model.value,
-                color: this.form.color.value,
-                year: this.form.year.value,
-                active: 1,
-            },
-        };
-        this.updateData(data);
+        setTimeout(() => {
+            const data = {
+                valid: this.vehicleValid,
+                form: {
+                    id: 1,
+                    make: this.form.make.value,
+                    model: this.form.model.value,
+                    color: this.form.color.value,
+                    year: this.form.year.value,
+                    active: 1,
+                },
+            };
+            this.updateData(data);
+        }, 10);
     }
 
     @Emit('updateData')
