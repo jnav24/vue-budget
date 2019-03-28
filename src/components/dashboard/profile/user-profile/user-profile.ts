@@ -10,6 +10,7 @@ import {ProfileInterface} from '@/interfaces/profile.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import EditVehicleDialog from '@/components/dashboard/dialogs/edit-vehicle-dialog/EditVehicleDialog.vue';
 import {AlertInterface} from '@/interfaces/alert.interface';
+import EditVehicleForm from '@/components/dashboard/forms/edit-vehicle-form/EditVehicleForm.vue';
 
 Component.registerHooks([
     'mounted',
@@ -19,6 +20,7 @@ Component.registerHooks([
     components: {
         ConfirmDialog,
         EditVehicleDialog,
+        EditVehicleForm,
     },
 })
 export default class UserProfile extends Vue {
@@ -51,40 +53,6 @@ export default class UserProfile extends Vue {
             ],
         },
         email: {
-            value: '',
-            rules: [],
-        },
-        make: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Please enter a make of your vehicle',
-                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
-            ],
-        },
-        model: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Please enter a model of your vehicle',
-                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
-            ],
-        },
-        color: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Please enter the color of your vehicle',
-                (v: any) => validateService.isValidLength(v, 3) || 'Minimum length is 3 characters',
-            ],
-        },
-        year: {
-            value: '',
-            rules: [
-                (v: any) => !!v || 'Please enter the year of your vehicle',
-                (v: any) => validateService.isNumeric(v) || 'Only numbers are accepted',
-                (v: any) => validateService.isValidLength(v, 4) || 'Must be 4 digits long',
-                (v: any) => validateService.isMaxLength(v, 4) || 'Must be 4 digits long',
-            ],
-        },
-        license: {
             value: '',
             rules: [],
         },
@@ -206,6 +174,10 @@ export default class UserProfile extends Vue {
             this.vehicleChanged = true;
             Vue.set(this.vehicles, index, vehicle);
         }
+    }
+
+    public emitVehicleData(obj: UserVehicleInterface) {
+        console.log(obj);
     }
 
     private resetVehicleForm() {

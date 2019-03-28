@@ -2,6 +2,7 @@ import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
 import {validateService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
+import {timestampService} from '@/module';
 
 Component.registerHooks([
     'mounted',
@@ -9,7 +10,18 @@ Component.registerHooks([
 
 @Component
 export default class EditVehicleForm extends Vue {
-    @Prop() public data: UserVehicleInterface;
+    @Prop({
+        default: (): UserVehicleInterface => {
+            return {
+                id: 'temp_' + timestampService.generateUnixId(),
+                active: 1,
+                make: '',
+                model: '',
+                year: '',
+                color: '',
+            };
+        },
+    }) public data: UserVehicleInterface;
     public form: FormInterface = {
         make: {
             value: '',
