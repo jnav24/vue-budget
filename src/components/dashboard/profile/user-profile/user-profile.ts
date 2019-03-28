@@ -173,6 +173,10 @@ export default class UserProfile extends Vue {
         this.editVehicleDialog = val;
     }
 
+    public updateVehicleData(vehicle: UserVehicleInterface) {
+        // ...
+    }
+
     private resetVehicleForm() {
         this.form.make.value = '';
         this.form.model.value = '';

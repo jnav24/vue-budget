@@ -1,10 +1,15 @@
-import {Vue, Component, Emit} from 'vue-property-decorator';
+import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
 import {validateService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
+Component.registerHooks([
+    'mounted',
+]);
+
 @Component
 export default class EditVehicleForm extends Vue {
+    @Prop() public data: UserVehicleInterface;
     public form: FormInterface = {
         make: {
             value: '',
@@ -42,6 +47,20 @@ export default class EditVehicleForm extends Vue {
         },
     };
     public vehicleValid: boolean = false;
+
+    public mounted() {
+        this.setupForm();
+    }
+
+    public setupForm() {
+        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.form.make.value = this.data.make;
+            this.form.model.value = this.data.model;
+            this.form.color.value = this.data.color;
+            this.form.year.value = this.data.year;
+            this.form.license.value = this.data.license;
+        }
+    }
 
     public updateFormData() {
         const data = {

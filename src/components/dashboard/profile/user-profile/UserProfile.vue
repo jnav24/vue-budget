@@ -11,7 +11,9 @@
 			@updateDialog="updateDeleteVehicleDialog($event)"></ConfirmDialog>
 
 		<EditVehicleDialog
+			:data="selectedVehicle"
 			:dialog="editVehicleDialog"
+			@updateData="updateVehicleData($event)"
 			@updateDialog="updateEditVehicleDialog($event)"></EditVehicleDialog>
 
 		<h3 class="header__h3 mt20">Basic Details</h3>

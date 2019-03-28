@@ -10,8 +10,19 @@
 			<v-card-title class="dialog--title">Edit Vehicle</v-card-title>
 
 			<v-card-text>
-				<EditVehicleForm></EditVehicleForm>
+				<EditVehicleForm
+					v-if="showDialog"
+					:data="currentData"></EditVehicleForm>
 			</v-card-text>
+
+			<v-card-actions>
+				<v-layout justify-end>
+					<v-btn>Cancel</v-btn>
+					<v-btn
+						dark
+						color="success">Update Vehicle</v-btn>
+				</v-layout>
+			</v-card-actions>
 		</v-card>
 	</v-dialog>
 </template>
