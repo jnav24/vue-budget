@@ -171,10 +171,18 @@ export default class UserProfile extends Vue {
 
     public updateEditVehicleDialog(val: boolean) {
         this.editVehicleDialog = val;
+        this.selectedVehicle = {} as UserVehicleInterface;
     }
 
     public updateVehicleData(vehicle: UserVehicleInterface) {
-        console.log(vehicle);
+        const index: number = this.vehicles.findIndex((vech: UserVehicleInterface) => {
+            return vech.id === vehicle.id;
+        });
+
+        if (index > -1) {
+            this.vehicleChanged = true;
+            Vue.set(this.vehicles, index, vehicle);
+        }
     }
 
     private resetVehicleForm() {
@@ -188,7 +196,7 @@ export default class UserProfile extends Vue {
     }
 
     private setVehicleAsInactive() {
-        const index = this.vehicles.findIndex((vehicle: UserVehicleInterface) => {
+        const index: number = this.vehicles.findIndex((vehicle: UserVehicleInterface) => {
             return vehicle.id === this.selectedVehicle.id;
         });
 
