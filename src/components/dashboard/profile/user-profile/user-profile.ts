@@ -9,6 +9,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import EditVehicleDialog from '@/components/dashboard/dialogs/edit-vehicle-dialog/EditVehicleDialog.vue';
+import {AlertInterface} from '@/interfaces/alert.interface';
 
 Component.registerHooks([
     'mounted',
@@ -23,6 +24,11 @@ Component.registerHooks([
 export default class UserProfile extends Vue {
     @Action public updateUserProfile: (obj: ProfileInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
+    public alert: AlertInterface = {
+        display: false,
+        msg: '',
+        type: 'error',
+    };
     public deleteVehicle = {
         submitText: 'Delete Vehicle',
         message: '',
@@ -139,7 +145,24 @@ export default class UserProfile extends Vue {
                 vehicles: [ ...this.vehicles ],
             };
 
-            this.updateUserProfile(data);
+            this.updateUserProfile(data)
+                .then((res: ResponseInterface) => {
+                    if (res.success) {
+                        this.alert.msg = 'Profile has been updated successfully';
+                        this.alert.type = 'success';
+                        this.profileChanged = false;
+                        this.vehicleChanged = false;
+                    } else {
+                        this.alert.msg = 'Uh oh! Something went wrong! Check your input and try to save again';
+                        this.alert.type = 'error';
+                    }
+
+                    this.alert.display = true;
+
+                    setTimeout(() => {
+                        this.alert.display = false;
+                    }, 3000);
+                });
         }
     }
 

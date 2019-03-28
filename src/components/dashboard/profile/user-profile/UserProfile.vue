@@ -16,6 +16,13 @@
 			@updateData="updateVehicleData($event)"
 			@updateDialog="updateEditVehicleDialog($event)"></EditVehicleDialog>
 
+		<v-alert
+			:value="alert.display"
+			transition="slide-y-transition"
+			:type="alert.type">
+			{{ alert.msg }}
+		</v-alert>
+
 		<h3 class="header__h3 mt20">Basic Details</h3>
 
 		<v-form v-model="profileValid">
