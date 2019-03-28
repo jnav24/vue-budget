@@ -18,8 +18,10 @@
 
 			<v-card-actions>
 				<v-layout justify-end>
-					<v-btn>Cancel</v-btn>
 					<v-btn
+						@click="closeDialog()">Cancel</v-btn>
+					<v-btn
+						@click="submitData()"
 						:disabled="!formValid"
 						color="success">Update Vehicle</v-btn>
 				</v-layout>

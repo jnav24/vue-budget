@@ -1,4 +1,4 @@
-import { Component } from 'vue-property-decorator';
+import {Component, Emit} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import EditVehicleForm from '@/components/dashboard/forms/edit-vehicle-form/EditVehicleForm.vue';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
@@ -10,9 +10,20 @@ import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 })
 export default class EditVehicleDialog extends Dialogs {
     public formValid: boolean = false;
+    public formData: UserVehicleInterface = {} as UserVehicleInterface;
 
     public emitVehicleData(data: { valid: boolean; form: UserVehicleInterface }) {
-        console.log(data);
         this.formValid = data.valid;
+        this.formData = data.form;
+    }
+
+    public submitData() {
+        this.updateData(this.formData);
+        this.closeDialog();
+    }
+
+    @Emit('updateData')
+    private updateData(obj: UserVehicleInterface) {
+        // ...
     }
 }

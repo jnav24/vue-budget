@@ -174,7 +174,7 @@ export default class UserProfile extends Vue {
     }
 
     public updateVehicleData(vehicle: UserVehicleInterface) {
-        // ...
+        console.log(vehicle);
     }
 
     private resetVehicleForm() {
