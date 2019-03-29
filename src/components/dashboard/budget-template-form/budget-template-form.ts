@@ -74,7 +74,7 @@ class BudgetTemplateForm extends Vue {
         if (typeof this.data !== 'undefined' && typeof this.data.id !== 'undefined') {
             id = this.data.id;
         } else {
-            id = 'temp_' + timestampService.generateUnixId();
+            id = timestampService.generateTempId();
         }
 
         if (this.showPaidForm) {

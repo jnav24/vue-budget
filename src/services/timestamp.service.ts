@@ -136,6 +136,10 @@ class TimestampService {
 
         return moment(value).endOf('month').format(format);
     }
+
+    public generateTempId(): string {
+        return 'temp_' + this.generateUnixId();
+    }
 }
 
 export default TimestampService;

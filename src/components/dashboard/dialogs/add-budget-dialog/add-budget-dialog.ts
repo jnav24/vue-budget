@@ -107,7 +107,7 @@ class AddBudgetDialog extends Dialogs {
                     item.bank_template_id = id;
                 }
 
-                item.id = 'temp_' + timestampService.generateUnixId();
+                item.id = timestampService.generateTempId();
                 return item;
             });
         }

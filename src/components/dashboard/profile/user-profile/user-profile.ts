@@ -89,7 +89,7 @@ export default class UserProfile extends Vue {
         if (this.vehicleValid) {
             this.vehicleChanged = true;
             const newVehicle: UserVehicleInterface = {
-                id: 'temp_' + timestampService.generateUnixId(),
+                id: timestampService.generateTempId(),
                 make: this.form.make.value,
                 model: this.form.model.value,
                 color: this.form.color.value,

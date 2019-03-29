@@ -13,7 +13,7 @@ export default class EditVehicleForm extends Vue {
     @Prop({
         default: (): UserVehicleInterface => {
             return {
-                id: 'temp_' + timestampService.generateUnixId(),
+                id: timestampService.generateTempId(),
                 active: 1,
                 make: '',
                 model: '',
