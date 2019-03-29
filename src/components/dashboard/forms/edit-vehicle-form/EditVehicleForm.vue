@@ -16,6 +16,7 @@
 
 			<v-flex>
 				<v-text-field
+					@input="updateFormData()"
 					:rules="form.model.rules"
 					v-model="form.model.value"
 					label="Model"></v-text-field>
@@ -25,6 +26,7 @@
 		<v-layout>
 			<v-flex sm3 md3 lg3 xl3>
 				<v-text-field
+					@input="updateFormData()"
 					:rules="form.color.rules"
 					v-model="form.color.value"
 					label="Color"></v-text-field>
@@ -34,6 +36,7 @@
 
 			<v-flex sm3 md3 lg3 xl3>
 				<v-text-field
+					@input="updateFormData()"
 					:rules="form.year.rules"
 					v-model="form.year.value"
 					label="Year"></v-text-field>
@@ -43,6 +46,7 @@
 
 			<v-flex>
 				<v-text-field
+					@input="updateFormData()"
 					:rules="form.license.rules"
 					v-model="form.license.value"
 					label="License Plate Number"></v-text-field>
