@@ -9,7 +9,7 @@
 		</div>
 
 		<v-layout style="position: relative;z-index: 2;" justify-center>
-			<v-flex lg8 xl8>
+			<v-flex lg8 xl6>
 				<h1 class="header__h1 invert">Profile</h1>
 
 				<v-card>

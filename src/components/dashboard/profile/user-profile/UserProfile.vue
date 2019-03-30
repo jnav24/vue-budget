@@ -3,6 +3,26 @@
 
 <template>
 	<div class="profile user-profile">
+		<ConfirmDialog
+			:dialog="deleteVehicleDialog"
+			:submit-text="deleteVehicle.submitText"
+			:message="deleteVehicle.message"
+			@updateData="emitDeleteVehicle($event)"
+			@updateDialog="updateDeleteVehicleDialog($event)"></ConfirmDialog>
+
+		<EditVehicleDialog
+			:data="selectedVehicle"
+			:dialog="editVehicleDialog"
+			@updateData="updateVehicleData($event)"
+			@updateDialog="updateEditVehicleDialog($event)"></EditVehicleDialog>
+
+		<v-alert
+			:value="alert.display"
+			transition="slide-y-transition"
+			:type="alert.type">
+			{{ alert.msg }}
+		</v-alert>
+
 		<h3 class="header__h3 mt20">Basic Details</h3>
 
 		<v-form v-model="profileValid">
@@ -43,57 +63,15 @@
 
 		<v-layout>
 			<v-flex sm5 md5 lg5 xl5 class="vehicle-form">
-				<v-form v-model="vehicleValid" ref="vehicleForm">
-					<v-layout>
-						<v-flex>
-							<v-text-field
-								:rules="form.make.rules"
-								v-model="form.make.value"
-								label="Make"></v-text-field>
-						</v-flex>
+				<EditVehicleForm
+					:data="vehicleData"
+					:reset="resetVehicle"
+					@updateData="emitVehicleData($event)"></EditVehicleForm>
 
-						<v-spacer></v-spacer>
-
-						<v-flex>
-							<v-text-field
-								:rules="form.model.rules"
-								v-model="form.model.value"
-								label="Model"></v-text-field>
-						</v-flex>
-					</v-layout>
-
-					<v-layout>
-						<v-flex sm3 md3 lg3 xl3>
-							<v-text-field
-								:rules="form.color.rules"
-								v-model="form.color.value"
-								label="Color"></v-text-field>
-						</v-flex>
-
-						<v-spacer></v-spacer>
-
-						<v-flex sm3 md3 lg3 xl3>
-							<v-text-field
-								:rules="form.year.rules"
-								v-model="form.year.value"
-								label="Year"></v-text-field>
-						</v-flex>
-
-						<v-spacer></v-spacer>
-
-						<v-flex>
-							<v-text-field
-								:rules="form.license.rules"
-								v-model="form.license.value"
-								label="License Plate Number"></v-text-field>
-						</v-flex>
-					</v-layout>
-
-					<v-btn
-						:disabled="!vehicleValid"
-						@click="addVehicle()"
-						color="success">Add Vehicle</v-btn>
-				</v-form>
+				<v-btn
+					:disabled="!vehicleValid"
+					@click="addVehicle()"
+					color="success">Add Vehicle</v-btn>
 			</v-flex>
 
 			<v-spacer></v-spacer>
@@ -106,7 +84,7 @@
 
 				<div v-if="vehicles.length">
 					<v-list>
-						<div v-for="(item, index) in vehicles" :key="item.id">
+						<div v-for="(item, index) in vehicles" :key="item.id" v-if="item.active">
 							<v-list-tile>
 								<v-list-tile-content>
 									<v-list-tile-title>{{item.year }} {{ item.make }} {{ item.model }}</v-list-tile-title>
@@ -116,11 +94,13 @@
 									<v-layout>
 										<v-btn
 											fab
+											@click="showEditVehicleDialog(item)"
 											class="btn--details__icon">
 											<v-icon>edit</v-icon>
 										</v-btn>
 										<v-btn
 											fab
+											@click="showDeleteVehicleDialog(item)"
 											class="btn--details__icon">
 											<v-icon>delete</v-icon>
 										</v-btn>

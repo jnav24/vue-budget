@@ -5,4 +5,5 @@ export interface UserVehicleInterface {
     year: string;
     color: string;
     license?: string;
+    active: number;
 }
