@@ -1,4 +1,4 @@
-import {Vue, Component, Emit, Prop} from 'vue-property-decorator';
+import {Vue, Component, Emit, Prop, Watch} from 'vue-property-decorator';
 import {validateService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
@@ -22,6 +22,7 @@ export default class EditVehicleForm extends Vue {
             };
         },
     }) public data: UserVehicleInterface;
+    @Prop({ default: false }) public reset: boolean;
     public form: FormInterface = {
         make: {
             value: '',
@@ -66,14 +67,8 @@ export default class EditVehicleForm extends Vue {
     }
 
     public setupForm() {
-        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
-            this.form.make.value = this.data.make;
-            this.form.model.value = this.data.model;
-            this.form.color.value = this.data.color;
-            this.form.year.value = this.data.year;
-            this.form.license.value = this.data.license;
-            this.setupEmitFormData();
-        }
+        this.setFormData();
+        this.setupEmitFormData();
     }
 
     public updateFormData() {
@@ -83,8 +78,25 @@ export default class EditVehicleForm extends Vue {
         }, 10);
     }
 
+    private setFormData() {
+        if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
+            this.form.make.value = this.data.make;
+            this.form.model.value = this.data.model;
+            this.form.color.value = this.data.color;
+            this.form.year.value = this.data.year;
+            this.form.license.value = this.data.license;
+
+            const ref: any = this.$refs.vehicleForm;
+
+            if (ref.value) {
+                this.vehicleChanged = true;
+            }
+        }
+    }
+
     private setupEmitFormData() {
         const data = {
+            reset: this.reset,
             valid: this.vehicleChanged && this.vehicleValid,
             form: {
                 id: this.data.id,
@@ -99,7 +111,16 @@ export default class EditVehicleForm extends Vue {
     }
 
     @Emit('updateData')
-    private updateData(data: { valid: boolean; form: UserVehicleInterface }) {
+    private updateData(data: { valid: boolean; reset: boolean; form: UserVehicleInterface }) {
         // ...
+    }
+
+    @Watch('reset')
+    private dataWatcher() {
+        if (this.reset) {
+            this.setFormData();
+            const ref: any = this.$refs.vehicleForm;
+            ref.reset();
+        }
     }
 }

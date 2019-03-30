@@ -64,13 +64,14 @@
 		<v-layout>
 			<v-flex sm5 md5 lg5 xl5 class="vehicle-form">
 				<EditVehicleForm
+					:data="vehicleData"
+					:reset="resetVehicle"
 					@updateData="emitVehicleData($event)"></EditVehicleForm>
 
-					<v-btn
-						:disabled="!vehicleValid"
-						@click="addVehicle()"
-						color="success">Add Vehicle</v-btn>
-				</v-form>
+				<v-btn
+					:disabled="!vehicleValid"
+					@click="addVehicle()"
+					color="success">Add Vehicle</v-btn>
 			</v-flex>
 
 			<v-spacer></v-spacer>

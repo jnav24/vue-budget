@@ -59,8 +59,17 @@ export default class UserProfile extends Vue {
     };
     public profileChanged: boolean = false;
     public profileValid: boolean = false;
+    public resetVehicle: boolean = false;
     public selectedVehicle: UserVehicleInterface = {} as UserVehicleInterface;
     public vehicleChanged: boolean = false;
+    public vehicleData: UserVehicleInterface = {
+        id: timestampService.generateTempId(),
+        active: 1,
+        make: '',
+        model: '',
+        year: '',
+        color: '',
+    };
     public vehicleValid: boolean = false;
     private tempVehicles: UserVehicleInterface[] = [];
 
@@ -88,17 +97,7 @@ export default class UserProfile extends Vue {
     public addVehicle() {
         if (this.vehicleValid) {
             this.vehicleChanged = true;
-            const newVehicle: UserVehicleInterface = {
-                id: timestampService.generateTempId(),
-                make: this.form.make.value,
-                model: this.form.model.value,
-                color: this.form.color.value,
-                year: this.form.year.value,
-                license: this.form.license.value,
-                active: 1,
-            };
-
-            this.vehicles = [ ...this.vehicles, newVehicle];
+            this.vehicles = [ ...this.vehicles, this.vehicleData ];
             this.resetVehicleForm();
         }
     }
@@ -176,18 +175,26 @@ export default class UserProfile extends Vue {
         }
     }
 
-    public emitVehicleData(obj: UserVehicleInterface) {
-        console.log(obj);
+    public emitVehicleData(obj: { valid: boolean; reset: boolean; form: UserVehicleInterface }) {
+        this.vehicleData = { ...obj.form };
+        this.vehicleValid = obj.valid;
+        this.resetVehicle = obj.reset;
     }
 
     private resetVehicleForm() {
-        this.form.make.value = '';
-        this.form.model.value = '';
-        this.form.color.value = '';
-        this.form.year.value = '';
-        this.form.license.value = '';
-        const refs: any = this.$refs.vehicleForm;
-        refs.reset();
+        this.resetVehicle = true;
+        this.vehicleData = {
+            id: timestampService.generateTempId(),
+            active: 1,
+            make: '',
+            model: '',
+            year: '',
+            color: '',
+        };
+
+        setTimeout(() => {
+            this.resetVehicle = false;
+        }, 500);
     }
 
     private setVehicleAsInactive() {
