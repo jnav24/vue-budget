@@ -51,7 +51,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             rules: [
                 (v: any) => {
                     if (!!v) {
-                        return validateService.isNumeric(v) || 'APR must be numeric';
+                        return validateService.isDollarAmount(v) || 'APR must have two decimal points';
                     }
 
                     return true;
