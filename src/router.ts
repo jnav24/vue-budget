@@ -53,6 +53,7 @@ function initStore() {
     store.dispatch('getAllJobTypes');
     store.dispatch('getAllMedicalTypes');
     store.dispatch('getAllUtilityTypes');
+    store.dispatch('getAllVehicleTypes');
 }
 
 const router = new Router({

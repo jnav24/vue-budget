@@ -167,7 +167,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
     async getAllVehicleTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
-                url: 'types/vehicles',
+                url: 'types/vehicle',
             };
 
             const response: AxiosResponse = await httpService.authGet(data);
