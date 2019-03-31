@@ -146,7 +146,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async getAllUtilityTypes({ commit }) {
+    async getAllUtilityTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
                 url: 'types/utility',
@@ -156,6 +156,24 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addUtilityTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+    async getAllVehicleTypes({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'types/vehicles',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addVehicleTypes', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -187,6 +205,9 @@ const mutations: MutationTree<TypesStateInterface> = {
     },
     addUtilityTypes(state, payload: UtilityTypesInterface[]) {
         state.utilities = payload;
+    },
+    addVehicleTypes(state, payload: VehicleTypesInterface[]) {
+        state.vehicles = payload;
     },
 };
 
