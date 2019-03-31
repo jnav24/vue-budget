@@ -20,6 +20,7 @@ class BudgetTemplateForm extends Vue {
     @Prop({ default: false }) public showPaidForm: boolean;
     @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
+    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public editMode: boolean = false;
     protected paidForm: FormInterface = {};
     protected resetForm: boolean = false;

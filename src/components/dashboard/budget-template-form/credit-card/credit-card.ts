@@ -15,7 +15,6 @@ import {CreditCardsInterface} from '@/interfaces/credit-cards.interface';
     },
 })
 class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     public months: any[] = globalService.getMonths();
     public years: any[] = globalService.getYears();
     protected templateForm: FormInterface = {
