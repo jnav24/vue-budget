@@ -12,6 +12,7 @@ import {InvestmentTypesInterface} from '@/interfaces/investment-types.interface'
 import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
 import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
 import {JobTypesInterface} from '@/interfaces/job-types.interface';
+import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
 
 const banks: BankTypesInterface[] = [];
 const bills: BillTypesInterface[] = [];
@@ -20,6 +21,7 @@ const investments: InvestmentTypesInterface[] = [];
 const jobs: JobTypesInterface[] = [];
 const medical: MedicalTypesInterface[] = [];
 const utilities: UtilityTypesInterface[] = [];
+const vehicles: VehicleTypesInterface[] = [];
 
 const currentState: TypesStateInterface = {
     banks,
@@ -29,6 +31,7 @@ const currentState: TypesStateInterface = {
     jobs,
     medical,
     utilities,
+    vehicles,
 };
 
 const getters: GetterTree<TypesStateInterface, RootStateInterface> = {};
