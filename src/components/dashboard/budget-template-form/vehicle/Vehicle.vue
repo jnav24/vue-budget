@@ -7,70 +7,39 @@
 			:edit-mode="editMode"
 			:reset="resetForm"
 			@buttonClicked="validateForm($event)">
-			Maybe show this section on the template page and have here where they select a vehicle?
-			although user would have to add a vehicle and reoccurring bill
 			<v-layout>
-				<v-flex lg3 xl3>
-					<v-text-field
-						label="Make"
-						v-model="form.make.value"
-						:rules="form.make.rules"></v-text-field>
-				</v-flex>
-
-				<v-spacer></v-spacer>
-
-				<v-flex lg3 xl3>
-					<v-text-field
-						label="Model"
-						v-model="form.model.value"
-						:rules="form.model.rules"></v-text-field>
-				</v-flex>
-
-				<v-spacer></v-spacer>
-
-				<v-flex lg3 xl3>
-					<v-text-field
-						label="Year"
-						v-model="form.year.value"
-						:rules="form.year.rules"></v-text-field>
-				</v-flex>
-
-				<v-spacer></v-spacer>
-
-				<v-flex>
-					<v-btn
-						color="success">
-						<v-icon>add</v-icon>
-						<span>Add</span>
-					</v-btn>
+				<v-flex lg5 xl5>
+					<v-select
+						v-model="form.vehicle.value"
+						:rules="form.vehicle.rules"
+						:items="vehicles"
+						item-value="id"
+						item-text="value"
+						label="Pick Vehicle"></v-select>
 				</v-flex>
 			</v-layout>
-
-			<div class="vehicle_list">
-				blah
-			</div>
 
 			<v-divider></v-divider>
 
 			<v-layout>
 				<v-flex lg5 xl5>
-					<v-select
-						v-model="form.type.value"
-						:rules="form.type.rules"
-						:items="types"
-						item-value="id"
-						item-text="name"
-						label="Account type"></v-select>
+					<!--<v-select-->
+						<!--v-model="form.type.value"-->
+						<!--:rules="form.type.rules"-->
+						<!--:items="types"-->
+						<!--item-value="id"-->
+						<!--item-text="name"-->
+						<!--label="Account type"></v-select>-->
 				</v-flex>
 
 				<v-spacer></v-spacer>
 
 				<v-flex lg6 xl6>
-					<v-select
-						v-model="form.due.value"
-						:rules="form.due.rules"
-						:items="dates"
-						label="Due Date"></v-select>
+					<!--<v-select-->
+						<!--v-model="form.due.value"-->
+						<!--:rules="form.due.rules"-->
+						<!--:items="dates"-->
+						<!--label="Due Date"></v-select>-->
 				</v-flex>
 			</v-layout>
 

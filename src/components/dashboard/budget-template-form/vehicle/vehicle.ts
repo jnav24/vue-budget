@@ -7,6 +7,7 @@ import {FormInterface} from '@/interfaces/form.interface';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {VehicleInterface} from '@/interfaces/vehicle.interface';
 import {validateService} from '@/module';
+import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 @Component({
     components: {
@@ -24,16 +25,8 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         'actions',
     ];
     protected templateForm: FormInterface = {
-        make: {
-            value: '',
-            rules: [],
-        },
-        model: {
-            value: '',
-            rules: [],
-        },
-        year: {
-            value: '',
+        vehicle: {
+            value: 0,
             rules: [],
         },
         mileage: {
@@ -65,6 +58,23 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             ],
         },
     };
+
+    public get vehicles() {
+        return this.setVehicles(this.userState.vehicles);
+    }
+
+    public setVehicles(vehicles: UserVehicleInterface[]): Array<{ id: string | number; value: string }> {
+        const result: Array<{ id: string | number; value: string }> = [];
+
+        for (const vehicle of vehicles) {
+            result.push({
+                id: vehicle.id,
+                value: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+            });
+        }
+
+        return result;
+    }
 
     public setData(): BudgetListAddInterface {
         const data: VehicleInterface = {

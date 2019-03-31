@@ -5,6 +5,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {timestampService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
+import {UserStateInterface} from '@/interfaces/user-state.interface';
 
 Component.registerHooks([
     'created',
@@ -17,6 +18,7 @@ class BudgetTemplateForm extends Vue {
     @Prop() public data: any;
     @Prop() public dialog: boolean;
     @Prop({ default: false }) public showPaidForm: boolean;
+    @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
     public editMode: boolean = false;
     protected paidForm: FormInterface = {};
