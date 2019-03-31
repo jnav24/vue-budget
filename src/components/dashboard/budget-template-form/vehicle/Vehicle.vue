@@ -23,23 +23,23 @@
 
 			<v-layout>
 				<v-flex lg5 xl5>
-					<!--<v-select-->
-						<!--v-model="form.type.value"-->
-						<!--:rules="form.type.rules"-->
-						<!--:items="types"-->
-						<!--item-value="id"-->
-						<!--item-text="name"-->
-						<!--label="Account type"></v-select>-->
+					<v-select
+						v-model="form.type.value"
+						:rules="form.type.rules"
+						:items="types"
+						item-value="id"
+						item-text="name"
+						label="Account type"></v-select>
 				</v-flex>
 
 				<v-spacer></v-spacer>
 
 				<v-flex lg6 xl6>
-					<!--<v-select-->
-						<!--v-model="form.due.value"-->
-						<!--:rules="form.due.rules"-->
-						<!--:items="dates"-->
-						<!--label="Due Date"></v-select>-->
+					<v-select
+						v-model="form.due.value"
+						:rules="form.due.rules"
+						:items="dates"
+						label="Due Date"></v-select>
 				</v-flex>
 			</v-layout>
 

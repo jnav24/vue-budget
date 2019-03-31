@@ -76,6 +76,10 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         return result;
     }
 
+    public get types() {
+        return this.typesState.vehicles;
+    }
+
     public setData(): BudgetListAddInterface {
         const data: VehicleInterface = {
             make: this.form.make.value,
