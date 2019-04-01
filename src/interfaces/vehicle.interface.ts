@@ -1,10 +1,12 @@
 export interface VehicleInterface {
     id?: number | string;
-    vehicle: number;
+    budget_id?: number;
+    budget_template_id?: number;
     mileage: string;
-    vehicle_type_id: number;
-    due_date: string;
     amount: string;
+    due_date: string;
+    user_vehicle_id: number;
+    vehicle_type_id: number;
     paid_date?: string;
     confirmation?: string;
     created_at?: string;
