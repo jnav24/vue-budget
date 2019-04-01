@@ -83,11 +83,11 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
     public setData(): BudgetListAddInterface {
         const data: VehicleInterface = {
-            vehicle: this.form.vehicle.value,
             mileage: this.form.mileage.value,
+            amount: this.form.amount.value,
+            user_vehicle_id: this.form.vehicle.value,
             vehicle_type_id: this.form.type.value,
             due_date: this.form.due.value,
-            amount: this.form.amount.value,
         };
 
         return this.setDataForSaving(data, 'vehicles');
