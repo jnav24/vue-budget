@@ -19,8 +19,6 @@
 				</v-flex>
 			</v-layout>
 
-			<v-divider></v-divider>
-
 			<v-layout>
 				<v-flex lg5 xl5>
 					<v-select
@@ -46,18 +44,19 @@
 			<v-layout>
 				<v-flex lg5 xl5>
 					<v-text-field
-						v-model="form.mileage.value"
-						:rules="form.mileage.rules"
-						label="Mileage"></v-text-field>
+						v-model="form.amount.value"
+						:rules="form.amount.rules"
+						label="Amount"></v-text-field>
 				</v-flex>
 
 				<v-spacer></v-spacer>
 
 				<v-flex lg6 xl6>
 					<v-text-field
-						v-model="form.amount.value"
-						:rules="form.amount.rules"
-						label="Amount"></v-text-field>
+						v-if="getTypeId('gas') === form.type.value"
+						v-model="form.mileage.value"
+						:rules="form.mileage.rules"
+						label="Mileage"></v-text-field>
 				</v-flex>
 			</v-layout>
 

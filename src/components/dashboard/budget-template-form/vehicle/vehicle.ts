@@ -8,6 +8,7 @@ import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {VehicleInterface} from '@/interfaces/vehicle.interface';
 import {validateService} from '@/module';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
+import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
 
 @Component({
     components: {
@@ -99,6 +100,16 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.year.value = this.data.value;
             this.form.mileage.value = this.data.milage;
         }
+    }
+
+    public getTypeId(value: string): number {
+        const index = this.typesState.vehicles.findIndex((obj: VehicleTypesInterface) => obj.slug === value);
+
+        if (index > -1) {
+            return this.typesState.vehicles[index].id;
+        }
+
+        return 0;
     }
 }
 
