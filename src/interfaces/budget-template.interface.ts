@@ -5,6 +5,7 @@ import {JobsInterface} from '@/interfaces/jobs.interface';
 import {MedicalInterface} from '@/interfaces/medical.interface';
 import {MiscellaneousInterface} from '@/interfaces/miscellaneous.interface';
 import {UtilitiesInterface} from '@/interfaces/utilities.interface';
+import {VehicleInterface} from '@/interfaces/vehicle.interface';
 
 export interface BudgetTemplateInterface {
     id?: number;
@@ -16,5 +17,6 @@ export interface BudgetTemplateInterface {
         medical: MedicalInterface[];
         miscellaneous: MiscellaneousInterface[];
         utilities: UtilitiesInterface[];
+        vehicles: VehicleInterface[];
     };
 }

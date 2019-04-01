@@ -273,6 +273,7 @@ class Edit extends Vue {
                 medical: [],
                 miscellaneous: [],
                 utilities: [],
+                vehicles: [],
             },
         };
 

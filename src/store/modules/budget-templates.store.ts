@@ -19,6 +19,7 @@ const templates: BudgetTemplateInterface = {
         medical: [],
         miscellaneous: [],
         utilities: [],
+        vehicles: [],
     },
 };
 
