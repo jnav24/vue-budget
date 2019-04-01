@@ -2,5 +2,9 @@
 <style src="./vehicles.scss" lang="scss" scoped></style>
 
 <template>
-	<div class="budget vehicles"></div>
+	<div class="budget vehicles">
+		<v-layout>
+			hello
+		</v-layout>
+	</div>
 </template>

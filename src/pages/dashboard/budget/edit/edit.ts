@@ -10,7 +10,8 @@ import Jobs from '@/components/dashboard/budgets/jobs/Jobs.vue';
 import Medical from '@/components/dashboard/budgets/medical/Medical.vue';
 import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscellaneous.vue';
 import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
-import {currencyService, globalService, timestampService} from '@/module';
+import Vehicles from '@/components/dashboard/budgets/vehicles/Vehicles.vue';
+import {globalService, timestampService} from '@/module';
 import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/AddBudgetExpense.vue';
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
@@ -38,6 +39,7 @@ Component.registerHooks([
         SaveControls,
         Totals,
         Utilities,
+        Vehicles,
     },
 })
 class Edit extends Vue {
