@@ -156,10 +156,16 @@ class Edit extends Vue {
                     .findIndex((obj: any) => obj.id === data.data.data.id);
                 Vue.set((this.budget.expenses as any)[data.data.type], index, data.data.data);
             } else {
-                (this.budget.expenses as any)[data.data.type] = [
-                    ...(this.budget.expenses as any)[data.data.type],
-                    data.data.data,
-                ];
+                if (typeof (this.budget.expenses as any)[data.data.type] !== 'undefined') {
+                    (this.budget.expenses as any)[data.data.type] = [
+                        ...(this.budget.expenses as any)[data.data.type],
+                        data.data.data,
+                    ];
+                } else {
+                    (this.budget.expenses as any)[data.data.type] = [
+                        data.data.data,
+                    ];
+                }
             }
 
             this.canSaveBudget = true;
