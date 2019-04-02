@@ -9,11 +9,13 @@ import {VehicleInterface} from '@/interfaces/vehicle.interface';
 import {validateService} from '@/module';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
+import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 
 @Component({
     components: {
         BudgetTemplateComponent,
         ConfirmationForm,
+        EmptyState,
     },
 })
 class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface {

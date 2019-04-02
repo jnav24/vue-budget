@@ -1,4 +1,15 @@
 .vehicle.budget-template {
+	.header__h3 {
+		color: map_get($colors, mid_grey);
+		margin-bottom: 0;
+		margin-top: 10px;
+	}
+
+	.empty-text {
+		color: map_get($colors, mid_grey);
+		font-size: 16px;
+	}
+
 	.vehicle_list {
 		border: 1px solid map_get($colors, mid_grey);
 		height: 150px;
