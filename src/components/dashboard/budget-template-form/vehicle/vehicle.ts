@@ -17,14 +17,6 @@ import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
     },
 })
 class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public tableHeaders = [
-        'select',
-        'make',
-        'model',
-        'year',
-        'mileage',
-        'actions',
-    ];
     protected templateForm: FormInterface = {
         vehicle: {
             value: 0,
@@ -83,7 +75,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
     public setData(): BudgetListAddInterface {
         const data: VehicleInterface = {
-            mileage: this.form.mileage.value,
+            mileage: this.form.mileage.value || '',
             amount: this.form.amount.value,
             user_vehicle_id: this.form.vehicle.value,
             vehicle_type_id: this.form.type.value,
@@ -96,10 +88,12 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     public setupForm() {
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
             this.editMode = true;
-            this.form.make.value = this.data.make;
-            this.form.model.value = this.data.model;
-            this.form.year.value = this.data.value;
+            this.form.vehicle.value = this.data.user_vehicle_id;
             this.form.mileage.value = this.data.milage;
+            this.form.type.value = this.data.vehicle_type_id;
+            this.form.due.value = this.data.due_date;
+            this.form.amount.value = this.data.amount;
+            this.setupPaidData();
         }
     }
 

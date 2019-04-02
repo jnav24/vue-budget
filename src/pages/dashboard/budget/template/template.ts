@@ -83,6 +83,8 @@ class Template extends Vue {
             { text: 'Utility Type', value: 'utility_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
+        // @todo add columns for vehicles
+        vehicles: [],
     };
     public showPaidForm: boolean = false;
     public tempData: any = {};
