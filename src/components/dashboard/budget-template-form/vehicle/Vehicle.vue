@@ -11,7 +11,7 @@
 				v-if="!Object.keys(vehicles).length"
 				:fill="false"
 				title="Looks like you haven't added vehicles yet"
-				text="Click the button below to add a vehicle."
+				text="Click the button below to add a vehicle. Unsaved changes will be lost."
 				button-text="Add a Vehicle"
 				@buttonClicked="goToSettings()"></EmptyState>
 

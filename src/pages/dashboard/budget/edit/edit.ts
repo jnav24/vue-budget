@@ -230,7 +230,7 @@ class Edit extends Vue {
     }
 
     private getTotalSpent() {
-        const spending = ['credit_cards', 'medical', 'miscellaneous', 'utilities'];
+        const spending = ['credit_cards', 'medical', 'miscellaneous', 'utilities', 'vehicles'];
         this.totalSpent = 0;
         this.totalSpent = this.getTotals(spending);
     }
