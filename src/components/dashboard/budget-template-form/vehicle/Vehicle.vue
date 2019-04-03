@@ -7,20 +7,13 @@
 			:edit-mode="editMode"
 			:reset="resetForm"
 			@buttonClicked="validateForm($event)">
-			<div v-if="!Object.keys(vehicles).length">
-				<!--<EmptyState text="test" button-text="whoa!"></EmptyState>-->
-				<v-layout justify-center>
-					<div class="icon-container__empty">
-						<img src="@/assets/images/empty_state_bino.jpg" alt="" class="icon">
-					</div>
-				</v-layout>
-				<h3 class="header__h3">Empty Vehicles</h3>
-				<p class="empty-text">Looks like you haven't added vehicles yet.</p>
-				<v-btn
-					color="success">
-					Settings Page
-				</v-btn>
-			</div>
+			<EmptyState
+				v-if="!Object.keys(vehicles).length"
+				:fill="false"
+				title="Looks like you haven't added vehicles yet"
+				text="Click the button below to add a vehicle."
+				button-text="Add a Vehicle"
+				@buttonClicked="goToSettings()"></EmptyState>
 
 			<div v-if="Object.keys(vehicles).length">
 				<v-layout>

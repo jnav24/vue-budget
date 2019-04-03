@@ -1,16 +1,45 @@
 .empty-state {
-	background: map-get($colors, lite_grey);
-	border: 1px solid map-get($colors, mid_grey);
 	margin-bottom: 30px;
 	padding: 20px;
 	text-align: center;
+
+	&.empty-fill {
+		background: map-get($colors, lite_grey);
+		border: 1px solid map-get($colors, mid_grey);
+	}
+
+	.header__h3 {
+		color: map_get($colors, mid_grey);
+		margin-bottom: 0;
+		margin-top: 10px;
+	}
 
 	.empty-icon {
 		font-size: 64px;
 		margin-bottom: 20px;
 	}
 
-	p {
+	.empty-text {
+		color: map_get($colors, mid_grey);
 		font-size: 16px;
 	}
+
+	.empty-button {
+		background: #fff !important;
+		border: 1px solid map-get($colors, primary);
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+		color: map-get($colors, primary);
+
+		&.button-fill {
+			background: map-get($colors, lite_grey) !important;
+		}
+
+		&:hover {
+			background: map-get($colors, primary) !important;
+			box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12) !important;
+			color: #fff;
+		}
+	}
+
+
 }

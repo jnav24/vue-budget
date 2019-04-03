@@ -50,14 +50,16 @@
 
 				<EmptyState
 					v-if="!tableItems.length && !canAddBudget()"
-					text="You have no monthly budgets. Click on the button below to add one."
+					title="You have no monthly budgets"
+					text="Click on the button below to add one."
 					button-text="Budget"
 					:disableButton="canAddBudget()"
 					@buttonClicked="addBudgetDialog = true"></EmptyState>
 
 				<EmptyState
 					v-if="canAddBudget()"
-					text="You have not set up your monthly templates yet. Adding a template for your reoccurring bills makes it easier to manage your budget and it is easy to setup. Click on the button below to add one."
+					title="You have not set up your monthly templates yet"
+					text="Adding a template for your reoccurring bills makes it easier to manage your budget and it is easy to setup. Click on the button below to add one."
 					button-text="Template"
 					@buttonClicked="goToBudgetTemplate()"></EmptyState>
 

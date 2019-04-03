@@ -108,6 +108,11 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
         return 0;
     }
+
+    public goToSettings() {
+        // @Todo: add confirmation to ask to leave with unsaved changes
+        this.$router.push({ name: 'profile' });
+    }
 }
 
 export default Vehicle;

@@ -3,6 +3,8 @@ import { Vue, Component, Emit, Prop } from 'vue-property-decorator';
 @Component
 class EmptyState extends Vue {
     @Prop({ default: false }) public disableButton: boolean;
+    @Prop({ default: true }) public fill: boolean;
+    @Prop() public title: string;
     @Prop() public text: string;
     @Prop() public buttonText: string;
 
