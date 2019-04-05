@@ -15,7 +15,6 @@ import {UtilitiesInterface} from '@/interfaces/utilities.interface';
     },
 })
 class Utility extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     protected templateForm: FormInterface = {
         name: {
             value: '',

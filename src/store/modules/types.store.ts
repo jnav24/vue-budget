@@ -12,6 +12,7 @@ import {InvestmentTypesInterface} from '@/interfaces/investment-types.interface'
 import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
 import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
 import {JobTypesInterface} from '@/interfaces/job-types.interface';
+import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
 
 const banks: BankTypesInterface[] = [];
 const bills: BillTypesInterface[] = [];
@@ -20,6 +21,7 @@ const investments: InvestmentTypesInterface[] = [];
 const jobs: JobTypesInterface[] = [];
 const medical: MedicalTypesInterface[] = [];
 const utilities: UtilityTypesInterface[] = [];
+const vehicles: VehicleTypesInterface[] = [];
 
 const currentState: TypesStateInterface = {
     banks,
@@ -29,6 +31,7 @@ const currentState: TypesStateInterface = {
     jobs,
     medical,
     utilities,
+    vehicles,
 };
 
 const getters: GetterTree<TypesStateInterface, RootStateInterface> = {};
@@ -143,7 +146,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async getAllUtilityTypes({ commit }) {
+    async getAllUtilityTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
                 url: 'types/utility',
@@ -153,6 +156,24 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('addUtilityTypes', responseService.getDataFromResponse(response));
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+    async getAllVehicleTypes({ commit }): Promise<ResponseInterface> {
+        try {
+            const data: UrlInterface = {
+                url: 'types/vehicle',
+            };
+
+            const response: AxiosResponse = await httpService.authGet(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                commit('addVehicleTypes', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -184,6 +205,9 @@ const mutations: MutationTree<TypesStateInterface> = {
     },
     addUtilityTypes(state, payload: UtilityTypesInterface[]) {
         state.utilities = payload;
+    },
+    addVehicleTypes(state, payload: VehicleTypesInterface[]) {
+        state.vehicles = payload;
     },
 };
 

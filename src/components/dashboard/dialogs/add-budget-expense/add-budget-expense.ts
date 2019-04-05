@@ -10,6 +10,7 @@ import Job from '@/components/dashboard/budget-template-form/job/Job.vue';
 import Medical from '@/components/dashboard/budget-template-form/medical/Medical.vue';
 import Misc from '@/components/dashboard/budget-template-form/misc/Misc.vue';
 import Utility from '@/components/dashboard/budget-template-form/utility/Utility.vue';
+import Vehicle from '@/components/dashboard/budget-template-form/vehicle/Vehicle.vue';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 
@@ -22,6 +23,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
         Medical,
         Misc,
         Utility,
+        Vehicle,
     },
 })
 class AddBudgetExpense extends Dialogs {

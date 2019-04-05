@@ -10,7 +10,8 @@ import Jobs from '@/components/dashboard/budgets/jobs/Jobs.vue';
 import Medical from '@/components/dashboard/budgets/medical/Medical.vue';
 import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscellaneous.vue';
 import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
-import {currencyService, globalService, timestampService} from '@/module';
+import Vehicles from '@/components/dashboard/budgets/vehicles/Vehicles.vue';
+import {globalService, timestampService} from '@/module';
 import AddBudgetExpense from '@/components/dashboard/dialogs/add-budget-expense/AddBudgetExpense.vue';
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 import {BudgetListInterface} from '@/interfaces/budget-list.interface';
@@ -38,6 +39,7 @@ Component.registerHooks([
         SaveControls,
         Totals,
         Utilities,
+        Vehicles,
     },
 })
 class Edit extends Vue {
@@ -154,10 +156,16 @@ class Edit extends Vue {
                     .findIndex((obj: any) => obj.id === data.data.data.id);
                 Vue.set((this.budget.expenses as any)[data.data.type], index, data.data.data);
             } else {
-                (this.budget.expenses as any)[data.data.type] = [
-                    ...(this.budget.expenses as any)[data.data.type],
-                    data.data.data,
-                ];
+                if (typeof (this.budget.expenses as any)[data.data.type] !== 'undefined') {
+                    (this.budget.expenses as any)[data.data.type] = [
+                        ...(this.budget.expenses as any)[data.data.type],
+                        data.data.data,
+                    ];
+                } else {
+                    (this.budget.expenses as any)[data.data.type] = [
+                        data.data.data,
+                    ];
+                }
             }
 
             this.canSaveBudget = true;
@@ -222,7 +230,7 @@ class Edit extends Vue {
     }
 
     private getTotalSpent() {
-        const spending = ['credit_cards', 'medical', 'miscellaneous', 'utilities'];
+        const spending = ['credit_cards', 'medical', 'miscellaneous', 'utilities', 'vehicles'];
         this.totalSpent = 0;
         this.totalSpent = this.getTotals(spending);
     }
@@ -265,6 +273,7 @@ class Edit extends Vue {
                 medical: [],
                 miscellaneous: [],
                 utilities: [],
+                vehicles: [],
             },
         };
 

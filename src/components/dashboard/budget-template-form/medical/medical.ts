@@ -15,7 +15,6 @@ import {MedicalInterface} from '@/interfaces/medical.interface';
     },
 })
 class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface {
-    public dates = Array.from(Array(31).keys()).map((num: any) => num + 1);
     protected templateForm: FormInterface = {
         name: {
             value: '',

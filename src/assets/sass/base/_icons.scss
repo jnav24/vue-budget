@@ -1,0 +1,17 @@
+.icon-container {
+	&__empty {
+		border-radius: 50% 50%;
+		height: 215px;
+		overflow: hidden;
+		position: relative;
+		width: 215px;
+
+		img.icon {
+			height: auto;
+			left: -100px;
+			position: absolute;
+			top: -48px;
+			width: 415px;
+		}
+	}
+}

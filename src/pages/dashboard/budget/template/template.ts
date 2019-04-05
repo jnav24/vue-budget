@@ -83,6 +83,13 @@ class Template extends Vue {
             { text: 'Utility Type', value: 'utility_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
+        vehicles: [
+            { text: 'Vehicle', value: 'user_vehicle_id' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Vehicle Type', value: 'vehicle_type_id' },
+            { text: 'Monthly Due Date', value: 'due_date' },
+            { text: 'Mileage', value: 'mileage' },
+        ],
     };
     public showPaidForm: boolean = false;
     public tempData: any = {};

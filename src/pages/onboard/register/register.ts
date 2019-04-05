@@ -112,7 +112,6 @@ class Register extends Vue {
     }
 
     /**
-     * @TODO
      * May support foreign numbers in the future
      */
     private validatePhoneNumber(): boolean | number {

@@ -66,6 +66,13 @@
 						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></Utility>
+					<Vehicle
+						v-if="showTypeForm('vehicles')"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></Vehicle>
 				</v-form>
 			</v-card-text>
 		</v-card>
