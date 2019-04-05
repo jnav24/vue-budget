@@ -20,7 +20,9 @@
 					:items="tableList">
 					<template slot="items" slot-scope="props">
 						<td v-for="(element, int) in headerKeys" :key="int">
-							{{ element.indexOf('type_id') > -1 ? getType(props.item[element]) : props.item[element] }}
+							<span v-if="element.indexOf('type_id') > -1">{{ getType(props.item[element]) }}</span>
+							<span v-else-if="element.indexOf('user_vehicle_id') > -1">{{ getUserVehicle(props.item[element]) }}</span>
+							<span v-else>{{ props.item[element] }}</span>
 						</td>
 						<td>
 							<v-btn

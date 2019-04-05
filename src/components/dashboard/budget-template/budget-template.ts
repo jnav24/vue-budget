@@ -9,6 +9,8 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import {globalService} from '@/module';
+import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 @Component({
     components: {
@@ -22,6 +24,7 @@ class BudgetTemplate extends Vue {
     @Prop() public type: string;
     @Action public removeTemplateElementAction: (obj: BudgetTemplateRemoveInterface) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
+    @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
     public alertData: any = {
         text: '',
         type: '',
@@ -107,6 +110,17 @@ class BudgetTemplate extends Vue {
         }
 
         return result;
+    }
+
+    public getUserVehicle(id: number) {
+        const index = this.userState.vehicles.findIndex((vehicle: UserVehicleInterface) => vehicle.id === id);
+
+        if (index > -1) {
+            const vehicle: UserVehicleInterface = this.userState.vehicles[index];
+            return `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+        }
+
+        return id;
     }
 
     @Emit('emitEditBudget')
