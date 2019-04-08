@@ -97,6 +97,7 @@ class Edit extends Vue {
             this.updateBudget(this.budget)
                 .then((res: ResponseInterface) => {
                     if (res.success) {
+                        this.updateLocalState();
                         this.alert.msg = 'Budget has been updated successfully.';
                         this.alert.type = 'success';
                         this.alert.display = true;
@@ -298,6 +299,14 @@ class Edit extends Vue {
                     this.getAllBudgetTemplates();
                 });
         }
+    }
+
+    private updateLocalState() {
+        const index = this.budgetState.budgetList.findIndex((obj: any) => {
+            return Number(obj.id) === Number(this.$route.params.id);
+        });
+
+        this.budget = this.budgetState.budgetList[index];
     }
 }
 

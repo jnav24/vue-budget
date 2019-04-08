@@ -134,7 +134,7 @@ const mutations: MutationTree<BudgetStateInterface> = {
         state.budgetList = [payload, ...state.budgetList];
     },
     updateSingleBudget(state, payload: any) {
-        const index = state.budgetList.findIndex((obj: any) => obj.id === Number(payload.id));
+        const index = state.budgetList.findIndex((obj: any) => Number(obj.id) === Number(payload.id));
 
         if (index > -1) {
             Vue.set(state.budgetList, index, payload);
