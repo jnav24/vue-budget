@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router, {Route} from 'vue-router';
 import store from '@/store/index';
-import Home from './views/Home.vue';
 import Dashboard from './pages/dashboard/Dashboard.vue';
 import DashboardHome from './pages/dashboard/home/Home.vue';
 import {ResponseInterface} from '@/interfaces/response.interface';
@@ -62,13 +61,9 @@ const router = new Router({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Home,
-        },
-        {
-            path: '/about',
-            name: 'about',
-            component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+            redirect: {
+                name: 'login',
+            },
         },
         {
             path: '/login',
