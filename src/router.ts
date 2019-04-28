@@ -7,7 +7,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import { userService } from '@/module';
 
 Vue.use(Router);
-// test 4
+// test 5
 async function autoLogIn({ next }: any): Promise<void> {
     try {
         const response: ResponseInterface = await store.dispatch('isLoggedIn');
