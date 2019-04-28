@@ -21,7 +21,7 @@
 								<span style="margin-left: 5px;">Bills unpaid: {{ totalUnpaid }}</span>
 							</v-btn>
 							<v-btn
-								v-if="!totalUnpaid"
+								v-if="!totalUnpaid && budget.length"
 								:to="{ name: 'budget-edit', params: { id: aggregationState.unpaid.id } }"
 								color="success"
 								dark>
