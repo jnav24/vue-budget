@@ -5,6 +5,7 @@ import {currencyService, timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {Getter, State} from 'vuex-class';
 import {AggregationStateInterface} from '@/interfaces/aggregation-state.interface';
+import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 
 @Component({
     components: {
@@ -13,12 +14,17 @@ import {AggregationStateInterface} from '@/interfaces/aggregation-state.interfac
 })
 class Home extends Vue {
     @Getter public totalUnpaid: number;
+    @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.Aggregation) public aggregationState: AggregationStateInterface;
     public chartOptions: any = {
         responsive: true,
         maintainAspectRatio: false,
     };
     public selectedYear: string = '2019';
+
+    public get budget() {
+        return this.budgetState.budgetList;
+    }
 
     public get currentYear() {
         return timestampService.getCurrentTimestamp('UTC', 'YYYY');
