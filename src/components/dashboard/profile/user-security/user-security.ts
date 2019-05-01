@@ -6,7 +6,7 @@ import {validateService} from '@/module';
 
 @Component
 export default class UserSecurity extends Vue {
-    @Action public resetPassword: (password: string) => Promise<ResponseInterface>;
+    @Action public updatePassword: (obj: { newPassword: string, oldPassword: string }) => Promise<ResponseInterface>;
     public alert: AlertInterface = {
         display: false,
         type: 'error',
@@ -51,7 +51,10 @@ export default class UserSecurity extends Vue {
 
     public submit() {
         if (this.formValid) {
-            this.resetPassword(this.form.new_password)
+            this.updatePassword({
+                newPassword: this.form.new_password.value,
+                oldPassword: this.form.current_password.value,
+            })
                 .then((res: ResponseInterface) => {
                     if (res.success) {
                         this.alert = {

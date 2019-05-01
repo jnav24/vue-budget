@@ -140,10 +140,10 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
-    async resetPassword({ commit }, payload: { newPassword: string, oldPassword: string }) {
+    async updatePassword({ commit }, payload: { newPassword: string, oldPassword: string }) {
         try {
             const data: UrlInterface = {
-                url: 'auth/reset-password',
+                url: 'auth/update-password',
                 params: {
                     newPassword: payload.newPassword,
                     oldPassword: payload.oldPassword,
