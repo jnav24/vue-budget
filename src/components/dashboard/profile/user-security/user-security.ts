@@ -116,5 +116,9 @@ export default class UserSecurity extends Vue {
     private resetForm() {
         const refs: any = this.$refs.form;
         refs.reset();
+        this.form.new_password.value = '';
+        this.form.current_password.value = '';
+        this.form.confirm_password.value = '';
+        this.validatePassword();
     }
 }
