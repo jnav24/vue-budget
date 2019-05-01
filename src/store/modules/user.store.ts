@@ -140,6 +140,26 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+    async resetPassword({ commit }, payload: { newPassword: string, oldPassword: string }) {
+        try {
+            const data: UrlInterface = {
+                url: 'auth/reset-password',
+                params: {
+                    newPassword: payload.newPassword,
+                    oldPassword: payload.oldPassword,
+                },
+            };
+            const response: AxiosResponse = await httpService.authPost(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
 };
 
 const mutations: MutationTree<UserStateInterface> = {
