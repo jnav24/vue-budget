@@ -1,0 +1,45 @@
+.user-security {
+	.content {
+		margin-bottom: 30px;
+		padding: 20px;
+
+		h2 {
+			margin-bottom: 20px;
+		}
+
+		.password-checker {
+			background: map_get($colors, primary);
+			color: #fff;
+			padding: 15px;
+
+			h3 {
+				margin-bottom: 20px;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				margin-bottom: 10px;
+
+				.default-color {
+					color: #fff !important;
+				}
+
+				.v-icon, span {
+					display: inline-block;
+					margin-right: 5px;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+
+	.actions {
+		padding: 20px;
+		text-align: right;
+	}
+}
