@@ -59,6 +59,7 @@ export default class UserSecurity extends Vue {
                             display: true,
                             msg: 'Password has been reset successfully.',
                         };
+                        this.resetForm();
                     } else {
                         this.alert = {
                             type: 'error',
@@ -107,5 +108,10 @@ export default class UserSecurity extends Vue {
 
     private checkPasswordMatchOldPassword(): boolean {
         return !validateService.doesPasswordsMatch(this.form.current_password.value, this.form.new_password.value);
+    }
+
+    private resetForm() {
+        const refs: any = this.$refs.form;
+        refs.reset();
     }
 }
