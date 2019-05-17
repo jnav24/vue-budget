@@ -35,7 +35,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             ],
         },
         due: {
-            value: 0,
+            value: 1,
             rules: [
                 (v: any) => !!v || 'Due date is required',
             ],
