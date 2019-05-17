@@ -19,6 +19,7 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
     },
 })
 class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface {
+    public oldVehicles: boolean = false;
     protected templateForm: FormInterface = {
         vehicle: {
             value: 0,
@@ -62,12 +63,14 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         const result: Array<{ id: string | number; value: string }> = [];
 
         for (const vehicle of vehicles) {
-            if (vehicle.active) {
-                result.push({
-                    id: vehicle.id,
-                    value: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
-                });
+            if (!vehicle.active && !this.oldVehicles) {
+                continue;
             }
+
+            result.push({
+                id: vehicle.id,
+                value: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+            });
         }
 
         return result;

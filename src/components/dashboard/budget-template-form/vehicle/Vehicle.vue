@@ -26,6 +26,16 @@
 							item-text="value"
 							label="Pick Vehicle"></v-select>
 					</v-flex>
+
+					<v-spacer></v-spacer>
+
+					<v-flex lg6 xl6>
+						<v-checkbox
+							color="success"
+							v-model="oldVehicles"
+							label="Show deleted vehicles"
+						></v-checkbox>
+					</v-flex>
 				</v-layout>
 
 				<v-layout>
