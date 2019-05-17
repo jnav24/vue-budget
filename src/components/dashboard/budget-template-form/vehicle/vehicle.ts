@@ -91,7 +91,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
             this.editMode = true;
             this.form.vehicle.value = this.data.user_vehicle_id;
-            this.form.mileage.value = this.data.milage;
+            this.form.mileage.value = this.data.mileage;
             this.form.type.value = this.data.vehicle_type_id;
             this.form.due.value = this.data.due_date;
             this.form.amount.value = this.data.amount;
