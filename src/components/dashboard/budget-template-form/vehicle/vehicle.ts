@@ -62,10 +62,12 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         const result: Array<{ id: string | number; value: string }> = [];
 
         for (const vehicle of vehicles) {
-            result.push({
-                id: vehicle.id,
-                value: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
-            });
+            if (vehicle.active) {
+                result.push({
+                    id: vehicle.id,
+                    value: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+                });
+            }
         }
 
         return result;
