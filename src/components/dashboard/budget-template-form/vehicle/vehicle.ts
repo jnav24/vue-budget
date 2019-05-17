@@ -118,7 +118,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         this.$router.push({ name: 'profile' });
     }
 
-    public updateChosenVehicle() {
+    public resetChosenVehicle() {
         this.form.vehicle.value = 0;
     }
 }

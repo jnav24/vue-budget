@@ -31,7 +31,7 @@
 
 					<v-flex lg6 xl6>
 						<v-checkbox
-							@change="updateChosenVehicle()"
+							@change="resetChosenVehicle()"
 							color="success"
 							v-model="oldVehicles"
 							label="Show deleted vehicles"
