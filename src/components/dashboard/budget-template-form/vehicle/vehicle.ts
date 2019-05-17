@@ -19,6 +19,7 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
     },
 })
 class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface {
+    public oldVehicles: boolean = false;
     protected templateForm: FormInterface = {
         vehicle: {
             value: 0,
@@ -35,7 +36,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             ],
         },
         due: {
-            value: 0,
+            value: 1,
             rules: [
                 (v: any) => !!v || 'Due date is required',
             ],
@@ -62,6 +63,10 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         const result: Array<{ id: string | number; value: string }> = [];
 
         for (const vehicle of vehicles) {
+            if (!vehicle.active && !this.oldVehicles) {
+                continue;
+            }
+
             result.push({
                 id: vehicle.id,
                 value: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
@@ -91,7 +96,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
         if (typeof this.data !== 'undefined' && Object.keys(this.data).length) {
             this.editMode = true;
             this.form.vehicle.value = this.data.user_vehicle_id;
-            this.form.mileage.value = this.data.milage;
+            this.form.mileage.value = this.data.mileage;
             this.form.type.value = this.data.vehicle_type_id;
             this.form.due.value = this.data.due_date;
             this.form.amount.value = this.data.amount;
@@ -111,6 +116,10 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
 
     public goToSettings() {
         this.$router.push({ name: 'profile' });
+    }
+
+    public resetChosenVehicle() {
+        this.form.vehicle.value = 0;
     }
 }
 
