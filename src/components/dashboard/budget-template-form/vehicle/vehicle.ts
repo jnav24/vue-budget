@@ -53,6 +53,10 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
                 },
             ],
         },
+        not_track_amount: {
+            value: 0,
+            rules: [],
+        },
     };
 
     public get vehicles() {
