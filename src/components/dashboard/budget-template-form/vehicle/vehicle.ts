@@ -91,6 +91,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             user_vehicle_id: this.form.vehicle.value,
             vehicle_type_id: this.form.type.value,
             due_date: this.form.due.value,
+            not_track_amount: Number(this.form.not_track_amount.value),
         };
 
         return this.setDataForSaving(data, 'vehicles');
@@ -104,6 +105,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.type.value = this.data.vehicle_type_id;
             this.form.due.value = this.data.due_date;
             this.form.amount.value = this.data.amount;
+            this.form.not_track_amount.value = this.data.not_track_amount;
             this.setupPaidData();
         }
     }

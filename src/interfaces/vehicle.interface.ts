@@ -11,4 +11,5 @@ export interface VehicleInterface {
     confirmation?: string;
     created_at?: string;
     updated_at?: string;
+    not_track_amount?: number;
 }
