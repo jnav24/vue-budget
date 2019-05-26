@@ -9,7 +9,23 @@
 			v-for="(item, index) in budgetData"
 			:key="item.id">
 			<v-flex lg1 xl1>
-				<v-icon v-if="isBillPaid(item)" class="budget__paid-icon">check</v-icon>
+				<v-tooltip v-if="isBillPaid(item)" bottom>
+					<template slot="activator">
+						<v-icon class="budget__paid-icon">check</v-icon>
+					</template>
+					<span style="display: block; max-width: 300px">
+						This bill is paid
+					</span>
+				</v-tooltip>
+
+				<v-tooltip v-if="isAmountNotTracked(item)" bottom>
+					<template slot="activator">
+						<v-icon class="budget__track-icon">track_changes</v-icon>
+					</template>
+					<span style="display: block; max-width: 300px">
+						Amount not tracked in total
+					</span>
+				</v-tooltip>
 			</v-flex>
 
 			<v-flex lg4 xl4>
