@@ -27,7 +27,10 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn>Sign Into Another Account</v-btn>
+				<v-btn
+					@click="logout()">
+					Sign Into Another Account
+				</v-btn>
 
 				<v-btn
 					color="success"

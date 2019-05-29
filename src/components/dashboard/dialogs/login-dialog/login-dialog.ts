@@ -2,9 +2,11 @@ import { Component } from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {FormInterface} from '@/interfaces/form.interface';
 import {validateService} from '@/module';
+import {Action} from 'vuex-class';
 
 @Component
 export default class LoginDialog extends Dialogs {
+    @Action public logUserOut: () => Promise<{ success: boolean }>;
     public form: FormInterface = {
         password: {
             value: '',
@@ -20,4 +22,13 @@ export default class LoginDialog extends Dialogs {
         },
     };
     public loginDialogValid: boolean = false;
+
+    public logout() {
+        this.logUserOut()
+            .then((res: { success: boolean }) => {
+                if (res.success) {
+                    this.$router.push({ name: 'login' });
+                }
+            });
+    }
 }
