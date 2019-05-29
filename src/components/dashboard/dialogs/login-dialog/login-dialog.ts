@@ -24,11 +24,6 @@ export default class LoginDialog extends Dialogs {
             rules: [
                 (v: any) => !!v || 'Password is required',
                 (v: any) => validateService.isValidLength(v) || 'Password is not long enough',
-                (v: any) => validateService.isUppercasePresent(v) || 'Password must contain uppercase letters',
-                (v: any) => validateService.isLowercasePresent(v) || 'Password must contain lowercase letters',
-                (v: any) => validateService.isNumberPresent(v) || 'Password must contain numbers',
-                (v: any) => validateService.hasSpecialCharacters(v) ||
-                    'Password must contain at least one of the following special character (!$#%)',
             ],
         },
     };
@@ -43,6 +38,8 @@ export default class LoginDialog extends Dialogs {
             if (!res.success) {
                 this.alert.msg = res.msg;
                 this.alert.display = true;
+            } else {
+                // hide dialog
             }
         });
     }
