@@ -66,6 +66,10 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
 
             return responseService.getFailedResponse();
         } catch (error) {
+            if (responseService.isTokenExpired(error.response.data.message)) {
+                commit('tokenExpired', true);
+            }
+
             return responseService.getFailedResponse();
         }
     },

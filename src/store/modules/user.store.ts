@@ -181,6 +181,9 @@ const mutations: MutationTree<UserStateInterface> = {
     resetUserState(state) {
         state.user = {} as UserInterface;
     },
+    tokenExpired(state, payload: boolean) {
+        Vue.set(state.login, 'timeout', payload);
+    },
 };
 
 const User: Module<UserStateInterface, RootStateInterface> = {
