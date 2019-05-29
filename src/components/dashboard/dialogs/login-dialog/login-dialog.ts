@@ -2,11 +2,16 @@ import { Component } from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {FormInterface} from '@/interfaces/form.interface';
 import {validateService} from '@/module';
-import {Action} from 'vuex-class';
+import {Action, State} from 'vuex-class';
+import {ResponseInterface} from '@/interfaces/response.interface';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {UserStateInterface} from '@/interfaces/user-state.interface';
 
 @Component
 export default class LoginDialog extends Dialogs {
     @Action public logUserOut: () => Promise<{ success: boolean }>;
+    @Action public logUserIn: (obj: {}) => Promise<ResponseInterface>;
+    @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
     public form: FormInterface = {
         password: {
             value: '',
@@ -22,6 +27,16 @@ export default class LoginDialog extends Dialogs {
         },
     };
     public loginDialogValid: boolean = false;
+
+    public login() {
+        this.logUserIn({
+            username: this.userState.user.email,
+            // password: this.form.password.value,
+            password: 'password1',
+        }).then((res: ResponseInterface) => {
+            console.log('error?');
+        });
+    }
 
     public logout() {
         this.logUserOut()

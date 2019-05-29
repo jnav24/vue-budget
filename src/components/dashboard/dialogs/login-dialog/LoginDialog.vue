@@ -33,6 +33,7 @@
 				</v-btn>
 
 				<v-btn
+					@click="login()"
 					color="success"
 					:disabled="!loginDialogValid">
 					Login
