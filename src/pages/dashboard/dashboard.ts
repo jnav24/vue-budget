@@ -1,10 +1,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { MenuInterface } from '@/interfaces/menu.interface';
+import LoginDialog from '@/components/dashboard/dialogs/login-dialog/LoginDialog.vue';
 import MainNavDesktop from '@/components/dashboard/menu/main-nav-desktop/MainNavDesktop.vue';
 import MainNavMobile from '@/components/dashboard/menu/main-nav-mobile/MainNavMobile.vue';
 
 @Component({
     components: {
+        LoginDialog,
         MainNavDesktop,
         MainNavMobile,
     },
