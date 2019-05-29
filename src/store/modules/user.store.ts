@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import {UserInterface} from '@/interfaces/user.interface';
 import {UserLoginInterface} from '@/interfaces/user-login.interface';
 import {UserRegisterInterface} from '@/interfaces/user-register.interface';
@@ -11,11 +12,19 @@ import {UserStateInterface} from '@/interfaces/user-state.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
 
+const login: any = {
+    timeout: false,
+    throttle: {
+        attempts: 0,
+        allowed: 3,
+    },
+};
 const user: UserInterface = {} as UserInterface;
 const vehicles: UserVehicleInterface[] = [];
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
 const currentState: UserStateInterface = {
+    login,
     user,
     vehicles,
 };
