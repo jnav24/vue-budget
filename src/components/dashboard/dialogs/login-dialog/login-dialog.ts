@@ -6,12 +6,18 @@ import {Action, State} from 'vuex-class';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {AlertInterface} from '@/interfaces/alert.interface';
 
 @Component
 export default class LoginDialog extends Dialogs {
     @Action public logUserOut: () => Promise<{ success: boolean }>;
     @Action public logUserIn: (obj: {}) => Promise<ResponseInterface>;
     @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
+    public alert: AlertInterface = {
+        type: 'error',
+        display: false,
+        msg: '',
+    };
     public form: FormInterface = {
         password: {
             value: '',
@@ -34,7 +40,10 @@ export default class LoginDialog extends Dialogs {
             // password: this.form.password.value,
             password: 'password1',
         }).then((res: ResponseInterface) => {
-            console.log('error?');
+            if (!res.success) {
+                this.alert.msg = res.msg;
+                this.alert.display = true;
+            }
         });
     }
 

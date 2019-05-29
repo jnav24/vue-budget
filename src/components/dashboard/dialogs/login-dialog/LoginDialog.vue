@@ -11,8 +11,15 @@
 
 			<v-card-text>
 				<v-alert
+					:value="alert.display"
+					:type="alert.type">
+					{{ alert.msg }}
+				</v-alert>
+
+				<v-alert
 					style="margin-bottom: 30px;"
 					:value="true"
+					outline
 					type="error">
 					Your session has timed out. Please re-enter your password to continue or sign into another account
 				</v-alert>
