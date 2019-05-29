@@ -23,6 +23,7 @@ class Dashboard extends Vue {
         },
     ];
     public mobileMenu: boolean = false;
+    public showLogin: boolean = true;
 
     public goToProfile() {
         this.$router.push({ name: 'profile' });

@@ -52,7 +52,7 @@
 			</v-layout>
 		</v-toolbar>
 
-		<LoginDialog></LoginDialog>
+		<LoginDialog :dialog="showLogin"></LoginDialog>
 
 		<transition name="dashboard-transition"
 					enter-active-class="animated fadeInRight"
