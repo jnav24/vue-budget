@@ -4,6 +4,7 @@
 <template>
 	<v-dialog
 		class="dialogs login"
+		persistent
 		max-width="500px"
 		v-model="showDialog">
 		<v-card>
