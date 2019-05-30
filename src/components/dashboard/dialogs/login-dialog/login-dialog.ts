@@ -32,14 +32,11 @@ export default class LoginDialog extends Dialogs {
     public login() {
         this.logUserIn({
             username: this.userState.user.email,
-            // password: this.form.password.value,
-            password: 'password1',
+            password: this.form.password.value,
         }).then((res: ResponseInterface) => {
             if (!res.success) {
                 this.alert.msg = res.msg;
                 this.alert.display = true;
-            } else {
-                // hide dialog
             }
         });
     }
