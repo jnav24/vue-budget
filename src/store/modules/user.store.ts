@@ -63,6 +63,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const res: AxiosResponse = await httpService.post(data);
 
             if (responseService.isSuccessResponse(res.status)) {
+                commit('tokenExpired', false);
                 commit('addUserVehicles', res.data.data.vehicles);
                 commit('addUser', res.data.data.user);
                 cookiesService.setCookie(userCookieName, res.data.data.token);
