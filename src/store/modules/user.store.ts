@@ -11,8 +11,9 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
+import {UserLoginStateInterface} from '@/interfaces/user-login-state.interface';
 
-const login: any = {
+const login: UserLoginStateInterface = {
     timeout: false,
     throttle: {
         attempts: 0,
