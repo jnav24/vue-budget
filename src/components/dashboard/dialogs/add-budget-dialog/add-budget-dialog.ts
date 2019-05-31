@@ -8,6 +8,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import { cloneDeep } from 'lodash';
+import {AlertInterface} from '@/interfaces/alert.interface';
 
 Component.registerHooks([
     'mounted',
@@ -20,6 +21,11 @@ class AddBudgetDialog extends Dialogs {
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetValid: boolean = false;
+    public alert: AlertInterface = {
+        type: 'error',
+        display: false,
+        msg: '',
+    };
     public form: FormInterface = {
         name: {
             value: '',
@@ -92,6 +98,9 @@ class AddBudgetDialog extends Dialogs {
                         ref.reset();
                         this.$router.push({ name: 'budget-edit', params: { id: res.data.id } });
                         this.getYearlyAggregations();
+                    } else {
+                        this.alert.msg = res.msg;
+                        this.alert.display = true;
                     }
                 });
         }
