@@ -148,6 +148,10 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 
             return responseService.getFailedResponse();
         } catch (error) {
+            if (responseService.isTokenExpired(error.response.data.message)) {
+                commit('tokenExpired', true);
+            }
+
             return responseService.getFailedResponse();
         }
     },
@@ -168,6 +172,10 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 
             return responseService.getFailedResponse();
         } catch (error) {
+            if (responseService.isTokenExpired(error.response.data.message)) {
+                commit('tokenExpired', true);
+            }
+
             return responseService.getFailedResponse();
         }
     },
