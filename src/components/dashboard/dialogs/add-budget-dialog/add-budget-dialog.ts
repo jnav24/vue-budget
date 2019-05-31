@@ -1,4 +1,4 @@
-import { Component } from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {FormInterface} from '@/interfaces/form.interface';
 import {globalService, timestampService, validateService} from '@/module';
@@ -8,6 +8,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
 import { cloneDeep } from 'lodash';
+import {AlertInterface} from '@/interfaces/alert.interface';
 
 Component.registerHooks([
     'mounted',
@@ -20,6 +21,11 @@ class AddBudgetDialog extends Dialogs {
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetValid: boolean = false;
+    public alert: AlertInterface = {
+        type: 'error',
+        display: false,
+        msg: '',
+    };
     public form: FormInterface = {
         name: {
             value: '',
@@ -45,13 +51,7 @@ class AddBudgetDialog extends Dialogs {
     public years: any[] = globalService.getYears(1);
 
     public mounted() {
-        this.form.month.value = this.nextCycle('M');
-
-        if (this.form.month.value === 1) {
-            this.form.year.value = this.nextCycle('Y');
-        } else {
-            this.form.year.value = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
-        }
+        this.setCycle();
     }
 
     public get budgets() {
@@ -92,9 +92,17 @@ class AddBudgetDialog extends Dialogs {
                         ref.reset();
                         this.$router.push({ name: 'budget-edit', params: { id: res.data.id } });
                         this.getYearlyAggregations();
+                    } else {
+                        this.alert.msg = res.msg;
+                        this.alert.display = true;
                     }
                 });
         }
+    }
+
+    private resetForm() {
+        const ref: any = this.$refs.addBudgetForm;
+        ref.reset();
     }
 
     private resetIdForSaving() {
@@ -113,6 +121,27 @@ class AddBudgetDialog extends Dialogs {
         }
 
         return data;
+    }
+
+    private setCycle() {
+        this.form.month.value = this.nextCycle('M');
+
+        if (this.form.month.value === 1) {
+            this.form.year.value = this.nextCycle('Y');
+        } else {
+            this.form.year.value = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
+        }
+    }
+
+    @Watch('dialog')
+    private watchDialog() {
+        if (!this.showDialog) {
+            this.resetForm();
+            this.alert.msg = '';
+            this.alert.display = false;
+        } else {
+            this.setCycle();
+        }
     }
 }
 

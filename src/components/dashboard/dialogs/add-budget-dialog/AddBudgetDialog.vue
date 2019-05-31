@@ -10,6 +10,13 @@
 			<v-card-title class="dialog--title">Add Budget</v-card-title>
 
 			<v-card-text>
+				<v-alert
+					transition="slide-y-transition"
+					:value="alert.display"
+					:type="alert.type">
+					{{ alert.msg }}
+				</v-alert>
+
 				<v-form ref="addBudgetForm" v-model="addBudgetValid">
 					<v-layout>
 						<v-text-field

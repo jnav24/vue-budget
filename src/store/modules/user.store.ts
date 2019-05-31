@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import {UserInterface} from '@/interfaces/user.interface';
 import {UserLoginInterface} from '@/interfaces/user-login.interface';
 import {UserRegisterInterface} from '@/interfaces/user-register.interface';
@@ -10,12 +11,21 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserStateInterface} from '@/interfaces/user-state.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
+import {UserLoginStateInterface} from '@/interfaces/user-login-state.interface';
 
+const login: UserLoginStateInterface = {
+    timeout: false,
+    throttle: {
+        attempts: 0,
+        allowed: 3,
+    },
+};
 const user: UserInterface = {} as UserInterface;
 const vehicles: UserVehicleInterface[] = [];
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
 const currentState: UserStateInterface = {
+    login,
     user,
     vehicles,
 };
@@ -54,6 +64,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const res: AxiosResponse = await httpService.post(data);
 
             if (responseService.isSuccessResponse(res.status)) {
+                commit('tokenExpired', false);
                 commit('addUserVehicles', res.data.data.vehicles);
                 commit('addUser', res.data.data.user);
                 cookiesService.setCookie(userCookieName, res.data.data.token);
@@ -137,6 +148,10 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 
             return responseService.getFailedResponse();
         } catch (error) {
+            if (responseService.isTokenExpired(error.response.data.message)) {
+                commit('tokenExpired', true);
+            }
+
             return responseService.getFailedResponse();
         }
     },
@@ -157,6 +172,10 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 
             return responseService.getFailedResponse();
         } catch (error) {
+            if (responseService.isTokenExpired(error.response.data.message)) {
+                commit('tokenExpired', true);
+            }
+
             return responseService.getFailedResponse();
         }
     },
@@ -171,6 +190,9 @@ const mutations: MutationTree<UserStateInterface> = {
     },
     resetUserState(state) {
         state.user = {} as UserInterface;
+    },
+    tokenExpired(state, payload: boolean) {
+        Vue.set(state.login, 'timeout', payload);
     },
 };
 

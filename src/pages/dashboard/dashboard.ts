@@ -1,15 +1,21 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { MenuInterface } from '@/interfaces/menu.interface';
+import LoginDialog from '@/components/dashboard/dialogs/login-dialog/LoginDialog.vue';
 import MainNavDesktop from '@/components/dashboard/menu/main-nav-desktop/MainNavDesktop.vue';
 import MainNavMobile from '@/components/dashboard/menu/main-nav-mobile/MainNavMobile.vue';
+import {State} from 'vuex-class';
+import {RootStateInterface} from '@/interfaces/root-state.interface';
+import {UserStateInterface} from '@/interfaces/user-state.interface';
 
 @Component({
     components: {
+        LoginDialog,
         MainNavDesktop,
         MainNavMobile,
     },
 })
 class Dashboard extends Vue {
+    @State((state: RootStateInterface) => state.User) public userState: UserStateInterface;
     public menu: MenuInterface[] = [
         {
             name: 'Dashboard',
@@ -21,6 +27,10 @@ class Dashboard extends Vue {
         },
     ];
     public mobileMenu: boolean = false;
+
+    public get showLogin() {
+        return this.userState.login.timeout;
+    }
 
     public goToProfile() {
         this.$router.push({ name: 'profile' });
