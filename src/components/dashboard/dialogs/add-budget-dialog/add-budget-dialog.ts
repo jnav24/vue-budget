@@ -1,4 +1,4 @@
-import { Component } from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {FormInterface} from '@/interfaces/form.interface';
 import {globalService, timestampService, validateService} from '@/module';
@@ -51,13 +51,7 @@ class AddBudgetDialog extends Dialogs {
     public years: any[] = globalService.getYears(1);
 
     public mounted() {
-        this.form.month.value = this.nextCycle('M');
-
-        if (this.form.month.value === 1) {
-            this.form.year.value = this.nextCycle('Y');
-        } else {
-            this.form.year.value = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
-        }
+        this.setCycle();
     }
 
     public get budgets() {
@@ -106,6 +100,11 @@ class AddBudgetDialog extends Dialogs {
         }
     }
 
+    private resetForm() {
+        const ref: any = this.$refs.addBudgetForm;
+        ref.reset();
+    }
+
     private resetIdForSaving() {
         const data: any = cloneDeep(this.budgetTemplates.templates.expenses);
 
@@ -122,6 +121,27 @@ class AddBudgetDialog extends Dialogs {
         }
 
         return data;
+    }
+
+    private setCycle() {
+        this.form.month.value = this.nextCycle('M');
+
+        if (this.form.month.value === 1) {
+            this.form.year.value = this.nextCycle('Y');
+        } else {
+            this.form.year.value = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
+        }
+    }
+
+    @Watch('dialog')
+    private watchDialog() {
+        if (!this.showDialog) {
+            this.resetForm();
+            this.alert.msg = '';
+            this.alert.display = false;
+        } else {
+            this.setCycle();
+        }
     }
 }
 
