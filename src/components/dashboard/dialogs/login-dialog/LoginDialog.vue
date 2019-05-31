@@ -34,7 +34,7 @@
 				</v-form>
 			</v-card-text>
 
-			<v-card-actions>
+			<v-card-actions style="padding-bottom: 15px;">
 				<v-btn
 					@click="logout()">
 					Sign Into Another Account

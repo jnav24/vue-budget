@@ -34,6 +34,7 @@ export default class LoginDialog extends Dialogs {
             username: this.userState.user.email,
             password: this.form.password.value,
         }).then((res: ResponseInterface) => {
+            this.resetForm();
             if (!res.success) {
                 this.alert.msg = res.msg;
                 this.alert.display = true;
@@ -48,5 +49,10 @@ export default class LoginDialog extends Dialogs {
                     this.$router.push({ name: 'login' });
                 }
             });
+    }
+
+    private resetForm() {
+        const ref: any = this.$refs.loginDialogForm;
+        ref.reset();
     }
 }
