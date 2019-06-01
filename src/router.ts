@@ -166,6 +166,14 @@ const router = new Router({
                     },
                     component: () => import('@/pages/dashboard/profile/Profile.vue'),
                 },
+                {
+                    path: '*',
+                    name: '404',
+                    meta: {
+                        middleware: [auth],
+                    },
+                    component: () => import('@/pages/dashboard/errors/404/404.vue'),
+                },
             ],
         },
     ],

@@ -1,0 +1,15 @@
+.page.error-404 {
+	@include dashboardHeader;
+
+	.img-container {
+		height: 580px;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+
+		img {
+			width: 100%;
+			@include posa(-116px,n,n,0);
+		}
+	}
+}
