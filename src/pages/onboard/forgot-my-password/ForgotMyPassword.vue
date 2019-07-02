@@ -41,7 +41,16 @@
 				<v-card v-if="successSubmission" class="email-success">
 					<v-icon>email</v-icon>
 					<div class="header">Email sent!</div>
-					<p style="margin-top: 20px;padding: 20px;">Check your email for the instructions. If you don't see the email in your inbox then try the spam folder.</p>
+					<div style="padding: 20px;">
+						<v-alert
+							:value="true"
+							type="warning">
+							If you do not see the email in your inbox, check your spam folder.
+						</v-alert>
+						<p style="font-size: 18px;margin-top: 20px;">
+							An email containing your password recovery link has been sent. For security purposes, this link will only be valid for a limited time.
+						</p>
+					</div>
 				</v-card>
 
 				<v-layout class="detail-links">
