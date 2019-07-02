@@ -13,6 +13,7 @@
 					<h2>Oops! We can't seem to find the page you are looking for.</h2>
 
 					<v-btn
+						:to="{ name: 'dashboard' }"
 						color="success">
 						<span>Go Home</span>
 					</v-btn>
