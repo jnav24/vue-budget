@@ -47,6 +47,23 @@
 				</v-flex>
 			</v-layout>
 
+			<v-layout v-if="showPaidForm" align-center>
+				<v-tooltip bottom>
+					<template slot="activator">
+						<v-icon style="margin-top: -5px; margin-right: 10px; font-size: 22px;">help</v-icon>
+					</template>
+					<span style="display: block;max-width: 300px">
+						When calculating the totals, this payment will not be apart of that calculation.
+						One reason could be, this payment was made with a credit card and you're just tracking this for tax purposes.
+					</span>
+				</v-tooltip>
+
+				<v-checkbox
+					color="primary"
+					v-model="form.not_track_amount.value"
+					label="Do not calculate this payment in the total?"></v-checkbox>
+			</v-layout>
+
 			<ConfirmationForm
 				v-if="showPaidForm"
 				:data="form"

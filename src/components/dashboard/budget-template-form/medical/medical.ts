@@ -47,6 +47,10 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
                 (v: any) => !!v || 'Select medical type',
             ],
         },
+        not_track_amount: {
+            value: 0,
+            rules: [],
+        },
     };
 
     public get types() {
@@ -60,6 +64,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.amount.value = this.data.amount;
             this.form.due.value = this.data.due_date;
             this.form.type.value = this.data.medical_type_id;
+            this.form.not_track_amount.value = this.data.not_track_amount;
             this.setupPaidData();
         }
     }
@@ -70,6 +75,7 @@ class Medical extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             amount: this.form.amount.value,
             due_date: this.form.due.value,
             medical_type_id: this.form.type.value,
+            not_track_amount: Number(this.form.not_track_amount.value),
         };
 
         return this.setDataForSaving(data, 'medical');

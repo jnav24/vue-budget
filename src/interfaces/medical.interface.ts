@@ -10,4 +10,5 @@ export interface MedicalInterface {
     due_date: string;
     paid_date?: string;
     confirmation?: string;
+    not_track_amount?: number;
 }
