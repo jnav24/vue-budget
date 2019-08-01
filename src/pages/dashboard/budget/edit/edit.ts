@@ -241,7 +241,7 @@ class Edit extends Vue {
 
     private getTotals(items: any[]): number {
         let total = 0;
-        const noTrack = ['miscellaneous', 'vehicles'];
+        const noTrack = ['medical', 'miscellaneous', 'vehicles'];
 
         for (const item of items) {
             if (typeof this.budget.expenses[item] !== 'undefined') {
