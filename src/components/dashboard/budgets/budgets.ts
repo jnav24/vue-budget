@@ -1,6 +1,8 @@
 import {Prop, Vue, Component, Emit} from 'vue-property-decorator';
 import {budgetService, currencyService, globalService, timestampService} from '@/module';
 import {MiscellaneousInterface} from '@/interfaces/miscellaneous.interface';
+import {MedicalInterface} from '@/interfaces/medical.interface';
+import {VehicleInterface} from '@/interfaces/vehicle.interface';
 
 Component.registerHooks([
     'mounted',
@@ -62,7 +64,7 @@ class Budgets extends Vue {
             item.confirmation !== null && typeof item.confirmation === 'string' && item.confirmation.trim() !== '';
     }
 
-    protected isAmountNotTracked(item: MiscellaneousInterface): boolean {
+    protected isAmountNotTracked(item: MiscellaneousInterface | MedicalInterface | VehicleInterface): boolean {
         return !!item.not_track_amount;
     }
 }
