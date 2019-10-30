@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex, {ActionTree, MutationTree} from 'vuex';
 import Budget from './modules/budget.store';
 import BudgetTemplates from './modules/budget-templates.store';
-import User from './modules/user.store';
+import User from './modules/user/user.store';
 import { cookiesService } from '@/module';
 import Types from '@/store/modules/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';

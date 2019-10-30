@@ -5,7 +5,7 @@ import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {timestampService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 
 Component.registerHooks([
     'created',

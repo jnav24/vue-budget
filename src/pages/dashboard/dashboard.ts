@@ -5,7 +5,7 @@ import MainNavDesktop from '@/components/dashboard/menu/main-nav-desktop/MainNav
 import MainNavMobile from '@/components/dashboard/menu/main-nav-mobile/MainNavMobile.vue';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 
 @Component({
     components: {

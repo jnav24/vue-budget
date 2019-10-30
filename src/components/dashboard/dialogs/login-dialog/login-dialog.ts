@@ -5,7 +5,7 @@ import {validateService} from '@/module';
 import {Action, State} from 'vuex-class';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 import {AlertInterface} from '@/interfaces/alert.interface';
 
 @Component

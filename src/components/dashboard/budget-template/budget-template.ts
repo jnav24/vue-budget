@@ -9,7 +9,7 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import {globalService} from '@/module';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 @Component({
