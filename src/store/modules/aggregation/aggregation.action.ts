@@ -16,7 +16,7 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('setBudgetAggregation', responseService.getDataFromResponse(response));
+                commit('SET_BUDGET_AGGREGATION', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -35,7 +35,7 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addUnpaidBillCount', responseService.getDataFromResponse(response));
+                commit('ADD_UNPAID_BILL_COUNT', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -54,7 +54,7 @@ const actions: ActionTree<AggregationStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('updateBudgetAggregation', responseService.getDataFromResponse(response));
+                commit('UPDATE_BUDGET_AGGREGATION', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
