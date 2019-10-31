@@ -8,7 +8,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {budgetService, timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
-import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
+import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
 
 @Component({

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex, {ActionTree, MutationTree} from 'vuex';
 import Budget from './modules/budget/budget.store';
-import BudgetTemplates from './modules/budget-templates.store';
+import BudgetTemplates from './modules/budget-template/budget-templates.store';
 import User from './modules/user/user.store';
 import { cookiesService } from '@/module';
 import Types from '@/store/modules/types/types.store';
@@ -19,7 +19,7 @@ const actions: ActionTree<any, RootStateInterface> = {
             commit('REMOVE_SESSION');
             commit('RESET_USER_STATE');
             commit('RESET_BUDGET_STATE');
-            commit('resetBudgetTemplatesState');
+            commit('RESET_BUDGET_TEMPLATE_STATE');
             resolve({ success: true });
         });
     },

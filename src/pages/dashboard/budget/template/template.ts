@@ -11,7 +11,7 @@ import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
-import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
+import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import {budgetService} from '@/module';
 import SaveControls from '@/components/dashboard/save-controls/SaveControls.vue';
 import {SaveControlsInterface} from '@/interfaces/save-controls.interface';

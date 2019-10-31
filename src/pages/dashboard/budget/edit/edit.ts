@@ -19,7 +19,7 @@ import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/Confirm
 import {SaveControlsInterface} from '@/interfaces/save-controls.interface';
 import {AlertInterface} from '@/interfaces/alert.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
-import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
+import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import Totals from '@/components/dashboard/totals/Totals.vue';
 
 Component.registerHooks([
