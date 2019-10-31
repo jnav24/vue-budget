@@ -3,7 +3,7 @@ import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interfac
 import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
 import {AggregationStateInterface} from '@/store/modules/aggregation/aggregation-state.interface';
-import {ControlsStateInterface} from '@/interfaces/controls-state.interface';
+import {ControlsStateInterface} from '@/store/modules/controls/controls-state.interface';
 
 export interface RootStateInterface {
     Aggregation: AggregationStateInterface;

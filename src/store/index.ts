@@ -7,7 +7,7 @@ import { cookiesService } from '@/module';
 import Types from '@/store/modules/types/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import Aggregation from '@/store/modules/aggregation/aggregation.store';
-import Controls from '@/store/modules/controls.store';
+import Controls from '@/store/modules/controls/controls.store';
 
 Vue.use(Vuex);
 

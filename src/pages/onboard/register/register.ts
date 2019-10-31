@@ -5,7 +5,7 @@ import {responseService, validateService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
 import {AlertInterface} from '@/interfaces/alert.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {ControlsStateInterface} from '@/interfaces/controls-state.interface';
+import {ControlsStateInterface} from '@/store/modules/controls/controls-state.interface';
 
 @Component
 class Register extends Vue {
