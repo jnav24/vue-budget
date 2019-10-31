@@ -5,19 +5,19 @@ import {UserInterface} from '@/interfaces/user.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 const mutations: MutationTree<UserStateInterface> = {
-    addUser(state, usr: UserInterface) {
+    ADD_USER(state, usr: UserInterface) {
         state.user = usr;
     },
 
-    addUserVehicles(state, payload: UserVehicleInterface[]) {
+    ADD_USER_VEHICLES(state, payload: UserVehicleInterface[]) {
         state.vehicles = payload;
     },
 
-    resetUserState(state) {
+    RESET_USER_STATE(state) {
         state.user = {} as UserInterface;
     },
 
-    tokenExpired(state, payload: boolean) {
+    TOKEN_EXPIRED(state, payload: boolean) {
         Vue.set(state.login, 'timeout', payload);
     },
 };

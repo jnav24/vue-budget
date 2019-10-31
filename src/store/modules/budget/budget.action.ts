@@ -29,7 +29,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();
@@ -62,7 +62,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();
@@ -124,7 +124,7 @@ const actions: ActionTree<BudgetStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();

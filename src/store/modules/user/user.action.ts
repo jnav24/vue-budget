@@ -20,8 +20,8 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
-                    commit('addUserVehicles', response.data.data.vehicles);
-                    commit('addUser', response.data.data.user);
+                    commit('ADD_USER_VEHICLES', response.data.data.vehicles);
+                    commit('ADD_USER', response.data.data.user);
                     return responseService.getSuccessResponse();
                 }
             }
@@ -44,9 +44,9 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const res: AxiosResponse = await httpService.post(data);
 
             if (responseService.isSuccessResponse(res.status)) {
-                commit('tokenExpired', false);
-                commit('addUserVehicles', res.data.data.vehicles);
-                commit('addUser', res.data.data.user);
+                commit('TOKEN_EXPIRED', false);
+                commit('ADD_USER_VEHICLES', res.data.data.vehicles);
+                commit('ADD_USER', res.data.data.user);
                 cookiesService.setCookie(userCookieName, res.data.data.token);
                 return responseService.getSuccessResponse();
             }
@@ -123,15 +123,15 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authPost(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addUser', response.data.data.profile);
-                commit('addUserVehicles', response.data.data.vehicles);
+                commit('ADD_USER', response.data.data.profile);
+                commit('ADD_USER_VEHICLES', response.data.data.vehicles);
                 return responseService.getSuccessResponse();
             }
 
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();
@@ -156,7 +156,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();

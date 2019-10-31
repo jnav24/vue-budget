@@ -16,8 +16,8 @@ const userCookieName: any = process.env.VUE_APP_TOKEN;
 const actions: ActionTree<any, RootStateInterface> = {
     logUserOut({ commit }): Promise<{ success: boolean }> {
         return new Promise((resolve) => {
-            commit('removeSession');
-            commit('resetUserState');
+            commit('REMOVE_SESSION');
+            commit('RESET_USER_STATE');
             commit('RESET_BUDGET_STATE');
             commit('resetBudgetTemplatesState');
             resolve({ success: true });
@@ -26,7 +26,7 @@ const actions: ActionTree<any, RootStateInterface> = {
 };
 
 const mutations: MutationTree<RootStateInterface> = {
-    removeSession(state: any) {
+    REMOVE_SESSION(state: any) {
         cookiesService.deleteCookie(userCookieName);
     },
 };
