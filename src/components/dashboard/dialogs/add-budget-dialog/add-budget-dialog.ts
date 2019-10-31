@@ -6,7 +6,7 @@ import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
-import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import { cloneDeep } from 'lodash';
 import {AlertInterface} from '@/interfaces/alert.interface';
 

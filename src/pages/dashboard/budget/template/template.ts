@@ -4,7 +4,7 @@ import BudgetTemplate from '@/components/dashboard/budget-template/BudgetTemplat
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {Action, State} from 'vuex-class';
-import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
 import {TypesStateInterface} from '@/interfaces/types-state.interface';
