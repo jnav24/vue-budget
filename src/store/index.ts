@@ -4,7 +4,7 @@ import Budget from './modules/budget/budget.store';
 import BudgetTemplates from './modules/budget-templates.store';
 import User from './modules/user/user.store';
 import { cookiesService } from '@/module';
-import Types from '@/store/modules/types.store';
+import Types from '@/store/modules/types/types.store';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import Aggregation from '@/store/modules/aggregation/aggregation.store';
 import Controls from '@/store/modules/controls.store';

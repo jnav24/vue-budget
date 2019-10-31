@@ -1,7 +1,7 @@
 import {Emit, Prop, Vue, Component} from 'vue-property-decorator';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {State} from 'vuex-class';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {timestampService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';

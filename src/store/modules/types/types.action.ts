@@ -1,40 +1,10 @@
-import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {ActionTree} from 'vuex';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {BillTypesInterface} from '@/interfaces/bill-types.interface';
+import {ResponseInterface} from '@/interfaces/response.interface';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
-import {ResponseInterface} from '@/interfaces/response.interface';
 import {httpService, responseService} from '@/module';
-import {BankTypesInterface} from '@/interfaces/bank-types.interface';
-import {CreditCardTypesInterface} from '@/interfaces/credit-card-types.interface';
-import {InvestmentTypesInterface} from '@/interfaces/investment-types.interface';
-import {UtilityTypesInterface} from '@/interfaces/utility-types.interface';
-import {MedicalTypesInterface} from '@/interfaces/medical-types.interface';
-import {JobTypesInterface} from '@/interfaces/job-types.interface';
-import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
-
-const banks: BankTypesInterface[] = [];
-const bills: BillTypesInterface[] = [];
-const creditCards: CreditCardTypesInterface[] = [];
-const investments: InvestmentTypesInterface[] = [];
-const jobs: JobTypesInterface[] = [];
-const medical: MedicalTypesInterface[] = [];
-const utilities: UtilityTypesInterface[] = [];
-const vehicles: VehicleTypesInterface[] = [];
-
-const currentState: TypesStateInterface = {
-    banks,
-    bills,
-    creditCards,
-    investments,
-    jobs,
-    medical,
-    utilities,
-    vehicles,
-};
-
-const getters: GetterTree<TypesStateInterface, RootStateInterface> = {};
 
 const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
     async getAllBankTypes({ commit }): Promise<ResponseInterface> {
@@ -46,7 +16,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addBankTypes', responseService.getDataFromResponse(response));
+                commit('ADD_BANK_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -55,6 +25,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllBillTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -65,7 +36,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 const resData = responseService.getDataFromResponse(response);
-                commit('addBillTypes', resData);
+                commit('ADD_BILL_TYPES', resData);
                 return responseService.getSuccessResponse();
             }
 
@@ -74,6 +45,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllCreditCardTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -83,7 +55,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addCreditCardTypes', responseService.getDataFromResponse(response));
+                commit('ADD_CREDIT_CARD_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -92,6 +64,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllInvestmentTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -101,7 +74,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addInvestmentTypes', responseService.getDataFromResponse(response));
+                commit('ADD_INVESTMENT_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -110,6 +83,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllJobTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -119,7 +93,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addJobTypes', responseService.getDataFromResponse(response));
+                commit('ADD_JOB_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -128,6 +102,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllMedicalTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -137,7 +112,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addMedicalTypes', responseService.getDataFromResponse(response));
+                commit('ADD_MEDICAL_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -146,6 +121,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllUtilityTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -155,7 +131,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addUtilityTypes', responseService.getDataFromResponse(response));
+                commit('ADD_UTILITY_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -164,6 +140,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async getAllVehicleTypes({ commit }): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -173,7 +150,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authGet(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addVehicleTypes', responseService.getDataFromResponse(response));
+                commit('ADD_VEHICLE_TYPES', responseService.getDataFromResponse(response));
                 return responseService.getSuccessResponse();
             }
 
@@ -184,38 +161,4 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
     },
 };
 
-const mutations: MutationTree<TypesStateInterface> = {
-    addBankTypes(state, payload: BankTypesInterface[]) {
-        state.banks = payload;
-    },
-    addBillTypes(state, payload: BillTypesInterface[]) {
-        state.bills = payload;
-    },
-    addCreditCardTypes(state, payload: CreditCardTypesInterface[]) {
-        state.creditCards = payload;
-    },
-    addInvestmentTypes(state, payload: InvestmentTypesInterface[]) {
-        state.investments = payload;
-    },
-    addJobTypes(state, payload: JobTypesInterface[]) {
-        state.jobs = payload;
-    },
-    addMedicalTypes(state, payload: MedicalTypesInterface[]) {
-        state.medical = payload;
-    },
-    addUtilityTypes(state, payload: UtilityTypesInterface[]) {
-        state.utilities = payload;
-    },
-    addVehicleTypes(state, payload: VehicleTypesInterface[]) {
-        state.vehicles = payload;
-    },
-};
-
-const Types: Module<TypesStateInterface, RootStateInterface> = {
-    state: currentState,
-    getters,
-    actions,
-    mutations,
-};
-
-export default Types;
+export default actions;

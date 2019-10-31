@@ -6,7 +6,7 @@ import {Action, Mutation, State} from 'vuex-class';
 import {BudgetTemplateRemoveInterface} from '@/interfaces/budget-template-remove.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
 import {globalService} from '@/module';
 import {UserStateInterface} from '@/store/modules/user/user-state.interface';

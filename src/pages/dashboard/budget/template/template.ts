@@ -7,7 +7,7 @@ import {Action, State} from 'vuex-class';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 import {DataTableHeadersInterface} from '@/interfaces/data-table-headers.interface';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
