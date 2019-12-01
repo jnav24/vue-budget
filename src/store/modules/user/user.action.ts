@@ -12,6 +12,26 @@ import {ProfileInterface} from '@/interfaces/profile.interface';
 const userCookieName: any = process.env.VUE_APP_TOKEN;
 
 const actions: ActionTree<UserStateInterface, RootStateInterface> = {
+    async getCsrfToken({ commit }) {
+        try {
+            const data: UrlInterface = {
+                url: 'auth/csrf',
+            };
+            const response: AxiosResponse = await httpService.get(data);
+
+            if (responseService.isSuccessResponse(response.status)) {
+                console.log(response);
+                commit('ADD_CSRF_TOKEN', response.data.data.csrf);
+                return responseService.getSuccessResponse();
+            }
+
+            return responseService.getFailedResponse();
+        } catch (error) {
+            return responseService.getFailedResponse();
+        }
+    },
+
+
     async isLoggedIn({ commit, dispatch }): Promise<ResponseInterface> {
         try {
             const cookie = cookiesService.getCookie(userCookieName);

@@ -5,6 +5,13 @@ import {UserInterface} from '@/interfaces/user.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 const mutations: MutationTree<UserStateInterface> = {
+    ADD_CSRF_TOKEN(state, payload: string) {
+        state.login = {
+            ...state.login,
+            csrf: payload,
+        };
+    },
+
     ADD_USER(state, usr: UserInterface) {
         state.user = usr;
     },

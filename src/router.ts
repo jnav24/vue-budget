@@ -53,6 +53,7 @@ function initStore() {
     store.dispatch('getAllMedicalTypes');
     store.dispatch('getAllUtilityTypes');
     store.dispatch('getAllVehicleTypes');
+    store.dispatch('getCsrfToken');
 }
 
 const router = new Router({
@@ -68,6 +69,10 @@ const router = new Router({
         {
             path: '/login',
             name: 'onboard',
+            beforeEnter: (to: Route, from: Route, next: any) => {
+                store.dispatch('getCsrfToken');
+                next();
+            },
             component: () => import('@/pages/onboard/Onboard.vue'),
             children: [
                 {
