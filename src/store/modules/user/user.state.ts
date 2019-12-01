@@ -4,6 +4,7 @@ import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 
 const login: UserLoginStateInterface = {
+    csrf: '',
     timeout: false,
     throttle: {
         attempts: 0,
