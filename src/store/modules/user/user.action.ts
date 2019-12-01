@@ -20,7 +20,6 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.get(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                console.log(response);
                 commit('ADD_CSRF_TOKEN', response.data.data.csrf);
                 return responseService.getSuccessResponse();
             }

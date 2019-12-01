@@ -12,11 +12,27 @@ class HttpService {
     }
 
     public async get(data: UrlInterface): Promise<AxiosResponse> {
-        return await axios.get(domain + data.url, data.params || {});
+        return await axios({
+            method: 'GET',
+            url: domain + data.url,
+            params: data.params || {},
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': 'hello',
+            },
+        });
     }
 
     public async post(data: UrlInterface): Promise<AxiosResponse> {
-        return await axios.post(domain + data.url, data.params || {});
+        return await axios({
+            method: 'POST',
+            url: domain + data.url,
+            data: data.params || {},
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': 'hello',
+            },
+        });
     }
 
     public async authGet(data: UrlInterface): Promise<AxiosResponse> {
@@ -26,6 +42,8 @@ class HttpService {
             params: data.params || {},
             headers: {
                 Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': 'hello',
             },
         });
     }
@@ -37,6 +55,8 @@ class HttpService {
             data: data.params || {},
             headers: {
                 Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': 'hello',
             },
         });
     }
@@ -48,6 +68,8 @@ class HttpService {
             data: data.params || {},
             headers: {
                 Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': 'hello',
             },
         });
     }
