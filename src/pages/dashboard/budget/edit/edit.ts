@@ -2,7 +2,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
 import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards.vue';
 import Investments from '@/components/dashboard/budgets/investments/Investments.vue';
@@ -19,7 +19,7 @@ import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/Confirm
 import {SaveControlsInterface} from '@/interfaces/save-controls.interface';
 import {AlertInterface} from '@/interfaces/alert.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
-import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
+import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import Totals from '@/components/dashboard/totals/Totals.vue';
 
 Component.registerHooks([

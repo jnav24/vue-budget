@@ -1,11 +1,11 @@
 import {Emit, Prop, Vue, Component} from 'vue-property-decorator';
 import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {State} from 'vuex-class';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {timestampService} from '@/module';
 import {FormInterface} from '@/interfaces/form.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 
 Component.registerHooks([
     'created',

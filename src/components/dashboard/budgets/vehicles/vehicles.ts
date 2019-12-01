@@ -2,7 +2,7 @@ import { Component } from 'vue-property-decorator';
 import Budgets from '@/components/dashboard/budgets/budgets';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {State} from 'vuex-class';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 
 @Component

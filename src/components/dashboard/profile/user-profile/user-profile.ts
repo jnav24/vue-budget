@@ -1,7 +1,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
 import {timestampService, validateService} from '@/module';

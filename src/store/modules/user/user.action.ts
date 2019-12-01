@@ -1,36 +1,15 @@
-import Vue from 'vue';
-import {UserInterface} from '@/interfaces/user.interface';
-import {UserLoginInterface} from '@/interfaces/user-login.interface';
-import {UserRegisterInterface} from '@/interfaces/user-register.interface';
-import {ResponseInterface} from '@/interfaces/response.interface';
-import { AxiosResponse } from 'axios';
-import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
-import { cookiesService, responseService, httpService, userService } from '@/module';
-import {UrlInterface} from '@/interfaces/url.interface';
+import {ActionTree} from 'vuex';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {UserStateInterface} from '@/interfaces/user-state.interface';
-import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
+import {ResponseInterface} from '@/interfaces/response.interface';
+import {cookiesService, httpService, responseService, userService} from '@/module';
+import {UserLoginInterface} from '@/interfaces/user-login.interface';
+import {UrlInterface} from '@/interfaces/url.interface';
+import {AxiosResponse} from 'axios';
+import {UserRegisterInterface} from '@/interfaces/user-register.interface';
 import {ProfileInterface} from '@/interfaces/profile.interface';
-import {UserLoginStateInterface} from '@/interfaces/user-login-state.interface';
 
-const login: UserLoginStateInterface = {
-    timeout: false,
-    throttle: {
-        attempts: 0,
-        allowed: 3,
-    },
-};
-const user: UserInterface = {} as UserInterface;
-const vehicles: UserVehicleInterface[] = [];
 const userCookieName: any = process.env.VUE_APP_TOKEN;
-
-const currentState: UserStateInterface = {
-    login,
-    user,
-    vehicles,
-};
-
-const getters: GetterTree<UserStateInterface, RootStateInterface> = {};
 
 const actions: ActionTree<UserStateInterface, RootStateInterface> = {
     async isLoggedIn({ commit, dispatch }): Promise<ResponseInterface> {
@@ -41,8 +20,8 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
-                    commit('addUserVehicles', response.data.data.vehicles);
-                    commit('addUser', response.data.data.user);
+                    commit('ADD_USER_VEHICLES', response.data.data.vehicles);
+                    commit('ADD_USER', response.data.data.user);
                     return responseService.getSuccessResponse();
                 }
             }
@@ -54,6 +33,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         }
     },
+
     async logUserIn({ commit, dispatch }, userData: {}): Promise<ResponseInterface> {
         try {
             const loginData: UserLoginInterface = userService.setUserDataFromForm(userData);
@@ -64,9 +44,9 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const res: AxiosResponse = await httpService.post(data);
 
             if (responseService.isSuccessResponse(res.status)) {
-                commit('tokenExpired', false);
-                commit('addUserVehicles', res.data.data.vehicles);
-                commit('addUser', res.data.data.user);
+                commit('TOKEN_EXPIRED', false);
+                commit('ADD_USER_VEHICLES', res.data.data.vehicles);
+                commit('ADD_USER', res.data.data.user);
                 cookiesService.setCookie(userCookieName, res.data.data.token);
                 return responseService.getSuccessResponse();
             }
@@ -93,6 +73,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             }
         }
     },
+
     async registerUser({ commit, dispatch }, userData: {}): Promise<ResponseInterface> {
         try {
             const registerData: UserRegisterInterface = userService.setUserDataFromForm(userData);
@@ -131,6 +112,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             }
         }
     },
+
     async updateUserProfile({ commit }, payload: ProfileInterface): Promise<ResponseInterface> {
         try {
             const data: UrlInterface = {
@@ -141,20 +123,21 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             const response: AxiosResponse = await httpService.authPost(data);
 
             if (responseService.isSuccessResponse(response.status)) {
-                commit('addUser', response.data.data.profile);
-                commit('addUserVehicles', response.data.data.vehicles);
+                commit('ADD_USER', response.data.data.profile);
+                commit('ADD_USER_VEHICLES', response.data.data.vehicles);
                 return responseService.getSuccessResponse();
             }
 
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();
         }
     },
+
     async updatePassword({ commit }, payload: { newPassword: string, oldPassword: string }) {
         try {
             const data: UrlInterface = {
@@ -173,7 +156,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
             return responseService.getFailedResponse();
         } catch (error) {
             if (responseService.isTokenExpired(error.response.data.message)) {
-                commit('tokenExpired', true);
+                commit('TOKEN_EXPIRED', true);
             }
 
             return responseService.getFailedResponse();
@@ -181,26 +164,4 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
     },
 };
 
-const mutations: MutationTree<UserStateInterface> = {
-    addUser(state, usr: UserInterface) {
-        state.user = usr;
-    },
-    addUserVehicles(state, payload: UserVehicleInterface[]) {
-        state.vehicles = payload;
-    },
-    resetUserState(state) {
-        state.user = {} as UserInterface;
-    },
-    tokenExpired(state, payload: boolean) {
-        Vue.set(state.login, 'timeout', payload);
-    },
-};
-
-const User: Module<UserStateInterface, RootStateInterface> = {
-    state: currentState,
-    getters,
-    actions,
-    mutations,
-};
-
-export default User;
+export default actions;

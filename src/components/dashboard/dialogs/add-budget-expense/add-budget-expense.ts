@@ -12,7 +12,7 @@ import Misc from '@/components/dashboard/budget-template-form/misc/Misc.vue';
 import Utility from '@/components/dashboard/budget-template-form/utility/Utility.vue';
 import Vehicle from '@/components/dashboard/budget-template-form/vehicle/Vehicle.vue';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 
 @Component({
     components: {

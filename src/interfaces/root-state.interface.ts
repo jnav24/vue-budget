@@ -1,9 +1,9 @@
-import {UserStateInterface} from '@/interfaces/user-state.interface';
-import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
-import {TypesStateInterface} from '@/interfaces/types-state.interface';
-import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
-import {AggregationStateInterface} from '@/interfaces/aggregation-state.interface';
-import {ControlsStateInterface} from '@/interfaces/controls-state.interface';
+import {UserStateInterface} from '@/store/modules/user/user-state.interface';
+import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
+import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
+import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
+import {AggregationStateInterface} from '@/store/modules/aggregation/aggregation-state.interface';
+import {ControlsStateInterface} from '@/store/modules/controls/controls-state.interface';
 
 export interface RootStateInterface {
     Aggregation: AggregationStateInterface;

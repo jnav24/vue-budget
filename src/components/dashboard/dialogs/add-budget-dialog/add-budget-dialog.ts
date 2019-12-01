@@ -5,8 +5,8 @@ import {globalService, timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {BudgetTemplateStateInterface} from '@/interfaces/budget-template-state.interface';
-import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
+import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import { cloneDeep } from 'lodash';
 import {AlertInterface} from '@/interfaces/alert.interface';
 

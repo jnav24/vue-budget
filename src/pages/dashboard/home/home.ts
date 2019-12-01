@@ -4,8 +4,8 @@ import {ChartDataInterface} from '@/interfaces/chart-data.interface';
 import {currencyService, timestampService} from '@/module';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {Getter, State} from 'vuex-class';
-import {AggregationStateInterface} from '@/interfaces/aggregation-state.interface';
-import {BudgetStateInterface} from '@/interfaces/budget-state.interface';
+import {AggregationStateInterface} from '@/store/modules/aggregation/aggregation-state.interface';
+import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 
 @Component({
     components: {
