@@ -41,9 +41,9 @@ class HttpService {
             url: domain + data.url,
             params: data.params || {},
             headers: {
-                Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN': 'hello',
+                'Authorization': `Bearer ${this.cookieService.getCookie(userCookieName)}`,
             },
         });
     }
@@ -54,9 +54,9 @@ class HttpService {
             url: domain + data.url,
             data: data.params || {},
             headers: {
-                Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN': 'hello',
+                'Authorization': `Bearer ${this.cookieService.getCookie(userCookieName)}`,
             },
         });
     }
@@ -67,9 +67,9 @@ class HttpService {
             url: domain + data.url,
             data: data.params || {},
             headers: {
-                Authorization: `Bearer ${this.cookieService.getCookie(userCookieName)}`,
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN': 'hello',
+                'Authorization': `Bearer ${this.cookieService.getCookie(userCookieName)}`,
             },
         });
     }
