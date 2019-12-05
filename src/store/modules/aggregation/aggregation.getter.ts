@@ -3,7 +3,16 @@ import {AggregationStateInterface} from '@/store/modules/aggregation/aggregation
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 
 const getters: GetterTree<AggregationStateInterface, RootStateInterface> = {
-    allYears: (state) => Object.keys(state.budget),
+    allYears: (state) => {
+        const yearList: string[] = Object.keys(state.budget);
+        const yearObjList: Array<{ value: string, label: string }> = [];
+
+        for (const year of yearList) {
+            yearObjList.push({ value: year, label: year });
+        }
+
+        return yearObjList;
+    },
 
     totalUnpaid: (state) => {
         let total = 0;

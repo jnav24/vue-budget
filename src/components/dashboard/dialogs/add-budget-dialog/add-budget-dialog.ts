@@ -3,7 +3,7 @@ import Dialogs from '@/components/dashboard/dialogs/dialogs';
 import {FormInterface} from '@/interfaces/form.interface';
 import {globalService, timestampService, validateService} from '@/module';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action, State} from 'vuex-class';
+import {Action, Getter, Mutation, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
@@ -18,6 +18,8 @@ Component.registerHooks([
 class AddBudgetDialog extends Dialogs {
     @Action public getYearlyAggregations: () => Promise<ResponseInterface>;
     @Action public saveBudget: (obj: { name: string; expenses: any }) => Promise<ResponseInterface>;
+    @Getter public allYears: string[];
+    @Mutation public SET_BUDGET_AGGREGATION: void;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetValid: boolean = false;
@@ -48,7 +50,6 @@ class AddBudgetDialog extends Dialogs {
         },
     };
     public months: any[] = globalService.getMonths();
-    public years: any[] = globalService.getYears(1);
 
     public mounted() {
         this.setCycle();
@@ -56,6 +57,10 @@ class AddBudgetDialog extends Dialogs {
 
     public get budgets() {
         return this.budget.budgetList;
+    }
+
+    public get years() {
+        return this.allYears;
     }
 
     public nextCycle(format: 'M' | 'Y') {
