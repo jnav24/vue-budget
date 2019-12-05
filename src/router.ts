@@ -4,7 +4,7 @@ import store from '@/store/index';
 import Dashboard from './pages/dashboard/Dashboard.vue';
 import DashboardHome from './pages/dashboard/home/Home.vue';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import { userService } from '@/module';
+import { userService, httpService } from '@/module';
 
 Vue.use(Router);
 
@@ -41,6 +41,7 @@ function initStore() {
         store.dispatch('isLoggedIn');
     }
 
+    setCsrfToken();
     store.dispatch('getYearlyAggregations');
     store.dispatch('getUnpaidBillTotals');
     store.dispatch('getAllBudgetTemplates');
@@ -54,6 +55,16 @@ function initStore() {
     store.dispatch('getAllUtilityTypes');
     store.dispatch('getAllVehicleTypes');
     store.dispatch('getCsrfToken');
+}
+
+function setCsrfToken() {
+    if (httpService.csrfToken.trim() === '') {
+        store
+            .dispatch('getCsrfToken')
+            .then((res: ResponseInterface) => {
+                httpService.csrfToken = res.data.csrf;
+            });
+    }
 }
 
 const router = new Router({
@@ -70,7 +81,7 @@ const router = new Router({
             path: '/login',
             name: 'onboard',
             beforeEnter: (to: Route, from: Route, next: any) => {
-                store.dispatch('getCsrfToken');
+                setCsrfToken();
                 next();
             },
             component: () => import('@/pages/onboard/Onboard.vue'),

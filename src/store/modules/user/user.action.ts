@@ -21,7 +21,9 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
 
             if (responseService.isSuccessResponse(response.status)) {
                 commit('ADD_CSRF_TOKEN', response.data.data.csrf);
-                return responseService.getSuccessResponse();
+                return responseService.getSuccessResponse('', {
+                    csrf: response.data.data.csrf,
+                });
             }
 
             return responseService.getFailedResponse();

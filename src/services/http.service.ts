@@ -7,30 +7,42 @@ const userCookieName: any = process.env.VUE_APP_TOKEN;
 const domain: any = process.env.VUE_APP_API_DOMAIN;
 
 class HttpService {
+    private token: string = '';
+
     constructor(private cookieService: CookieService) {
         // ...
     }
 
+    public get csrfToken() {
+        return this.token;
+    }
+
+    public set csrfToken(token: string) {
+        this.token = token;
+    }
+
     public async get(data: UrlInterface): Promise<AxiosResponse> {
+        console.log(this.csrfToken);
         return await axios({
             method: 'GET',
             url: domain + data.url,
             params: data.params || {},
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': 'hello',
+                'X-CSRF-TOKEN': this.csrfToken,
             },
         });
     }
 
     public async post(data: UrlInterface): Promise<AxiosResponse> {
+        console.log(this.csrfToken);
         return await axios({
             method: 'POST',
             url: domain + data.url,
             data: data.params || {},
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': 'hello',
+                'X-CSRF-TOKEN': this.csrfToken,
             },
         });
     }
@@ -42,7 +54,7 @@ class HttpService {
             params: data.params || {},
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': 'hello',
+                'X-CSRF-TOKEN': this.csrfToken,
                 'Authorization': `Bearer ${this.cookieService.getCookie(userCookieName)}`,
             },
         });
@@ -55,7 +67,7 @@ class HttpService {
             data: data.params || {},
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': 'hello',
+                'X-CSRF-TOKEN': this.csrfToken,
                 'Authorization': `Bearer ${this.cookieService.getCookie(userCookieName)}`,
             },
         });
@@ -68,7 +80,7 @@ class HttpService {
             data: data.params || {},
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': 'hello',
+                'X-CSRF-TOKEN': this.csrfToken,
                 'Authorization': `Bearer ${this.cookieService.getCookie(userCookieName)}`,
             },
         });
