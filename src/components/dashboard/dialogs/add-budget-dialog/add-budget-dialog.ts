@@ -19,7 +19,7 @@ class AddBudgetDialog extends Dialogs {
     @Action public getYearlyAggregations: () => Promise<ResponseInterface>;
     @Action public saveBudget: (obj: { name: string; expenses: any }) => Promise<ResponseInterface>;
     @Getter public allYears: string[];
-    @Mutation public SET_BUDGET_AGGREGATION: void;
+    @Mutation public APPEND_EMPTY_BUDGET_AGGREGATION: (year: string) => void;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetValid: boolean = false;
@@ -133,6 +133,11 @@ class AddBudgetDialog extends Dialogs {
 
         if (this.form.month.value === 1) {
             this.form.year.value = this.nextCycle('Y');
+            const yearList: string[] = globalService.arrayColumn('value', this.years);
+
+            if (!yearList.includes(this.form.year.value)) {
+                this.APPEND_EMPTY_BUDGET_AGGREGATION(this.form.year.value);
+            }
         } else {
             this.form.year.value = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
         }

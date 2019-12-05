@@ -6,7 +6,7 @@ class GlobalService {
      * @param {any[]} arr
      * @returns {any[]}
      */
-    public arrayColumn(val: string, arr: object[]): any[] {
+    public arrayColumn(val: string, arr: any[]): any[] {
         return arr.map((obj: any) => {
             if (typeof (obj as any)[val] !== 'undefined') {
                 return (obj as any)[val];

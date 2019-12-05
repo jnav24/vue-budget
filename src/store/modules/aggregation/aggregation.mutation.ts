@@ -5,6 +5,18 @@ import {AggregationBudgetInterface} from '@/interfaces/aggregation-budget.interf
 import {AggregationUnpaidInterface} from '@/interfaces/aggregation-unpaid.interface';
 
 const mutations: MutationTree<AggregationStateInterface> = {
+    APPEND_EMPTY_BUDGET_AGGREGATION(state, payload: string) {
+        const empty = ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'];
+        state.budget = {
+            ...state.budget,
+            [payload]: {
+                earned: empty,
+                saved: empty,
+                spent: empty,
+            },
+        };
+    },
+
     SET_BUDGET_AGGREGATION(state, payload: AggregationBudgetInterface) {
         state.budget = payload;
     },
