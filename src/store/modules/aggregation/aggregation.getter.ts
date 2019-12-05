@@ -5,10 +5,10 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 const getters: GetterTree<AggregationStateInterface, RootStateInterface> = {
     allYears: (state) => {
         const yearList: string[] = Object.keys(state.budget);
-        const yearObjList: Array<{ value: string, label: string }> = [];
+        const yearObjList: Array<{ value: number, label: string }> = [];
 
         for (const year of yearList) {
-            yearObjList.push({ value: year, label: year });
+            yearObjList.push({ value: Number(year), label: year });
         }
 
         return yearObjList;
