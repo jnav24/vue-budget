@@ -3,6 +3,8 @@ import {AggregationStateInterface} from '@/store/modules/aggregation/aggregation
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 
 const getters: GetterTree<AggregationStateInterface, RootStateInterface> = {
+    allYears: (state) => Object.keys(state.budget),
+
     totalUnpaid: (state) => {
         let total = 0;
 
