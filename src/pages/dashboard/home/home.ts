@@ -13,6 +13,7 @@ import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interfac
     },
 })
 class Home extends Vue {
+    @Getter public allYears: Array<{ label: string; value: number }>;
     @Getter public totalUnpaid: number;
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.Aggregation) public aggregationState: AggregationStateInterface;
@@ -20,7 +21,7 @@ class Home extends Vue {
         responsive: true,
         maintainAspectRatio: false,
     };
-    public selectedYear: string = '2019';
+    public selectedYear: number = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
 
     public get budget() {
         return this.budgetState.budgetList;
@@ -95,20 +96,8 @@ class Home extends Vue {
         };
     }
 
-    public get years(): Array<{ value: string; label: string; }> {
-        if (typeof (this.budgetAggregate as any)[this.currentYear] !== 'undefined') {
-            const allYears: any[] = [];
-
-            for (const year of Object.keys(this.budgetAggregate)) {
-                allYears.unshift({ value: year, label: year });
-            }
-
-            return allYears;
-        }
-
-        return  [
-            { value: '2019', label: '2019' },
-        ];
+    public get years() {
+        return this.allYears;
     }
 
     private getAverage(name: string) {

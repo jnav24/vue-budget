@@ -18,7 +18,7 @@ Component.registerHooks([
 class AddBudgetDialog extends Dialogs {
     @Action public getYearlyAggregations: () => Promise<ResponseInterface>;
     @Action public saveBudget: (obj: { name: string; expenses: any }) => Promise<ResponseInterface>;
-    @Getter public allYears: string[];
+    @Getter public allYears: Array<{ label: string; value: number }>;
     @Mutation public APPEND_EMPTY_BUDGET_AGGREGATION: (year: string) => void;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
