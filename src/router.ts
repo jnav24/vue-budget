@@ -172,7 +172,7 @@ const router = new Router({
                     meta: {
                         middleware: [auth],
                     },
-                    component: () => import('@pages/dashboard/search/Search.vue'),
+                    component: () => import('@/pages/dashboard/search/Search.vue'),
                 },
                 {
                     path: '*',
