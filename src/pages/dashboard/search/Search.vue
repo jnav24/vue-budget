@@ -3,6 +3,6 @@
 
 <template>
 	<div id="search">
-
+		Searching...
 	</div>
 </template>

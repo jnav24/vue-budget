@@ -25,6 +25,10 @@ class Dashboard extends Vue {
             name: 'Budget',
             link: { name: 'budget-list' },
         },
+        {
+            name: 'Search',
+            link: { name: 'search' },
+        },
     ];
     public mobileMenu: boolean = false;
 
