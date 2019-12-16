@@ -1,22 +1,11 @@
 import { Vue, Component } from 'vue-property-decorator';
-import {FormInterface} from '@/interfaces/form.interface';
+import SearchForm from '@/components/dashboard/forms/search-form/SearchForm.vue';
 
-@Component
+@Component({
+    components: {
+        SearchForm,
+    },
+})
 export default class Search extends Vue {
-    public form: FormInterface = {
-        search: {
-            value: '',
-            rules: [],
-        },
-        type: {
-            value: '',
-            rules: [],
-        },
-        year: {
-            value: '',
-            rules: [],
-        },
-    };
-    public types = [];
-    public years = [];
+
 }
