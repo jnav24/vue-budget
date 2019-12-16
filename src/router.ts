@@ -167,6 +167,14 @@ const router = new Router({
                     component: () => import('@/pages/dashboard/profile/Profile.vue'),
                 },
                 {
+                    path: 'search',
+                    name: 'search',
+                    meta: {
+                        middleware: [auth],
+                    },
+                    component: () => import('@pages/dashboard/search/Search.vue'),
+                },
+                {
                     path: '*',
                     name: '404',
                     meta: {
