@@ -61,7 +61,7 @@
 						<v-card>
 							<v-card-text class="content">
 								<p class="icon"><v-icon>trending_up</v-icon></p>
-								<p class="total">Total Earned {{ currentYear }}</p>
+								<p class="total">Total Earned {{ selectedYear }}</p>
 								<p class="amount">{{ totalEarned }}</p>
 								<p class="average">Monthly Average {{ averageEarned }}</p>
 							</v-card-text>
@@ -72,7 +72,7 @@
 						<v-card>
 							<v-card-text class="content">
 								<p class="icon"><v-icon>trending_down</v-icon></p>
-								<p class="total">Total Spent {{ currentYear }}</p>
+								<p class="total">Total Spent {{ selectedYear }}</p>
 								<p class="amount">{{ totalSpent }}</p>
 								<p class="average">Monthly Average {{ averageSpent }}</p>
 							</v-card-text>
@@ -83,7 +83,7 @@
 						<v-card>
 							<v-card-text class="content">
 								<p class="icon"><v-icon>attach_money</v-icon></p>
-								<p class="total">Total Saved {{ currentYear }}</p>
+								<p class="total">Total Saved {{ selectedYear }}</p>
 								<p class="amount">{{ totalSaved }}</p>
 								<p class="average">Monthly Average {{ averageSaved }}</p>
 							</v-card-text>
