@@ -27,10 +27,6 @@ class Home extends Vue {
         return this.budgetState.budgetList;
     }
 
-    public get currentYear() {
-        return timestampService.getCurrentTimestamp('UTC', 'YYYY');
-    }
-
     public get budgetAggregate() {
         return this.aggregationState.budget;
     }
@@ -114,12 +110,12 @@ class Home extends Vue {
 
     private getTotal(key: string) {
         if (
-            typeof (this.budgetAggregate as any)[this.currentYear] !== 'undefined' &&
-            typeof (this.budgetAggregate as any)[this.currentYear][key] !== 'undefined'
+            typeof (this.budgetAggregate as any)[this.selectedYear] !== 'undefined' &&
+            typeof (this.budgetAggregate as any)[this.selectedYear][key] !== 'undefined'
         ) {
             let sum = 0;
 
-            for (const value of (this.budgetAggregate as any)[this.currentYear][key]) {
+            for (const value of (this.budgetAggregate as any)[this.selectedYear][key]) {
                 sum = Number((sum + Number(value)).toFixed(2));
             }
 
