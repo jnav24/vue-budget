@@ -5,15 +5,15 @@
 	<div id="search-form">
 		<v-card>
 			<v-card-text>
-				<v-layout align-center>
-					<v-flex>
+				<v-layout align-center justify-space-between>
+					<v-flex sm4>
 						<v-text-field
 							v-model="form.search.value"
 							:rules="form.search.rules"
 							label="Search by keyword or name"></v-text-field>
 					</v-flex>
 
-					<v-flex>
+					<v-flex sm3>
 						<v-select
 							v-model="form.type.value"
 							:rules="form.type.rules"
@@ -23,7 +23,7 @@
 							label="Select Budget Type"></v-select>
 					</v-flex>
 
-					<v-flex>
+					<v-flex sm2>
 						<v-select
 							v-model="form.year.value"
 							:rules="form.year.rules"
@@ -33,8 +33,8 @@
 							label="Select Year"></v-select>
 					</v-flex>
 
-					<v-flex>
-						<v-btn color="success">
+					<v-flex sm2>
+						<v-btn block color="success">
 							<v-icon>search</v-icon>
 							<span style="display:inline-block; margin-left: 5px;">Search</span>
 						</v-btn>
