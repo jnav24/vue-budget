@@ -115,8 +115,8 @@ class Edit extends Vue {
                             this.$router.push({ name: 'budget-list' });
                         }
 
-                        const index = this.budgetState.budgetList.findIndex((obj: any) => {
-                            return Number(obj.id) === Number(this.$route.params.id);
+                        const index = this.budgetState.budgetList.findIndex((bud: any) => {
+                            return Number(bud.id) === Number(this.$route.params.id);
                         });
 
                         this.budget = this.budgetState.budgetList[index];
