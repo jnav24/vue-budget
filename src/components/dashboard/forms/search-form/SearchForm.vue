@@ -18,7 +18,7 @@
 							v-model="form.type.value"
 							:rules="form.type.rules"
 							:items="billTypes"
-							item-value="id"
+							item-value="slug"
 							item-text="name"
 							label="Select Budget Type"></v-select>
 					</v-flex>

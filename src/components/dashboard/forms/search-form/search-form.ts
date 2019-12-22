@@ -7,7 +7,7 @@ import {httpService} from '@/module';
 
 @Component
 export default class SearchForm extends Vue {
-    @Getter public billTypes: Array<{ id: string; name: string }>;
+    @Getter public billTypes: Array<{ slug: string; name: string }>;
     @Getter public allYears: Array<{ label: string; value: number }>;
     public form: FormInterface = {
         search: {
@@ -26,7 +26,6 @@ export default class SearchForm extends Vue {
     public years = [];
 
     public async runSearch() {
-        console.log('running search...');
         try {
             const url: UrlInterface = {
                 url: 'search',
@@ -40,6 +39,7 @@ export default class SearchForm extends Vue {
             console.log(response);
         } catch (error) {
             console.log(error);
+            // show results not found
         }
     }
 }
