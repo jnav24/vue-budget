@@ -17,9 +17,9 @@
 						<v-select
 							v-model="form.type.value"
 							:rules="form.type.rules"
-							:items="types"
+							:items="billTypes"
 							item-value="id"
-							item-text="value"
+							item-text="name"
 							label="Select Budget Type"></v-select>
 					</v-flex>
 
@@ -27,8 +27,8 @@
 						<v-select
 							v-model="form.year.value"
 							:rules="form.year.rules"
-							:items="years"
-							item-value="id"
+							:items="allYears"
+							item-value="label"
 							item-text="value"
 							label="Select Year"></v-select>
 					</v-flex>
