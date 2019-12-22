@@ -34,7 +34,7 @@
 					</v-flex>
 
 					<v-flex sm2>
-						<v-btn block color="success">
+						<v-btn @click="runSearch()" block color="success">
 							<v-icon>search</v-icon>
 							<span style="display:inline-block; margin-left: 5px;">Search</span>
 						</v-btn>
