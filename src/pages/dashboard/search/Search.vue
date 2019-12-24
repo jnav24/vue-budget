@@ -12,7 +12,25 @@
 					</v-flex>
 				</v-layout>
 
-				<SearchForm></SearchForm>
+				<v-layout>
+					<v-flex sm4>
+						<SearchForm></SearchForm>
+					</v-flex>
+
+					<v-flex sm8 style="padding-left: 20px;">
+						<EmptyState
+							v-if="!searchResults.length && showEmptyState"
+							title="Search Results"
+							text="Your search results will appear here"
+							:hide-button="true"></EmptyState>
+
+						<EmptyState
+							v-if="!searchResults.length && !showEmptyState"
+							title="No Results Found"
+							text="Try adjusting your search criteria to find what you are looking for."
+							:hide-button="true"></EmptyState>
+					</v-flex>
+				</v-layout>
 			</v-flex>
 		</v-layout>
 	</div>
