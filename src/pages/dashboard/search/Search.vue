@@ -14,7 +14,7 @@
 
 				<v-layout>
 					<v-flex sm4>
-						<SearchForm></SearchForm>
+						<SearchForm @runSearch="runSearch($event)"></SearchForm>
 					</v-flex>
 
 					<v-flex sm8 style="padding-left: 20px;">

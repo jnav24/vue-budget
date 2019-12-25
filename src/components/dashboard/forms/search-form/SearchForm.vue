@@ -23,7 +23,7 @@
 
 				<v-divider></v-divider>
 
-				<v-btn @click="runSearch()" block color="success">
+				<v-btn @click="runSearch(form)" block color="success">
 					<v-icon>search</v-icon>
 					<span style="display:inline-block; margin-left: 5px;">Search</span>
 				</v-btn>
