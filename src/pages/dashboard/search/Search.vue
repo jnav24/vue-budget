@@ -18,6 +18,7 @@
 					</v-flex>
 
 					<v-flex sm8 style="padding-left: 20px;">
+						<pre>{{ searchResults }}</pre>
 						<EmptyState
 							v-if="!searchResults.length && showEmptyState"
 							title="Search Results"
@@ -29,6 +30,32 @@
 							title="No Results Found"
 							text="Try adjusting your search criteria to find what you are looking for."
 							:hide-button="true"></EmptyState>
+
+						<template v-for="result in searchResults">
+							<v-card v-if="result[type].length">
+								<v-card-title style="color: #777;font-size: 3em;">{{ formatMonth(result.budget_cycle) }}</v-card-title>
+								<v-card-text>
+									<v-list>
+										<template v-for="(item, index) in result[type]">
+											<v-list-item :key="item.id">
+												{{ item.name }}
+												{{ item.paid_date }}
+												{{ item.amount }}
+											</v-list-item>
+
+											<v-divider
+												v-if="index + 1 < result[type].length"
+												:key="index"></v-divider>
+										</template>
+									</v-list>
+								</v-card-text>
+
+								<v-card-actions>
+									<v-flex>total</v-flex>
+									<v-flex>$34,560,941.00</v-flex>
+								</v-card-actions>
+							</v-card>
+						</template>
 					</v-flex>
 				</v-layout>
 			</v-flex>
