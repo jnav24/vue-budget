@@ -12,4 +12,5 @@ export interface VehicleInterface {
     created_at?: string;
     updated_at?: string;
     not_track_amount?: number;
+    balance: string;
 }

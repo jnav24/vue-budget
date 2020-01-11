@@ -85,10 +85,11 @@ class Template extends Vue {
         ],
         vehicles: [
             { text: 'Vehicle', value: 'user_vehicle_id' },
-            { text: 'Amount', value: 'amount' },
             { text: 'Vehicle Type', value: 'vehicle_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
             { text: 'Mileage', value: 'mileage' },
+            { text: 'Balance', value: 'balance' },
+            { text: 'Amount', value: 'amount' },
         ],
     };
     public showPaidForm: boolean = false;

@@ -77,6 +77,12 @@
 							v-model="form.mileage.value"
 							:rules="form.mileage.rules"
 							label="Mileage"></v-text-field>
+
+						<v-text-field
+							v-if="getTypeId('finance') === form.type.value || getTypeId('lease') === form.type.value"
+							v-model="form.balance.value"
+							:rules="form.balance.rules"
+							label="Balance"></v-text-field>
 					</v-flex>
 				</v-layout>
 
