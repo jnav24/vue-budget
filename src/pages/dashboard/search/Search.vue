@@ -13,12 +13,13 @@
 				</v-layout>
 
 				<v-layout>
-					<v-flex sm4>
+					<v-flex sm3>
 						<SearchForm @runSearch="runSearch($event)"></SearchForm>
 					</v-flex>
 
-					<v-flex sm8 style="padding-left: 20px;">
-						<pre>{{ searchResults }}</pre>
+					<v-spacer></v-spacer>
+
+					<v-flex sm8>
 						<EmptyState
 							v-if="!searchResults.length && showEmptyState"
 							title="Search Results"
@@ -33,7 +34,10 @@
 
 						<template v-for="result in searchResults">
 							<v-card v-if="result[type].length">
-								<v-card-title style="color: #777;font-size: 3em;">{{ formatMonth(result.budget_cycle) }}</v-card-title>
+								<v-card-title >
+									<h2>{{ formatMonth(result.budget_cycle) }}</h2>
+								</v-card-title>
+
 								<v-card-text>
 									<v-list>
 										<template v-for="(item, index) in result[type]">
@@ -56,6 +60,8 @@
 								</v-card-actions>
 							</v-card>
 						</template>
+
+						<pre>{{ searchResults }}</pre>
 					</v-flex>
 				</v-layout>
 			</v-flex>
