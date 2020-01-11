@@ -25,6 +25,10 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             value: 0,
             rules: [],
         },
+        balance: {
+            value: 0,
+            rules: [],
+        },
         mileage: {
             value: '',
             rules: [],
@@ -92,6 +96,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             vehicle_type_id: this.form.type.value,
             due_date: this.form.due.value,
             not_track_amount: Number(this.form.not_track_amount.value),
+            balance: this.form.balance.value,
         };
 
         return this.setDataForSaving(data, 'vehicles');
@@ -106,6 +111,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
             this.form.due.value = this.data.due_date;
             this.form.amount.value = this.data.amount;
             this.form.not_track_amount.value = this.data.not_track_amount;
+            this.form.balance.value = this.data.balance;
             this.setupPaidData();
         }
     }
