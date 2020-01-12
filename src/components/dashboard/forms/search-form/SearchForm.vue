@@ -8,6 +8,7 @@
 				<v-select
 					v-model="form.billType.value"
 					:rules="form.billType.rules"
+					@change="resetType()"
 					:items="billTypes"
 					item-value="slug"
 					item-text="name"
@@ -29,15 +30,20 @@
 					:rules="form.name.rules"
 					label="Search by name"></v-text-field>
 
-				<template v-if="!!form.billType.value.trim() && showTypes">
-					<v-select
-						v-model="form.type.value"
-						:rules="form.type.rules"
-						:items="getTypes"
-						item-value="slug"
-						item-text="name"
-						:label="typeLabel"></v-select>
-				</template>
+				<v-select
+					v-if="!!form.billType.value.trim() && showTypes"
+					v-model="form.type.value"
+					:rules="form.type.rules"
+					:items="getTypes"
+					item-value="slug"
+					item-text="name"
+					:label="typeLabel"></v-select>
+
+				<v-text-field
+					v-if="showNotes"
+					v-model="form.notes.value"
+					:rules="form.notes.rules"
+					label="Search Notes"></v-text-field>
 
 				<v-btn @click="runSearch(form)" block color="success">
 					<v-icon>search</v-icon>

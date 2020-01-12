@@ -21,6 +21,10 @@ export default class SearchForm extends Vue {
             value: '',
             rules: [],
         },
+        notes: {
+            value: '',
+            rules: [],
+        },
         type: {
             value: '',
             rules: [],
@@ -31,6 +35,10 @@ export default class SearchForm extends Vue {
         },
     };
     public years = [];
+
+    public get showNotes() {
+        return ['vehicles'].indexOf(this.form.billType.value) > -1;
+    }
 
     public get showTypes() {
         return ['miscellaneous', 'jobs'].indexOf(this.form.billType.value) === -1;
@@ -48,5 +56,9 @@ export default class SearchForm extends Vue {
     @Emit('runSearch')
     public runSearch(searchParams: any) {
         // ...
+    }
+
+    public resetType(): void {
+        this.form.type.value = '';
     }
 }
