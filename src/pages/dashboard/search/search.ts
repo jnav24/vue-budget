@@ -17,7 +17,6 @@ export default class Search extends Vue {
     public type: string;
 
     public async runSearch(searchParams: any) {
-        console.log(searchParams);
         try {
             this.showEmptyState = false;
             const url: UrlInterface = {
@@ -31,8 +30,10 @@ export default class Search extends Vue {
 
             for (const param of Object.keys(searchParams)) {
                 if (ignore.indexOf(param) === -1) {
-                    console.log(param);
-                    // @todo add form params to url params
+                    if (!!searchParams[param]!.value.trim()) {
+                        // @ts-ignore
+                        url.params[param] = searchParams[param].value;
+                    }
                 }
             }
 
