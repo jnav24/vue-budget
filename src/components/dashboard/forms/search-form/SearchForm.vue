@@ -6,8 +6,8 @@
 		<v-card>
 			<v-card-text>
 				<v-select
-					v-model="form.type.value"
-					:rules="form.type.rules"
+					v-model="form.billType.value"
+					:rules="form.billType.rules"
 					:items="billTypes"
 					item-value="slug"
 					item-text="name"
@@ -23,10 +23,28 @@
 
 				<v-divider></v-divider>
 
+				<v-text-field
+					v-if="!!form.billType.value.trim()"
+					v-model="form.name.value"
+					:rules="form.name.rules"
+					label="Search by name"></v-text-field>
+
+				<template v-if="!!form.billType.value.trim() && showTypes">
+					<v-select
+						v-model="form.type.value"
+						:rules="form.type.rules"
+						:items="getTypes"
+						item-value="slug"
+						item-text="name"
+						:label="typeLabel"></v-select>
+				</template>
+
 				<v-btn @click="runSearch(form)" block color="success">
 					<v-icon>search</v-icon>
 					<span style="display:inline-block; margin-left: 5px;">Search</span>
 				</v-btn>
+
+				<pre>{{ form }}</pre>
 			</v-card-text>
 		</v-card>
 	</div>
