@@ -17,17 +17,26 @@ export default class Search extends Vue {
     public type: string;
 
     public async runSearch(searchParams: any) {
+        console.log(searchParams);
         try {
             this.showEmptyState = false;
             const url: UrlInterface = {
                 url: 'search',
                 params: {
-                    type: searchParams.type.value,
+                    type: searchParams.billType.value,
                     year: searchParams.year.value,
                 },
             };
+            const ignore = ['billType', 'year'];
 
-            this.type = searchParams.type.value;
+            for (const param of Object.keys(searchParams)) {
+                if (ignore.indexOf(param) === -1) {
+                    console.log(param);
+                    // @todo add form params to url params
+                }
+            }
+
+            this.type = searchParams.billType.value;
             const response: AxiosResponse = await httpService.authGet(url);
             this.searchResults = response.data.data.data;
             console.log(response);

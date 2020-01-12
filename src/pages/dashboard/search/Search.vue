@@ -41,11 +41,11 @@
 								<v-card-text>
 									<v-list>
 										<template v-for="(item, index) in result[type]">
-											<v-list-item :key="item.id">
+											<v-list-tile :key="item.id">
 												{{ item.name }}
 												{{ item.paid_date }}
 												{{ item.amount }}
-											</v-list-item>
+											</v-list-tile>
 
 											<v-divider
 												v-if="index + 1 < result[type].length"
