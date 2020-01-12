@@ -15,7 +15,9 @@ export default class SearchForm extends Vue {
     public form: FormInterface = {
         billType: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Bill type is required',
+            ],
         },
         name: {
             value: '',
@@ -31,9 +33,12 @@ export default class SearchForm extends Vue {
         },
         year: {
             value: '',
-            rules: [],
+            rules: [
+                (v: any) => !!v || 'Year is required',
+            ],
         },
     };
+    public formValid: boolean = false;
     public years = [];
 
     public get showNotes() {
