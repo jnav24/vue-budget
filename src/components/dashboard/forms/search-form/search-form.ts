@@ -8,9 +8,10 @@ import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 
 @Component
 export default class SearchForm extends Vue {
+    @Getter public allYears: Array<{ label: string; value: number }>;
     @Getter public billTypes: Array<{ slug: string; name: string }>;
     @Getter public getTypeBySlug: (slug: string) => BillTypesInterface;
-    @Getter public allYears: Array<{ label: string; value: number }>;
+    @Getter public userVehicles: Array<{ label: string; value: number }>;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     public form: FormInterface = {
         billType: {
@@ -28,6 +29,10 @@ export default class SearchForm extends Vue {
             rules: [],
         },
         type: {
+            value: '',
+            rules: [],
+        },
+        vehicle: {
             value: '',
             rules: [],
         },
@@ -71,6 +76,8 @@ export default class SearchForm extends Vue {
 
     public resetFields(): void {
         this.form.name.value = '';
+        this.form.notes.value = '';
         this.form.type.value = '';
+        this.form.vehicle.value = '';
     }
 }

@@ -25,6 +25,15 @@
 
 					<v-divider></v-divider>
 
+					<v-select
+						v-if="form.billType.value === 'vehicles'"
+						v-model="form.vehicle.value"
+						:rules="form.vehicle.rules"
+						:items="userVehicles"
+						item-value="value"
+						item-text="label"
+						label="Select Vehicle"></v-select>
+
 					<v-text-field
 						v-if="!!form.billType.value.trim() && showNames"
 						v-model="form.name.value"
