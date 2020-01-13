@@ -22,7 +22,7 @@ export default class Search extends Vue {
             const url: UrlInterface = {
                 url: 'search',
                 params: {
-                    type: searchParams.billType.value,
+                    billType: searchParams.billType.value,
                     year: searchParams.year.value,
                 },
             };

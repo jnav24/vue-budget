@@ -9,7 +9,7 @@
 					<v-select
 						v-model="form.billType.value"
 						:rules="form.billType.rules"
-						@change="resetType()"
+						@change="resetFields()"
 						:items="billTypes"
 						item-value="slug"
 						item-text="name"
@@ -26,7 +26,7 @@
 					<v-divider></v-divider>
 
 					<v-text-field
-						v-if="!!form.billType.value.trim()"
+						v-if="!!form.billType.value.trim() && showNames"
 						v-model="form.name.value"
 						:rules="form.name.rules"
 						label="Search by name"></v-text-field>

@@ -41,12 +41,18 @@ export default class SearchForm extends Vue {
     public formValid: boolean = false;
     public years = [];
 
+    public get showNames() {
+        const ignoreList = ['vehicles'];
+        return ignoreList.indexOf(this.form.billType.value) === -1;
+    }
+
     public get showNotes() {
         return ['vehicles'].indexOf(this.form.billType.value) > -1;
     }
 
     public get showTypes() {
-        return ['miscellaneous', 'jobs'].indexOf(this.form.billType.value) === -1;
+        const ignoreList = ['miscellaneous', 'jobs'];
+        return ignoreList.indexOf(this.form.billType.value) === -1;
     }
 
     public get getTypes() {
@@ -63,7 +69,8 @@ export default class SearchForm extends Vue {
         // ...
     }
 
-    public resetType(): void {
+    public resetFields(): void {
+        this.form.name.value = '';
         this.form.type.value = '';
     }
 }
