@@ -3,6 +3,37 @@
 
 <template>
 	<div id="search-card">
+		<v-card v-if="card[type].length" class="search-card">
+			<v-card-title >
+				<h2>{{ formatMonth(card.budget_cycle) }}</h2>
+			</v-card-title>
 
+			<v-card-text>
+				<v-list>
+					<template v-for="(item, index) in card[type]">
+						<v-list-tile :key="item.id">
+							{{ item.name }}
+							{{ item.paid_date }}
+							{{ item.amount }}
+						</v-list-tile>
+
+						<v-divider
+							v-if="index + 1 < card[type].length"
+							:key="index"></v-divider>
+					</template>
+				</v-list>
+			</v-card-text>
+
+			<v-card-actions
+				:class="{
+					'spent': ['banks', 'investments'].indexOf(type) === -1
+				}"
+				class="search-card__actions">
+				<v-flex>
+					<span>total </span>
+					$34,560,941.00
+				</v-flex>
+			</v-card-actions>
+		</v-card>
 	</div>
 </template>

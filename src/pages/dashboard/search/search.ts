@@ -1,13 +1,15 @@
 import { Vue, Component } from 'vue-property-decorator';
+import SearchCard from '@/components/dashboard/cards/search-card/SearchCard.vue';
 import SearchForm from '@/components/dashboard/forms/search-form/SearchForm.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
-import {httpService, timestampService} from '@/module';
+import {httpService} from '@/module';
 
 @Component({
     components: {
         EmptyState,
+        SearchCard,
         SearchForm,
     },
 })
@@ -49,9 +51,5 @@ export default class Search extends Vue {
             console.log(error);
             this.searchResults = [];
         }
-    }
-
-    public formatMonth(value: string): string {
-        return timestampService.format(value, 'MMMM');
     }
 }
