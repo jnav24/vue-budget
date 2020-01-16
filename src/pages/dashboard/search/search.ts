@@ -12,6 +12,7 @@ import {httpService, timestampService} from '@/module';
     },
 })
 export default class Search extends Vue {
+    public loading: boolean = false;
     public searchResults: any = [];
     public showEmptyState: boolean = true;
     public type: string;

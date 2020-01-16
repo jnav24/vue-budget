@@ -33,7 +33,7 @@
 							:hide-button="true"></EmptyState>
 
 						<template v-for="result in searchResults">
-							<v-card v-if="result[type].length">
+							<v-card v-if="result[type].length" class="search-card">
 								<v-card-title >
 									<h2>{{ formatMonth(result.budget_cycle) }}</h2>
 								</v-card-title>
@@ -54,9 +54,15 @@
 									</v-list>
 								</v-card-text>
 
-								<v-card-actions>
-									<v-flex>total</v-flex>
-									<v-flex>$34,560,941.00</v-flex>
+								<v-card-actions
+									:class="{
+										'spent': ['banks', 'investments'].indexOf(type) === -1
+									}"
+									class="search-card__actions">
+									<v-flex>
+										<span>total </span>
+										$34,560,941.00
+									</v-flex>
 								</v-card-actions>
 							</v-card>
 						</template>
