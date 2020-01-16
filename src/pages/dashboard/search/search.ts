@@ -1,5 +1,6 @@
 import { Vue, Component } from 'vue-property-decorator';
 import SearchCard from '@/components/dashboard/cards/search-card/SearchCard.vue';
+import SearchCardBlank from '@/components/dashboard/cards/search-card-blank/SearchCardBlank.vue';
 import SearchForm from '@/components/dashboard/forms/search-form/SearchForm.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import {UrlInterface} from '@/interfaces/url.interface';
@@ -10,6 +11,7 @@ import {httpService} from '@/module';
     components: {
         EmptyState,
         SearchCard,
+        SearchCardBlank,
         SearchForm,
     },
 })

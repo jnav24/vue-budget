@@ -32,12 +32,17 @@
 							text="Try adjusting your search criteria to find what you are looking for."
 							:hide-button="true"></EmptyState>
 
-						<div v-if="!searchResults.length && loading">Loading...</div>
+						<template v-if="!searchResults.length && loading">
+							<SearchCardBlank
+								:key="index"
+								v-for="(blank, index) in Array.from(Array(5).keys())"></SearchCardBlank>
+						</template>
 
 
 						<template v-if="searchResults.length && !loading">
 							<SearchCard
 								v-for="result in searchResults"
+								:key="result.id"
 								:type="type"
 								:card="result"></SearchCard>
 						</template>
