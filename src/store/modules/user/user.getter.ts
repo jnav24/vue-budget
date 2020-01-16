@@ -8,7 +8,7 @@ const getters: GetterTree<UserStateInterface, RootStateInterface> = {
             return {
                 value: vehicle.id,
                 label: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
-            }
+            };
         });
     },
 };
