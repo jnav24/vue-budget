@@ -19,6 +19,8 @@ export default class Search extends Vue {
 
     public async runSearch(searchParams: any) {
         try {
+            this.loading = true;
+            this.searchResults = [];
             this.showEmptyState = false;
             const url: UrlInterface = {
                 url: 'search',
@@ -41,6 +43,7 @@ export default class Search extends Vue {
             this.type = searchParams.billType.value;
             const response: AxiosResponse = await httpService.authGet(url);
             this.searchResults = response.data.data.data;
+            this.loading = false;
             console.log(response);
         } catch (error) {
             console.log(error);

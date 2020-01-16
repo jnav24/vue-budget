@@ -21,50 +21,54 @@
 
 					<v-flex sm8>
 						<EmptyState
-							v-if="!searchResults.length && showEmptyState"
+							v-if="!searchResults.length && showEmptyState && !loading"
 							title="Search Results"
 							text="Your search results will appear here"
 							:hide-button="true"></EmptyState>
 
 						<EmptyState
-							v-if="!searchResults.length && !showEmptyState"
+							v-if="!searchResults.length && !showEmptyState && !loading"
 							title="No Results Found"
 							text="Try adjusting your search criteria to find what you are looking for."
 							:hide-button="true"></EmptyState>
 
-						<template v-for="result in searchResults">
-							<v-card v-if="result[type].length" class="search-card">
-								<v-card-title >
-									<h2>{{ formatMonth(result.budget_cycle) }}</h2>
-								</v-card-title>
+						<div v-if="!searchResults.length && loading">Loading...</div>
 
-								<v-card-text>
-									<v-list>
-										<template v-for="(item, index) in result[type]">
-											<v-list-tile :key="item.id">
-												{{ item.name }}
-												{{ item.paid_date }}
-												{{ item.amount }}
-											</v-list-tile>
+						<template v-if="searchResults.length && !loading">
+							<template v-for="result in searchResults">
+								<v-card v-if="result[type].length" class="search-card">
+									<v-card-title >
+										<h2>{{ formatMonth(result.budget_cycle) }}</h2>
+									</v-card-title>
 
-											<v-divider
-												v-if="index + 1 < result[type].length"
-												:key="index"></v-divider>
-										</template>
-									</v-list>
-								</v-card-text>
+									<v-card-text>
+										<v-list>
+											<template v-for="(item, index) in result[type]">
+												<v-list-tile :key="item.id">
+													{{ item.name }}
+													{{ item.paid_date }}
+													{{ item.amount }}
+												</v-list-tile>
 
-								<v-card-actions
-									:class="{
+												<v-divider
+													v-if="index + 1 < result[type].length"
+													:key="index"></v-divider>
+											</template>
+										</v-list>
+									</v-card-text>
+
+									<v-card-actions
+										:class="{
 										'spent': ['banks', 'investments'].indexOf(type) === -1
 									}"
-									class="search-card__actions">
-									<v-flex>
-										<span>total </span>
-										$34,560,941.00
-									</v-flex>
-								</v-card-actions>
-							</v-card>
+										class="search-card__actions">
+										<v-flex>
+											<span>total </span>
+											$34,560,941.00
+										</v-flex>
+									</v-card-actions>
+								</v-card>
+							</template>
 						</template>
 
 						<pre>{{ searchResults }}</pre>
