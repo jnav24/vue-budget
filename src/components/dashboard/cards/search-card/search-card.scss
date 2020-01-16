@@ -1,4 +1,10 @@
 #search-card {
+	h2 {
+		color: rgba(#000, 0.7);
+		font-size: pxtoem(48);
+		font-weight: 300;
+	}
+
 	.search-card {
 		margin-bottom: pxtoem(60);
 
