@@ -31,7 +31,7 @@
 				class="search-card__actions">
 				<v-flex>
 					<span>total </span>
-					$34,560,941.00
+					{{ totalAmount }}
 				</v-flex>
 			</v-card-actions>
 		</v-card>
