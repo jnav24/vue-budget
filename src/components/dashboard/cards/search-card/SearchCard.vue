@@ -19,14 +19,14 @@
 
 						<v-divider
 							v-if="index + 1 < card[type].length"
-							:key="index"></v-divider>
+							:key="(index * 10000)"></v-divider>
 					</template>
 				</v-list>
 			</v-card-text>
 
 			<v-card-actions
 				:class="{
-					'spent': ['banks', 'investments'].indexOf(type) === -1
+					'spent': ['banks', 'investments', 'jobs'].indexOf(type) === -1
 				}"
 				class="search-card__actions">
 				<v-flex>

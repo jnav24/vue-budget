@@ -48,7 +48,6 @@ export default class Search extends Vue {
             const response: AxiosResponse = await httpService.authGet(url);
             this.searchResults = response.data.data.data;
             this.loading = false;
-            console.log(response);
         } catch (error) {
             console.log(error);
             this.searchResults = [];
