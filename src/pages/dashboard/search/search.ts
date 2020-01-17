@@ -37,9 +37,10 @@ export default class Search extends Vue {
 
             for (const param of Object.keys(searchParams)) {
                 if (ignore.indexOf(param) === -1) {
-                    if (!!searchParams[param]!.value.trim()) {
+                    const searchValue = searchParams[param]!.value.toString();
+                    if (!!searchValue.trim()) {
                         // @ts-ignore
-                        url.params[param] = searchParams[param].value;
+                        url.params[param] = searchValue;
                     }
                 }
             }
