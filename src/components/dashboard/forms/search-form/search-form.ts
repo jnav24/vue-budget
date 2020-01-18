@@ -20,12 +20,20 @@ export default class SearchForm extends Vue {
                 (v: any) => !!v || 'Bill type is required',
             ],
         },
+        endMonth: {
+            value: 3,
+            rules: [],
+        },
         name: {
             value: '',
             rules: [],
         },
         notes: {
             value: '',
+            rules: [],
+        },
+        startMonth: {
+            value: 1,
             rules: [],
         },
         type: {
