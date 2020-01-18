@@ -12,14 +12,10 @@
 					</v-flex>
 				</v-layout>
 
+				<SearchForm @runSearch="runSearch($event)"></SearchForm>
+
 				<v-layout>
-					<v-flex sm3>
-						<SearchForm @runSearch="runSearch($event)"></SearchForm>
-					</v-flex>
-
-					<v-spacer></v-spacer>
-
-					<v-flex sm8>
+					<v-flex>
 						<EmptyState
 							v-if="!searchResults.length && showEmptyState && !loading"
 							title="Search Results"
