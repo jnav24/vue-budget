@@ -3,6 +3,11 @@
 
 <template>
 	<div id="four-column-list">
+		<pre>{{ data }}</pre>
 
+		{{ data.name }}
+		{{ getValueFromType(data) }}
+		{{ data.paid_date }}
+		{{ data.amount }}
 	</div>
 </template>
