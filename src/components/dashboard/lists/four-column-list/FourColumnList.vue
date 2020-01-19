@@ -2,7 +2,7 @@
 <style src="./four-column-list.scss" lang="scss" scoped></style>
 
 <template>
-	<div id="four-column-list">
+	<div id="four-column-list" class="search-list">
 		<v-layout class="list-row" :class="{'divider': showDivider }"align-center>
 			<v-flex sm5 class="col-name">{{ data.name }}</v-flex>
 			<v-flex sm3>{{ getValueFromType(data) }}</v-flex>
