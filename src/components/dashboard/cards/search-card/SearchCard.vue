@@ -9,7 +9,6 @@
 			</v-card-title>
 
 			<v-card-text>
-<!--				<pre>{{ getComponentName(type) }}</pre>-->
 				<component
 					v-for="(item, index) in card[type]"
 					:key="item.id"
@@ -18,20 +17,6 @@
 					:hide-head="!!index"
 					:show-divider="index + 1 < card[type].length"
 					:is="getComponentName(type)"></component>
-
-<!--				<v-list>-->
-<!--					<template v-for="(item, index) in card[type]">-->
-<!--						<v-list-tile :key="item.id">-->
-<!--							{{ item.name }}-->
-<!--							{{ item.paid_date }}-->
-<!--							{{ item.amount }}-->
-<!--						</v-list-tile>-->
-
-<!--						<v-divider-->
-<!--							v-if="index + 1 < card[type].length"-->
-<!--							:key="(index * 10000)"></v-divider>-->
-<!--					</template>-->
-<!--				</v-list>-->
 			</v-card-text>
 
 			<v-card-actions
