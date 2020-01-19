@@ -2,12 +2,22 @@ import {Vue, Component, Prop} from 'vue-property-decorator';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
+import {currencyService, timestampService} from '@/module';
 
 @Component
 export default class FourColumnList extends Vue {
     @Prop({ required: true }) public data: any;
     @Prop({ required: true }) public type: string;
+    @Prop({ default: true, required: true }) public showDivider: boolean;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
+
+    public setCurrency(price: string): string {
+        return currencyService.setCurrency(price);
+    }
+
+    public setPaidDate(value: string): string {
+        return timestampService.format(value, 'YYYY-MM-DD');
+    }
 
     public getValueFromType(data: any): string | null {
         const keys = Object.keys(data);

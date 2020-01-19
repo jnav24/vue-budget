@@ -3,11 +3,11 @@
 
 <template>
 	<div id="four-column-list">
-		<pre>{{ data }}</pre>
-
-		{{ data.name }}
-		{{ getValueFromType(data) }}
-		{{ data.paid_date }}
-		{{ data.amount }}
+		<v-layout class="list-row" :class="{'divider': showDivider }"align-center>
+			<v-flex sm5 class="col-name">{{ data.name }}</v-flex>
+			<v-flex sm3>{{ getValueFromType(data) }}</v-flex>
+			<v-flex sm2>{{ setPaidDate(data.paid_date) }}</v-flex>
+			<v-flex sm2 class="col-price">{{ setCurrency(data.amount) }}</v-flex>
+		</v-layout>
 	</div>
 </template>

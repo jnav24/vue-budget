@@ -33,7 +33,7 @@ export default class SearchCard extends Vue {
             return 'CreditCardList';
         }
 
-        if (['banks', 'medical', 'jobs', 'investments'].indexOf(name) > -1) {
+        if (['medical', 'utilities'].indexOf(name) > -1) {
             return 'FourColumnList';
         }
 
