@@ -3,7 +3,7 @@ import {FormInterface} from '@/interfaces/form.interface';
 import {Getter, State} from 'vuex-class';
 import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
-import {globalService} from '@/module';
+import {globalService, timestampService} from '@/module';
 import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 
 @Component
@@ -21,7 +21,7 @@ export default class SearchForm extends Vue {
             ],
         },
         endMonth: {
-            value: 3,
+            value: '12',
             rules: [],
         },
         name: {
@@ -33,7 +33,7 @@ export default class SearchForm extends Vue {
             rules: [],
         },
         startMonth: {
-            value: 1,
+            value: '1',
             rules: [],
         },
         type: {
@@ -52,7 +52,13 @@ export default class SearchForm extends Vue {
         },
     };
     public formValid: boolean = false;
+    public months: Array<{ value: string; label: string; }> = [];
     public years = [];
+
+    public created() {
+        this.months = timestampService.getMonthsOfYear('num');
+        console.log(this.months);
+    }
 
     public get showNames() {
         const ignoreList = ['vehicles'];

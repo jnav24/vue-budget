@@ -32,21 +32,21 @@
 
 								<v-flex class="pl-5 pr-5">
 									<v-select
-										v-model="form.year.value"
-										:rules="form.year.rules"
-										:items="allYears"
-										item-value="label"
-										item-text="value"
+										v-model="form.startMonth.value"
+										:rules="form.startMonth.rules"
+										:items="months"
+										item-value="value"
+										item-text="label"
 										label="Select Start Month"></v-select>
 								</v-flex>
 
 								<v-flex>
 									<v-select
-										v-model="form.year.value"
-										:rules="form.year.rules"
-										:items="allYears"
-										item-value="label"
-										item-text="value"
+										v-model="form.endMonth.value"
+										:rules="form.endMonth.rules"
+										:items="months"
+										item-value="value"
+										item-text="label"
 										label="Select End Month"></v-select>
 								</v-flex>
 							</v-layout>

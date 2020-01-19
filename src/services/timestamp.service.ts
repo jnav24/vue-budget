@@ -140,6 +140,31 @@ class TimestampService {
     public generateTempId(): string {
         return 'temp_' + this.generateUnixId();
     }
+
+    public getMonthsOfYear(format: 'abbr' | 'full' | 'num'): Array<{ value: string; label: string; }> {
+        return Array.from(Array(12).keys()).map((int) => {
+            let label = '';
+            const month = (int + 1).toString();
+
+            switch (format) {
+                case 'abbr':
+                    label = this.getMonth((int + 1));
+                    break;
+                case 'full':
+                    label = '';
+                    break;
+                case 'num':
+                default:
+                    label = month;
+                    break;
+            }
+
+            return {
+                value: month,
+                label,
+            };
+        });
+    }
 }
 
 export default TimestampService;
