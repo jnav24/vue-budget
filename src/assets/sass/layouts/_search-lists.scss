@@ -7,8 +7,12 @@
 		}
 
 		&.list-content {
-			&:hover {
+			&.list-saved:hover {
 				background: rgba(map_get($colors, primary), 0.2);
+			}
+
+			&.list-spent:hover {
+				background: rgba(map_get($colors, danger), 0.2);
 			}
 		}
 	}

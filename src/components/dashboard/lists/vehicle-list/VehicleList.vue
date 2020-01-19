@@ -12,7 +12,14 @@
 			<v-flex sm2 class="col-price">Amount Paid</v-flex>
 		</v-layout>
 
-		<v-layout class="list-row list-content" :class="{'divider': showDivider }">
+		<v-layout
+			class="list-row list-content"
+			:class="{
+				'divider': showDivider,
+				'list-saved': !isSpentList,
+				'list-spent': isSpentList
+			}"
+			align-center>
 			<v-flex>
 				<v-layout align-center>
 					<v-flex sm3 class="col-name">{{ getSelectedVehicle(data.user_vehicle_id) }}</v-flex>

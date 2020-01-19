@@ -11,6 +11,10 @@ export default abstract class List extends Vue {
     @Prop({ default: true, required: true }) public hideHead: boolean;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
 
+    public get isSpentList() {
+        return ['banks', 'investments', 'jobs'].indexOf(this.type) === -1;
+    }
+
     public setCurrency(price: string): string {
         return currencyService.setCurrency(price);
     }
