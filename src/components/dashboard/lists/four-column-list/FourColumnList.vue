@@ -10,7 +10,7 @@
 			<v-flex sm2 class="col-price">Amount Paid</v-flex>
 		</v-layout>
 
-		<v-layout class="list-row" :class="{'divider': showDivider }"align-center>
+		<v-layout class="list-row list-content" :class="{'divider': showDivider }"align-center>
 			<v-flex sm5 class="col-name">{{ data.name }}</v-flex>
 			<v-flex sm3>{{ getValueFromType(data) }}</v-flex>
 			<v-flex sm2>{{ setPaidDate(data.paid_date) }}</v-flex>
