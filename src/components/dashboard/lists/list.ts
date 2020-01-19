@@ -2,7 +2,7 @@ import {Prop, Vue} from 'vue-property-decorator';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
-import {currencyService, timestampService} from '@/module';
+import {currencyService, timestampService, globalService} from '@/module';
 
 export default abstract class List extends Vue {
     @Prop({ required: true }) public data: any;
@@ -32,8 +32,9 @@ export default abstract class List extends Vue {
     }
 
     private getTypeFromState(val: number): string {
-        if (!!(this.typesState as any)[this.type]) {
-            const typeObj = (this.typesState as any)[this.type].find((obj: any) => obj.id === val);
+        const type = globalService.camelCase(this.type);
+        if (!!(this.typesState as any)[type]) {
+            const typeObj = (this.typesState as any)[type].find((obj: any) => obj.id === val);
 
             if (!!typeObj.name) {
                 return typeObj.name;
