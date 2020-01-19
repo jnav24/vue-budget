@@ -1,8 +1,8 @@
 import { Vue, Component } from 'vue-property-decorator';
 import SearchCard from '@/components/dashboard/cards/search-card/SearchCard.vue';
-import SearchCardBlank from '@/components/dashboard/cards/search-card-blank/SearchCardBlank.vue';
 import SearchForm from '@/components/dashboard/forms/search-form/SearchForm.vue';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
+import LoadingState from '@/components/dashboard/loading-state/LoadingState.vue';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
 import {httpService} from '@/module';
@@ -10,8 +10,8 @@ import {httpService} from '@/module';
 @Component({
     components: {
         EmptyState,
+        LoadingState,
         SearchCard,
-        SearchCardBlank,
         SearchForm,
     },
 })
@@ -20,6 +20,9 @@ export default class Search extends Vue {
     public searchResults: any = [];
     public showEmptyState: boolean = true;
     public type: string;
+
+    // @todo since the type names are not included in the query,
+    //  get the type name from the state when outputting to page
 
     public async runSearch(searchParams: any) {
         try {
