@@ -8,6 +8,7 @@ export default abstract class List extends Vue {
     @Prop({ required: true }) public data: any;
     @Prop({ required: true }) public type: string;
     @Prop({ default: true, required: true }) public showDivider: boolean;
+    @Prop({ default: true, required: true }) public hideHead: boolean;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
 
     public setCurrency(price: string): string {

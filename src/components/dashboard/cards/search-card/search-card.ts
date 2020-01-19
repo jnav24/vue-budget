@@ -28,7 +28,6 @@ export default class SearchCard extends Vue {
     }
 
     public getComponentName(name: string): string {
-        console.log(name);
         if (['credit_cards'].indexOf(name) > -1) {
             return 'CreditCardList';
         }

@@ -15,6 +15,7 @@
 					:key="item.id"
 					:data="item"
 					:type="type"
+					:hide-head="!!index"
 					:show-divider="index + 1 < card[type].length"
 					:is="getComponentName(type)"></component>
 
