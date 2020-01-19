@@ -10,15 +10,15 @@ export default abstract class List extends Vue {
     @Prop({ default: true, required: true }) public showDivider: boolean;
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
 
-    protected setCurrency(price: string): string {
+    public setCurrency(price: string): string {
         return currencyService.setCurrency(price);
     }
 
-    protected setPaidDate(value: string): string {
+    public setPaidDate(value: string): string {
         return timestampService.format(value, 'YYYY-MM-DD');
     }
 
-    protected getValueFromType(data: any): string | null {
+    public getValueFromType(data: any): string | null {
         const keys = Object.keys(data);
         let index = '';
 
