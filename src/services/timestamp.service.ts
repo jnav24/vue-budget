@@ -145,13 +145,14 @@ class TimestampService {
         return Array.from(Array(12).keys()).map((int) => {
             let label = '';
             const month = (int + 1).toString();
+            const year = this.format('', 'YYYY');
 
             switch (format) {
                 case 'abbr':
-                    label = this.getMonth((int + 1));
+                    label = this.format(`${year}-${month}-01`, 'MMM');
                     break;
                 case 'full':
-                    label = '';
+                    label = this.format(`${year}-${month}-01`, 'MMMM');
                     break;
                 case 'num':
                 default:

@@ -56,8 +56,7 @@ export default class SearchForm extends Vue {
     public years = [];
 
     public created() {
-        this.months = timestampService.getMonthsOfYear('num');
-        console.log(this.months);
+        this.months = timestampService.getMonthsOfYear('abbr');
     }
 
     public get showNames() {
