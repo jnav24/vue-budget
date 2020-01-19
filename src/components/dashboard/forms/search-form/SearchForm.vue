@@ -9,7 +9,7 @@
 					<v-layout align-end>
 						<v-flex sm10>
 							<v-layout>
-								<v-flex>
+								<v-flex sm4 class="pr-5">
 									<v-select
 										v-model="form.billType.value"
 										:rules="form.billType.rules"
@@ -20,7 +20,7 @@
 										label="Select Budget Type"></v-select>
 								</v-flex>
 
-								<v-flex class="pl-5">
+								<v-flex sm2 class="pr-5">
 									<v-select
 										v-model="form.year.value"
 										:rules="form.year.rules"
@@ -30,7 +30,7 @@
 										label="Select Year"></v-select>
 								</v-flex>
 
-								<v-flex class="pl-5 pr-5">
+								<v-flex sm3 class="pr-3">
 									<v-select
 										v-model="form.startMonth.value"
 										:rules="form.startMonth.rules"
@@ -40,7 +40,7 @@
 										label="Select Start Month"></v-select>
 								</v-flex>
 
-								<v-flex>
+								<v-flex sm3 class="pl-3">
 									<v-select
 										v-model="form.endMonth.value"
 										:rules="form.endMonth.rules"
