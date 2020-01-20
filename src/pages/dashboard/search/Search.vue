@@ -31,6 +31,8 @@
 						<LoadingState v-if="!searchResults.length && loading"></LoadingState>
 
 						<template v-if="searchResults.length && !loading">
+							<SearchCardTotals></SearchCardTotals>
+
 							<SearchCard
 								v-for="result in searchResults"
 								:key="result.id"
