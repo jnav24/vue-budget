@@ -21,9 +21,6 @@ export default class Search extends Vue {
     public showEmptyState: boolean = true;
     public type: string;
 
-    // @todo since the type names are not included in the query,
-    //  get the type name from the state when outputting to page
-
     public async runSearch(searchParams: any) {
         try {
             this.loading = true;
