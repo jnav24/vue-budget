@@ -31,10 +31,12 @@
 						<LoadingState v-if="!searchResults.length && loading"></LoadingState>
 
 						<template v-if="searchResults.length && !loading">
-							<SearchCardTotals></SearchCardTotals>
+							<SearchCardTotals
+								:summary="summary"></SearchCardTotals>
 
 							<SearchCard
 								v-for="result in searchResults"
+								@setSummary="setSummary($event, result.budget_cycle)"
 								:key="result.id"
 								:type="type"
 								:card="result"></SearchCard>

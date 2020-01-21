@@ -6,7 +6,7 @@ import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 import LoadingState from '@/components/dashboard/loading-state/LoadingState.vue';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
-import {httpService} from '@/module';
+import {httpService, timestampService, currencyService} from '@/module';
 
 @Component({
     components: {
@@ -21,6 +21,7 @@ export default class Search extends Vue {
     public loading: boolean = false;
     public searchResults: any = [];
     public showEmptyState: boolean = true;
+    public summary: Record<string, number> = {};
     public type: string;
 
     public async runSearch(searchParams: any) {
@@ -55,5 +56,9 @@ export default class Search extends Vue {
             console.log(error);
             this.searchResults = [];
         }
+    }
+
+    public setSummary(e: number, cycle: string) {
+        this.summary[timestampService.format(cycle, 'MMMM')] = e;
     }
 }

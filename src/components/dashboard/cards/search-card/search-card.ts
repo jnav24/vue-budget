@@ -1,4 +1,4 @@
-import {Vue, Component, Prop} from 'vue-property-decorator';
+import {Vue, Component, Prop, Emit} from 'vue-property-decorator';
 import {currencyService, timestampService} from '@/module';
 import CreditCardList from '@/components/dashboard/lists/credit-card-list/CreditCardList.vue';
 import FourColumnList from '@/components/dashboard/lists/four-column-list/FourColumnList.vue';
@@ -18,9 +18,11 @@ export default class SearchCard extends Vue {
     @Prop({ required: true }) public type: string;
 
     public get totalAmount() {
-        return currencyService.setCurrency(this.card[this.type].reduce((acc: number, card: Record<string, string>) => {
+        const total = this.card[this.type].reduce((acc: number, card: Record<string, string>) => {
             return acc + Number(card.amount);
-        }, 0).toString());
+        }, 0);
+        this.outputTotal(total);
+        return currencyService.setCurrency(total.toString());
     }
 
     public formatMonth(value: string): string {
@@ -41,5 +43,10 @@ export default class SearchCard extends Vue {
         }
 
         return 'ThreeColumnList';
+    }
+
+    @Emit('setSummary')
+    private outputTotal(total: number) {
+        // ...
     }
 }
