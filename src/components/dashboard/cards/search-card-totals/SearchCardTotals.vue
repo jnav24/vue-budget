@@ -3,18 +3,23 @@
 
 <template>
 	<div id="search-card-totals">
+		<h2>YTD Summary</h2>
 		<v-layout align-center>
-			<v-flex sm6>
-				<p>Beginning Balance</p>
-				<p>Ending Balance</p>
-				<p>Lowest</p>
-				<p>Highest</p>
-				<p>Average Saved/Spent</p>
+			<v-flex sm4>
+				<p>Beginning Balance <span>{{ startBalance.month }} {{ startBalance.amount }}</span></p>
+				<p>Ending Balance <span>{{ endBalance.month }} {{ endBalance.amount }}</span></p>
+				<p>Average Saved/Spent <span>{{ averageBalance }}</span></p>
 			</v-flex>
 
-			<v-flex sm6>
-				<span>Total</span>
-				<p class="total-amount">$24,000,000.00</p>
+			<v-flex sm4>
+				<p>Lowest <span>{{ lowestBalance.month }} {{ lowestBalance.amount }}</span></p>
+				<p>Highest <span>{{ highestBalance.month }} {{ highestBalance.amount }}</span></p>
+				<p>YTD Percentage <span>{{ percentage }}</span></p>
+			</v-flex>
+
+			<v-flex sm4>
+				<span>Total Saved/Spent</span>
+				<p class="total-amount">{{ total || '$--'}}</p>
 			</v-flex>
 		</v-layout>
 	</div>

@@ -4,6 +4,12 @@
 	margin-bottom: pxtoem(32);
 	padding: pxtoem(16);
 
+	h2 {
+		font-size: pxtoem(36);
+		font-weight: 300;
+		margin-bottom: pxtoem(20);
+	}
+
 	p {
 		&:last-of-type {
 			margin: 0;
@@ -11,6 +17,11 @@
 
 		&.total-amount {
 			font-size: pxtoem(64);
+			font-weight: bold;
+		}
+
+		span {
+			font-size: pxtoem(18);
 			font-weight: bold;
 		}
 	}

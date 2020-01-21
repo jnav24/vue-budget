@@ -28,6 +28,7 @@ export default class Search extends Vue {
         try {
             this.loading = true;
             this.searchResults = [];
+            this.summary = {};
             this.showEmptyState = false;
             const url: UrlInterface = {
                 url: 'search',
