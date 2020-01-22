@@ -44,7 +44,9 @@ export default class SearchCardTotals extends Vue {
         const maxDollars = Math.max(...dollars);
         const minDollars = Math.min(...dollars);
 
-        this.averageBalance = currencyService.setCurrency((dollars.reduce((a, c) => a + c, 0)/dollars.length).toString());
+        this.averageBalance = currencyService.setCurrency(
+            (dollars.reduce((a, c) => a + c, 0) / dollars.length).toString(),
+        );
 
         this.endBalance = {
             month: months[months.length - 1],
@@ -57,7 +59,7 @@ export default class SearchCardTotals extends Vue {
         this.lowestBalance.month = months[dollars.indexOf(minDollars)];
         this.highestBalance.month = months[dollars.indexOf(maxDollars)];
 
-        this.percentage = Math.round(((dollars[dollars.length - 1] - dollars[0])/dollars[0])*100) + '%';
+        this.percentage = Math.round(((dollars[dollars.length - 1] - dollars[0]) / dollars[0]) * 100) + '%';
 
         this.startBalance = {
             month: months[0],
