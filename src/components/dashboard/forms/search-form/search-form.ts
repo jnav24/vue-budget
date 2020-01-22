@@ -73,9 +73,19 @@ export default class SearchForm extends Vue {
         return ignoreList.indexOf(this.form.billType.value) === -1;
     }
 
-    public get getTypes() {
+    public get typeList() {
         const type: string = globalService.camelCase(this.form.billType.value);
-        return (this.types as any)[type];
+        return [
+            { slug: '', name: 'All' },
+            ...(this.types as any)[type]
+        ];
+    }
+
+    public get vehicleList() {
+        return [
+            { value: '', label: 'All' },
+            ...this.userVehicles,
+        ];
     }
 
     public get typeLabel() {

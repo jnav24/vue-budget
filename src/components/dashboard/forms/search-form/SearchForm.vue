@@ -74,7 +74,7 @@
 											v-if="!!form.billType.value.trim() && showTypes"
 											v-model="form.type.value"
 											:rules="form.type.rules"
-											:items="getTypes"
+											:items="typeList"
 											item-value="slug"
 											item-text="name"
 											:label="typeLabel"></v-select>
@@ -85,7 +85,7 @@
 											v-if="form.billType.value === 'vehicles'"
 											v-model="form.vehicle.value"
 											:rules="form.vehicle.rules"
-											:items="userVehicles"
+											:items="vehicleList"
 											item-value="value"
 											item-text="label"
 											label="Select Vehicle"></v-select>
