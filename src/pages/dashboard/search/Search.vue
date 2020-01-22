@@ -32,6 +32,7 @@
 
 						<template v-if="searchResults.length && !loading">
 							<SearchCardTotals
+								:type="type"
 								:summary="summary"></SearchCardTotals>
 
 							<SearchCard

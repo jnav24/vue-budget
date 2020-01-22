@@ -4,6 +4,7 @@ import {currencyService} from '@/module';
 @Component
 export default class SearchCardTotals extends Vue {
     @Prop({ required: true }) public summary: Record<string, number>;
+    @Prop({ required: true }) public type: string;
     public averageBalance: string = '';
     public endBalance: { month: string; amount: string } = {
         month: '',
@@ -28,13 +29,16 @@ export default class SearchCardTotals extends Vue {
         this.setSummaryData();
     }
 
+    public get isSaved() {
+        return ['banks', 'investments', 'jobs'].indexOf(this.type) > -1;
+
+    }
+
     public get summaryData() {
         return this.summary;
     }
 
     public setSummaryData() {
-        console.log(this.summary);
-        console.log(this.summaryData);
         const months = Object.keys(this.summaryData);
         const dollars = Object.values(this.summaryData);
         const maxDollars = Math.max(...dollars);
@@ -60,6 +64,10 @@ export default class SearchCardTotals extends Vue {
             amount: currencyService.setCurrency(dollars[0].toString()),
         };
 
-        this.total = currencyService.setCurrency((dollars[dollars.length - 1] - dollars[0]).toString());
+        if (['banks', 'investments'].indexOf(this.type) > -1) {
+            this.total = currencyService.setCurrency((dollars[dollars.length - 1] - dollars[0]).toString());
+        } else {
+            this.total = currencyService.setCurrency(dollars.reduce((a, c) => a + c, 0).toString());
+        }
     }
 }
