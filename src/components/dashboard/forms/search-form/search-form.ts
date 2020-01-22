@@ -77,7 +77,7 @@ export default class SearchForm extends Vue {
         const type: string = globalService.camelCase(this.form.billType.value);
         return [
             { slug: '', name: 'All' },
-            ...(this.types as any)[type]
+            ...(this.types as any)[type],
         ];
     }
 
