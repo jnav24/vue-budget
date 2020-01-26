@@ -1,0 +1,37 @@
+.search-list {
+	.list-row {
+		padding: pxtoem(20) 0;
+
+		&.divider {
+			border-bottom: 1px solid lighten(map_get($colors, mid_grey), 15%);
+		}
+
+		&.list-content {
+			&.list-saved:hover {
+				background: rgba(map_get($colors, primary), 0.2);
+			}
+
+			&.list-spent:hover {
+				background: rgba(map_get($colors, danger), 0.2);
+			}
+		}
+	}
+
+	.col-name {
+		font-size: pxtoem(18);
+		padding-left: pxtoem(5);
+	}
+
+	.col-price {
+		font-weight: bold;
+		text-align: right;
+
+		&:last-of-type {
+			padding-right: pxtoem(5);
+		}
+	}
+
+	.hide-row {
+		display: none;
+	}
+}

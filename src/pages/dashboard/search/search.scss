@@ -1,0 +1,9 @@
+#search {
+	&.page {
+		@include dashboardHeader;
+	}
+
+	.header__h1 {
+		margin-bottom: 0;
+	}
+}

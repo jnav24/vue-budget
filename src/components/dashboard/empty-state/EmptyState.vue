@@ -13,6 +13,7 @@
 		<p class="empty-text">{{ text }}</p>
 
 		<v-btn
+			v-if="!hideButton"
 			@click="emitButtonClick()"
 			:disabled="isDisabled"
 			class="empty-button"
