@@ -50,7 +50,7 @@ export default class Search extends Vue {
             }
 
             this.type = searchParams.billType.value;
-            const response: AxiosResponse = await httpService.authGet(url);
+            const response: AxiosResponse = await httpService.authPost(url);
             this.searchResults = response.data.data.data;
             this.loading = false;
         } catch (error) {
