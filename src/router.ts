@@ -29,7 +29,7 @@ async function auth({ next }: any): Promise<void> {
         if (response.success) {
             next();
         } else {
-            if (response.msg === 'verify-sign-in') {
+            if (response.msg === process.env.VUE_APP_VERIFY) {
                 next(`/verify/${response.data.token}`);
             } else {
                 next('/login');

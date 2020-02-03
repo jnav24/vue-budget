@@ -20,7 +20,7 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
-                    if (response.data.message === 'verify-sign-in') {
+                    if (response.data.message === process.env.VUE_APP_VERIFY) {
                         return responseService.getFailedResponse(
                             response.data.message,
                             { token: response.data.data.token },
