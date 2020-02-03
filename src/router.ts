@@ -29,7 +29,11 @@ async function auth({ next }: any): Promise<void> {
         if (response.success) {
             next();
         } else {
-            next('/login');
+            if (response.msg === 'verify-sign-in') {
+                next(`/verify/${response.data.token}`);
+            } else {
+                next('/login');
+            }
         }
     } catch (error) {
         next('/login');
@@ -109,6 +113,20 @@ const router = new Router({
                 },
                 {
                     path: '/account-reset/**',
+                    redirect: {
+                        name: 'login',
+                    },
+                },
+                {
+                    path: '/verify/:token',
+                    name: 'verify',
+                    beforeEnter: (to: Route, from: Route, next: any) => {
+                        next();
+                    },
+                    component: () => import('@/pages/onboard/verify/Verify.vue'),
+                },
+                {
+                    path: '/verify/**',
                     redirect: {
                         name: 'login',
                     },

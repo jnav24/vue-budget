@@ -20,6 +20,13 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 const response = await httpService.authGet({ url: 'auth/user' });
 
                 if (responseService.isSuccessResponse(response.status)) {
+                    if (response.data.message === 'verify-sign-in') {
+                        return responseService.getFailedResponse(
+                            response.data.message,
+                            { token: response.data.data.token },
+                        );
+                    }
+
                     commit('ADD_USER_VEHICLES', response.data.data.vehicles);
                     commit('ADD_USER', response.data.data.user);
                     return responseService.getSuccessResponse();
