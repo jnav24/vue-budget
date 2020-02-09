@@ -64,7 +64,11 @@ export default class Verify extends Vue {
         if (this.formValid) {
             this.loading = true;
 
-            userService.submitVerifyToken(this.$route.params.token, this.userState.user_id ?? '')
+            userService.submitVerifyToken(
+                this.$route.params.token,
+                this.userState.user_id ?? '',
+                this.form.verify.value,
+            )
                 .then((res: ResponseInterface) => {
                     this.loading = false;
 

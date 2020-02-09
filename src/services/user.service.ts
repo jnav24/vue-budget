@@ -138,7 +138,7 @@ class UserService {
         }
     }
 
-    public async submitVerifyToken(token: string, id: string): Promise<ResponseInterface> {
+    public async submitVerifyToken(token: string, id: string, verify: string): Promise<ResponseInterface> {
         try {
             if (token.trim() === '' || id.toString().trim() === '') {
                 return this.responseService.getFailedResponse();
@@ -148,6 +148,7 @@ class UserService {
                 url: `auth/submit-verify`,
                 params: {
                     id,
+                    verify,
                     token,
                 }
             };
