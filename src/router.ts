@@ -120,8 +120,26 @@ const router = new Router({
                 {
                     path: '/verify/:token',
                     name: 'verify',
-                    beforeEnter: (to: Route, from: Route, next: any) => {
-                        next();
+                    beforeEnter: async (to: Route, from: Route, next: any) => {
+                        try {
+                            const response: ResponseInterface = await store.dispatch('isLoggedIn');
+
+                            if (!response.success && response.msg !== process.env.VUE_APP_VERIFY) {
+                                next('/login');
+                            }
+
+                            const tokenResponse = await userService
+                                .validateVerifyToken(to.params.token, store.state.User.user.user_id ?? '');
+
+                            if (!tokenResponse.success) {
+                                next('/login');
+                            }
+
+                            store.commit('SET_VERIFY_EXPIRATION', tokenResponse.data.expires_at);
+                            next();
+                        } catch (e) {
+                            next('/login');
+                        }
                     },
                     component: () => import('@/pages/onboard/verify/Verify.vue'),
                 },

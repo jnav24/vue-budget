@@ -93,6 +93,28 @@ class UserService {
             return this.responseService.getFailedResponse();
         }
     }
+
+    public async validateVerifyToken(token: string, id: string): Promise<ResponseInterface> {
+        try {
+            if (token.trim() === '' || id.toString().trim() === '') {
+                return this.responseService.getFailedResponse();
+            }
+
+            const data: UrlInterface = {
+                url: `auth/verify/${id}/${token}`,
+            };
+
+            const response: AxiosResponse = await this.httpService.get(data);
+
+            if (this.responseService.isSuccessResponse(response.status)) {
+                return this.responseService.getSuccessResponse('', { expires_at: response.data.data.expires_at });
+            }
+
+            return this.responseService.getFailedResponse();
+        } catch (error) {
+            return this.responseService.getFailedResponse();
+        }
+    }
 }
 
 export default UserService;
