@@ -13,7 +13,8 @@
 							</v-flex>
 							<v-flex style="padding-left: 10px;text-align: left;" sm10>
 								<h1>Verify your device</h1>
-								<p>This device isn't recognized. We have sent you an email to your email address on file. For your security, enter the your verification code, from the email, in order to continue.</p>
+								<p v-if="!isExpired">This device isn't recognized. We have sent you an email to your email address on file. For your security, enter the your verification code, from the email, in order to continue.</p>
+								<p v-if="isExpired">It still looks like you need to verify your current device. Unfortunately, this page has expired. Click on the button below and we will send you a new verification code to the email on file.</p>
 							</v-flex>
 						</v-card-title>
 
@@ -24,8 +25,15 @@
 							{{ alert.msg }}
 						</v-alert>
 
+						<!-- @todo if a user try to go directing to this link and its expired and the verified_at is not null, then redirect to login page or do the "isLogin" check -->
+						<!-- @todo if a user arrives on this page before the expiration, sends the code after link expires, display an error and asks if they would want to resend the code -->
+						<!-- @todo if a user directing to this link, has a valid/invalid JWT Token, is expired, and verified_at is not null, then redirect to login -->
+						<!-- @todo if a user directing to this link, has a valid JWT Token, is expired, and verified_at is null, then say 'its expired and ask to resend link' -->
+						<!-- @todo if a user directing to this link, has a invalid JWT Token, is expired, and verified_at is null, then redirect to login -->
+
 						<v-card-text>
 							<v-text-field
+								v-if="!isExpired"
 								v-model="form.verify.value"
 								:rules="form.verify.rules"
 								label="Enter Your Verification Code"></v-text-field>
@@ -33,6 +41,7 @@
 
 						<v-card-actions>
 							<v-btn
+								v-if="!isExpired"
 								color="button"
 								@click="submit"
 								:disabled="!formValid"
@@ -43,6 +52,18 @@
 									v-if="loading"
 									indeterminate></v-progress-circular>
 								<span v-if="!loading">Submit</span>
+							</v-btn>
+							<v-btn
+								v-if="isExpired"
+								block
+								color="button"
+								@click="resendEmail">
+								<v-progress-circular
+									:size="15"
+									color="accent"
+									v-if="loading"
+									indeterminate></v-progress-circular>
+								<span v-if="!loading">Resend Email</span>
 							</v-btn>
 						</v-card-actions>
 					</v-card>
