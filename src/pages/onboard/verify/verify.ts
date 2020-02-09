@@ -1,10 +1,11 @@
 import { Vue, Component } from 'vue-property-decorator';
 import {AlertInterface} from '@/interfaces/alert.interface';
-import {timestampService, validateService} from '@/module';
+import {timestampService, userService, validateService} from '@/module';
 import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {UserLoginStateInterface} from '@/interfaces/user-login-state.interface';
 import {UserInterface} from '@/interfaces/user.interface';
+import {ResponseInterface} from '@/interfaces/response.interface';
 
 @Component
 export default class Verify extends Vue {
@@ -15,6 +16,7 @@ export default class Verify extends Vue {
         msg: '',
         display: false,
     };
+    public emailSent = false;
     public isExpired = false;
     public formValid = false;
     public form: any = {
@@ -34,14 +36,51 @@ export default class Verify extends Vue {
     }
 
     public resendEmail() {
-        // @todo need token, and user_id
-        console.log(this.$route.params.token);
-        console.log(this.userState.user_id);
+        this.loading = true;
+
+        userService.resendVerifyToken(this.$route.params.token, this.userState.user_id ?? '')
+            .then((res: ResponseInterface) => {
+                this.loading = false;
+
+                if (res.success) {
+                    this.emailSent = true;
+                    this.alert.type = 'success';
+                    this.alert.msg = 'Email sent! If email is not in your inbox, check your spam folder.';
+                    this.alert.display = true;
+                    return true;
+                }
+
+                this.alert.msg = 'Unable to resend email at this time';
+                this.alert.display = true;
+            })
+            .catch((error) => {
+                this.loading = false;
+                this.alert.msg = 'Unable to resend email at this time';
+                this.alert.display = true;
+            });
     }
 
     public submit() {
         if (this.formValid) {
             this.loading = true;
+
+            userService.submitVerifyToken(this.$route.params.token, this.userState.user_id ?? '')
+                .then((res: ResponseInterface) => {
+                    this.loading = false;
+
+                    if (res.success) {
+                        this.$router.push({ name: 'dashboard' });
+                        return true;
+                    }
+
+                    this.alert.msg = 'Unable to resend email at this time';
+                    this.alert.display = true;
+                })
+                .catch((error) => {
+                    this.loading = false;
+                    this.alert.msg = 'Unable to resend email at this time';
+                    this.alert.display = true;
+                });
         }
     }
 }

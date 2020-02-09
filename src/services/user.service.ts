@@ -115,6 +115,54 @@ class UserService {
             return this.responseService.getFailedResponse();
         }
     }
+
+    public async resendVerifyToken(token: string, id: string): Promise<ResponseInterface> {
+        try {
+            if (token.trim() === '' || id.toString().trim() === '') {
+                return this.responseService.getFailedResponse();
+            }
+
+            const data: UrlInterface = {
+                url: `auth/resend-verify/${id}/${token}`,
+            };
+
+            const response: AxiosResponse = await this.httpService.get(data);
+
+            if (this.responseService.isSuccessResponse(response.status)) {
+                return this.responseService.getSuccessResponse();
+            }
+
+            return this.responseService.getFailedResponse();
+        } catch (error) {
+            return this.responseService.getFailedResponse();
+        }
+    }
+
+    public async submitVerifyToken(token: string, id: string): Promise<ResponseInterface> {
+        try {
+            if (token.trim() === '' || id.toString().trim() === '') {
+                return this.responseService.getFailedResponse();
+            }
+
+            const data: UrlInterface = {
+                url: `auth/submit-verify`,
+                params: {
+                    id,
+                    token,
+                }
+            };
+
+            const response: AxiosResponse = await this.httpService.post(data);
+
+            if (this.responseService.isSuccessResponse(response.status)) {
+                return this.responseService.getSuccessResponse();
+            }
+
+            return this.responseService.getFailedResponse();
+        } catch (error) {
+            return this.responseService.getFailedResponse();
+        }
+    }
 }
 
 export default UserService;

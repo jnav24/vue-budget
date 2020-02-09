@@ -54,7 +54,7 @@
 								<span v-if="!loading">Submit</span>
 							</v-btn>
 							<v-btn
-								v-if="isExpired"
+								v-if="isExpired || !emailSent"
 								block
 								color="button"
 								@click="resendEmail">
