@@ -6,5 +6,5 @@ export interface UserLoginStateInterface {
     };
     verify: {
         expires_at: string;
-    },
+    };
 }

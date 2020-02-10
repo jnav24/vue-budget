@@ -150,7 +150,7 @@ class UserService {
                     id,
                     verify,
                     token,
-                }
+                },
             };
 
             const response: AxiosResponse = await this.httpService.post(data);
