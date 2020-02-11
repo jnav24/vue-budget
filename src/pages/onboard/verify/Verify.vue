@@ -19,6 +19,7 @@
 						</v-card-title>
 
 						<v-alert
+							class="alert"
 							:value="alert.display"
 							transition="slide-y-transition"
 							:type="alert.type">
@@ -39,7 +40,7 @@
 								label="Enter Your Verification Code"></v-text-field>
 						</v-card-text>
 
-						<v-card-actions>
+						<v-card-actions v-if="!emailSent">
 							<v-btn
 								v-if="!isExpired"
 								color="button"
@@ -54,7 +55,7 @@
 								<span v-if="!loading">Submit</span>
 							</v-btn>
 							<v-btn
-								v-if="isExpired || !emailSent"
+								v-if="isExpired"
 								block
 								color="button"
 								@click="resendEmail">

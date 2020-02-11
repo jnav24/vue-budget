@@ -127,7 +127,7 @@ class UserService {
                 params: {
                     id,
                     token,
-                }
+                },
             };
 
             const response: AxiosResponse = await this.httpService.post(data);
