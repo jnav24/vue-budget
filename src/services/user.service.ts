@@ -123,10 +123,14 @@ class UserService {
             }
 
             const data: UrlInterface = {
-                url: `auth/resend-verify/${id}/${token}`,
+                url: `auth/resend-verify`,
+                params: {
+                    id,
+                    token,
+                }
             };
 
-            const response: AxiosResponse = await this.httpService.get(data);
+            const response: AxiosResponse = await this.httpService.post(data);
 
             if (this.responseService.isSuccessResponse(response.status)) {
                 return this.responseService.getSuccessResponse();
