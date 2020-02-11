@@ -26,12 +26,6 @@
 							{{ alert.msg }}
 						</v-alert>
 
-						<!-- @todo if a user try to go directing to this link and its expired and the verified_at is not null, then redirect to login page or do the "isLogin" check -->
-						<!-- @todo if a user arrives on this page before the expiration, sends the code after link expires, display an error and asks if they would want to resend the code -->
-						<!-- @todo if a user directing to this link, has a valid/invalid JWT Token, is expired, and verified_at is not null, then redirect to login -->
-						<!-- @todo if a user directing to this link, has a valid JWT Token, is expired, and verified_at is null, then say 'its expired and ask to resend link' -->
-						<!-- @todo if a user directing to this link, has a invalid JWT Token, is expired, and verified_at is null, then redirect to login -->
-
 						<v-card-text>
 							<v-text-field
 								v-if="!isExpired"
