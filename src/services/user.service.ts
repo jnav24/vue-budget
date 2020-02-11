@@ -165,7 +165,14 @@ class UserService {
 
             return this.responseService.getFailedResponse();
         } catch (error) {
-            return this.responseService.getFailedResponse();
+            const err = error.response;
+            let message = 'Unable to submit verification at this time';
+
+            if (!!err.data && !!err.data) {
+                message = err.data.message;
+            }
+
+            return this.responseService.getFailedResponse(message);
         }
     }
 }

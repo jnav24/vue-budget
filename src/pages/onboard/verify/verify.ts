@@ -50,7 +50,7 @@ export default class Verify extends Vue {
                     return true;
                 }
 
-                this.alert.msg = 'Unable to resend email at this time';
+                this.alert.msg = res.msg;
                 this.alert.display = true;
             })
             .catch((error) => {
@@ -77,12 +77,19 @@ export default class Verify extends Vue {
                         return true;
                     }
 
-                    this.alert.msg = 'Unable to resend email at this time';
+                    this.alert.msg = res.msg;
                     this.alert.display = true;
                 })
                 .catch((error) => {
+                    const err = error.response;
+                    let message = 'Unable to submit verification at this time';
+
+                    if (!!err.data && !!err.data) {
+                        message = err.data.message;
+                    }
+
                     this.loading = false;
-                    this.alert.msg = 'Unable to resend email at this time';
+                    this.alert.msg = message;
                     this.alert.display = true;
                 });
         }
