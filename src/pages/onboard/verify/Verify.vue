@@ -45,7 +45,7 @@
 								v-if="!isExpired"
 								color="button"
 								@click="submit"
-								:disabled="!formValid"
+								:disabled="!formValid || loading"
 								block>
 								<v-progress-circular
 									:size="15"
@@ -58,7 +58,8 @@
 								v-if="isExpired"
 								block
 								color="button"
-								@click="resendEmail">
+								@click="resendEmail"
+								:disabled="loading">
 								<v-progress-circular
 									:size="15"
 									color="accent"

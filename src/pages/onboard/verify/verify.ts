@@ -70,13 +70,12 @@ export default class Verify extends Vue {
                 this.form.verify.value,
             )
                 .then((res: ResponseInterface) => {
-                    this.loading = false;
-
                     if (res.success) {
                         this.$router.push({ name: 'dashboard' });
                         return true;
                     }
 
+                    this.loading = false;
                     this.alert.msg = res.msg;
                     this.alert.display = true;
                 })
