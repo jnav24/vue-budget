@@ -75,6 +75,10 @@ export default class Verify extends Vue {
                         return true;
                     }
 
+                    if (res.msg.includes('expired')) {
+                        this.isExpired = true;
+                    }
+
                     this.loading = false;
                     this.alert.msg = res.msg;
                     this.alert.display = true;
