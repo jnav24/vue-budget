@@ -9,6 +9,9 @@ const login: UserLoginStateInterface = {
         attempts: 0,
         allowed: 3,
     },
+    verify: {
+      expires_at: '',
+    },
 };
 const user: UserInterface = {} as UserInterface;
 const vehicles: UserVehicleInterface[] = [];

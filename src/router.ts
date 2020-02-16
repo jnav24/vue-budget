@@ -29,7 +29,11 @@ async function auth({ next }: any): Promise<void> {
         if (response.success) {
             next();
         } else {
-            next('/login');
+            if (response.msg === process.env.VUE_APP_VERIFY) {
+                next(`/verify/${response.data.token}`);
+            } else {
+                next('/login');
+            }
         }
     } catch (error) {
         next('/login');
@@ -109,6 +113,38 @@ const router = new Router({
                 },
                 {
                     path: '/account-reset/**',
+                    redirect: {
+                        name: 'login',
+                    },
+                },
+                {
+                    path: '/verify/:token',
+                    name: 'verify',
+                    beforeEnter: async (to: Route, from: Route, next: any) => {
+                        try {
+                            const response: ResponseInterface = await store.dispatch('isLoggedIn');
+
+                            if (!response.success && response.msg !== process.env.VUE_APP_VERIFY) {
+                                next('/login');
+                            }
+
+                            const tokenResponse = await userService
+                                .validateVerifyToken(to.params.token, store.state.User.user.user_id ?? '');
+
+                            if (!tokenResponse.success) {
+                                next('/login');
+                            }
+
+                            store.commit('SET_VERIFY_EXPIRATION', tokenResponse.data.expires_at);
+                            next();
+                        } catch (e) {
+                            next('/login');
+                        }
+                    },
+                    component: () => import('@/pages/onboard/verify/Verify.vue'),
+                },
+                {
+                    path: '/verify/**',
                     redirect: {
                         name: 'login',
                     },

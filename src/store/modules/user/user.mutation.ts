@@ -17,6 +17,15 @@ const mutations: MutationTree<UserStateInterface> = {
         state.user = {} as UserInterface;
     },
 
+    SET_VERIFY_EXPIRATION(state, payload: string) {
+        state.login = {
+            ...state.login,
+            verify: {
+                expires_at: payload,
+            },
+        };
+    },
+
     TOKEN_EXPIRED(state, payload: boolean) {
         Vue.set(state.login, 'timeout', payload);
     },

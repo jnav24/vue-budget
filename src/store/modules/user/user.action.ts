@@ -22,6 +22,14 @@ const actions: ActionTree<UserStateInterface, RootStateInterface> = {
                 if (responseService.isSuccessResponse(response.status)) {
                     commit('ADD_USER_VEHICLES', response.data.data.vehicles);
                     commit('ADD_USER', response.data.data.user);
+
+                    if (Object.keys(response.data.data.verify).length) {
+                        return responseService.getFailedResponse(
+                            process.env.VUE_APP_VERIFY,
+                            { token: response.data.data.verify.token },
+                        );
+                    }
+
                     return responseService.getSuccessResponse();
                 }
             }

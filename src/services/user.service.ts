@@ -93,6 +93,88 @@ class UserService {
             return this.responseService.getFailedResponse();
         }
     }
+
+    public async validateVerifyToken(token: string, id: string): Promise<ResponseInterface> {
+        try {
+            if (token.trim() === '' || id.toString().trim() === '') {
+                return this.responseService.getFailedResponse();
+            }
+
+            const data: UrlInterface = {
+                url: `auth/verify/${id}/${token}`,
+            };
+
+            const response: AxiosResponse = await this.httpService.get(data);
+
+            if (this.responseService.isSuccessResponse(response.status)) {
+                return this.responseService.getSuccessResponse('', { expires_at: response.data.data.expires_at });
+            }
+
+            return this.responseService.getFailedResponse();
+        } catch (error) {
+            return this.responseService.getFailedResponse();
+        }
+    }
+
+    public async resendVerifyToken(token: string, id: string): Promise<ResponseInterface> {
+        try {
+            if (token.trim() === '' || id.toString().trim() === '') {
+                return this.responseService.getFailedResponse();
+            }
+
+            const data: UrlInterface = {
+                url: `auth/resend-verify`,
+                params: {
+                    id,
+                    token,
+                },
+            };
+
+            const response: AxiosResponse = await this.httpService.post(data);
+
+            if (this.responseService.isSuccessResponse(response.status)) {
+                return this.responseService.getSuccessResponse();
+            }
+
+            return this.responseService.getFailedResponse();
+        } catch (error) {
+            return this.responseService.getFailedResponse();
+        }
+    }
+
+    public async submitVerifyToken(token: string, id: string, verify: string): Promise<ResponseInterface> {
+        try {
+            if (token.trim() === '' || id.toString().trim() === '') {
+                return this.responseService.getFailedResponse();
+            }
+
+            const data: UrlInterface = {
+                url: `auth/submit-verify`,
+                params: {
+                    id,
+                    verify,
+                    token,
+                },
+            };
+
+            const response: AxiosResponse = await this.httpService.post(data);
+
+            if (this.responseService.isSuccessResponse(response.status)) {
+                return this.responseService.getSuccessResponse();
+            }
+
+            return this.responseService.getFailedResponse();
+        } catch (error) {
+            const err = error.response;
+            let message = 'Unable to submit verification at this time';
+
+            if (!!err.data && !!err.data) {
+                message = err.data.message;
+            }
+
+            return this.responseService.getFailedResponse(message);
+        }
+    }
 }
 
 export default UserService;

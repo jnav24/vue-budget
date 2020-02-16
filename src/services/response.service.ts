@@ -8,12 +8,12 @@ class ResponseService {
         return { success: true, msg, data};
     }
 
-    public getFailedResponse(msg: string = this.msg): ResponseInterface {
+    public getFailedResponse(msg: string = this.msg, data: any[] | {} = {}): ResponseInterface {
         if (msg.trim() === '') {
             msg = this.msg;
         }
 
-        return { success: false, msg };
+        return { success: false, msg, data };
     }
 
     public isSuccessResponse(code: number): boolean {
