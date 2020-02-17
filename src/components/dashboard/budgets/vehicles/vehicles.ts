@@ -27,4 +27,9 @@ export default class Vehicles extends Budgets {
 
         return 'Vehicle not found';
     }
+
+    public showBalance(typeId: string): boolean {
+        const showList = ['Lease', 'Finance'];
+        return showList.includes(this.getType(typeId));
+    }
 }
