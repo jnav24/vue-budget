@@ -35,6 +35,7 @@
 
 			<v-flex lg3 xl3>
 				<p class="budget__price price-danger price-tac">{{ getDollarAmount(item.amount) }}</p>
+				<p class="budget__price-details" v-if="showBalance(item.vehicle_type_id)">Balance {{ getDollarAmount(item.balance) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>
