@@ -265,7 +265,7 @@ class Edit extends Vue {
     }
 
     private setLatestBudget(): boolean {
-        const index = this.budgetState.budgetList.findIndex((budget: any) => budget.id === this.budget.id);
+        const index = this.budgetState.budgetList.findIndex((budget: any) => budget.id === +this.budget.id);
         const startOfMonth = timestampService.getStartDayOfMonth();
         return index === 0 && timestampService.unix(this.budget.budget_cycle) >= timestampService.unix(startOfMonth);
     }
