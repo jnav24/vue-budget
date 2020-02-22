@@ -33,7 +33,7 @@ export default class SearchForm extends Vue {
             rules: [],
         },
         startMonth: {
-            value: '1',
+            value: '01',
             rules: [],
         },
         type: {
