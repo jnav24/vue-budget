@@ -144,7 +144,7 @@ class TimestampService {
     public getMonthsOfYear(format: 'abbr' | 'full' | 'num'): Array<{ value: string; label: string; }> {
         return Array.from(Array(12).keys()).map((int) => {
             let label = '';
-            const month = (int + 1).toString();
+            const month = (int + 1) < 10 ? '0' + (int + 1).toString() : (int + 1).toString();
             const year = this.format('', 'YYYY');
 
             switch (format) {
