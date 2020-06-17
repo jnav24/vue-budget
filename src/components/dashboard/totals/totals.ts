@@ -4,6 +4,7 @@ import {currencyService} from '@/module';
 @Component
 export default class Totals extends Vue {
     @Prop({ default: 'success' }) public amountColor: string;
+    @Prop({ default: false }) public dynamicBackground: boolean;
     @Prop({ default: false }) public dynamicColor: boolean;
     @Prop({ default: '0.00' }) public totalAmount: string;
     @Prop() public totalTitle: string;

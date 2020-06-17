@@ -1,6 +1,24 @@
 .totals {
 	margin-bottom: 20px;
 
+	&.bg {
+		&-danger .v-card {
+			background: map_get($colors, danger);
+
+			.amount, .amount-text {
+				color: #fff;
+			}
+		}
+
+		&-success .v-card {
+			background: darken(map_get($colors, success), 10%);
+
+			.amount, .amount-text {
+				color: #fff;
+			}
+		}
+	}
+
 	.amount {
 		font-size: 32px;
 		font-weight: bold;
