@@ -63,9 +63,9 @@
 							:trending="false"></Totals>
 
 						<Totals
-							:dynamic-color="true"
+							:dynamic-background="true"
 							:total-amount="totalSavings"
-							total-title="Savings"></Totals>
+							:total-title="totalSavings < 1 ? 'Lost' : 'Saved'"></Totals>
 
 						<v-divider style="margin: 30px 0;"></v-divider>
 
