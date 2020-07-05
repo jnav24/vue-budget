@@ -5,4 +5,5 @@ export interface BudgetListInterface {
     created_at: string;
     budget_cycle: string;
     expenses?: any;
+    saved?: string;
 }

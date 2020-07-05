@@ -1,5 +1,5 @@
 import { Vue, Component } from 'vue-property-decorator';
-import {Action, State} from 'vuex-class';
+import {Action, Getter, State} from 'vuex-class';
 import {DataTableInterface} from '@/interfaces/data-table.interface';
 import AddBudgetDialog from '@/components/dashboard/dialogs/add-budget-dialog/AddBudgetDialog.vue';
 import ConfirmDialog from '@/components/dashboard/dialogs/confirm-dialog/ConfirmDialog.vue';
@@ -10,6 +10,8 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
+import { groupBy } from 'lodash';
+import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 
 @Component({
     components: {
@@ -22,6 +24,7 @@ import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog
 class List extends Vue {
     @Action public getYearlyAggregations: () => Promise<ResponseInterface>;
     @Action public deleteSingleBudget: (num: number) => Promise<ResponseInterface>;
+    @Getter public allYears: Array<{ label: string; value: number }>;
     @State((state: RootStateInterface) => state.Budget) public budget: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates) public budgetTemplates: BudgetTemplateStateInterface;
     public addBudgetDialog: boolean = false;
@@ -33,6 +36,7 @@ class List extends Vue {
     public confirmDialog: boolean = false;
     public confirmMessage: string = 'Are you sure you want to delete this budget?';
     public search: string = '';
+    public selectedYear: number = Number(timestampService.getCurrentTimestamp('UTC', 'Y'));
     public tableHeaders: any = [
         { text: 'Name', value: 'name', sortable: false, class: ['text-xs-center'] },
         { text: 'Date', value: 'created_at', sortable: false, class: ['text-xs-center'] },
@@ -48,7 +52,13 @@ class List extends Vue {
     }
 
     public get tableItems() {
-        return this.budget.budgetList;
+        return groupBy(this.budget.budgetList, (obj: BudgetListInterface) => {
+            return timestampService.format(obj.budget_cycle, 'YYYY');
+        });
+    }
+
+    public get years() {
+        return this.allYears;
     }
 
     public deleteBudget(id: number) {

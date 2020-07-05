@@ -17,7 +17,7 @@
 										:items="billTypes"
 										item-value="slug"
 										item-text="name"
-										label="Select Budget Type"></v-select>
+										label="Budget Type"></v-select>
 								</v-flex>
 
 								<v-flex sm2 class="pr-5">
@@ -27,7 +27,7 @@
 										:items="allYears"
 										item-value="label"
 										item-text="value"
-										label="Select Year"></v-select>
+										label="Year"></v-select>
 								</v-flex>
 
 								<v-flex sm3 class="pr-3">

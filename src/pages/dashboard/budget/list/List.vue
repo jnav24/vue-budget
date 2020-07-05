@@ -19,7 +19,7 @@
 			@updateDialog="emitAddBudgetDialog($event)"></AddBudgetDialog>
 
 		<v-layout justify-center>
-			<v-flex lg8 xl8>
+			<v-flex lg8 xl6>
 				<v-layout align-center style="margin-bottom: 25px;">
 					<v-flex>
 						<h1 class="header__h1">Budget</h1>
@@ -49,7 +49,7 @@
 				</v-layout>
 
 				<EmptyState
-					v-if="!tableItems.length && !canAddBudget()"
+					v-if="tableItems[selectedYear] && !tableItems[selectedYear].length && !canAddBudget()"
 					title="You have no monthly budgets"
 					text="Click on the button below to add one."
 					button-text="Budget"
@@ -63,46 +63,68 @@
 					button-text="Template"
 					@buttonClicked="goToBudgetTemplate()"></EmptyState>
 
-				<v-card v-if="tableItems.length">
-					<v-card-title>
-						<v-text-field
-							label="Search"
-							prepend-icon="search"
-							v-model="search"
-							single-line></v-text-field>
-					</v-card-title>
+				<template v-if="tableItems[selectedYear] && tableItems[selectedYear].length">
+					<v-card style="margin-bottom: 30px;">
+						<v-card-title>
+							<v-flex lg3>
+								<v-select
+									v-model="selectedYear"
+									:items="years"
+									item-value="value"
+									item-text="label"
+									label="Select Year"></v-select>
+							</v-flex>
+						</v-card-title>
+					</v-card>
 
-					<v-card-text>
-						<v-data-table
-							:search="search"
-							:rows-per-page-items="tableInfo.rowsPerPageItems"
-							:items="tableItems"
-							:headers="tableHeaders">
-							<template slot="items" slot-scope="props">
-								<td class="text-xs-center">{{ props.item.name }}</td>
-								<td class="text-xs-center">{{ formatBudget(props.item.budget_cycle)}}</td>
-								<td class="text-xs-center">
-									<router-link
-										slot="activator"
-										tag="v-btn"
-										class="btn--details__icon v-btn v-btn--floating v-btn--small"
-										:to="{ name: 'budget-edit', params: { id: props.item.id } }"
-										exact>
-										<v-icon>edit</v-icon>
-									</router-link>
+					<v-card style="margin-bottom: 30px;">
+						<v-card-text>
+							<template v-for="(item, index) in tableItems[selectedYear]">
+								<v-layout align-center style="padding: 25px 0;">
+									<v-flex lg1 class="text-center">
+										<div v-if="Number(item.saved) >= 0" class="round-icon success">
+											<v-icon>trending_up</v-icon>
+										</div>
 
-									<v-btn
-										fab
-										small
-										@click="deleteBudget(props.item.id)"
-										class="btn--details__icon">
-										<v-icon>delete</v-icon>
-									</v-btn>
-								</td>
+										<div v-if="Number(item.saved) < 0" class="round-icon danger">
+											<v-icon>trending_down</v-icon>
+										</div>
+									</v-flex>
+
+									<v-flex lg9>
+										<h3 class="list-header">{{ item.name }}</h3>
+										<p class="list-text">
+											<span
+												:class="{
+													'success-text': Number(item.saved) >= 0,
+													'danger-text': Number(item.saved) < 0,
+												}"
+											>
+												You've {{ Number(item.saved) >= 0 ? 'saved' : 'lost' }}
+												<span>${{ item.saved.replace('-','') }}</span>
+											</span>
+										</p>
+									</v-flex>
+
+									<v-flex lg2>
+										<router-link
+											tag="v-btn"
+											class="v-btn v-btn--floating v-btn--depressed v-btn--small"
+											:to="{ name: 'budget-edit', params: { id: item.id } }">
+											<v-icon>edit</v-icon>
+										</router-link>
+
+										<v-btn fab depressed small @click="deleteBudget(item.id)">
+											<v-icon>delete</v-icon>
+										</v-btn>
+									</v-flex>
+								</v-layout>
+
+								<v-divider v-if="tableItems[selectedYear] && index < (tableItems[selectedYear].length - 1)"></v-divider>
 							</template>
-						</v-data-table>
-					</v-card-text>
-				</v-card>
+						</v-card-text>
+					</v-card>
+				</template>
 			</v-flex>
 		</v-layout>
 	</div>
