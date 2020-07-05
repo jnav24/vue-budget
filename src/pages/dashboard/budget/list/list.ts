@@ -10,6 +10,8 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import AlertDialog from '@/components/dashboard/dialogs/alert-dialog/AlertDialog.vue';
+import { groupBy } from 'lodash';
+import {BudgetListInterface} from '@/interfaces/budget-list.interface';
 
 @Component({
     components: {
@@ -50,7 +52,9 @@ class List extends Vue {
     }
 
     public get tableItems() {
-        return this.budget.budgetList;
+        return groupBy(this.budget.budgetList, (obj: BudgetListInterface) => {
+            return timestampService.format(obj.budget_cycle, 'YYYY');
+        });
     }
 
     public get years() {

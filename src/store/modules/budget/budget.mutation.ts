@@ -12,7 +12,7 @@ const mutations: MutationTree<BudgetStateInterface> = {
         state.budgetList = [payload, ...state.budgetList];
     },
 
-    UPDATE_SINGLE_BUDGET(state, payload: any) {
+    UPDATE_SINGLE_BUDGET(state, payload: BudgetListInterface) {
         const index = state.budgetList.findIndex((obj: any) => obj.id === payload.id);
 
         if (index > -1) {
