@@ -21,6 +21,7 @@ import {AlertInterface} from '@/interfaces/alert.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import Totals from '@/components/dashboard/totals/Totals.vue';
+import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 
 Component.registerHooks([
     'created',
@@ -32,6 +33,7 @@ Component.registerHooks([
         Banks,
         ConfirmDialog,
         CreditCards,
+        EmptyState,
         Investments,
         Jobs,
         Medical,

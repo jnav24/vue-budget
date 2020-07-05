@@ -32,6 +32,14 @@
 					{{ alert.msg }}
 				</v-alert>
 
+				<EmptyState
+					v-if="!Object.keys(budget).length"
+					title="This budget is empty"
+					text="Click on the button below to add an expense"
+					button-text="Expense"
+					@buttonClicked="expenseDialog = true"
+				></EmptyState>
+
 				<v-layout align-center>
 					<v-flex>
 						<h1 class="header__h1">Budget: {{ budget.name }}</h1>
