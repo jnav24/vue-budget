@@ -13,10 +13,10 @@
 				<div>
 					<p class="amount-text">
 						Total {{ totalTitle }}
-						<v-template v-if="!dynamicBackground">
+						<template v-if="!dynamicBackground">
 							<v-icon color="success" v-if="trending">trending_up</v-icon>
 							<v-icon color="danger" v-if="!trending">trending_down</v-icon>
-						</v-template>
+						</template>
 					</p>
 
 					<p class="amount" v-if="dynamicBackground && !dynamicColor">{{ formatDollar }}</p>
@@ -28,10 +28,10 @@
 						{{ formatDollar }}
 					</p>
 
-					<v-template v-if="!dynamicBackground && dynamicColor">
+					<template v-if="!dynamicBackground && dynamicColor">
 						<p class="amount amount-danger" v-if="totalAmount < 1">{{ formatDollar }}</p>
 						<p class="amount amount-success" v-if="totalAmount >= 1">{{ formatDollar }}</p>
-					</v-template>
+					</template>
 				</div>
 			</v-card-title>
 		</v-card>
