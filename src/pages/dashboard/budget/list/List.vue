@@ -44,6 +44,13 @@
 								<v-icon class="prepend-icon">edit</v-icon>
 								<span>Template</span>
 							</router-link>
+
+							<v-btn
+								@click="addBudgetDialog = true"
+								color="accent">
+								<v-icon class="prepend-icon">add</v-icon>
+								<span>Blank Budget</span>
+							</v-btn>
 						</v-layout>
 					</v-flex>
 				</v-layout>
