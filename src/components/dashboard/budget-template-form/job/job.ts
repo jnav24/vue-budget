@@ -44,7 +44,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
     };
 
     public get payPeriods() {
-        return this.typesState.jobs;
+        return this.typesState.incomes;
     }
 
     public setupForm() {
