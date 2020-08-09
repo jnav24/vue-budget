@@ -19,10 +19,10 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
                 const {bill_types, types} = response.data.data;
                 commit('ADD_BILL_TYPES', bill_types);
 
-                for (const billType in types) {
+                for (const [typeName, typeList] of Object.entries(types)) {
                     commit('ADD_TYPE', {
-                        type: billType,
-                        typeList: types[billType]
+                        type: typeName,
+                        typeList,
                     });
                 }
                 return responseService.getSuccessResponse();
