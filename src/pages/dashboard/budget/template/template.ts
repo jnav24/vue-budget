@@ -45,7 +45,7 @@ class Template extends Vue {
             { text: 'Amount', value: 'amount' },
             { text: 'Bank Type', value: 'bank_type_id' },
         ],
-        credit_cards: [
+        'credit-cards': [
             { text: 'Name', value: 'name' },
             { text: 'Card Type', value: 'credit_card_type_id' },
             { text: 'Last 4 Digits', value: 'last_4' },
@@ -55,10 +55,10 @@ class Template extends Vue {
             { text: 'Monthly Due Date', value: 'due_date' },
             { text: 'Credit Limit', value: 'limit' },
         ],
-        jobs: [
+        incomes: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Pay Frequency', value: 'job_type_id' },
+            { text: 'Pay Frequency', value: 'income_type_id' },
             { text: 'Initial Pay Date', value: 'initial_pay_date' },
         ],
         investments: [
