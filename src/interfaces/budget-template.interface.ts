@@ -1,7 +1,7 @@
 import {BanksInterface} from '@/interfaces/banks.interface';
 import {CreditCardsInterface} from '@/interfaces/credit-cards.interface';
 import {InvestmentsInterface} from '@/interfaces/investments.interface';
-import {JobsInterface} from '@/interfaces/jobs.interface';
+import {IncomesInterface} from '@/interfaces/incomes.interface';
 import {MedicalInterface} from '@/interfaces/medical.interface';
 import {MiscellaneousInterface} from '@/interfaces/miscellaneous.interface';
 import {UtilitiesInterface} from '@/interfaces/utilities.interface';
@@ -13,7 +13,7 @@ export interface BudgetTemplateInterface {
         banks: BanksInterface[];
         credit_cards: CreditCardsInterface[];
         investments: InvestmentsInterface[];
-        jobs: JobsInterface[];
+        jobs: IncomesInterface[];
         medical: MedicalInterface[];
         miscellaneous: MiscellaneousInterface[];
         utilities: UtilitiesInterface[];
