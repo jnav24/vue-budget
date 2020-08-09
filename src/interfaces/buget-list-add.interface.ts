@@ -1,5 +1,4 @@
 export interface BudgetListAddInterface {
-    type: 'banks' | 'credit_cards' | 'investments' |
-        'medical' | 'miscellaneous' | 'utilities' | 'jobs' | 'vehicles' | 'blank';
+    type: string;
     data: any;
 }

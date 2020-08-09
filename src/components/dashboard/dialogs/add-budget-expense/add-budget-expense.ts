@@ -4,6 +4,7 @@ import {State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import Bank from '@/components/dashboard/budget-template-form/bank/Bank.vue';
+import CommonExpense from '@/components/dashboard/budget-template-form/common-expense/CommonExpense.vue';
 import CreditCard from '@/components/dashboard/budget-template-form/credit-card/CreditCard.vue';
 import Investment from '@/components/dashboard/budget-template-form/investment/Investment.vue';
 import Job from '@/components/dashboard/budget-template-form/job/Job.vue';
@@ -17,6 +18,7 @@ import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 @Component({
     components: {
         Bank,
+        CommonExpense,
         CreditCard,
         Investment,
         Job,
