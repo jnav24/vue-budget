@@ -8,7 +8,7 @@ import {BudgetListAddInterface} from '@/interfaces/buget-list-add.interface';
 import {VehicleInterface} from '@/interfaces/vehicle.interface';
 import {validateService} from '@/module';
 import {UserVehicleInterface} from '@/interfaces/user-vehicle.interface';
-import {VehicleTypesInterface} from '@/interfaces/vehicle-types.interface';
+import {CommonExpenseTypeInterface} from '@/interfaces/common-expense-type.interface';
 import EmptyState from '@/components/dashboard/empty-state/EmptyState.vue';
 
 @Component({
@@ -117,7 +117,7 @@ class Vehicle extends BudgetTemplateForm implements BudgetTemplateFormInterface 
     }
 
     public getTypeId(value: string): number {
-        const index = this.typesState.vehicles.findIndex((obj: VehicleTypesInterface) => obj.slug === value);
+        const index = this.typesState.vehicles.findIndex((obj: CommonExpenseTypeInterface) => obj.slug === value);
 
         if (index > -1) {
             return this.typesState.vehicles[index].id;
