@@ -48,7 +48,7 @@ class Template extends Vue {
         childcare: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'childcare_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         'credit-cards': [
@@ -64,25 +64,25 @@ class Template extends Vue {
         education: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'education_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         entertainment: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'entertainment_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         gift: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'gift_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         housing: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'housing_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         incomes: [
@@ -99,7 +99,7 @@ class Template extends Vue {
         loan: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'loan_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         medical: [
@@ -116,31 +116,31 @@ class Template extends Vue {
         personal: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'personal_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         shopping: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'shopping_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         subscription: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'subscription_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         tax: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'tax_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         travel: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
-            { text: 'Type', value: 'medical_type_id' },
+            { text: 'Type', value: 'travel_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
         utilities: [
