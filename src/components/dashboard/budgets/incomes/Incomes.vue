@@ -1,5 +1,5 @@
-<script src="./jobs.ts" lang="ts"></script>
-<style src="./jobs.scss" lang="scss" scoped></style>
+<script src="./incomes.ts" lang="ts"></script>
+<style src="./incomes.scss" lang="scss" scoped></style>
 
 <template>
 	<div class="budget jobs">
@@ -10,7 +10,7 @@
 			:key="item.id">
 			<v-flex lg6 xl6>
 				<h3 class="budget__title">{{ item.name }}</h3>
-				<p class="budget__type">{{ getType(item.job_type_id) }}</p>
+				<p class="budget__type">{{ getType(item.income_type_id) }}</p>
 			</v-flex>
 
 			<v-flex lg2 xl2>

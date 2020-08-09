@@ -41,7 +41,7 @@
 						:dialog="showDialog"
 						@submitForm="submitAndCloseDialog($event)"></Investment>
 					<Job
-						v-if="showTypeForm('jobs')"
+						v-if="showTypeForm('incomes')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="submitAndCloseDialog($event)"></Job>

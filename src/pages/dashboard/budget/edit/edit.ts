@@ -6,7 +6,7 @@ import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interfac
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
 import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards.vue';
 import Investments from '@/components/dashboard/budgets/investments/Investments.vue';
-import Jobs from '@/components/dashboard/budgets/jobs/Jobs.vue';
+import Incomes from '@/components/dashboard/budgets/incomes/Incomes.vue';
 import Medical from '@/components/dashboard/budgets/medical/Medical.vue';
 import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscellaneous.vue';
 import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
@@ -33,7 +33,7 @@ Component.registerHooks([
         ConfirmDialog,
         CreditCards,
         Investments,
-        Jobs,
+        Incomes,
         Medical,
         Miscellaneous,
         SaveControls,
