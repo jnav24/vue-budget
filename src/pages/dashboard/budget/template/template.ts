@@ -73,6 +73,12 @@ class Template extends Vue {
             { text: 'Type', value: 'entertainment_type_id' },
             { text: 'Monthly Due Date', value: 'due_date' },
         ],
+        food: [
+            { text: 'Name', value: 'name' },
+            { text: 'Amount', value: 'amount' },
+            { text: 'Type', value: 'food_type_id' },
+            { text: 'Monthly Due Date', value: 'due_date' },
+        ],
         gift: [
             { text: 'Name', value: 'name' },
             { text: 'Amount', value: 'amount' },
