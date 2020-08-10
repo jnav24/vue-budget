@@ -5,7 +5,7 @@ import {timestampService} from '@/module';
 @Component
 class Incomes extends Budgets {
     public mounted() {
-        this.type = 'jobs';
+        this.type = 'incomes';
         this.getTypeId();
     }
 

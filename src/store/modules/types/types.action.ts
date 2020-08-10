@@ -4,7 +4,7 @@ import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {ResponseInterface} from '@/interfaces/response.interface';
 import {UrlInterface} from '@/interfaces/url.interface';
 import {AxiosResponse} from 'axios';
-import {httpService, responseService} from '@/module';
+import {globalService, httpService, responseService} from '@/module';
 
 const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
     async getAllBillTypes({ commit }): Promise<ResponseInterface> {
@@ -21,7 +21,7 @@ const actions: ActionTree<TypesStateInterface, RootStateInterface> = {
 
                 for (const [typeName, typeList] of Object.entries(types)) {
                     commit('ADD_TYPE', {
-                        type: typeName,
+                        type: globalService.camelCase(typeName),
                         typeList,
                     });
                 }
