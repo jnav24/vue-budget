@@ -1,18 +1,21 @@
 import {Prop, Vue} from 'vue-property-decorator';
-import {State} from 'vuex-class';
+import {Getter, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {TypesStateInterface} from '@/store/modules/types/types-state.interface';
 import {currencyService, timestampService, globalService} from '@/module';
+import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 
 export default abstract class List extends Vue {
     @Prop({ required: true }) public data: any;
     @Prop({ required: true }) public type: string;
     @Prop({ default: true, required: true }) public showDivider: boolean;
     @Prop({ default: true, required: true }) public hideHead: boolean;
+    @Getter public billTypes: BillTypesInterface[];
     @State((state: RootStateInterface) => state.Types) public typesState: TypesStateInterface;
 
     public get isSpentList() {
-        return ['banks', 'investments', 'jobs'].indexOf(this.type) === -1;
+        const saveList = globalService.arrayColumn('slug', this.billTypes.filter((type) => !!type.save_type));
+        return saveList.indexOf(this.type) === -1;
     }
 
     public setCurrency(price: string): string {

@@ -1,10 +1,13 @@
 import {Vue, Component, Prop} from 'vue-property-decorator';
-import {currencyService} from '@/module';
+import {currencyService, globalService} from '@/module';
+import {Getter} from 'vuex-class';
+import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 
 @Component
 export default class SearchCardTotals extends Vue {
     @Prop({ required: true }) public summary: Record<string, number>;
     @Prop({ required: true }) public type: string;
+    @Getter public billTypes: BillTypesInterface[];
     public averageBalance: string = '';
     public endBalance: { month: string; amount: string } = {
         month: '',
@@ -30,7 +33,8 @@ export default class SearchCardTotals extends Vue {
     }
 
     public get isSaved() {
-        return ['banks', 'investments', 'jobs'].indexOf(this.type) > -1;
+        const saveList = globalService.arrayColumn('slug', this.billTypes.filter((type) => !!type.save_type));
+        return saveList.indexOf(this.type) > -1;
 
     }
 
@@ -66,6 +70,7 @@ export default class SearchCardTotals extends Vue {
             amount: currencyService.setCurrency(dollars[0].toString()),
         };
 
+        // @todo ??
         if (['banks', 'investments'].indexOf(this.type) > -1) {
             this.total = currencyService.setCurrency((dollars[dollars.length - 1] - dollars[0]).toString());
         } else {

@@ -67,7 +67,7 @@ class Job extends BudgetTemplateForm implements BudgetTemplateFormInterface {
             initial_pay_date: this.form.initial_pay_date.value,
         };
 
-        return this.setDataForSaving(data, 'jobs');
+        return this.setDataForSaving(data, 'incomes');
     }
 }
 
