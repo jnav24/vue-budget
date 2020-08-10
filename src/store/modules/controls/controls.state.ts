@@ -2,6 +2,7 @@ import {ControlsStateInterface} from '@/store/modules/controls/controls-state.in
 
 const state: ControlsStateInterface = {
     canRegister: false,
+    isDialogOpened: false,
 };
 
 export default state;

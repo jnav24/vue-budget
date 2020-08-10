@@ -1,6 +1,6 @@
 import {Component, Prop, Watch, Emit} from 'vue-property-decorator';
 import Dialogs from '@/components/dashboard/dialogs/dialogs';
-import {State} from 'vuex-class';
+import {Mutation, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {FormInterface} from '@/interfaces/form.interface';
 import Bank from '@/components/dashboard/budget-template-form/bank/Bank.vue';
@@ -32,6 +32,7 @@ class AddBudgetExpense extends Dialogs {
     @Prop() public cycle: string;
     @Prop() public type: number;
     @Prop() public showPaidForm: boolean;
+    @Mutation public SET_DIALOG_STATUS: (value: boolean) => void;
     @State((state: RootStateInterface) => state.Types) public types: TypesStateInterface;
     public editMode: boolean = false;
     public expenseValid: boolean = false;
@@ -73,8 +74,10 @@ class AddBudgetExpense extends Dialogs {
     @Watch('dialog')
     private updateForm() {
         if (!this.showDialog) {
+            this.SET_DIALOG_STATUS(false);
             this.resetForm();
         } else {
+            this.SET_DIALOG_STATUS(true);
             this.setupForm();
         }
     }
