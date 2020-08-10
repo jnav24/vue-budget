@@ -4,6 +4,7 @@ import {Action, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
+import CommonBudget from '@/components/dashboard/budgets/common-budget/CommonBudget.vue';
 import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards.vue';
 import Investments from '@/components/dashboard/budgets/investments/Investments.vue';
 import Incomes from '@/components/dashboard/budgets/incomes/Incomes.vue';
@@ -30,6 +31,7 @@ Component.registerHooks([
     components: {
         AddBudgetExpense,
         Banks,
+        CommonBudget,
         ConfirmDialog,
         CreditCards,
         Investments,
@@ -81,6 +83,25 @@ class Edit extends Vue {
     }
 
     public getComponentName(val: string): string {
+        const common: string[] = [
+            'childcare',
+            'education',
+            'entertainment',
+            'food',
+            'gift',
+            'housing',
+            'loan',
+            'personal',
+            'shopping',
+            'subscription',
+            'tax',
+            'travel',
+        ];
+
+        if (common.indexOf(val) > -1) {
+            return 'CommonBudget';
+        }
+
         return globalService.ucFirst(globalService.camelCase(val));
     }
 
