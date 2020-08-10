@@ -24,7 +24,7 @@ class Bank extends BudgetTemplateForm implements BudgetTemplateFormInterface {
         type: {
             value: '',
             rules: [
-                (v: any) => !!v || 'Name is required',
+                (v: any) => !!v || 'Type is required',
             ],
         },
         amount: {
