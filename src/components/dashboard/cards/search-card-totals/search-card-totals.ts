@@ -70,7 +70,6 @@ export default class SearchCardTotals extends Vue {
             amount: currencyService.setCurrency(dollars[0].toString()),
         };
 
-        // @todo ??
         if (['banks', 'investments'].indexOf(this.type) > -1) {
             this.total = currencyService.setCurrency((dollars[dollars.length - 1] - dollars[0]).toString());
         } else {

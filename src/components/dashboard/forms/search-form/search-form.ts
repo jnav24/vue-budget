@@ -69,7 +69,6 @@ export default class SearchForm extends Vue {
     }
 
     public get showTypes() {
-        // @todo
         const ignoreList = ['miscellaneous', 'incomes'];
         return ignoreList.indexOf(this.form.billType.value) === -1;
     }
