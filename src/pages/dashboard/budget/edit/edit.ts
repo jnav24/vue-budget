@@ -110,7 +110,7 @@ class Edit extends Vue {
     }
 
     public setTabName(value: string): string {
-        return value.replace('_', ' ');
+        return value.replace('_', ' ').replace('-', ' ');
     }
 
     public saveControls(obj: SaveControlsInterface) {
