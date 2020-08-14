@@ -15,22 +15,24 @@ class GlobalService {
     }
 
     public camelCase(value: string) {
-        const delim: string = '_';
+        const delimList: string[] = ['_', '-'];
         let result = value;
 
-        if (value.indexOf(delim) > -1) {
-            const list: string[] = value.split(delim);
+        delimList.forEach((delim: string) => {
+            if (value.indexOf(delim) > -1) {
+                const list: string[] = value.split(delim);
 
-            const camel = list.map((word: string, index: number) => {
-                if (index) {
-                    word = this.ucFirst(word);
-                }
+                const camel = list.map((word: string, index: number) => {
+                    if (index) {
+                        word = this.ucFirst(word);
+                    }
 
-                return word;
-            });
+                    return word;
+                });
 
-            result = camel.join('');
-        }
+                result = camel.join('');
+            }
+        });
 
         return result;
     }

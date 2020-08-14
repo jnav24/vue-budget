@@ -5,7 +5,7 @@ import {CreditCardsInterface} from '@/interfaces/credit-cards.interface';
 @Component
 class CreditCard extends Budgets {
     public mounted() {
-        this.type = 'credit_cards';
+        this.type = 'credit-cards';
         this.getTypeId();
     }
 

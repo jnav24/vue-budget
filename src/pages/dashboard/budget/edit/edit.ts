@@ -1,12 +1,13 @@
 import { Vue, Component } from 'vue-property-decorator';
 import {ResponseInterface} from '@/interfaces/response.interface';
-import {Action, State} from 'vuex-class';
+import {Action, Getter, State} from 'vuex-class';
 import {RootStateInterface} from '@/interfaces/root-state.interface';
 import {BudgetStateInterface} from '@/store/modules/budget/budget-state.interface';
 import Banks from '@/components/dashboard/budgets/banks/Banks.vue';
+import CommonBudget from '@/components/dashboard/budgets/common-budget/CommonBudget.vue';
 import CreditCards from '@/components/dashboard/budgets/credit-cards/CreditCards.vue';
 import Investments from '@/components/dashboard/budgets/investments/Investments.vue';
-import Jobs from '@/components/dashboard/budgets/jobs/Jobs.vue';
+import Incomes from '@/components/dashboard/budgets/incomes/Incomes.vue';
 import Medical from '@/components/dashboard/budgets/medical/Medical.vue';
 import Miscellaneous from '@/components/dashboard/budgets/miscellaneous/Miscellaneous.vue';
 import Utilities from '@/components/dashboard/budgets/utilities/Utilities.vue';
@@ -21,6 +22,7 @@ import {AlertInterface} from '@/interfaces/alert.interface';
 import {BudgetTemplateInterface} from '@/interfaces/budget-template.interface';
 import {BudgetTemplateStateInterface} from '@/store/modules/budget-template/budget-template-state.interface';
 import Totals from '@/components/dashboard/totals/Totals.vue';
+import {BillTypesInterface} from '@/interfaces/bill-types.interface';
 
 Component.registerHooks([
     'created',
@@ -30,10 +32,11 @@ Component.registerHooks([
     components: {
         AddBudgetExpense,
         Banks,
+        CommonBudget,
         ConfirmDialog,
         CreditCards,
         Investments,
-        Jobs,
+        Incomes,
         Medical,
         Miscellaneous,
         SaveControls,
@@ -49,6 +52,7 @@ class Edit extends Vue {
     @Action public getAllBudgetTemplates: () => Promise<ResponseInterface>;
     @Action public getUnpaidBillTotals: () => Promise<ResponseInterface>;
     @Action public getSelectedYearAggregate: (obj: { year: string }) => Promise<ResponseInterface>;
+    @Getter public billTypes: BillTypesInterface[];
     @State((state: RootStateInterface) => state.Budget) public budgetState: BudgetStateInterface;
     @State((state: RootStateInterface) => state.BudgetTemplates)
     public budgetTemplateState: BudgetTemplateStateInterface;
@@ -81,6 +85,25 @@ class Edit extends Vue {
     }
 
     public getComponentName(val: string): string {
+        const common: string[] = [
+            'childcare',
+            'education',
+            'entertainment',
+            'food',
+            'gift',
+            'housing',
+            'loan',
+            'personal',
+            'shopping',
+            'subscription',
+            'tax',
+            'travel',
+        ];
+
+        if (common.indexOf(val) > -1) {
+            return 'CommonBudget';
+        }
+
         return globalService.ucFirst(globalService.camelCase(val));
     }
 
@@ -89,7 +112,7 @@ class Edit extends Vue {
     }
 
     public setTabName(value: string): string {
-        return value.replace('_', ' ');
+        return value.replace('_', ' ').replace('-', ' ');
     }
 
     public saveControls(obj: SaveControlsInterface) {
@@ -224,7 +247,7 @@ class Edit extends Vue {
     }
 
     private getTotalEarned() {
-        const earned = ['jobs'];
+        const earned = ['incomes'];
         this.totalEarned = 0;
         this.totalEarned = this.getTotals(earned);
     }
@@ -236,7 +259,7 @@ class Edit extends Vue {
     }
 
     private getTotalSpent() {
-        const spending = ['credit_cards', 'medical', 'miscellaneous', 'utilities', 'vehicles'];
+        const spending = globalService.arrayColumn('slug', this.billTypes.filter((type) => !type.save_type));
         this.totalSpent = 0;
         this.totalSpent = this.getTotals(spending);
     }
@@ -247,7 +270,7 @@ class Edit extends Vue {
 
     private getTotals(items: any[]): number {
         let total = 0;
-        const noTrack = ['medical', 'miscellaneous', 'vehicles'];
+        const noTrack = globalService.arrayColumn('slug', this.billTypes.filter((type) => !type.save_type));
 
         for (const item of items) {
             if (typeof this.budget.expenses[item] !== 'undefined') {
@@ -274,11 +297,23 @@ class Edit extends Vue {
         const data: BudgetTemplateInterface = {
             expenses: {
                 banks: [],
+                childcare: [],
                 credit_cards: [],
+                education: [],
+                entertainment: [],
+                food: [],
+                gift: [],
+                housing: [],
                 investments: [],
-                jobs: [],
+                incomes: [],
+                loan: [],
                 medical: [],
                 miscellaneous: [],
+                personal: [],
+                shopping: [],
+                subscription: [],
+                tax: [],
+                travel: [],
                 utilities: [],
                 vehicles: [],
             },

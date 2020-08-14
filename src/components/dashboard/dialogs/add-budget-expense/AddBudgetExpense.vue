@@ -28,30 +28,87 @@
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="submitAndCloseDialog($event)"></Bank>
+					<CommonExpense
+						v-if="showTypeForm('childcare')"
+						type="childcare"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
 					<CreditCard
-						v-if="showTypeForm('credit_cards')"
+						v-if="showTypeForm('credit-cards')"
 						:data="currentData"
 						:dialog="showDialog"
 						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></CreditCard>
+					<CommonExpense
+						v-if="showTypeForm('education')"
+						type="education"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('entertainment')"
+						type="entertainment"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('food')"
+						type="food"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('gift')"
+						type="gift"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('housing')"
+						type="housing"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
 					<Investment
 						v-if="showTypeForm('investments')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="submitAndCloseDialog($event)"></Investment>
 					<Job
-						v-if="showTypeForm('jobs')"
+						v-if="showTypeForm('incomes')"
 						:data="currentData"
 						:dialog="showDialog"
 						@submitForm="submitAndCloseDialog($event)"></Job>
-					<Medical
-						v-if="showTypeForm('medical')"
+					<CommonExpense
+						v-if="showTypeForm('loan')"
+						type="loan"
 						:data="currentData"
 						:dialog="showDialog"
 						:cycle="cycle"
 						:showPaidForm="showPaidForm"
-						@submitForm="submitAndCloseDialog($event)"></Medical>
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('medical')"
+						type="medical"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
 					<Misc
 						v-if="showTypeForm('miscellaneous')"
 						:data="currentData"
@@ -59,6 +116,46 @@
 						:cycle="cycle"
 						:showPaidForm="showPaidForm"
 						@submitForm="submitAndCloseDialog($event)"></Misc>
+					<CommonExpense
+						v-if="showTypeForm('personal')"
+						type="personal"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('shopping')"
+						type="shopping"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('subscription')"
+						type="subscription"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('tax')"
+						type="tax"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
+					<CommonExpense
+						v-if="showTypeForm('travel')"
+						type="travel"
+						:data="currentData"
+						:dialog="showDialog"
+						:cycle="cycle"
+						:showPaidForm="showPaidForm"
+						@submitForm="submitAndCloseDialog($event)"></CommonExpense>
 					<Utility
 						v-if="showTypeForm('utilities')"
 						:data="currentData"

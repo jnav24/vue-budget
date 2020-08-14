@@ -3,9 +3,9 @@ import Budgets from '@/components/dashboard/budgets/budgets';
 import {timestampService} from '@/module';
 
 @Component
-class Jobs extends Budgets {
+class Incomes extends Budgets {
     public mounted() {
-        this.type = 'jobs';
+        this.type = 'incomes';
         this.getTypeId();
     }
 
@@ -14,4 +14,4 @@ class Jobs extends Budgets {
     }
 }
 
-export default Jobs;
+export default Incomes;
