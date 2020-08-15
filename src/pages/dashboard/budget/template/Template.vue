@@ -22,11 +22,12 @@
 
 		<v-layout justify-center>
 			<v-flex lg8 xl6>
-				<v-layout align-center style="margin-bottom: 25px;">
+				<v-layout align-center style="margin-bottom: 5rem;">
 					<v-flex lg7 xl7>
 						<h1 class="header__h1">Budget Template</h1>
-						<p>You can add all your bank, credit cards and other monthly expenses, you would like to track on this page. Everything entered on this page, will show when you add a new monthly budget.</p>
-						<p>If you were to delete an item, it will still show on your already existing budgets but it will not show on new budgets.</p>
+						<p>Add all your monthly expenses here! Whenever you create a new budget, the expenses here will automatically show in your new monthly budget. The idea is to not to manually enter the same info more than once.</p>
+						<p>All you have to do is click on the 'Add Expense' button, select the type of expense, enter the details and save your changes.</p>
+						<p>If you were to delete an item on this page, all already existing budgets will be unaffected.</p>
 					</v-flex>
 
 					<v-flex>
