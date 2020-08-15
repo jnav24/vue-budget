@@ -15,7 +15,7 @@ html, body {
 	}
 
 	&__h3 {
-		color: map-get($colors, primary);
+		color: map-get($colors, mid_grey);
 		font-weight: 300;
 		font-size: 30px;
 		margin-bottom: 25px;

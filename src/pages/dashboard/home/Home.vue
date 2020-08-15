@@ -4,7 +4,7 @@
 <template>
 	<div class="page home">
 		<v-layout justify-center>
-			<v-flex lg8 xl8>
+			<v-flex lg8 xl6>
 				<v-layout align-center style="margin-bottom: 25px;">
 					<v-flex lg10 xl10>
 						<h1 class="header__h1">Dashboard</h1>
