@@ -21,7 +21,7 @@
 			@updateDialog="closeEditBudgetDialog($event)"></AddBudgetExpense>
 
 		<v-layout justify-center>
-			<v-flex lg8 xl8>
+			<v-flex lg8 xl6>
 				<v-layout align-center style="margin-bottom: 25px;">
 					<v-flex lg7 xl7>
 						<h1 class="header__h1">Budget Template</h1>
