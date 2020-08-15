@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" :class="{'dialog-mode': $store.state.Controls.isDialogOpened }">
 		<v-app>
 			<router-view/>
 		</v-app>
@@ -18,6 +18,10 @@
 		text-align: center;
 		color: #2c3e50;
 		@include font;
+
+		&.dialog-mode {
+			overflow: hidden;
+		}
 	}
 
 	#nav {
