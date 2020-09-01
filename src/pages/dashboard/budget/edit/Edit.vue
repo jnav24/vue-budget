@@ -24,7 +24,7 @@
 			@updateData="emitConfirmCancelData($event)"></ConfirmDialog>
 
 		<v-layout justify-center>
-			<v-flex lg8 xl6>
+			<v-flex lg8 xl8>
 				<v-alert
 					:value="alert.display"
 					transition="slide-y-transition"
