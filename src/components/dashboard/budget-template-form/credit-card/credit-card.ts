@@ -148,7 +148,7 @@ class CreditCard extends BudgetTemplateForm implements BudgetTemplateFormInterfa
             balance: this.form.balance.value || '0',
         };
 
-        return this.setDataForSaving(data, 'credit_cards');
+        return this.setDataForSaving(data, 'credit-cards');
     }
 }
 
