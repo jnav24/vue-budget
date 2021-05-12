@@ -11,7 +11,7 @@
     "@types/lodash": "^4.14.149",
     "ajv": "^6.11.0",
     "axios": "^0.18.1",
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
